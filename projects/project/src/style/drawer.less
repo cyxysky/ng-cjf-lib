@@ -9,10 +9,10 @@
 
 .c-lib-drawer {
     position: fixed;
-    z-index: @drawer-z-index;
+    z-index: 1000;
     pointer-events: auto;
-    background-color: @text-color-inverse;
-    box-shadow: @drawer-shadow;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     &.c-lib-drawer-left {
         top: 0;
@@ -56,8 +56,8 @@
 }
 
 .c-lib-drawer-header {
-    padding: @drawer-header-padding;
-    border-bottom: @drawer-header-border-width solid @border-color-split;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -66,10 +66,10 @@
 
 .c-lib-drawer-title {
     margin: 0;
-    font-size: @drawer-title-font-size;
-    font-weight: @drawer-title-font-weight;
-    color: @text-color;
-    line-height: @drawer-title-line-height;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    line-height: 22px;
     flex: 1;
 }
 
@@ -78,25 +78,25 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    font-size: @drawer-close-font-size;
-    line-height: @drawer-close-line-height;
-    color: @text-color-tertiary;
-    transition: @drawer-close-transition;
+    font-size: 16px;
+    line-height: 1;
+    color: #d9d9d9;
+    transition: color 0.3s;
 
     &:hover {
-        color: @text-color;
+        color: #000000;
     }
 }
 
 .c-lib-drawer-close-x {
     display: block;
     font-style: normal;
-    font-size: @drawer-close-x-font-size;
+    font-size: 18px;
     line-height: 1;
 }
 
 .c-lib-drawer-body {
     flex: 1;
-    padding: @drawer-body-padding;
+    padding: 24px;
     overflow: auto;
 }

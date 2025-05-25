@@ -1,52 +1,52 @@
 .c-lib-slider {
   &-container {
     position: relative;
-    height: @slider-container-height;
-    margin: @slider-container-margin;
-    padding: @slider-container-padding;
+    height: 14px;
+    margin: 14px 6px 10px;
+    padding: 5px 0;
     cursor: pointer;
   }
 
   &-rail {
     position: absolute;
     width: 100%;
-    height: @slider-rail-height;
-    background-color: @slider-rail-bg;
-    border-radius: @slider-rail-border-radius;
+    height: 4px;
+    background-color: #f0f0f0;
+    border-radius: 2px;
     transition: background-color 0.3s;
   }
 
   &-track {
     position: absolute;
-    height: @slider-track-height;
-    background-color: @slider-track-bg;
-    border-radius: @slider-track-border-radius;
+    height: 4px;
+    background-color: #1890ff;
+    border-radius: 2px;
   }
 
   &-handle {
     position: absolute;
-    width: @slider-handle-size;
-    height: @slider-handle-size;
+    width: 14px;
+    height: 14px;
     margin-top: -5px;
-    background-color: @text-color-inverse;
+    background-color: #ffffff;
     z-index: 3;
-    border: @slider-handle-border-width solid @slider-track-bg;
-    border-radius: @slider-handle-border-radius;
-    box-shadow: @slider-handle-shadow @shadow-color-light;
+    border: 2px solid #1890ff;
+    border-radius: 90px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: @slider-handle-transition;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(-50%);
 
     &:hover,
     &:active {
-      border-color: @slider-track-bg;
-      box-shadow: @slider-handle-hover-shadow fade(@blue-base, 12%);
+      border-color: #1890ff;
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.12);
     }
   }
 
   &-marks {
     position: absolute;
-    top: @slider-marks-top;
+    top: 18px;
     left: 0;
     width: 100%;
   }
@@ -61,29 +61,29 @@
       top: -12px;
       left: 50%;
       z-index: 1;
-      width: @slider-mark-size;
-      height: @slider-mark-size;
-      background-color: @text-color-inverse;
-      border: @slider-mark-border-width solid @border-color-base;
-      border-radius: @slider-handle-border-radius;
+      width: 8px;
+      height: 8px;
+      background-color: #ffffff;
+      border: 1px solid #d9d9d9;
+      border-radius: 90px;
       transform: translateX(-50%);
     }
 
     &-text {
       position: absolute;
       display: inline-block;
-      color: @text-color-secondary;
+      color: #434343;
       text-align: center;
       word-break: keep-all;
       white-space: nowrap;
       transform: translateX(-50%);
       user-select: none;
-      font-size: @slider-mark-text-font-size;
-      margin-top: @slider-mark-text-margin-top;
+      font-size: 12px;
+      margin-top: 8px;
     }
   }
 
   &-with-marks {
-    margin-bottom: @slider-with-marks-margin;
+    margin-bottom: 28px;
   }
 }

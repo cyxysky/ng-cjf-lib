@@ -11,19 +11,19 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    margin: @tabs-nav-margin;
-    gap: @tabs-nav-gap;
+    margin: 0 0 16px 0;
+    gap: 8px;
   }
 
   &-bottom {
     .c-lib-tabs-nav-wrapper {
       order: 1;
-      margin-top: @spacing-lg;
+      margin-top: 16px;
       margin-bottom: 0;
     }
 
     .c-lib-tabs-nav {
-      border-top: @base-border-width solid @border-color-base;
+      border-top: 1px solid #d9d9d9;
       border-bottom: none;
     }
 
@@ -35,7 +35,7 @@
 
   &-top {
     .c-lib-tabs-nav {
-      border-bottom: @base-border-width solid @border-color-base;
+      border-bottom: 1px solid #d9d9d9;
     }
   }
 
@@ -70,42 +70,42 @@
       display: flex;
       flex: none;
       align-items: center;
-      transition: transform @visible-animation-duration;
+      transition: transform 150ms;
       position: relative;
       white-space: nowrap;
       width: fit-content;
     }
 
     &-arrow {
-      flex: 0 0 @tabs-arrow-size;
-      min-width: @tabs-arrow-size;
-      max-width: @tabs-arrow-size;
-      width: @tabs-arrow-size;
-      height: @tabs-arrow-size;
+      flex: 0 0 32px;
+      min-width: 32px;
+      max-width: 32px;
+      width: 32px;
+      height: 32px;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
-      background: @background-color-lighter;
+      background: #fafafa;
       border: 0;
       outline: none;
       cursor: pointer;
-      color: @text-color-tertiary;
-      transition: color @visible-animation-duration;
+      color: #d9d9d9;
+      transition: color 150ms;
       z-index: 10;
-      box-shadow: 0 @base-border-width 3px @shadow-color-lightest;
-      border-radius: @tabs-arrow-border-radius;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      border-radius: 2px;
 
       &:hover {
-        color: @text-color-secondary;
+        color: #434343;
       }
 
       &-disabled {
-        color: @text-color-disabled;
+        color: #d9d9d9;
         cursor: not-allowed;
         pointer-events: none;
-        opacity: @tabs-disabled-opacity;
+        opacity: 0.5;
       }
 
       &-icon {
@@ -117,16 +117,16 @@
     }
 
     &-prev {
-      margin-right: @tabs-arrow-margin;
+      margin-right: 8px;
 
       .c-lib-tabs-nav-arrow-icon {
-        border-width: @tabs-arrow-icon-size;
+        border-width: 6px 8px 6px 0;
         border-color: transparent currentColor transparent transparent;
       }
     }
 
     &-next {
-      margin-left: @tabs-arrow-margin;
+      margin-left: 8px;
 
       .c-lib-tabs-nav-arrow-icon {
         border-width: 6px 0 6px 8px;
@@ -140,14 +140,14 @@
     display: flex;
     flex: none;
     align-items: center;
-    margin-right: @tabs-tab-margin;
-    padding: @tabs-tab-padding;
-    font-size: @tabs-tab-font-size;
+    margin-right: 32px;
+    padding: 12px 0;
+    font-size: 14px;
     background: transparent;
     border: 0;
     outline: none;
     cursor: pointer;
-    transition: @tabs-transition;
+    transition: color 150ms;
 
     &:last-of-type {
       margin-right: 0;
@@ -157,12 +157,12 @@
       display: flex;
       align-items: center;
       outline: none;
-      transition: all @visible-animation-duration;
+      transition: all 150ms;
     }
 
     &-icon {
-      margin-right: @tabs-icon-spacing;
-      font-size: @tabs-icon-font-size;
+      margin-right: 8px;
+      font-size: 14px;
 
       i {
         display: inline-block;
@@ -176,37 +176,37 @@
     }
 
     &-active &-btn {
-      color: @tabs-active-color;
+      color: #1890ff;
     }
 
     &-disabled {
-      color: @text-color-disabled;
+      color: #d9d9d9;
       cursor: not-allowed;
     }
 
     &-close {
-      margin-left: @tabs-close-spacing;
+      margin-left: 8px;
       padding: 0;
-      font-size: @tabs-close-font-size;
+      font-size: 12px;
       background: transparent;
       border: 0;
       outline: none;
       cursor: pointer;
-      transition: all @visible-animation-duration;
+      transition: all 150ms;
 
       &:hover {
-        color: @text-color;
+        color: #000000;
       }
     }
 
     &-add {
       padding: 0 8px;
-      background: @background-color-lighter;
+      background: #fafafa;
       z-index: 10;
 
       &:hover {
-        color: @tabs-hover-color;
-        border-color: @tabs-hover-color;
+        color: #1890ff;
+        border-color: #1890ff;
       }
 
       &-icon {
@@ -217,7 +217,7 @@
         position: relative;
         margin-left: 8px;
         flex-shrink: 0;
-        box-shadow: 0 1px 3px @shadow-color-lightest;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         border-radius: 2px;
         display: flex;
         align-items: center;
@@ -233,24 +233,24 @@
     bottom: 0;
     left: 0;
     height: 2px;
-    background-color: @tabs-active-color;
+    background-color: #1890ff;
     z-index: 1;
-    transition: transform @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1),
-      width @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1),
-      left @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 150ms cubic-bezier(0.645, 0.045, 0.355, 1),
+      width 150ms cubic-bezier(0.645, 0.045, 0.355, 1),
+      left 150ms cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   &-card {
     .c-lib-tabs-tab {
       margin-right: 2px;
       padding: 8px 16px;
-      background: @background-color-lighter;
-      border: 1px solid @border-color-base;
+      background: #fafafa;
+      border: 1px solid #d9d9d9;
       border-radius: 2px 2px 0 0;
-      transition: all @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: all 150ms cubic-bezier(0.645, 0.045, 0.355, 1);
 
       &-active {
-        background: @background-color-lighter;
+        background: #fafafa;
       }
 
       &-close {

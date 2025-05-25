@@ -8,32 +8,32 @@ lib-input {
     display: inline-flex;
     width: 100%;
     box-sizing: border-box;
-    font-size: @input-font-size-medium;
+    font-size: 14px;
 }
 
 .c-lib-input-control {
-    height: @input-height-medium;
-    line-height: @input-height-medium;
+    height: 32px;
+    line-height: 32px;
     box-sizing: border-box;
-    font-size: @input-font-size-medium;
-    background-color: @text-color-inverse;
-    transition: @input-transition;
+    font-size: 14px;
+    background-color: #ffffff;
+    transition: all 300ms;
     width: 100%;
     outline: none;
 
     &::placeholder {
-        color: @text-color-disabled;
+        color: #d9d9d9;
     }
 }
 
 .c-lib-input-affix-wrapper {
     display: inline-flex;
-    padding: 0 @input-padding-horizontal;
+    padding: 0 11px;
     box-sizing: border-box;
     width: 100%;
-    border: @base-border-width solid @border-color-base;
-    border-radius: @input-border-radius;
-    transition: @input-transition;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    transition: all 300ms;
 
     .c-lib-input-control {
         border: none;
@@ -41,139 +41,139 @@ lib-input {
     }
 
     &:hover {
-        border-color: @border-color-hover;
+        border-color: #1890ff;
     }
 
     &.c-lib-input-focused {
-        border-color: @border-color-focus;
-        box-shadow: @input-focus-shadow @focus-outline-color;
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
     }
 }
 
 .c-lib-input-prefix {
-    margin-right: @input-affix-spacing;
+    margin-right: 4px;
     display: flex;
     align-items: center;
-    color: @text-color-secondary;
+    color: #434343;
 
     .c-lib-input-prefix-icon {
-        margin-right: @input-affix-spacing;
+        margin-right: 4px;
     }
 }
 
 .c-lib-input-suffix {
-    margin-left: @input-affix-spacing;
+    margin-left: 4px;
     display: flex;
     align-items: center;
-    color: @text-color-secondary;
+    color: #434343;
 
     .c-lib-input-suffix-icon {
-        margin-left: @input-affix-spacing;
+        margin-left: 4px;
     }
 }
 
 .c-lib-input-clear-icon {
     cursor: pointer;
-    color: @text-color-disabled;
-    transition: color @animation-duration-normal;
-    margin-left: @input-clear-spacing;
+    color: #d9d9d9;
+    transition: color 300ms;
+    margin-left: 4px;
 
     &:hover {
-        color: @text-color-tertiary;
+        color: #d9d9d9;
     }
 }
 
 .c-lib-input-char-count {
-    color: @text-color-tertiary;
-    margin-left: @input-count-spacing;
+    color: #d9d9d9;
+    margin-left: 8px;
 }
 
 .c-lib-input-lg {
     .c-lib-input-control {
-        height: @input-height-large;
-        line-height: @input-height-large;
-        padding: 6.5px 0px;
-        font-size: @input-font-size-large;
+        height: 40px;
+        line-height: 40px;
+        padding: 6.5px 11px;
+        font-size: 16px;
     }
 }
 
 .c-lib-input-sm {
     .c-lib-input-control {
-        height: @input-height-small;
-        line-height: @input-height-small;
-        padding: 0 0px;
-        font-size: @input-font-size-small;
+        height: 24px;
+        line-height: 24px;
+        padding: 6.5px 11px;
+        font-size: 12px;
     }
 }
 
 .c-lib-input-status-error {
-    border-color: @border-color-error;
+    border-color: #ff4d4f;
 
     .c-lib-input-control {
         &:hover {
-            border-color: @border-color-error;
+            border-color: #ff4d4f;
         }
 
         &:focus {
-            border-color: @border-color-error;
+            border-color: #ff4d4f;
         }
     }
 
     &:hover {
-        border-color: @border-color-error;
+        border-color: #ff4d4f;
     }
 
     &.c-lib-input-focused {
-        border-color: @border-color-error;
-        box-shadow: @input-focus-shadow @error-color-outline;
+        border-color: #ff4d4f;
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
     }
 }
 
 .c-lib-input-status-warning {
-    border-color: @border-color-warning;
+    border-color: #ffc409;
 
     .c-lib-input-control {
         &:hover {
-            border-color: @border-color-warning;
+            border-color: #ffc409;
         }
 
         &:focus {
-            border-color: @border-color-warning;
+            border-color: #ffc409;
         }
     }
 
     &:hover {
-        border-color: @border-color-warning;
+        border-color: #ffc409;
     }
 
     &.c-lib-input-focused {
-        border-color: @border-color-warning;
-        box-shadow: @input-focus-shadow @warning-color-outline;
+        border-color: #ffc409;
+        box-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
     }
 }
 
 .c-lib-input-disabled {
-    background-color: @disabled-bg !important;
-    border-color: @border-color-base !important;
-    color: @disabled-color !important;
+    background-color: #f5f5f5 !important;
+    border-color: #d9d9d9 !important;
+    color: #d9d9d9 !important;
     cursor: not-allowed;
 
     .c-lib-input-control {
-        background-color: @disabled-bg !important;
-        color: @disabled-color !important;
+        background-color: #f5f5f5 !important;
+        color: #d9d9d9 !important;
         cursor: not-allowed;
     }
 
     .c-lib-input-prefix,
     .c-lib-input-suffix {
-        color: @disabled-color !important;
+        color: #d9d9d9 !important;
     }
 }
 
 .c-lib-input-borderless {
     border: none;
     box-shadow: none;
-    background-color: @text-color-inverse;
+    background-color: #ffffff;
 
     .c-lib-input-control {
         border: none;

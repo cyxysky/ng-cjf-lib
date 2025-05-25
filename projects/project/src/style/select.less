@@ -1,26 +1,26 @@
 .c-lib-select-hover-options,
 .c-lib-select-option-active {
-    background-color: @background-color-hover;
+    background-color: #f5f5f5;
 }
 
 .c-lib-select-option-base() {
-    padding: @select-option-padding;
+    padding: 5px 12px;
     display: flex;
     align-items: center;
-    height: @select-option-height;
+    height: 32px;
     cursor: pointer;
-    font-size: @select-option-font-size;
-    color: @text-color;
-    border-radius: @select-option-border-radius;
-    transition: @select-option-transition;
+    font-size: 14px;
+    color: #000000;
+    border-radius: 0;
+    transition: background-color 300ms;
 
     &:hover,
     &.c-lib-select-option-active {
-        background-color: @background-color-hover;
+        background-color: #f5f5f5;
     }
 
     &-disabled {
-        color: @text-color-disabled;
+        color: #d9d9d9;
         cursor: not-allowed;
         pointer-events: all;
         background-color: transparent;
@@ -37,9 +37,9 @@
 }
 
 .c-lib-select-option-selected-base() {
-    background-color: fade(@blue-base, 6%) !important;
-    font-weight: @select-option-font-weight-selected;
-    color: fade(@blue-base, 67%);
+    background-color: rgba(24, 144, 255, 0.06) !important;
+    font-weight: 500;
+    color: rgba(24, 144, 255, 0.67);
 }
 
 .c-lib-select-empty-container-base() {
@@ -48,30 +48,30 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: @select-empty-padding;
+    padding: 64px 16px;
 
     .c-lib-select-empty-icon {
-        margin-bottom: @select-empty-icon-margin;
-        color: fade(@black, 15%);
+        margin-bottom: 8px;
+        color: rgba(0, 0, 0, 0.15);
     }
 
     .c-lib-select-empty-text {
-        color: @text-color-tertiary;
-        font-size: @select-empty-font-size;
+        color: #d9d9d9;
+        font-size: 14px;
     }
 }
 
 .c-lib-select-dropdown {
-    background: @text-color-inverse;
-    box-shadow: @shadow-2;
+    background: #ffffff;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
     width: 100%;
-    margin: @select-dropdown-margin;
-    border-radius: @select-dropdown-border-radius;
+    margin: 4px 0;
+    border-radius: 4px;
     overflow: hidden;
     transform-origin: 0 0;
     opacity: 0;
     transform: scaleY(0.1);
-    transition: @select-dropdown-transition;
+    transition: opacity 300ms, transform 300ms;
 
     &.c-lib-select-dropdown-visible {
         opacity: 1;
@@ -83,8 +83,8 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: @text-color-disabled;
-        font-size: @select-empty-font-size;
+        color: #d9d9d9;
+        font-size: 14px;
     }
 
     .c-lib-select-empty-container {
@@ -95,7 +95,7 @@
 .c-lib-select-option-list {
     flex-grow: 1;
     overflow: auto;
-    max-height: @select-option-list-max-height;
+    max-height: 256px;
 
     .c-lib-select-option-option {
         .c-lib-select-option {
@@ -119,11 +119,11 @@
 }
 
 .c-lib-select-group-title {
-    padding: @select-group-title-padding;
-    font-size: @select-group-title-font-size;
-    color: @text-color-tertiary;
-    background-color: @background-color-mask-lighter;
-    font-weight: @select-group-title-font-weight;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: #d9d9d9;
+    background-color: rgba(0, 0, 0, 0.02);
+    font-weight: 500;
 }
 
 .c-lib-select-virtual-scroll-container {
@@ -142,19 +142,19 @@
     will-change: scroll-position;
 
     .c-lib-select-option {
-        padding: @select-option-padding;
+        padding: 5px 12px;
         display: grid;
         align-items: center;
         max-width: 100%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        height: @select-option-height;
+        height: 32px;
         cursor: pointer;
-        font-size: @select-option-font-size;
-        color: @text-color;
-        border-radius: @select-option-border-radius;
-        transition: @select-option-transition;
+        font-size: 14px;
+        color: #000000;
+        border-radius: 0;
+        transition: background-color 300ms;
 
         .c-lib-select-option-text {
             max-width: 100%;
@@ -164,11 +164,11 @@
         }
 
         &:hover {
-            background-color: @background-color-hover;
+            background-color: #f5f5f5;
         }
 
         &-disabled {
-            color: @text-color-disabled;
+            color: #d9d9d9;
             cursor: not-allowed;
 
             &:hover {
@@ -187,7 +187,7 @@
 }
 
 .c-lib-select-padding-left-8 {
-    padding-left: @select-padding-left;
+    padding-left: 8px;
 }
 
 
@@ -195,10 +195,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: @select-loading-height;
+    height: 40px;
 
     .c-lib-select-loading-text {
-        color: @text-color-tertiary;
+        color: #d9d9d9;
     }
 }
 

@@ -1,13 +1,13 @@
 // 下拉菜单
 .c-lib-tree-select-dropdown {
-    background-color: @select-dropdown-bg;
-    box-shadow: @shadow-2;
-    border-radius: @tree-select-dropdown-border-radius;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
     transform-origin: 0 0;
-    transition: @tree-select-dropdown-transition;
+    transition: all 150ms;
     opacity: 0;
     transform: scaleY(0.1);
-    z-index: @tree-select-dropdown-z-index;
+    z-index: 1000;
 
     &.c-lib-tree-select-dropdown-visible {
         opacity: 1;

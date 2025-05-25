@@ -1,11 +1,11 @@
 .c-lib-cascader-dropdown {
-    background-color: @text-color-inverse;
-    box-shadow: @shadow-2;
-    border-radius: @cascader-dropdown-border-radius;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
     overflow: hidden;
     transform-origin: 0 0;
-    transition: @cascader-dropdown-transition;
-    z-index: @cascader-dropdown-z-index;
+    transition: all 150ms;
+    z-index: 1000;
     opacity: 0;
     transform: scaleY(0.1);
 
@@ -16,17 +16,17 @@
 
     .c-lib-cascader-search-result-list {
         width: 100%;
-        max-height: @cascader-search-result-max-height;
+        max-height: 256px;
         overflow-y: auto;
-        padding: @cascader-search-result-padding;
+        padding: 4px 0;
 
         .c-lib-cascader-search-loading {
             display: flex;
             justify-content: center;
-            padding: @cascader-search-loading-padding;
+            padding: 8px 0;
 
             .c-lib-cascader-loading-text {
-                color: @text-color-tertiary;
+                color: #d9d9d9;
             }
         }
 
@@ -34,7 +34,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: @cascader-empty-padding;
+            padding: 16px;
 
             .c-lib-cascader-empty-container {
                 display: flex;
@@ -42,32 +42,32 @@
                 align-items: center;
 
                 .c-lib-cascader-empty-text {
-                    margin-top: @cascader-empty-text-margin;
-                    color: @text-color-tertiary;
+                    margin-top: 8px;
+                    color: #d9d9d9;
                 }
             }
         }
 
         .c-lib-cascader-search-options {
             .c-lib-cascader-search-option {
-                padding: @cascader-search-option-padding;
+                padding: 5px 12px;
                 cursor: pointer;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
                 &:hover {
-                    background-color: @background-color-hover;
+                    background-color: #f5f5f5;
                 }
 
                 &.c-lib-cascader-selected {
-                    font-weight: @cascader-search-option-font-weight;
-                    background-color: fade(@blue-base, 6%);
-                    color: fade(@blue-base, 67%);
+                    font-weight: 500;
+                    background-color: rgba(24, 144, 255, 0.06);
+                    color: rgba(24, 144, 255, 0.67);
                 }
 
                 &.c-lib-cascader-disabled {
-                    color: @text-color-disabled;
+                    color: #d9d9d9;
                     cursor: not-allowed;
                     background-color: transparent;
 
@@ -77,7 +77,7 @@
                 }
 
                 .c-lib-cascader-option-path {
-                    overflow: @cascader-option-path-overflow;
+                    overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                 }
@@ -91,11 +91,11 @@
         .c-lib-cascader-menu {
             list-style: none;
             margin: 0;
-            padding: @cascader-menu-padding;
-            min-width: @cascader-menu-min-width;
-            height: @cascader-menu-height;
+            padding: 4px 0;
+            min-width: 120px;
+            height: 180px;
             overflow-y: auto;
-            border-right: @cascader-menu-border-width solid @border-color-split;
+            border-right: 1px solid #f0f0f0;
             box-sizing: border-box;
 
             &:last-child {
@@ -103,20 +103,20 @@
             }
 
             .c-lib-cascader-menu-item {
-                padding: @cascader-menu-item-padding;
+                padding: 5px 12px;
                 cursor: pointer;
-                transition: @cascader-menu-item-transition;
+                transition: all 0.3s;
                 display: flex;
                 align-items: center;
                 width: 100%;
                 box-sizing: border-box;
 
                 &:hover {
-                    background-color: @background-color-hover;
+                    background-color: #f5f5f5;
                 }
 
                 &-disabled {
-                    color: @text-color-disabled;
+                    color: #d9d9d9;
                     cursor: not-allowed;
 
                     &:hover {
@@ -125,14 +125,14 @@
                 }
 
                 &-active {
-                    background-color: @background-color-hover;
-                    font-weight: @cascader-menu-item-font-weight;
+                    background-color: #f5f5f5;
+                    font-weight: 500;
                 }
 
                 &-selected {
-                    color: fade(@blue-base, 67%);
-                    background-color: fade(@blue-base, 6%);
-                    font-weight: @cascader-menu-item-font-weight;
+                    color: rgba(24, 144, 255, 0.67);
+                    background-color: rgba(24, 144, 255, 0.06);
+                    font-weight: 500;
                 }
 
                 &-content {
@@ -147,15 +147,15 @@
                     }
 
                     .c-lib-cascader-menu-item-expand-icon {
-                        margin-left: @cascader-menu-item-expand-margin;
+                        margin-left: 8px;
                         flex-shrink: 0;
                     }
                 }
             }
 
             .c-lib-cascader-menu-item-empty {
-                padding: @cascader-menu-item-padding;
-                color: @text-color-tertiary;
+                padding: 5px 12px;
+                color: #d9d9d9;
                 text-align: center;
             }
         }

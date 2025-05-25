@@ -8,8 +8,8 @@ lib-button:has(.c-lib-button-block) {
 
 .c-lib-button-ripple {
     position: absolute;
-    background: @ripple-color;
-    border-radius: @border-radius-round;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 90px;
     pointer-events: none;
     transform: scale(0);
 }
@@ -20,111 +20,111 @@ lib-button:has(.c-lib-button-block) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: @button-font-weight;
-    font-size: @button-font-size-medium;
+    font-weight: 500;
+    font-size: 14px;
     letter-spacing: 0.06em;
     white-space: nowrap;
-    box-shadow: @button-shadow;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    transition: @button-transition;
+    transition: all 500ms cubic-bezier(0.645, 0.045, 0.355, 1);
     -webkit-user-select: none;
     user-select: none;
     touch-action: manipulation;
-    height: @button-height-medium;
-    padding: @button-padding-medium;
-    border: @base-border-width solid @border-color-base;
-    border-radius: @button-border-radius;
+    height: 32px;
+    padding: 4px 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
     box-sizing: border-box;
 }
 
 .c-lib-button-primary {
-    background-color: @primary-color;
-    color: @text-color-inverse;
-    border-color: @primary-color;
+    background-color: #1890ff;
+    color: #ffffff;
+    border-color: #1890ff;
 }
 
 .c-lib-button-secondary {
-    background-color: @secondary-color;
-    color: @text-color-inverse;
-    border-color: @secondary-color;
+    background-color: #0163aa;
+    color: #ffffff;
+    border-color: #0163aa;
 }
 
 .c-lib-button-tertiary {
-    background-color: @tertiary-color;
-    color: @text-color-inverse;
-    border-color: @tertiary-color;
+    background-color: #6030ff;
+    color: #ffffff;
+    border-color: #6030ff;
 }
 
 .c-lib-button-success {
-    background-color: @success-color;
-    color: @black;
-    border-color: @success-color;
+    background-color: #2dd55b;
+    color: #000000;
+    border-color: #2dd55b;
 }
 
 .c-lib-button-light {
-    background-color: @light-color;
-    color: @black;
-    border-color: @light-color;
+    background-color: #f4f5f8;
+    color: #000000;
+    border-color: #f4f5f8;
 }
 
 .c-lib-button-warning {
-    background-color: @warning-color;
-    color: @black;
-    border-color: @warning-color;
+    background-color: #ffc409;
+    color: #000000;
+    border-color: #ffc409;
 }
 
 .c-lib-button-danger {
-    background-color: @danger-color;
-    color: @text-color-inverse;
-    border-color: @danger-color;
+    background-color: #c5000f;
+    color: #ffffff;
+    border-color: #c5000f;
 }
 
 .c-lib-button-dark {
-    background-color: @dark-color;
-    color: @text-color-inverse;
-    border-color: @dark-color;
+    background-color: #222428;
+    color: #ffffff;
+    border-color: #222428;
 }
 
 .c-lib-button-medium {
-    background-color: @medium-color;
-    color: @text-color-inverse;
-    border-color: @medium-color;
+    background-color: #636469;
+    color: #ffffff;
+    border-color: #636469;
 }
 
 .c-lib-button-ghost {
     background-color: transparent;
-    color: @dark-color;
+    color: #222428;
     box-shadow: none;
 }
 
 .c-lib-button-large {
-    padding: @button-padding-large;
-    font-size: @button-font-size-large;
-    height: @button-height-large;
+    padding: 6.5px 16px;
+    font-size: 16px;
+    height: 40px;
 }
 
 .c-lib-button-disabled {
-    color: @disabled-color;
-    border-color: @border-color-base;
-    background: @disabled-bg;
+    color: #d9d9d9;
+    border-color: #d9d9d9;
+    background: #f5f5f5;
 }
 
 .c-lib-button-icon {
-    margin-right: @button-icon-spacing;
+    margin-right: 4px;
 }
 
 .c-lib-button-small {
-    padding: @button-padding-small;
-    font-size: @button-font-size-small;
-    height: @button-height-small;
+    padding: 0 8px;
+    font-size: 12px;
+    height: 24px;
 }
 
 .c-lib-button-circle {
-    border-radius: @button-height-large;
+    border-radius: 40px;
 }
 
 .c-lib-button-round {
-    border-radius: @button-border-radius-round;
+    border-radius: 90px;
 }
 
 .c-lib-button-dashed {
@@ -134,7 +134,7 @@ lib-button:has(.c-lib-button-block) {
 .c-lib-button-link {
     border: none;
     background: none;
-    color: @primary-color;
+    color: #1890ff;
     box-shadow: none;
 }
 

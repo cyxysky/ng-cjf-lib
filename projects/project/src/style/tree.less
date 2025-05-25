@@ -3,8 +3,8 @@
         width: 100%;
         max-height: 100%;
         overflow: hidden;
-        font-size: @tree-font-size;
-        color: @text-color;
+        font-size: 14px;
+        color: #000000;
     }
 
     &-hidden {
@@ -12,19 +12,19 @@
     }
 
     &-search {
-        padding: @tree-search-padding;
-        margin-bottom: @tree-search-margin;
+        padding: 8px;
+        margin-bottom: 8px;
 
         &-input {
             width: 100%;
-            padding: @tree-search-input-padding;
-            border: @base-border-width solid @border-color-base;
-            border-radius: @tree-search-input-border-radius;
-            transition: @tree-search-input-transition;
+            padding: 4px 8px;
+            border: 1px solid #d9d9d9;
+            border-radius: 2px;
+            transition: all 300ms;
 
             &:focus {
-                border-color: @primary-color;
-                box-shadow: @tree-search-input-focus-shadow @primary-color-outline;
+                border-color: #1890ff;
+                box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
                 outline: none;
             }
         }
@@ -32,7 +32,7 @@
 
     &-node {
         &-container {
-            padding: @tree-node-container-padding;
+            padding: 0 12px;
         }
 
         &-hidden {
@@ -50,14 +50,14 @@
             position: relative;
             display: flex;
             align-items: center;
-            padding: @tree-node-content-padding;
-            height: @tree-node-content-height;
-            border-radius: @tree-node-content-border-radius;
+            padding: 0 4px;
+            height: 28px;
+            border-radius: 2px;
             cursor: pointer;
-            transition: @tree-node-content-transition;
+            transition: background-color 300ms;
 
             &-disabled {
-                color: @text-color-disabled;
+                color: #d9d9d9;
                 cursor: not-allowed;
 
                 &:hover {
@@ -69,13 +69,12 @@
         &-children {
             position: relative;
             overflow: hidden;
-            /* 确保溢出部分被隐藏 */
         }
     }
 
     &-indent {
         display: inline-block;
-        height: @tree-indent-height;
+        height: 28px;
         position: relative;
     }
 
@@ -83,11 +82,11 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: @tree-switcher-size;
-        height: @tree-switcher-size;
-        margin-right: @tree-switcher-margin;
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
         cursor: pointer;
-        transition: @tree-switcher-transition;
+        transition: all 300ms;
 
         &-expanded {
             .c-lib-tree-switcher-icon {
@@ -100,15 +99,15 @@
         }
 
         &-disabled {
-            color: @text-color-disabled;
+            color: #d9d9d9;
             cursor: not-allowed;
         }
 
         .c-lib-tree-switcher-icon {
             position: relative;
             display: inline-block;
-            width: @tree-switcher-icon-size;
-            height: @tree-switcher-icon-size;
+            width: 8px;
+            height: 8px;
 
             &::before {
                 content: '';
@@ -118,27 +117,27 @@
                 width: 0;
                 height: 0;
                 border-style: solid;
-                border-width: @tree-switcher-icon-border-width;
+                border-width: 4px 0 4px 6px;
                 border-color: transparent transparent transparent currentColor;
             }
         }
     }
 
     &-icon {
-        margin-right: @tree-icon-margin;
-        font-size: @tree-icon-font-size;
+        margin-right: 4px;
+        font-size: 14px;
 
         .c-lib-tree-icon {
             &.file-icon::before {
-                content: '\1F4C4'; // 文件图标
+                content: '\1F4C4';
             }
 
             &.folder-icon::before {
-                content: '\1F4C1'; // 文件夹图标
+                content: '\1F4C1';
             }
 
             &.folder-open-icon::before {
-                content: '\1F4C2'; // 打开文件夹图标
+                content: '\1F4C2';
             }
         }
     }
@@ -151,22 +150,22 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: @tree-title-padding;
-        transition: @tree-title-transition;
+        padding: 0 4px;
+        transition: background-color 300ms;
 
         &:not(.c-lib-tree-title-disabled):hover {
-            background-color: @background-color-hover;
+            background-color: #f5f5f5;
         }
 
         &-selected {
-            background-color: @tree-node-selected-bg !important;
+            background-color: #e6f7ff !important;
         }
     }
 
     &-empty-state {
         text-align: center;
-        padding: @tree-empty-padding;
-        font-weight: @tree-empty-font-weight;
+        padding: 40px 20px;
+        font-weight: 500;
     }
 }
 
@@ -178,9 +177,9 @@
         position: absolute;
         top: -50%;
         left: 50%;
-        width: @tree-line-width;
+        width: 1px;
         height: 150%;
-        background-color: @border-color-base;
+        background-color: #d9d9d9;
     }
 }
 
@@ -192,9 +191,9 @@
         position: absolute;
         top: -50%;
         left: 50%;
-        width: @tree-line-width;
+        width: 1px;
         height: 100%;
-        background-color: @border-color-base;
+        background-color: #d9d9d9;
     }
 }
 
@@ -207,8 +206,8 @@
         top: 50%;
         left: -50%;
         width: 100%;
-        height: @tree-line-width;
-        background-color: @border-color-base;
+        height: 1px;
+        background-color: #d9d9d9;
     }
 }
 
@@ -216,20 +215,19 @@
     position: relative;
 }
 
-
 .c-lib-tree-loading-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: @tree-loading-size;
-    height: @tree-loading-size;
-    margin-right: @tree-loading-margin;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
 
     .c-lib-tree-loading-svg {
         animation: rotate 1.2s linear infinite;
-        color: @primary-color;
-        width: @tree-loading-icon-size;
-        height: @tree-loading-icon-size;
+        color: #1890ff;
+        width: 14px;
+        height: 14px;
     }
 }
 

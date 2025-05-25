@@ -1,12 +1,12 @@
 // 菜单主体样式
 .c-lib-menu {
-    font-size: @menu-font-size;
+    font-size: 14px;
     font-variant: tabular-nums;
-    line-height: @menu-line-height;
+    line-height: 1.5;
     font-feature-settings: 'tnum';
-    color: @text-color;
-    width: @menu-width;
-    background-color: @background-color-light;
+    color: #000000;
+    width: 256px;
+    background-color: #f5f5f5;
     transition: background-color 0.3s, width 0.3s;
 
     ul,
@@ -26,24 +26,24 @@
         position: relative;
         display: flex;
         align-items: center;
-        padding: @menu-item-padding;
-        height: @menu-item-height;
-        line-height: @menu-item-height;
-        margin-bottom: @menu-item-margin;
+        padding: 0 20px;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 4px;
         cursor: pointer;
         white-space: nowrap;
-        transition: @menu-item-transition;
+        transition: all 300ms;
 
         &:hover {
-            color: @primary-color;
-            background-color: @primary-color-bg-hover;
+            color: #1890ff;
+            background-color: #e6f7ff;
         }
 
         .c-lib-menu-icon {
             display: inline-block;
-            margin-right: @menu-icon-margin;
-            font-size: @menu-icon-font-size;
-            transition: @menu-icon-transition;
+            margin-right: 10px;
+            font-size: 16px;
+            transition: all 300ms;
         }
 
         .c-lib-menu-title-content {
@@ -60,11 +60,11 @@
 
         &-arrow {
             position: absolute;
-            right: @menu-submenu-arrow-right;
+            right: 16px;
             top: 50%;
             transform: translateY(-50%);
-            width: @menu-submenu-arrow-size;
-            height: @menu-submenu-arrow-size;
+            width: 10px;
+            height: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,9 +75,9 @@
                 content: '';
                 position: absolute;
                 background-color: currentColor;
-                width: @menu-submenu-arrow-element-size;
-                height: @menu-submenu-arrow-element-height;
-                border-radius: @menu-submenu-arrow-element-radius;
+                width: 6px;
+                height: 1.5px;
+                border-radius: 2px;
                 transition: transform 0.3s, background-color 0.3s;
             }
 
@@ -109,7 +109,7 @@
 
     // 内联模式
     &-inline {
-        width: @menu-width;
+        width: 256px;
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
@@ -117,7 +117,7 @@
         }
 
         .c-lib-menu-submenu-title {
-            padding-right: @menu-submenu-padding-right;
+            padding-right: 34px;
         }
 
         .c-lib-menu-sub {
@@ -128,12 +128,12 @@
 
         // 子菜单项样式
         .c-lib-menu-item {
-            padding-left: @menu-item-nested-padding-left;
+            padding-left: 40px;
 
             &-selected {
-                background-color: @primary-color-bg-hover;
-                color: @primary-color;
-                border-right: @menu-item-selected-border-width solid @primary-color;
+                background-color: #e6f7ff;
+                color: #1890ff;
+                border-right: 3px solid #1890ff;
                 border-left: none;
             }
         }
@@ -141,21 +141,21 @@
 
     // 垂直模式
     &-vertical {
-        width: @menu-width;
-        border-right: @menu-horizontal-border-width solid @border-color-split;
+        width: 256px;
+        border-right: 1px solid #f0f0f0;
 
         .c-lib-menu-submenu {
             .c-lib-menu-sub {
                 position: absolute;
                 left: 100%;
                 top: 0;
-                margin-left: @menu-vertical-sub-margin;
-                min-width: @menu-vertical-sub-min-width;
+                margin-left: 4px;
+                min-width: 160px;
                 z-index: 1050;
-                border-radius: @menu-vertical-sub-border-radius;
-                box-shadow: @shadow-2;
-                background-color: @text-color-inverse;
-                padding: @menu-vertical-sub-padding;
+                border-radius: 4px;
+                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+                background-color: #ffffff;
+                padding: 8px 0;
             }
 
             // 垂直模式下子菜单项样式
@@ -174,10 +174,10 @@
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            height: @menu-item-height;
-            line-height: @menu-item-height;
-            margin: @menu-vertical-sub-margin 0;
-            padding: @menu-vertical-item-padding;
+            height: 40px;
+            line-height: 40px;
+            margin: 4px 0;
+            padding: 0 20px;
         }
 
         // 垂直子菜单特定样式
@@ -185,7 +185,7 @@
 
             .c-lib-menu-item,
             .c-lib-menu-submenu-title {
-                padding: @menu-item-padding;
+                padding: 0 20px;
             }
         }
     }
@@ -193,9 +193,9 @@
     // 水平模式
     &-horizontal {
         display: flex;
-        border-bottom: @menu-horizontal-border-width solid @border-color-split;
-        line-height: @menu-horizontal-line-height;
-        width: 100%; // 水平模式应该允许占满容器宽度
+        border-bottom: 1px solid #f0f0f0;
+        line-height: 46px;
+        width: 100%;
 
         &>.c-lib-menu-root {
             display: flex;
@@ -214,8 +214,8 @@
             position: relative;
 
             &:hover {
-                color: @primary-color;
-                border-bottom-color: @primary-color;
+                color: #1890ff;
+                border-bottom-color: #1890ff;
             }
         }
 
@@ -226,8 +226,8 @@
 
             // 水平模式选中项
             &-selected {
-                color: @primary-color;
-                border-bottom: 2px solid @primary-color;
+                color: #1890ff;
+                border-bottom: 2px solid #1890ff;
             }
         }
 
@@ -240,7 +240,7 @@
 
             // 水平模式下选中的子菜单
             &-selected>.c-lib-menu-submenu-title {
-                color: @primary-color;
+                color: #1890ff;
             }
 
             .c-lib-menu-sub {
@@ -251,8 +251,8 @@
                 margin-top: 4px;
                 z-index: 1050;
                 border-radius: 4px;
-                box-shadow: @shadow-2;
-                background-color: @text-color-inverse;
+                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+                background-color: #ffffff;
                 padding: 8px 0;
 
                 .c-lib-menu-item {
@@ -266,13 +266,13 @@
 
                     &:hover {
                         border-bottom: none;
-                        background-color: @primary-color-bg-hover;
+                        background-color: #e6f7ff;
                     }
 
                     // 下拉菜单中的选中项
                     &-selected {
-                        color: @primary-color;
-                        background-color: @primary-color-bg-hover;
+                        color: #1890ff;
+                        background-color: #e6f7ff;
                         border-bottom: none;
                     }
                 }
@@ -297,8 +297,8 @@
 
                     // 嵌套子菜单中的选中项
                     &-selected>.c-lib-menu-submenu-title {
-                        color: @primary-color;
-                        background-color: @primary-color-bg-hover;
+                        color: #1890ff;
+                        background-color: #e6f7ff;
                         border-bottom: none;
                     }
                 }
@@ -308,25 +308,25 @@
 
     // 亮色主题
     &-light {
-        background: @background-color-light;
+        background: #f5f5f5;
 
         .c-lib-menu-item-selected {
-            color: @primary-color;
-            background-color: @primary-color-bg-hover;
+            color: #1890ff;
+            background-color: #e6f7ff;
             font-weight: 500;
         }
 
         // 选中父级菜单项样式
         .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-            color: @primary-color;
+            color: #1890ff;
             font-weight: 500;
         }
 
         &.c-lib-menu-horizontal {
             .c-lib-menu-item-selected {
-                color: @primary-color;
+                color: #1890ff;
                 background-color: transparent;
-                border-bottom-color: @primary-color;
+                border-bottom-color: #1890ff;
 
                 &:after {
                     display: none;
@@ -334,99 +334,99 @@
             }
 
             .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-                color: @primary-color;
-                border-bottom-color: @primary-color;
+                color: #1890ff;
+                border-bottom-color: #1890ff;
             }
         }
     }
 
     // 暗色主题
     &-dark {
-        background: @gray-9;
-        color: fade(@white, 65%);
+        background: #222428;
+        color: rgba(255, 255, 255, 0.65);
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            color: fade(@white, 65%);
+            color: rgba(255, 255, 255, 0.65);
 
             &:hover {
-                color: @white;
+                color: #ffffff;
                 background-color: transparent;
             }
         }
 
         // 提高选中项的选择器权重，确保优先级高于hover
         .c-lib-menu-item.c-lib-menu-item-selected {
-            color: @white !important;
-            background-color: @primary-color !important;
+            color: #ffffff !important;
+            background-color: #1890ff !important;
             font-weight: 500;
-            border-right: 3px solid @text-color-inverse;
+            border-right: 3px solid #ffffff;
             border-left: none;
 
             &:hover {
-                color: @white !important;
-                background-color: @primary-color !important;
+                color: #ffffff !important;
+                background-color: #1890ff !important;
             }
         }
 
         // 选中父级菜单项样式也提高优先级
         .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-            color: @white !important;
+            color: #ffffff !important;
 
             &:hover {
-                color: @white !important;
+                color: #ffffff !important;
             }
         }
 
         .c-lib-menu-sub {
-            background: @gray-9;
+            background: #222428;
         }
 
         &.c-lib-menu-horizontal {
             .c-lib-menu-item-selected {
-                color: @white !important;
+                color: #ffffff !important;
                 background-color: transparent !important;
-                border-bottom-color: @text-color-inverse;
+                border-bottom-color: #ffffff;
 
                 &:hover {
-                    color: @white !important;
+                    color: #ffffff !important;
                 }
             }
 
             .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-                color: @white !important;
-                border-bottom-color: @text-color-inverse;
+                color: #ffffff !important;
+                border-bottom-color: #ffffff;
 
                 &:hover {
-                    color: @white !important;
+                    color: #ffffff !important;
                 }
             }
 
             .c-lib-menu-sub {
-                background: @gray-9;
+                background: #222428;
 
                 .c-lib-menu-item:hover {
-                    background-color: fade(@white, 10%);
-                    color: @white;
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: #ffffff;
                 }
 
                 .c-lib-menu-item-selected {
-                    background-color: @primary-color !important;
-                    color: @white !important;
+                    background-color: #1890ff !important;
+                    color: #ffffff !important;
                 }
             }
         }
 
         .c-lib-menu-item-selected {
-            color: @white;
-            background-color: @blue-base;
+            color: #ffffff;
+            background-color: #1890ff;
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: fade(@white, 20%);
+            background-color: rgba(255, 255, 255, 0.2);
 
             &:hover {
-                background-color: fade(@white, 30%);
+                background-color: rgba(255, 255, 255, 0.3);
             }
         }
     }
@@ -467,8 +467,8 @@
                 min-width: 160px;
                 z-index: 1050;
                 border-radius: 4px;
-                box-shadow: 0 3px 6px -4px fade(@black, 12%), 0 6px 16px 0 fade(@black, 8%);
-                background-color: @background-color-light;
+                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+                background-color: #f5f5f5;
                 padding: 8px 0;
 
                 // 子菜单内的所有项都显示文字内容
@@ -508,41 +508,41 @@
 
         // 折叠模式下的选中样式
         .c-lib-menu-item-selected {
-            background-color: fade(@blue-base, 10%);
-            border-right: 3px solid @blue-base;
+            background-color: rgba(24, 144, 255, 0.1);
+            border-right: 3px solid #1890ff;
             border-left: none;
         }
 
         &.c-lib-menu-dark {
             .c-lib-menu-sub {
-                background: @gray-9;
+                background: #222428;
 
                 .c-lib-menu-item,
                 .c-lib-menu-submenu-title {
-                    color: fade(@white, 65%);
+                    color: rgba(255, 255, 255, 0.65);
 
                     &:hover {
-                        color: @white;
-                        background-color: fade(@white, 10%);
+                        color: #ffffff;
+                        background-color: rgba(255, 255, 255, 0.1);
                     }
                 }
 
                 .c-lib-menu-item.c-lib-menu-item-selected {
-                    background-color: @blue-base !important;
-                    color: @white !important;
+                    background-color: #1890ff !important;
+                    color: #ffffff !important;
 
                     &:hover {
-                        background-color: @blue-base !important;
-                        color: @white !important;
+                        background-color: #1890ff !important;
+                        color: #ffffff !important;
                     }
                 }
             }
 
             // 折叠状态下顶级菜单项的选中样式
             .c-lib-menu-item.c-lib-menu-item-selected {
-                background-color: @blue-base !important;
-                color: @white !important;
-                border-right: 3px solid @white;
+                background-color: #1890ff !important;
+                color: #ffffff !important;
+                border-right: 3px solid #ffffff;
             }
         }
     }
@@ -550,18 +550,18 @@
     // 禁用状态
     &-item-disabled,
     &-submenu-disabled>.c-lib-menu-submenu-title {
-        color: fade(@black, 25%) !important;
+        color: rgba(0, 0, 0, 0.25) !important;
         background: none !important;
         cursor: not-allowed !important;
 
         &:after {
-            border-color: fade(@black, 25%) !important;
+            border-color: rgba(0, 0, 0, 0.25) !important;
         }
     }
 
     &-dark &-item-disabled,
     &-dark &-submenu-disabled>.c-lib-menu-submenu-title {
-        color: fade(@white, 35%) !important;
+        color: rgba(255, 255, 255, 0.35) !important;
     }
 }
 
@@ -569,7 +569,7 @@
 .c-lib-menu-overlay-container {
     background-color: white;
     border-radius: 4px;
-    box-shadow: 0 3px 6px -4px fade(@black, 12%), 0 6px 16px 0 fade(@black, 8%);
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
     padding: 4px 0;
     min-width: 160px;
     position: relative;
@@ -588,37 +588,37 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: fade(@black, 20%);
+        background-color: rgba(0, 0, 0, 0.2);
         border-radius: 3px;
 
         &:hover {
-            background-color: fade(@black, 30%);
+            background-color: rgba(0, 0, 0, 0.3);
         }
     }
 
     &.c-lib-menu-dark {
-        background-color: @gray-9;
+        background-color: #222428;
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            color: fade(@white, 65%);
+            color: rgba(255, 255, 255, 0.65);
 
             &:hover {
-                color: @white;
+                color: #ffffff;
                 background-color: transparent;
             }
         }
 
         .c-lib-menu-item-selected {
-            color: @white;
-            background-color: @blue-base;
+            color: #ffffff;
+            background-color: #1890ff;
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: fade(@white, 20%);
+            background-color: rgba(255, 255, 255, 0.2);
 
             &:hover {
-                background-color: fade(@white, 30%);
+                background-color: rgba(255, 255, 255, 0.3);
             }
         }
     }
@@ -645,8 +645,8 @@
         text-overflow: ellipsis;
 
         &:hover {
-            color: @blue-base;
-            background-color: fade(@blue-base, 10%);
+            color: #1890ff;
+            background-color: rgba(24, 144, 255, 0.1);
         }
 
         .c-lib-menu-icon {
@@ -662,8 +662,8 @@
     }
 
     .c-lib-menu-item-selected {
-        color: @blue-base;
-        background-color: fade(@blue-base, 10%);
+        color: #1890ff;
+        background-color: rgba(24, 144, 255, 0.1);
     }
 
     .c-lib-menu-submenu {

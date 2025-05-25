@@ -1,16 +1,16 @@
 .c-lib-tooltip {
     position: relative;
-    max-width: @tooltip-max-width;
-    padding: @tooltip-padding;
-    color: @text-color-inverse;
-    background-color: @tooltip-bg;
-    border-radius: @tooltip-border-radius;
-    box-shadow: @shadow-1-down;
+    max-width: 250px;
+    padding: 6px 8px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 6px;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12);
     pointer-events: none;
     opacity: 0;
     transform: scale(0.8);
-    transition: @tooltip-transition;
-    font-size: @tooltip-font-size;
+    transition: opacity 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86), transform 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    font-size: 12px;
 
     &.c-lib-tooltip-visible {
         opacity: 1;
@@ -24,102 +24,102 @@
 
     .c-lib-tooltip-arrow {
         position: absolute;
-        width: @tooltip-arrow-size;
-        height: @tooltip-arrow-size;
-        background: @tooltip-bg;
+        width: 5px;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.75);
         transform: rotate(45deg);
     }
 
     // 基础方向
     &.c-lib-tooltip-top {
         .c-lib-tooltip-arrow {
-            bottom: -@tooltip-arrow-offset;
+            bottom: -2.5px;
             left: 50%;
-            margin-left: -@tooltip-arrow-offset;
+            margin-left: -2.5px;
         }
     }
 
     &.c-lib-tooltip-bottom {
         .c-lib-tooltip-arrow {
-            top: -@tooltip-arrow-offset;
+            top: -2.5px;
             left: 50%;
-            margin-left: -@tooltip-arrow-offset;
+            margin-left: -2.5px;
         }
     }
 
     &.c-lib-tooltip-left {
         .c-lib-tooltip-arrow {
             top: 50%;
-            right: -@tooltip-arrow-offset;
-            margin-top: -@tooltip-arrow-offset;
+            right: -2.5px;
+            margin-top: -2.5px;
         }
     }
 
     &.c-lib-tooltip-right {
         .c-lib-tooltip-arrow {
             top: 50%;
-            left: -@tooltip-arrow-offset;
-            margin-top: -@tooltip-arrow-offset;
+            left: -2.5px;
+            margin-top: -2.5px;
         }
     }
 
     // 左侧系列
     &.c-lib-tooltip-left-top {
         .c-lib-tooltip-arrow {
-            top: @tooltip-arrow-offset;
-            right: -@tooltip-arrow-offset;
+            top: 12px;
+            right: -2.5px;
         }
     }
 
     &.c-lib-tooltip-left-bottom {
         .c-lib-tooltip-arrow {
-            bottom: @tooltip-arrow-offset;
-            right: -@tooltip-arrow-offset;
+            bottom: 12px;
+            right: -2.5px;
         }
     }
 
     // 右侧系列
     &.c-lib-tooltip-right-top {
         .c-lib-tooltip-arrow {
-            top: @tooltip-arrow-offset;
-            left: -@tooltip-arrow-offset;
+            top: 12px;
+            left: -2.5px;
         }
     }
 
     &.c-lib-tooltip-right-bottom {
         .c-lib-tooltip-arrow {
-            bottom: @tooltip-arrow-offset;
-            left: -@tooltip-arrow-offset;
+            bottom: 12px;
+            left: -2.5px;
         }
     }
 
     // 顶部系列
     &.c-lib-tooltip-top-left {
         .c-lib-tooltip-arrow {
-            bottom: -@tooltip-arrow-offset;
-            left: @tooltip-offset-distance;
+            bottom: -2.5px;
+            left: 12px;
         }
     }
 
     &.c-lib-tooltip-top-right {
         .c-lib-tooltip-arrow {
-            bottom: -@tooltip-arrow-offset;
-            right: @tooltip-offset-distance;
+            bottom: -2.5px;
+            right: 12px;
         }
     }
 
     // 底部系列
     &.c-lib-tooltip-bottom-left {
         .c-lib-tooltip-arrow {
-            top: -@tooltip-arrow-offset;
-            left: @tooltip-offset-distance;
+            top: -2.5px;
+            left: 12px;
         }
     }
 
     &.c-lib-tooltip-bottom-right {
         .c-lib-tooltip-arrow {
-            top: -@tooltip-arrow-offset;
-            right: @tooltip-offset-distance;
+            top: -2.5px;
+            right: 12px;
         }
     }
 }

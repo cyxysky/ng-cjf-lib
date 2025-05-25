@@ -14,7 +14,7 @@
 @button-height-large: @size-large;
 @button-padding-small: 0 @spacing-sm;
 @button-padding-medium: @spacing-xs @spacing-lg;
-@button-padding-large: 6.4px @spacing-lg;
+@button-padding-large: @input-large-padding-vertical @spacing-lg;
 @button-font-size-small: @font-size-xs;
 @button-font-size-medium: @base-font-size;
 @button-font-size-large: @font-size-md;
@@ -31,7 +31,7 @@
 @input-height-small: @size-small;
 @input-height-medium: @size-medium;
 @input-height-large: @size-large;
-@input-padding-horizontal: 11px;
+@input-padding-horizontal: @input-padding-horizontal-value;
 @input-font-size-small: @font-size-xs;
 @input-font-size-medium: @base-font-size;
 @input-font-size-large: @font-size-md;
@@ -49,28 +49,28 @@
 @checkbox-border-radius: @border-radius-sm;
 @checkbox-border-width: @base-border-width;
 @checkbox-transition: background-color @animation-duration-normal, border-color @animation-duration-normal;
-@checkbox-inner-width: 6px;
-@checkbox-inner-height: 8px;
-@checkbox-inner-border-width: 2px;
+@checkbox-inner-width: @checkbox-inner-check-width;
+@checkbox-inner-height: @checkbox-inner-check-height;
+@checkbox-inner-border-width: @checkbox-inner-check-border-width;
 @checkbox-label-font-size: @base-font-size;
 @checkbox-label-line-height: @base-line-height;
 @checkbox-spacing-horizontal: @spacing-lg;
 @checkbox-spacing-vertical: @spacing-sm;
 @checkbox-input-spacing: @spacing-sm;
-@checkbox-disabled-opacity: 0.6;
+@checkbox-disabled-opacity: @checkbox-disabled-opacity-value;
 
 // ============================================================================
 // Radio 单选框组件
 // ============================================================================
 @radio-size: 16px;
-@radio-dot-size: 8px;
+@radio-dot-size: @radio-dot-size-value;
 @radio-border-width: @base-border-width;
 @radio-transition: all @animation-duration-normal;
 @radio-spacing: @spacing-lg;
 @radio-input-spacing: @spacing-sm;
 @radio-label-padding: 0 @spacing-sm;
 @radio-group-gap: @spacing-sm;
-@radio-disabled-opacity: 0.5;
+@radio-disabled-opacity: @radio-disabled-opacity-value;
 
 // ============================================================================
 // Switch 开关组件
@@ -80,27 +80,27 @@
 @switch-handle-size: 18px;
 @switch-handle-margin: 2px;
 @switch-border-radius: 100px;
-@switch-transition: all 0.2s;
+@switch-transition: all @animation-duration-switch;
 @switch-handle-shadow: 0 @shadow-level-1 @spacing-xs 0 fade(@black, 20%);
 @switch-inner-font-size: @font-size-xs;
-@switch-inner-margin: 0 7px 0 24px;
+@switch-inner-margin: 0 @switch-inner-margin-left 0 @switch-inner-margin-right;
 @switch-small-height: 16px;
 @switch-small-min-width: 28px;
 @switch-small-handle-size: 12px;
 @switch-focus-shadow: 0 0 0 @shadow-level-1;
-@switch-disabled-opacity: 0.4;
+@switch-disabled-opacity: @opacity-light;
 
 // ============================================================================
 // Modal 模态框组件
 // ============================================================================
 @modal-z-index: 1000;
-@modal-container-padding: 20px 0;
+@modal-container-padding: @spacing-xl 0;
 @modal-border-radius: @base-border-radius;
 @modal-max-width: 90vw;
 @modal-max-height: 90vh;
-@modal-header-padding: @spacing-lg 24px;
-@modal-body-padding: 24px;
-@modal-footer-padding: 10px @spacing-lg;
+@modal-header-padding: @spacing-lg @spacing-xl;
+@modal-body-padding: @spacing-xl;
+@modal-footer-padding: @spacing-sm @spacing-lg;
 @modal-close-transition: color @animation-duration-normal;
 @modal-close-font-weight: 700;
 
@@ -121,19 +121,19 @@
 @tabs-arrow-margin: @spacing-sm;
 @tabs-arrow-icon-size: 6px 8px 6px 0;
 @tabs-transition: color @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1);
-@tabs-disabled-opacity: 0.5;
+@tabs-disabled-opacity: @radio-disabled-opacity-value;
 
 // ============================================================================
 // Tooltip 提示组件
 // ============================================================================
-@tooltip-max-width: 300px;
-@tooltip-padding: 6px @spacing-sm;
+@tooltip-max-width: @menu-overlay-max-width;
+@tooltip-padding: @spacing-xs @spacing-sm;
 @tooltip-font-size: @base-font-size;
 @tooltip-border-radius: @base-border-radius;
 @tooltip-transition: all @visible-animation-duration;
 @tooltip-arrow-size: @spacing-sm;
 @tooltip-arrow-offset: @spacing-xs;
-@tooltip-offset-distance: 12px;
+@tooltip-offset-distance: @spacing-md;
 
 // ============================================================================
 // Table 表格组件
@@ -152,32 +152,32 @@
 @table-empty-padding: @size-large 0;
 @table-empty-font-size: @base-font-size;
 @table-sorter-size: @spacing-lg;
-@table-sorter-icon-size: 10px;
-@table-filter-dropdown-min-width: 120px;
+@table-sorter-icon-size: @table-sorter-icon-size-value;
+@table-filter-dropdown-min-width: @table-filter-dropdown-min-width-value;
 @table-filter-dropdown-padding: @spacing-sm 0;
 @table-filter-dropdown-margin: @spacing-xs;
-@table-filter-dropdown-max-height: 300px;
+@table-filter-dropdown-max-height: @table-filter-dropdown-max-height-value;
 @table-filter-item-padding: 0 @spacing-md;
-@table-filter-item-inner-padding: 7px 0;
-@table-filter-button-padding: 7px @spacing-sm 7px @spacing-sm;
-@table-filter-button-font-size: @font-size-xs;
+@table-filter-item-inner-padding: @table-filter-button-padding-vertical 0;
+@table-filter-button-padding: @table-filter-button-padding-vertical @spacing-sm @table-filter-button-padding-vertical @spacing-sm;
+@table-filter-button-font-size: @table-filter-button-font-size-value;
 @table-loading-spinner-size: @size-large;
-@table-loading-spinner-border: 3px;
+@table-loading-spinner-border: @table-loading-spinner-border-value;
 @table-loading-spinner-border-radius: @border-radius-round;
-@table-loading-container-size: 60px;
+@table-loading-container-size: @table-loading-container-size-value;
 @table-loading-container-border-radius: @spacing-sm;
 
 // ============================================================================
 // Tag 标签组件
 // ============================================================================
-@tag-padding: @shadow-level-1 7px;
+@tag-padding: @shadow-level-1 @table-filter-button-padding-vertical;
 @tag-font-size: @font-size-xs;
 @tag-border-radius: @border-radius-sm;
 @tag-border-width: @base-border-width;
 @tag-transition: all @visible-animation-duration;
-@tag-close-icon-margin: 3px;
-@tag-close-icon-font-size: 10px;
-@tag-disabled-opacity: 0.6;
+@tag-close-icon-margin: @popover-arrow-shadow-offset-value;
+@tag-close-icon-font-size: @table-sorter-icon-size-value;
+@tag-disabled-opacity: @checkbox-disabled-opacity-value;
 @tag-checkable-hover-opacity: 0.85;
 @tag-checkable-active-opacity: 0.8;
 
@@ -190,60 +190,60 @@
 @date-timer-tab-font-weight: @font-weight-medium;
 @date-timer-tab-border-width: @base-border-width;
 @date-timer-tab-transition: all @visible-animation-duration;
-@date-timer-tab-indicator-width: 20px;
+@date-timer-tab-indicator-width: @spacing-xl;
 @date-timer-tab-indicator-height: @shadow-level-1;
 @date-timer-part-indicator-margin: @spacing-sm;
 @date-timer-part-indicator-font-size: @font-size-xs;
 @date-timer-time-steps-padding: @spacing-sm 0 0 0;
 @date-timer-time-steps-margin: @spacing-sm;
-@date-timer-time-steps-font-size: 13px;
+@date-timer-time-steps-font-size: @font-size-sm;
 @date-timer-time-step-padding: @shadow-level-1 @spacing-sm;
 @date-timer-time-step-border-radius: @border-radius-sm;
-@date-timer-input-padding: @spacing-xs 11px;
+@date-timer-input-padding: @spacing-xs @input-padding-horizontal-value;
 @date-timer-input-font-size: @base-font-size;
 @date-timer-input-border-radius: @border-radius-sm;
 @date-timer-input-transition: all @visible-animation-duration;
 @date-timer-input-focus-shadow: 0 0 0 @shadow-level-1;
-@date-timer-dropdown-time-width: 180px;
-@date-timer-dropdown-datetime-width: 480px;
-@date-timer-date-panel-width: 280px;
-@date-timer-time-panel-width: 210px;
+@date-timer-dropdown-time-width: @date-timer-dropdown-time-width-value;
+@date-timer-dropdown-datetime-width: @date-timer-dropdown-datetime-width-value;
+@date-timer-date-panel-width: @date-timer-date-panel-width-value;
+@date-timer-time-panel-width: @date-timer-time-panel-width-value;
 
 // ============================================================================
 // Select 选择器组件
 // ============================================================================
 @select-option-padding: @spacing-sm @spacing-md;
-@select-option-height: 36px;
+@select-option-height: @menu-sub-item-height;
 @select-option-font-size: @base-font-size;
 @select-option-border-radius: @border-radius-sm;
-@select-option-transition: all 0.2s ease;
+@select-option-transition: all @animation-duration-dropdown ease;
 @select-option-font-weight-selected: @font-weight-medium;
 @select-empty-padding: @spacing-xxl 0;
 @select-empty-icon-margin: @spacing-lg;
 @select-empty-font-size: @base-font-size;
-@select-dropdown-margin: 5px 0;
+@select-dropdown-margin: @cascader-menu-item-padding-vertical 0;
 @select-dropdown-border-radius: @base-border-radius;
 @select-dropdown-transition: all @visible-animation-duration;
 @select-group-title-padding: @spacing-sm @spacing-md;
-@select-group-title-font-size: 13px;
+@select-group-title-font-size: @font-size-sm;
 @select-group-title-font-weight: @font-weight-medium;
-@select-option-list-max-height: 400px;
-@select-loading-height: 100px;
+@select-option-list-max-height: @table-filter-dropdown-max-height-value;
+@select-loading-height: @date-timer-loading-height;
 @select-padding-left: @spacing-xs;
 
 // ============================================================================
 // Menu 菜单组件
 // ============================================================================
-@menu-width: 240px;
+@menu-width: @menu-width-value;
 @menu-font-size: @base-font-size;
 @menu-line-height: @base-line-height;
 @menu-item-height: @size-large;
 @menu-item-padding: 0 @spacing-lg;
 @menu-item-margin: @spacing-xs;
-@menu-item-transition: color 0.3s, background-color 0.3s, border-color 0.3s;
-@menu-icon-margin: 10px;
+@menu-item-transition: color @animation-duration-table, background-color @animation-duration-table, border-color @animation-duration-table;
+@menu-icon-margin: @menu-icon-margin-right;
 @menu-icon-font-size: @base-font-size;
-@menu-icon-transition: color 0.3s, margin 0.3s;
+@menu-icon-transition: color @animation-duration-table, margin @animation-duration-table;
 @menu-submenu-arrow-right: @spacing-lg;
 @menu-submenu-arrow-size: 10px;
 @menu-submenu-arrow-element-size: 6px;
@@ -251,29 +251,29 @@
 @menu-submenu-arrow-element-radius: @border-radius-sm;
 @menu-submenu-padding-right: @size-large;
 @menu-item-selected-border-width: 3px;
-@menu-item-nested-padding-left: 48px;
+@menu-item-nested-padding-left: @menu-item-nested-padding-left-value;
 @menu-vertical-sub-margin: @spacing-xs;
-@menu-vertical-sub-min-width: 160px;
+@menu-vertical-sub-min-width: @menu-overlay-min-width;
 @menu-vertical-sub-border-radius: @base-border-radius;
 @menu-vertical-sub-padding: @spacing-sm 0;
 @menu-vertical-item-padding: 0 @spacing-lg 0 @spacing-xl;
 @menu-horizontal-border-width: @base-border-width;
-@menu-horizontal-line-height: 46px;
+@menu-horizontal-line-height: @menu-horizontal-line-height-value;
 
 // ============================================================================
 // Drawer 抽屉组件
 // ============================================================================
 @drawer-z-index: 1000;
-@drawer-header-padding: @spacing-lg 24px;
+@drawer-header-padding: @spacing-lg @spacing-xl;
 @drawer-header-border-width: @base-border-width;
 @drawer-title-font-size: @font-size-md;
 @drawer-title-font-weight: @font-weight-medium;
-@drawer-title-line-height: 22px;
+@drawer-title-line-height: @date-timer-title-line-height;
 @drawer-close-font-size: @font-size-md;
 @drawer-close-line-height: 1;
-@drawer-close-transition: color 0.3s;
-@drawer-close-x-font-size: 18px;
-@drawer-body-padding: 24px;
+@drawer-close-transition: color @animation-duration-table;
+@drawer-close-x-font-size: @drawer-close-x-font-size-value;
+@drawer-body-padding: @spacing-xl;
 
 // ============================================================================
 // Message 消息提示组件
@@ -282,8 +282,8 @@
 @message-line-height: @base-line-height;
 @message-item-padding: @spacing-sm @spacing-lg;
 @message-item-border-radius: @base-border-radius;
-@message-item-max-width: calc(100vw - 48px);
-@message-item-min-width: 150px;
+@message-item-max-width: calc(100vw - @table-container-margin-calc);
+@message-item-min-width: @table-item-min-width;
 @message-content-gap: @spacing-md;
 @message-icon-font-size: @font-size-md;
 @message-text-font-size: @base-font-size;
@@ -293,25 +293,25 @@
 // ============================================================================
 // Popover 气泡卡片组件
 // ============================================================================
-@popover-min-width: 150px;
+@popover-min-width: @table-item-min-width;
 @popover-border-radius: @base-border-radius;
 @popover-font-size: @base-font-size;
 @popover-transition: all @visible-animation-duration ease;
 @popover-content-padding: @spacing-md @spacing-lg;
-@popover-content-min-height: 48px;
-@popover-title-padding: 5px @spacing-lg @spacing-xs;
-@popover-title-font-weight: 600;
+@popover-content-min-height: @date-timer-content-min-height;
+@popover-title-padding: @date-timer-title-bottom-padding @spacing-lg @spacing-xs;
+@popover-title-font-weight: @date-timer-title-font-weight;
 @popover-arrow-size: @spacing-sm;
 @popover-arrow-offset: @spacing-sm;
-@popover-arrow-shadow-offset: 3px;
+@popover-arrow-shadow-offset: @popover-arrow-shadow-offset-value;
 @popover-footer-gap: @spacing-sm;
 @popover-footer-padding: @spacing-xs;
 
 // ============================================================================
 // Slider 滑块组件
 // ============================================================================
-@slider-container-height: 12px;
-@slider-container-margin: @base-font-size 6px 10px;
+@slider-container-height: @slider-container-height-value;
+@slider-container-margin: @base-font-size @spacing-xs @slider-mark-text-margin-top-value;
 @slider-container-padding: @spacing-xs 0;
 @slider-rail-height: @spacing-xs;
 @slider-rail-border-radius: @border-radius-sm;
@@ -321,31 +321,31 @@
 @slider-handle-border-width: @shadow-level-1;
 @slider-handle-border-radius: @border-radius-circle;
 @slider-handle-shadow: 0 @shadow-level-1 @spacing-xs;
-@slider-handle-transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
-@slider-handle-hover-shadow: 0 0 0 5px;
+@slider-handle-transition: border-color @animation-duration-table, box-shadow @animation-duration-table, transform @animation-duration-table cubic-bezier(0.18, 0.89, 0.32, 1.28);
+@slider-handle-hover-shadow: 0 0 0 @cascader-menu-item-padding-vertical;
 @slider-marks-top: @base-font-size;
 @slider-mark-size: @spacing-sm;
 @slider-mark-border-width: @base-border-width;
 @slider-mark-text-font-size: @font-size-xs;
-@slider-mark-text-margin-top: 10px;
-@slider-with-marks-margin: 28px;
+@slider-mark-text-margin-top: @slider-mark-text-margin-top-value;
+@slider-with-marks-margin: @segmented-item-height-value;
 
 // ============================================================================
 // Segmented 分段控制器组件
 // ============================================================================
-@segmented-border-radius: 6px;
+@segmented-border-radius: @segmented-border-radius-value;
 @segmented-padding: @shadow-level-1;
 @segmented-gap: @spacing-xs;
-@segmented-item-height: 28px;
+@segmented-item-height: @segmented-item-height-value;
 @segmented-item-padding: 0 @spacing-md;
-@segmented-item-transition: color 0.3s;
-@segmented-item-icon-margin: 6px;
+@segmented-item-transition: color @animation-duration-table;
+@segmented-item-icon-margin: @segmented-item-icon-margin-value;
 @segmented-thumb-border-radius: @spacing-xs;
-@segmented-thumb-height: 28px;
-@segmented-thumb-transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-@segmented-nav-size: 28px;
+@segmented-thumb-height: @segmented-item-height-value;
+@segmented-thumb-transition: transform @animation-duration-table cubic-bezier(0.645, 0.045, 0.355, 1), width @animation-duration-table cubic-bezier(0.645, 0.045, 0.355, 1);
+@segmented-nav-size: @segmented-item-height-value;
 @segmented-nav-border-radius: @spacing-xs;
-@segmented-nav-transition: all 0.3s;
+@segmented-nav-transition: all @animation-duration-table;
 @segmented-nav-arrow-size: @spacing-xs;
 @segmented-large-padding: 3px;
 @segmented-large-item-height: @size-large;
@@ -474,20 +474,20 @@
 @cascader-dropdown-border-radius: @spacing-xs;
 @cascader-dropdown-transition: all @visible-animation-duration;
 @cascader-dropdown-z-index: 1000;
-@cascader-search-result-max-height: 256px;
+@cascader-search-result-max-height: @cascader-search-result-max-height-value;
 @cascader-search-result-padding: @spacing-xs 0;
 @cascader-search-loading-padding: @spacing-sm 0;
 @cascader-empty-padding: @checkbox-size;
 @cascader-empty-text-margin: @spacing-sm;
-@cascader-search-option-padding: 5px @spacing-md;
+@cascader-search-option-padding: @cascader-menu-item-padding-vertical @spacing-md;
 @cascader-search-option-font-weight: @font-weight-medium;
 @cascader-option-path-overflow: hidden;
-@cascader-menu-min-width: 120px;
-@cascader-menu-height: 180px;
+@cascader-menu-min-width: @cascader-menu-min-width-value;
+@cascader-menu-height: @cascader-menu-height-value;
 @cascader-menu-padding: @spacing-xs 0;
 @cascader-menu-border-width: @base-border-width;
-@cascader-menu-item-padding: 5px @spacing-md;
-@cascader-menu-item-transition: all 0.3s;
+@cascader-menu-item-padding: @cascader-menu-item-padding-vertical @spacing-md;
+@cascader-menu-item-transition: all @animation-duration-table;
 @cascader-menu-item-font-weight: @font-weight-medium;
 @cascader-menu-item-expand-margin: @spacing-sm;
 
@@ -548,3 +548,426 @@
 // ============================================================================
 // 其他常用组件变量
 // ============================================================================ 
+
+// ============================================================================
+// Cascader 级联选择器 - 新增变量
+// ============================================================================
+@cascader-search-result-max-height-value: 256px;
+@cascader-menu-min-width-value: 120px;
+@cascader-menu-height-value: 180px;
+@cascader-menu-item-padding-vertical: 5px;
+
+// ============================================================================
+// Checkbox 复选框 - 新增变量
+// ============================================================================
+@checkbox-inner-check-width: 6px;
+@checkbox-inner-check-height: 8px;
+@checkbox-inner-check-border-width: 2px;
+@checkbox-disabled-opacity-value: 0.6;
+
+// ============================================================================
+// DateTimer 日期时间选择器 - 新增变量
+// ============================================================================
+@date-timer-time-cell-height: 32px;
+@date-timer-dropdown-time-width-value: 180px;
+@date-timer-dropdown-datetime-width-value: 480px;
+@date-timer-date-panel-width-value: 280px;
+@date-timer-time-panel-width-value: 210px;
+@date-timer-time-column-list-height: 204px;
+@date-timer-time-column-scrollbar-width: 6px;
+@date-timer-time-column-scrollbar-radius: 3px;
+@date-timer-time-column-container-height: 224px;
+@date-timer-time-column-title-font-size: 12px;
+@date-timer-year-month-cell-height: 60px;
+@date-timer-week-indicator-size: 24px;
+@date-timer-week-indicator-height-large: 26px;
+@date-timer-header-height: 40px;
+@date-timer-header-button-size: 24px;
+@date-timer-week-mode-padding-left: 38px;
+@date-timer-week-indicator-left-offset: -30px;
+@date-timer-close-button-font-size: 18px;
+@date-timer-title-line-height: 22px;
+@date-timer-loading-height: 100px;
+@date-timer-content-min-height: 48px;
+@date-timer-title-bottom-padding: 5px;
+@date-timer-title-font-weight: 600;
+@date-timer-footer-button-padding: 0 7px;
+@date-timer-footer-button-line-height: 22px;
+@date-timer-footer-extra-line-height: 38px;
+
+// ============================================================================
+// Drawer 抽屉 - 新增变量
+// ============================================================================
+@drawer-close-x-font-size-value: 18px;
+
+// ============================================================================
+// Drop-Menu 下拉菜单 - 新增变量
+// ============================================================================
+@drop-menu-item-height-value: 38px;
+@drop-menu-arrow-size-value: 6px;
+@drop-menu-arrow-border-width-value: 1.5px;
+@drop-menu-submenu-before-width-value: 20px;
+
+// ============================================================================
+// Input 输入框 - 新增变量
+// ============================================================================
+@input-padding-horizontal-value: 11px;
+@input-large-padding-vertical: 6.5px;
+
+// ============================================================================
+// Menu 菜单 - 新增变量
+// ============================================================================
+@menu-width-value: 240px;
+@menu-item-nested-padding-left-value: 48px;
+@menu-collapsed-width: 80px;
+@menu-collapsed-item-padding: 0 32px;
+@menu-collapsed-icon-font-size: 16px;
+@menu-overlay-min-width: 160px;
+@menu-overlay-margin: 4px;
+@menu-horizontal-sub-min-width: 180px;
+@menu-horizontal-line-height-value: 46px;
+@menu-horizontal-item-padding: 0 20px;
+@menu-sub-item-height: 40px;
+@menu-sub-item-padding: 0 16px;
+@menu-icon-margin-right: 10px;
+@menu-submenu-title-padding-right: 36px;
+@menu-overlay-max-width: 300px;
+@menu-overlay-max-width-calc: 32px;
+@menu-overlay-max-height-calc: 60px;
+@menu-overlay-scrollbar-width: 6px;
+@menu-overlay-scrollbar-height: 6px;
+@menu-overlay-scrollbar-radius: 3px;
+@menu-fade-scale: 0.8;
+
+// ============================================================================
+// Number-Input 数字输入框 - 新增变量
+// ============================================================================
+@number-input-container-padding-horizontal: 9px;
+
+// ============================================================================
+// Popover 气泡卡片 - 新增变量
+// ============================================================================
+@popover-arrow-shadow-offset-value: 3px;
+
+// ============================================================================
+// Radio 单选框 - 新增变量
+// ============================================================================
+@radio-dot-size-value: 8px;
+@radio-dot-margin: -4px;
+@radio-disabled-opacity-value: 0.5;
+
+// ============================================================================
+// Segmented 分段控制器 - 新增变量
+// ============================================================================
+@segmented-border-radius-value: 6px;
+@segmented-item-height-value: 28px;
+@segmented-item-icon-margin-value: 6px;
+@segmented-animation-duration: 0.1s;
+@segmented-large-arrow-width: 5px;
+@segmented-large-arrow-height: 7px;
+@segmented-small-arrow-width: 3px;
+@segmented-small-arrow-height: 5px;
+
+// ============================================================================
+// Select-Basic 基础选择器 - 新增变量
+// ============================================================================
+@select-basic-search-input-width-value: 0px;
+@select-basic-box-search-height-value: 28px;
+@select-basic-box-lg-search-height-value: 36px;
+@select-basic-box-sm-content-min-height-value: 20px;
+@select-basic-box-suffix-width: 30px;
+@select-basic-placeholder-max-width-calc: 8px;
+
+// ============================================================================
+// Slider 滑块 - 新增变量
+// ============================================================================
+@slider-container-height-value: 12px;
+@slider-mark-text-margin-top-value: 10px;
+@slider-handle-margin-top: -5px;
+@slider-mark-top-offset: -12px;
+
+// ============================================================================
+// Switch 开关 - 新增变量
+// ============================================================================
+@switch-inner-margin-left: 7px;
+@switch-inner-margin-right: 24px;
+@switch-small-inner-margin-left: 18px;
+@switch-small-inner-margin-right: 5px;
+
+// ============================================================================
+// Table 表格 - 新增变量
+// ============================================================================
+@table-container-margin-calc: 48px;
+@table-item-min-width: 150px;
+@table-sorter-icon-size-value: 10px;
+@table-filter-dropdown-min-width-value: 120px;
+@table-filter-dropdown-max-height-value: 300px;
+@table-filter-button-padding-vertical: 7px;
+@table-filter-button-font-size-value: 12px;
+@table-loading-container-size-value: 60px;
+@table-loading-spinner-border-value: 3px;
+@table-empty-padding-value: 50px;
+@table-toolbar-padding-value: 16px;
+@table-z-index-loading: 999;
+@table-z-index-center-loading: 1000;
+@table-z-index-header: 2;
+@table-z-index-fixed-column: 1;
+@table-z-index-header-fixed: 3;
+@table-z-index-pagination: 5;
+@table-pagination-item-size: 32px;
+@table-pagination-item-margin: 8px;
+@table-pagination-border-radius: 2px;
+@table-pagination-font-weight: 500;
+@table-checkable-cell-width: 64px;
+@table-checkable-menu-icon-size: 24px;
+@table-checkable-menu-icon-font-size: 12px;
+@table-shadow-offset: 10px;
+@table-shadow-blur: 8px;
+
+// ============================================================================
+// Tabs 标签页 - 新增变量
+// ============================================================================
+@tabs-ink-bar-height: 2px;
+@tabs-card-item-margin: 2px;
+@tabs-card-item-padding: 8px 16px;
+@tabs-card-close-margin: 8px;
+@tabs-small-padding: 8px 0;
+@tabs-small-font-size: 12px;
+@tabs-small-close-font-size: 10px;
+@tabs-small-arrow-size: 24px;
+@tabs-small-arrow-border-width: 4px 6px 4px 0;
+@tabs-small-arrow-next-border-width: 4px 0 4px 6px;
+@tabs-large-padding: 16px 0;
+@tabs-large-font-size: 16px;
+@tabs-large-arrow-size: 36px;
+@tabs-large-arrow-border-width: 7px 9px 7px 0;
+@tabs-large-arrow-next-border-width: 7px 0 7px 9px;
+
+// ============================================================================
+// Tree 树形控件 - 新增变量
+// ============================================================================
+@tree-switcher-icon-left: 3px;
+@tree-switcher-icon-size-value: 10px;
+
+// ============================================================================
+// 动画时长和缓动函数 - 新增变量
+// ============================================================================
+@animation-duration-switch: 0.2s;
+@animation-duration-table: 0.3s;
+@animation-duration-tree: 1.2s;
+@animation-duration-loading: 2s;
+@animation-duration-spin: 1s;
+@animation-duration-menu-fade: 0.1s;
+@animation-duration-dropdown: 0.2s;
+
+// ============================================================================
+// 阴影和透明度 - 新增变量
+// ============================================================================
+@shadow-blue-base-alpha: 6%;
+@shadow-blue-base-text-alpha: 67%;
+@shadow-black-light-alpha: 15%;
+@shadow-black-medium-alpha: 25%;
+@shadow-black-icon-alpha: 10%;
+@shadow-background-light-alpha: 50%;
+@shadow-blue-base-hover-alpha: 12%;
+@shadow-blue-base-border-alpha: 12%;
+
+// ============================================================================
+// Switch 开关 - 补充变量
+// ============================================================================
+@switch-loading-icon-size: 80%;
+@switch-inner-margin-checked-left: 7px;
+@switch-inner-margin-checked-right: 24px;
+@switch-small-inner-margin-unchecked-left: 18px;
+@switch-small-inner-margin-unchecked-right: 5px;
+@switch-small-inner-margin-checked-left: 5px;
+@switch-small-inner-margin-checked-right: 18px;
+
+// ============================================================================
+// Table 表格 - 补充变量
+// ============================================================================
+@table-footer-padding: 16px 16px;
+@table-footer-border-radius: 0 0 2px 2px;
+@table-pagination-margin: 16px 0;
+@table-pagination-fixed-padding: 16px;
+@table-pagination-total-margin: 16px;
+@table-pagination-options-margin: 16px;
+@table-pagination-input-padding: 0 8px;
+@table-pagination-input-height: 32px;
+@table-pagination-border-radius: 2px;
+@table-filter-popover-padding: 7px 8px;
+@table-filter-popover-button-padding: 4px 8px;
+@table-operation-gap: 8px;
+@table-operation-icon-margin: 4px;
+@table-operation-more-padding: 2px 8px;
+@table-shadow-inset-offset: 10px;
+@table-shadow-inset-blur: 8px;
+@table-shadow-inset-spread: -8px;
+@table-animation-pulse-duration: 2s;
+@table-animation-spin-duration: 1s;
+
+// ============================================================================
+// Tabs 标签页 - 补充变量
+// ============================================================================
+@tabs-shadow-spread: 3px;
+@tabs-arrow-next-border-width: 6px 0 6px 8px;
+@tabs-add-padding: 0 8px;
+@tabs-add-margin: 8px;
+@tabs-add-shadow-spread: 3px;
+@tabs-add-border-radius: 2px;
+@tabs-add-size: 32px;
+@tabs-ink-bar-height-value: 2px;
+@tabs-card-margin: 2px;
+@tabs-card-padding: 8px 16px;
+@tabs-card-border-radius: 2px 2px 0 0;
+@tabs-card-close-margin: 8px;
+@tabs-small-font-size-value: 12px;
+@tabs-small-close-font-size-value: 10px;
+@tabs-large-font-size-value: 16px;
+
+// ============================================================================
+// Tree 树形控件 - 补充变量
+// ============================================================================
+@tree-switcher-border-width: 5px 0 5px 6px;
+@tree-line-vertical-top: -50%;
+@tree-line-vertical-height: 150%;
+@tree-line-vertical-default-height: 100%;
+@tree-line-horizontal-top: 50%;
+@tree-line-horizontal-left: -50%;
+@tree-line-horizontal-width: 100%;
+
+// ============================================================================
+// Slider 滑块 - 补充变量
+// ============================================================================
+@slider-handle-transform: translateX(-50%);
+@slider-mark-transform: translateX(-50%);
+@slider-mark-top-position: -12px;
+@slider-mark-left-position: 50%;
+
+// ============================================================================
+// Tooltip/Popover 位置 - 补充变量
+// ============================================================================
+@tooltip-position-center: 50%;
+
+// ============================================================================
+// 通用尺寸和位置 - 补充变量
+// ============================================================================
+@size-full-width: 100%;
+@size-full-height: 100%;
+@position-center-transform: translate(-50%, -50%);
+@position-center-x: 50%;
+@position-center-y: 50%;
+
+// ============================================================================
+// Menu 菜单 - 补充变量
+// ============================================================================
+@menu-transition-duration: 0.3s;
+@menu-fade-in-scale: 0.8;
+@menu-fade-duration: 0.1s;
+
+// ============================================================================
+// Number-Input 数字输入框 - 补充变量
+// ============================================================================
+@number-input-handler-height: 50%;
+
+// ============================================================================
+// Select 选择器 - 补充变量
+// ============================================================================
+@select-animation-rotate-duration: 1.2s;
+
+// ============================================================================
+// 硬编码数值变量提取
+// ============================================================================
+
+// Input 输入框硬编码值
+@input-large-padding-horizontal: 11px;
+@input-large-padding-vertical: 6.5px;
+
+// Switch 开关硬编码值
+@switch-inner-margin-left-checked: 7px;
+@switch-inner-margin-right-checked: 24px;
+@switch-inner-margin-left-unchecked: 7px;
+@switch-inner-margin-right-unchecked: 24px;
+@switch-small-inner-margin-left-checked: 5px;
+@switch-small-inner-margin-right-checked: 18px;
+@switch-small-inner-margin-left-unchecked: 18px;
+@switch-small-inner-margin-right-unchecked: 5px;
+@switch-loading-icon-size-percent: 80%;
+
+// Radio 单选框硬编码值
+@radio-dot-margin-negative: -4px;
+
+// Checkbox 复选框硬编码值
+@checkbox-indeterminate-inner-size: 8px;
+
+// Segmented 分段控制器硬编码值
+@segmented-box-shadow-spread: 3px;
+@segmented-nav-arrow-width-large: 5px;
+@segmented-nav-arrow-height-large: 7px;
+@segmented-nav-arrow-width-small: 3px;
+@segmented-nav-arrow-height-small: 5px;
+
+// Table 表格硬编码值
+@table-filter-popover-padding-horizontal: 7px;
+@table-filter-popover-padding-vertical: 8px;
+@table-filter-popover-button-padding-horizontal: 4px;
+@table-filter-popover-button-padding-vertical: 8px;
+@table-operation-gap: 8px;
+@table-operation-icon-margin: 4px;
+@table-operation-more-padding-horizontal: 2px;
+@table-operation-more-padding-vertical: 8px;
+@table-shadow-inset-offset: 10px;
+@table-shadow-inset-blur: 8px;
+@table-shadow-inset-spread: -8px;
+@table-pagination-item-size: 32px;
+@table-pagination-item-margin: 8px;
+@table-pagination-total-margin: 16px;
+@table-pagination-options-margin: 16px;
+@table-pagination-input-padding-horizontal: 0px;
+@table-pagination-input-padding-vertical: 8px;
+@table-pagination-input-height: 32px;
+@table-pagination-border-radius: 2px;
+@table-footer-padding-horizontal: 16px;
+@table-footer-padding-vertical: 16px;
+@table-footer-border-radius: 0px;
+@table-pagination-margin-horizontal: 0px;
+@table-pagination-margin-vertical: 16px;
+@table-pagination-fixed-padding: 16px;
+@table-checkable-cell-width: 64px;
+@table-checkable-menu-icon-size: 24px;
+@table-checkable-menu-icon-font-size: 12px;
+
+// Date-Timer 日期时间选择器硬编码值
+@date-timer-input-padding-small-horizontal: 7px;
+@date-timer-input-padding-small-vertical: 0px;
+@date-timer-input-large-padding-horizontal: 11px;
+@date-timer-dropdown-slide-offset: 10px;
+@date-timer-mode-item-min-width: 38px;
+@date-timer-year-month-cell-height: 60px;
+@date-timer-week-number-size: 24px;
+@date-timer-week-number-margin-horizontal: 8px;
+@date-timer-week-number-margin-vertical: 2px;
+@date-timer-week-number-font-size: 12px;
+@date-timer-week-indicator-left-offset: -30px;
+@date-timer-week-indicator-size: 26px;
+@date-timer-date-panel-width: 280px;
+@date-timer-date-panel-padding: 8px;
+@date-timer-date-panel-week-mode-padding-left: 38px;
+@date-timer-header-padding-horizontal: 8px;
+@date-timer-header-height: 40px;
+@date-timer-header-button-size: 24px;
+@date-timer-header-line-height: 40px;
+@date-timer-header-clickable-padding-horizontal: 4px;
+@date-timer-header-clickable-padding-vertical: 2px;
+@date-timer-weekdays-padding-horizontal: 0px;
+@date-timer-weekdays-padding-vertical: 4px;
+@date-timer-weekday-height: 24px;
+@date-timer-weekday-line-height: 24px;
+@date-timer-body-padding-horizontal: 0px;
+@date-timer-body-padding-vertical: 4px;
+@date-timer-cell-min-width: 24px;
+@date-timer-cell-height: 24px;
+@date-timer-cell-margin-horizontal: 0px;
+@date-timer-cell-margin-vertical: 2px;
+@date-timer-cell-content-size: 24px;
+@date-timer-close-button-font-size: 18px; 

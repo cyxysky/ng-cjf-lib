@@ -1,15 +1,15 @@
 // 表格样式
 .c-lib-table-wrapper {
-  background: @text-color-inverse;
-  border-radius: @table-border-radius;
-  box-shadow: @table-shadow;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 
 // 表格工具栏样式
 .c-lib-table-toolbar {
   display: flex;
   justify-content: space-between;
-  padding: @table-toolbar-padding;
+  padding: 16px;
 }
 
 .c-lib-table-toolbar-default {
@@ -20,22 +20,22 @@
 }
 
 .c-lib-table-toolbar-title {
-  font-size: @table-toolbar-title-font-size;
-  font-weight: @table-toolbar-title-font-weight;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .c-lib-table-toolbar-actions {
   display: flex;
-  gap: @table-toolbar-gap;
+  gap: 8px;
 }
 
 .c-lib-table {
   position: relative;
   width: 100%;
   overflow: hidden;
-  font-size: @table-font-size;
-  background: @text-color-inverse;
-  border-radius: @table-border-radius;
+  font-size: 14px;
+  background: #ffffff;
+  border-radius: 4px;
 
   table {
     width: 100%;
@@ -47,11 +47,11 @@
 
   // 表头
   .c-lib-table-thead>tr>th {
-    color: @text-color;
-    font-weight: @table-header-font-weight;
-    background: @table-header-bg;
-    border-bottom: @base-border-width solid @border-color-split;
-    padding: @table-cell-padding;
+    color: #000000;
+    font-weight: 500;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 16px;
     position: relative;
     transition: background 0.3s ease;
   }
@@ -68,15 +68,15 @@
     position: absolute;
     right: 0;
     top: 50%;
-    width: @table-sorter-size;
-    height: @table-sorter-size;
-    margin-top: -@spacing-sm;
+    width: 14px;
+    height: 14px;
+    margin-top: -8px;
     text-align: center;
     cursor: pointer;
     transition: color 0.3s;
 
     &:hover {
-      color: @primary-color;
+      color: #1890ff;
     }
   }
 
@@ -88,9 +88,9 @@
 
   .c-lib-table-sorter-up,
   .c-lib-table-sorter-down {
-    font-size: @table-sorter-icon-size;
+    font-size: 10px;
     opacity: 0.5;
-    color: @gray-5;
+    color: #d9d9d9;
     transition: color 0.3s, opacity 0.3s;
 
     &:hover {
@@ -99,7 +99,7 @@
 
     &.active {
       opacity: 1;
-      color: @primary-color;
+      color: #1890ff;
     }
   }
 
@@ -112,15 +112,15 @@
 
   .c-lib-table-filter-icon {
     display: inline-block;
-    color: @gray-5;
+    color: #d9d9d9;
     transition: color 0.3s;
 
     &:hover {
-      color: @text-color-tertiary;
+      color: #434343;
     }
 
     &.active {
-      color: @primary-color;
+      color: #1890ff;
     }
   }
 
@@ -129,17 +129,17 @@
     position: absolute;
     right: 0;
     top: 100%;
-    min-width: @table-filter-dropdown-min-width;
-    background-color: @text-color-inverse;
-    border-radius: @table-border-radius;
-    box-shadow: @shadow-2;
+    min-width: 200px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
     z-index: 10;
-    margin-top: @table-filter-dropdown-margin;
-    padding: @table-filter-dropdown-padding;
+    margin-top: 4px;
+    padding: 4px 0;
   }
 
   .c-lib-table-filter-dropdown-list {
-    max-height: @table-filter-dropdown-max-height;
+    max-height: 300px;
     overflow-y: auto;
     margin: 0;
     padding: 0;
@@ -147,67 +147,66 @@
   }
 
   .c-lib-table-filter-dropdown-item {
-    padding: @table-filter-item-padding;
+    padding: 5px 12px;
 
     &:hover {
-      background-color: @background-color-hover;
+      background-color: #f5f5f5;
     }
   }
 
   .c-lib-table-filter-dropdown-item-label {
     display: flex;
     align-items: center;
-    padding: @table-filter-item-inner-padding;
+    padding: 2px 4px;
     width: 100%;
     cursor: pointer;
 
     input {
-      margin-right: @spacing-sm;
+      margin-right: 8px;
     }
   }
 
   .c-lib-table-filter-dropdown-btns {
     display: flex;
     justify-content: space-between;
-    padding: @table-filter-button-padding;
-    border-top: @base-border-width solid @border-color-split;
+    padding: 8px 12px;
+    border-top: 1px solid #f0f0f0;
   }
 
   .c-lib-table-filter-dropdown-link {
-    color: @text-color;
-    font-size: @table-filter-button-font-size;
+    color: #000000;
+    font-size: 12px;
     background: transparent;
     border: 0;
     cursor: pointer;
     padding: 0 7px;
 
     &.confirm {
-      color: @primary-color;
+      color: #1890ff;
     }
 
     &:hover {
-      color: @primary-color;
+      color: #1890ff;
     }
   }
 
   // 表格内容
   .c-lib-table-tbody>tr>td {
-    border-bottom: @base-border-width solid @border-color-split;
-    padding: @table-cell-padding;
-    background-color: @text-color-inverse;
-    // transition: all 0.3s;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 12px 16px;
+    background-color: #ffffff;
   }
 
   .c-lib-table-tbody>tr:hover>td {
-    background: @table-row-hover-bg;
+    background: #f5f5f5;
   }
 
   // 无数据状态
   .c-lib-table-empty {
-    padding: @table-empty-padding;
+    padding: 40px 20px;
     text-align: center;
-    color: @text-color-disabled;
-    font-size: @table-empty-font-size;
+    color: #d9d9d9;
+    font-size: 14px;
   }
 
   // 加载状态
@@ -221,16 +220,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: fade(@background-color-light, 50%);
+      background-color: rgba(245, 245, 245, 0.5);
       z-index: 999;
-    }
-
-    .c-lib-table-column-fixed-left::after {
-      animation: shadowPulseLeft 2s infinite ease-in-out;
-    }
-
-    .c-lib-table-column-fixed-right::after {
-      animation: shadowPulseRight 2s infinite ease-in-out;
     }
   }
 
@@ -241,49 +232,21 @@
     transform: translate(-50%, -50%);
     z-index: 1000;
     background-color: transparent;
-    width: @table-loading-container-size;
-    height: @table-loading-container-size;
-    border-radius: @table-loading-container-border-radius;
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
 
     .c-lib-table-loading-spinner {
       display: inline-block;
-      width: @table-loading-spinner-size;
-      height: @table-loading-spinner-size;
-      border: @table-loading-spinner-border solid fade(@background-color-light, 10%);
-      border-top-color: @blue-base;
-      border-radius: @table-loading-spinner-border-radius;
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(245, 245, 245, 0.1);
+      border-top-color: #1890ff;
+      border-radius: 50%;
       animation: spin 1s infinite linear;
-    }
-  }
-
-  @keyframes shadowPulseLeft {
-    0% {
-      box-shadow: inset 10px 0 8px -8px fade(@black, 15%);
-    }
-
-    50% {
-      box-shadow: inset 10px 0 8px -8px fade(@black, 25%);
-    }
-
-    100% {
-      box-shadow: inset 10px 0 8px -8px fade(@black, 15%);
-    }
-  }
-
-  @keyframes shadowPulseRight {
-    0% {
-      box-shadow: inset -10px 0 8px -8px fade(@black, 15%);
-    }
-
-    50% {
-      box-shadow: inset -10px 0 8px -8px fade(@black, 25%);
-    }
-
-    100% {
-      box-shadow: inset -10px 0 8px -8px fade(@black, 15%);
     }
   }
 
@@ -302,7 +265,7 @@
 
     .c-lib-table-thead>tr>th,
     .c-lib-table-tbody>tr>td {
-      padding: @table-cell-padding-middle;
+      padding: 8px 16px;
     }
   }
 
@@ -311,20 +274,20 @@
 
     .c-lib-table-thead>tr>th,
     .c-lib-table-tbody>tr>td {
-      padding: @table-cell-padding-small;
+      padding: 4px 16px;
     }
   }
 
   // 带边框的表格
   &.c-lib-table-bordered {
-    border: @base-border-width solid @border-color-split;
+    border: 1px solid #f0f0f0;
 
     .c-lib-table-thead>tr>th {
-      border-right: @base-border-width solid @border-color-split;
+      border-right: 1px solid #f0f0f0;
     }
 
     .c-lib-table-tbody>tr>td {
-      border-right: @base-border-width solid @border-color-split;
+      border-right: 1px solid #f0f0f0;
     }
   }
 
@@ -338,7 +301,7 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background-color: @table-header-bg;
+      background-color: #fafafa;
     }
   }
 
@@ -367,7 +330,7 @@
 
       th.c-lib-table-column-fixed-left,
       th.c-lib-table-column-fixed-right {
-        background-color: @table-header-bg;
+        background-color: #fafafa;
         z-index: 3;
       }
     }
@@ -379,10 +342,10 @@
   .c-lib-table-column-fixed-right {
     position: sticky !important;
     z-index: 1;
-    background: @text-color-inverse;
+    background: #ffffff;
 
     tr:hover & {
-      background-color: @table-row-hover-bg;
+      background-color: #f5f5f5;
     }
   }
 
@@ -390,18 +353,18 @@
 
 // 表格标题
 .c-lib-table-title {
-  padding: @table-cell-padding;
-  border-radius: @table-border-radius @table-border-radius 0 0;
-  border: @base-border-width solid @border-color-split;
+  padding: 12px 16px;
+  border-radius: 4px 4px 0 0;
+  border: 1px solid #f0f0f0;
   border-bottom: 0;
-  font-weight: @table-header-font-weight;
+  font-weight: 500;
 }
 
 // 表格底部
 .c-lib-table-footer {
-  padding: 16px 16px;
-  border-radius: 0 0 2px 2px;
-  border: 1px solid @border-color-split;
+  padding: 16px;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #f0f0f0;
   border-top: 0;
 }
 
@@ -414,12 +377,12 @@
   &.c-lib-table-pagination-fixed {
     position: sticky;
     bottom: 0;
-    z-index: 5;
-    background: @text-color-inverse;
+    z-index: 10;
+    background: #ffffff;
     padding: 16px;
-    border-top: 1px solid @border-color-split;
+    border-top: 1px solid #f0f0f0;
     margin: 0;
-    box-shadow: @shadow-1-up;
+    box-shadow: 0 -3px 6px -4px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -449,10 +412,10 @@
   min-width: 32px;
   height: 32px;
   margin-right: 8px;
-  border: 1px solid @border-color-split;
+  border: 1px solid #f0f0f0;
   border-radius: 2px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 300ms;
 
   .c-lib-table-pagination-item-link {
     display: flex;
@@ -463,25 +426,25 @@
   }
 
   &:hover {
-    color: @primary-color;
-    border-color: @primary-color;
+    color: #1890ff;
+    border-color: #1890ff;
   }
 
   &.c-lib-table-pagination-item-active {
-    border-color: @primary-color;
-    background-color: @background-color-selected;
-    color: @primary-color;
+    border-color: #1890ff;
+    background-color: #e6f7ff;
+    color: #1890ff;
     font-weight: 500;
   }
 
   &.c-lib-table-pagination-disabled {
-    color: @text-color-disabled;
+    color: #d9d9d9;
     cursor: not-allowed;
-    border-color: @border-color-split;
+    border-color: #f0f0f0;
 
     &:hover {
-      color: @text-color-disabled;
-      border-color: @border-color-split;
+      color: #d9d9d9;
+      border-color: #f0f0f0;
     }
   }
 }
@@ -492,15 +455,15 @@
 
   .c-lib-table-pagination-options-size-changer {
     select {
-      padding: 0 8px;
+      padding: 4px 8px;
       height: 32px;
-      border: 1px solid @border-color-split;
+      border: 1px solid #f0f0f0;
       border-radius: 2px;
       outline: none;
       cursor: pointer;
 
       &:hover {
-        border-color: @primary-color;
+        border-color: #1890ff;
       }
     }
   }
@@ -524,7 +487,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: fade(@background-color-light, 50%);
+  background: rgba(245, 245, 245, 0.5);
   z-index: 10;
   display: flex;
   align-items: center;
@@ -535,25 +498,25 @@
 .c-lib-table-filter-popover-btns {
   display: flex;
   justify-content: space-between;
-  padding: 7px 8px;
-  border-top: 1px solid @border-color-split;
+  padding: 8px 12px;
+  border-top: 1px solid #f0f0f0;
 }
 
 .c-lib-table-filter-popover-link {
-  color: @text-color;
+  color: #000000;
   font-size: 12px;
   background: transparent;
   border: 0;
   cursor: pointer;
-  padding: 4px 8px;
-  transition: all 0.3s;
+  padding: 4px 7px;
+  transition: all 300ms;
 
   &.confirm {
-    color: @primary-color;
+    color: #1890ff;
   }
 
   &:hover {
-    color: @primary-color;
+    color: #1890ff;
   }
 }
 
@@ -564,9 +527,9 @@
 }
 
 .c-lib-table-operation-cell-button {
-  color: @primary-color;
+  color: #1890ff;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 300ms;
 
   &:hover {
     opacity: 0.8;
@@ -581,7 +544,7 @@
   display: inline-flex;
   align-items: center;
   border: 1px dashed transparent;
-  padding: 2px 8px;
+  padding: 2px 4px;
   border-radius: 2px;
 
   i {
@@ -597,17 +560,17 @@
 .c-lib-table-filter-popover-title {
   font-size: 14px;
   font-weight: 400;
-  padding: 8px 0;
+  padding: 12px 0;
 }
 
 .c-lib-table-filter-popover-title-field {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
-  padding-bottom: 8px;
+  padding-bottom: 12px;
 }
 
 .c-lib-table-checkable-cell {
-  width: 64px;
+  width: 48px;
 
   .c-lib-table-checkable-cell-menu {
     display: inline-flex;
@@ -617,14 +580,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: 16px;
+      height: 16px;
       font-size: 12px;
-      color: @gray-5;
+      color: #d9d9d9;
       transition: all 0.3s;
 
       &:hover {
-        color: @primary-color;
+        color: #1890ff;
       }
     }
   }
@@ -658,7 +621,7 @@
   width: 10px;
   pointer-events: none;
   transition: box-shadow 0.3s;
-  box-shadow: inset 10px 0 8px -8px fade(@black, 15%);
+  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
 }
 
 .c-lib-table-column-first-right-fixed::after {
@@ -670,7 +633,7 @@
   width: 10px;
   pointer-events: none;
   transition: box-shadow 0.3s;
-  box-shadow: inset -10px 0 8px -8px fade(@black, 15%);
+  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
 }
 
 .c-lib-table-td-wrapper {
@@ -687,22 +650,22 @@
 
 .c-lib-table-tree-expand-indent {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   position: relative;
 }
 
 .c-lib-table-tree-switcher {
   display: inline-flex;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
-    color: @primary-color;
+    color: #1890ff;
   }
 
   i {
@@ -712,6 +675,6 @@
 
 .c-lib-table-tree-switcher-noop {
   display: inline-block;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
 }

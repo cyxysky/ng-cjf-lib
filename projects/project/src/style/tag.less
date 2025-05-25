@@ -1,35 +1,35 @@
 .c-lib-tag {
     display: inline-block;
-    padding: @tag-padding;
-    font-size: @tag-font-size;
+    padding: 2px 7px;
+    font-size: 12px;
     white-space: nowrap;
-    border-radius: @tag-border-radius;
-    border: @tag-border-width solid transparent;
+    border-radius: 2px;
+    border: 1px solid transparent;
     cursor: default;
-    transition: @tag-transition;
+    transition: all 150ms;
 
     &.c-lib-tag-checkable {
         cursor: pointer;
 
         &:hover {
-            opacity: @tag-checkable-hover-opacity;
+            opacity: 0.85;
         }
 
         &:active {
-            opacity: @tag-checkable-active-opacity;
+            opacity: 0.8;
         }
     }
 
     .c-lib-tag-close-icon {
         display: inline-block;
-        margin-left: @tag-close-icon-margin;
+        margin-left: 3px;
         color: inherit;
-        font-size: @tag-close-icon-font-size;
+        font-size: 10px;
         cursor: pointer;
     }
 }
 
 .c-lib-tag-disabled {
-    opacity: @tag-disabled-opacity;
+    opacity: 0.6;
     pointer-events: none;
 }

@@ -4,12 +4,12 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: @modal-z-index;
+    z-index: 1090;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    padding: @modal-container-padding;
+    padding: 24px 0;
 }
 
 .c-lib-modal-mask {
@@ -18,37 +18,37 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: @modal-mask-bg;
+    background-color: rgba(0, 0, 0, 0.45);
     z-index: -1;
 }
 
 .c-lib-modal-content {
     position: relative;
-    background-color: @text-color-inverse;
-    border-radius: @modal-border-radius;
-    box-shadow: @shadow-3;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-width: @modal-max-width;
-    max-height: @modal-max-height;
+    max-width: 90vw;
+    max-height: 90vh;
 
     .c-lib-modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: @modal-header-padding;
-        color: @text-color;
-        background: @text-color-inverse;
-        border-bottom: @base-border-width solid @border-color-split;
-        border-radius: @modal-border-radius @modal-border-radius 0 0;
+        padding: 16px 24px;
+        color: #000000;
+        background: #ffffff;
+        border-bottom: 1px solid #f0f0f0;
+        border-radius: 4px 4px 0 0;
 
         .c-lib-modal-draggable {
             cursor: move;
             user-select: none;
 
             &:hover {
-                background-color: @background-color-lighter;
+                background-color: #fafafa;
             }
         }
     }
@@ -56,7 +56,7 @@
     .c-lib-modal-body {
         display: flex;
         flex-direction: column;
-        padding: @modal-body-padding;
+        padding: 24px;
         overflow: auto;
         flex: 1;
     }
@@ -64,21 +64,21 @@
     .c-lib-modal-footer {
         display: flex;
         justify-content: flex-end;
-        padding: @modal-footer-padding;
-        background: @text-color-inverse;
-        border-top: @base-border-width solid @border-color-split;
-        border-radius: 0 0 @modal-border-radius @modal-border-radius;
+        padding: 8px 16px;
+        background: #ffffff;
+        border-top: 1px solid #f0f0f0;
+        border-radius: 0 0 4px 4px;
     }
 
     .c-lib-modal-close {
         z-index: 10;
-        color: @text-color-tertiary;
-        font-weight: @modal-close-font-weight;
+        color: #d9d9d9;
+        font-weight: 700;
         cursor: pointer;
-        transition: @modal-close-transition;
+        transition: color 300ms;
 
         &:hover {
-            color: @text-color-secondary;
+            color: #434343;
         }
     }
 }
