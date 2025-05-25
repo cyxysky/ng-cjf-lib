@@ -11,19 +11,19 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    margin: 0 0 16px 0;
-    gap: 8px;
+    margin: @tabs-nav-margin;
+    gap: @tabs-nav-gap;
   }
 
   &-bottom {
-    .c-lib-tabs-nav-wrapper {
-      order: 1;
-      margin-top: 16px;
-      margin-bottom: 0;
+        .c-lib-tabs-nav-wrapper {
+        order: 1;
+        margin-top: @spacing-md;
+        margin-bottom: 0;
     }
 
     .c-lib-tabs-nav {
-      border-top: 1px solid #d9d9d9;
+      border-top: @tabs-nav-border-bottom;
       border-bottom: none;
     }
 
@@ -35,7 +35,7 @@
 
   &-top {
     .c-lib-tabs-nav {
-      border-bottom: 1px solid #d9d9d9;
+      border-bottom: @tabs-nav-border-bottom;
     }
   }
 
@@ -77,32 +77,32 @@
     }
 
     &-arrow {
-      flex: 0 0 32px;
-      min-width: 32px;
-      max-width: 32px;
-      width: 32px;
-      height: 32px;
+      flex: 0 0 @tabs-nav-arrow-size;
+      min-width: @tabs-nav-arrow-size;
+      max-width: @tabs-nav-arrow-size;
+      width: @tabs-nav-arrow-size;
+      height: @tabs-nav-arrow-size;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
-      background: #fafafa;
+      background: @tabs-nav-arrow-bg;
       border: 0;
       outline: none;
       cursor: pointer;
-      color: #d9d9d9;
+      color: @tabs-nav-arrow-color;
       transition: color 150ms;
       z-index: 10;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      border-radius: 2px;
+      box-shadow: @tabs-nav-arrow-shadow;
+      border-radius: @tabs-nav-arrow-border-radius;
 
       &:hover {
-        color: #434343;
+        color: @tabs-nav-arrow-hover-color;
       }
 
       &-disabled {
-        color: #d9d9d9;
+        color: @tabs-nav-arrow-color;
         cursor: not-allowed;
         pointer-events: none;
         opacity: 0.5;
@@ -116,22 +116,22 @@
       }
     }
 
-    &-prev {
-      margin-right: 8px;
+        &-prev {
+        margin-right: @spacing-sm;
 
-      .c-lib-tabs-nav-arrow-icon {
-        border-width: 6px 8px 6px 0;
-        border-color: transparent currentColor transparent transparent;
-      }
+        .c-lib-tabs-nav-arrow-icon {
+            border-width: 6px 8px 6px 0;
+            border-color: transparent currentColor transparent transparent;
+        }
     }
 
     &-next {
-      margin-left: 8px;
+        margin-left: @spacing-sm;
 
-      .c-lib-tabs-nav-arrow-icon {
-        border-width: 6px 0 6px 8px;
-        border-color: transparent transparent transparent currentColor;
-      }
+        .c-lib-tabs-nav-arrow-icon {
+            border-width: 6px 0 6px 8px;
+            border-color: transparent transparent transparent currentColor;
+        }
     }
   }
 
@@ -140,9 +140,9 @@
     display: flex;
     flex: none;
     align-items: center;
-    margin-right: 32px;
-    padding: 12px 0;
-    font-size: 14px;
+    margin-right: @tabs-tab-margin-right;
+    padding: @tabs-tab-padding;
+    font-size: @tabs-tab-font-size;
     background: transparent;
     border: 0;
     outline: none;
@@ -160,13 +160,13 @@
       transition: all 150ms;
     }
 
-    &-icon {
-      margin-right: 8px;
-      font-size: 14px;
+        &-icon {
+        margin-right: @spacing-sm;
+        font-size: @font-size-base;
 
-      i {
-        display: inline-block;
-      }
+        i {
+            display: inline-block;
+        }
     }
 
     &-text {
@@ -176,55 +176,55 @@
     }
 
     &-active &-btn {
-      color: #1890ff;
+      color: @tabs-tab-active-color;
     }
 
     &-disabled {
-      color: #d9d9d9;
+      color: @tabs-tab-disabled-color;
       cursor: not-allowed;
     }
 
-    &-close {
-      margin-left: 8px;
-      padding: 0;
-      font-size: 12px;
-      background: transparent;
-      border: 0;
-      outline: none;
-      cursor: pointer;
-      transition: all 150ms;
+        &-close {
+        margin-left: @tabs-tab-close-margin-left;
+        padding: 0;
+        font-size: @tabs-tab-close-font-size;
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+        transition: all @component-transition-duration;
 
-      &:hover {
-        color: #000000;
-      }
+        &:hover {
+            color: @input-color;
+        }
     }
 
-    &-add {
-      padding: 0 8px;
-      background: #fafafa;
-      z-index: 10;
+        &-add {
+        padding: 0 @spacing-sm;
+        background: @table-header-bg;
+        z-index: 10;
 
-      &:hover {
-        color: #1890ff;
-        border-color: #1890ff;
-      }
+        &:hover {
+            color: @button-primary-bg;
+            border-color: @button-primary-bg;
+        }
 
-      &-icon {
-        font-size: 12px;
-      }
+        &-icon {
+            font-size: @font-size-sm;
+        }
 
-      &-fixed {
-        position: relative;
-        margin-left: 8px;
-        flex-shrink: 0;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        border-radius: 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-width: 32px;
-        height: 32px;
-      }
+        &-fixed {
+            position: relative;
+            margin-left: @spacing-sm;
+            flex-shrink: 0;
+            box-shadow: @tabs-add-shadow;
+            border-radius: @border-radius-sm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+            height: 32px;
+        }
     }
   }
 
@@ -232,12 +232,12 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 2px;
-    background-color: #1890ff;
+    height: @tabs-ink-bar-height;
+    background-color: @tabs-ink-bar-bg;
     z-index: 1;
-    transition: transform 150ms cubic-bezier(0.645, 0.045, 0.355, 1),
-      width 150ms cubic-bezier(0.645, 0.045, 0.355, 1),
-      left 150ms cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1),
+      width @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1),
+      left @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   &-card {

@@ -1,26 +1,26 @@
 .c-lib-select-hover-options,
 .c-lib-select-option-active {
-    background-color: #f5f5f5;
+    background-color: @select-option-hover-bg;
 }
 
 .c-lib-select-option-base() {
-    padding: 5px 12px;
+    padding: @select-option-padding;
     display: flex;
     align-items: center;
-    height: 32px;
+    height: @select-option-height;
     cursor: pointer;
-    font-size: 14px;
-    color: #000000;
+    font-size: @select-option-font-size;
+    color: @select-option-color;
     border-radius: 0;
     transition: background-color 300ms;
 
     &:hover,
     &.c-lib-select-option-active {
-        background-color: #f5f5f5;
+        background-color: @select-option-hover-bg;
     }
 
     &-disabled {
-        color: #d9d9d9;
+        color: @select-option-disabled-color;
         cursor: not-allowed;
         pointer-events: all;
         background-color: transparent;
@@ -37,9 +37,9 @@
 }
 
 .c-lib-select-option-selected-base() {
-    background-color: rgba(24, 144, 255, 0.06) !important;
+    background-color: @select-option-selected-bg !important;
     font-weight: 500;
-    color: rgba(24, 144, 255, 0.67);
+    color: @select-option-selected-color;
 }
 
 .c-lib-select-empty-container-base() {
@@ -51,22 +51,22 @@
     padding: 64px 16px;
 
     .c-lib-select-empty-icon {
-        margin-bottom: 8px;
-        color: rgba(0, 0, 0, 0.15);
+        margin-bottom: @spacing-sm;
+        color: @select-empty-icon-color;
     }
 
     .c-lib-select-empty-text {
-        color: #d9d9d9;
-        font-size: 14px;
+        color: @select-option-disabled-color;
+        font-size: @select-option-font-size;
     }
 }
 
 .c-lib-select-dropdown {
-    background: #ffffff;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    background: @select-dropdown-bg;
+    box-shadow: @select-dropdown-shadow;
     width: 100%;
     margin: 4px 0;
-    border-radius: 4px;
+    border-radius: @select-dropdown-border-radius;
     overflow: hidden;
     transform-origin: 0 0;
     opacity: 0;
@@ -83,8 +83,8 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: #d9d9d9;
-        font-size: 14px;
+        color: @select-option-disabled-color;
+        font-size: @select-option-font-size;
     }
 
     .c-lib-select-empty-container {
@@ -95,7 +95,7 @@
 .c-lib-select-option-list {
     flex-grow: 1;
     overflow: auto;
-    max-height: 256px;
+    max-height: @select-dropdown-max-height;
 
     .c-lib-select-option-option {
         .c-lib-select-option {
@@ -119,10 +119,10 @@
 }
 
 .c-lib-select-group-title {
-    padding: 5px 12px;
-    font-size: 12px;
-    color: #d9d9d9;
-    background-color: rgba(0, 0, 0, 0.02);
+    padding: @select-option-padding;
+    font-size: @font-size-sm;
+    color: @select-option-disabled-color;
+    background-color: @select-group-title-bg;
     font-weight: 500;
 }
 
@@ -142,17 +142,17 @@
     will-change: scroll-position;
 
     .c-lib-select-option {
-        padding: 5px 12px;
+        padding: @select-option-padding;
         display: grid;
         align-items: center;
         max-width: 100%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        height: 32px;
+        height: @select-option-height;
         cursor: pointer;
-        font-size: 14px;
-        color: #000000;
+        font-size: @select-option-font-size;
+        color: @select-option-color;
         border-radius: 0;
         transition: background-color 300ms;
 
@@ -164,11 +164,11 @@
         }
 
         &:hover {
-            background-color: #f5f5f5;
+            background-color: @select-option-hover-bg;
         }
 
         &-disabled {
-            color: #d9d9d9;
+            color: @select-option-disabled-color;
             cursor: not-allowed;
 
             &:hover {
@@ -187,7 +187,7 @@
 }
 
 .c-lib-select-padding-left-8 {
-    padding-left: 8px;
+    padding-left: @select-padding-left-8;
 }
 
 
@@ -195,10 +195,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: @select-remote-loading-height;
 
     .c-lib-select-loading-text {
-        color: #d9d9d9;
+        color: @select-option-disabled-color;
     }
 }
 

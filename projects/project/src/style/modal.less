@@ -18,30 +18,30 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: @modal-mask-bg;
     z-index: -1;
 }
 
 .c-lib-modal-content {
     position: relative;
-    background-color: #ffffff;
-    border-radius: 4px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    background-color: @modal-bg;
+    border-radius: @modal-border-radius;
+    box-shadow: @modal-shadow;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: @modal-max-width;
+    max-height: @modal-max-height;
 
     .c-lib-modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 16px 24px;
-        color: #000000;
-        background: #ffffff;
-        border-bottom: 1px solid #f0f0f0;
-        border-radius: 4px 4px 0 0;
+        padding: @modal-header-padding;
+        color: @text-color;
+        background: @modal-bg;
+        border-bottom: @modal-header-border-bottom;
+        border-radius: @modal-border-radius @modal-border-radius 0 0;
 
         .c-lib-modal-draggable {
             cursor: move;

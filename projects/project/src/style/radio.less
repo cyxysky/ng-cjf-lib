@@ -1,27 +1,27 @@
 .c-lib-radio-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: @checkbox-group-gap;
 
     &.c-lib-radio-group-vertical {
         flex-direction: column;
     }
 
-    .c-lib-radio-wrapper {
+            .c-lib-radio-wrapper {
         display: flex;
         align-items: center;
         cursor: pointer;
-        margin-right: 16px;
+        margin-right: @radio-wrapper-margin-right;
 
         &.c-lib-radio-disabled {
             cursor: not-allowed;
             opacity: 0.5;
         }
 
-        .c-lib-radio {
+                    .c-lib-radio {
             position: relative;
             display: inline-block;
-            margin-right: 8px;
+            margin-right: @checkbox-label-margin-left;
             white-space: nowrap;
             outline: none;
 
@@ -39,12 +39,12 @@
             .c-lib-radio-inner {
                 position: relative;
                 display: block;
-                width: 16px;
-                height: 16px;
-                background-color: #ffffff;
-                border: 1px solid #d9d9d9;
-                color: #1890ff;
-                border-radius: 90px;
+                width: @radio-size;
+                height: @radio-size;
+                background-color: @radio-bg;
+                border: @radio-border-width solid @radio-border-color;
+                color: @radio-checked-color;
+                border-radius: @radio-border-radius;
                 transition: all 300ms;
 
                 &::after {

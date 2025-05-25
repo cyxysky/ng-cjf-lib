@@ -1,15 +1,15 @@
 // 表格样式
 .c-lib-table-wrapper {
-  background: #ffffff;
-  border-radius: 4px;
-  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  background: @table-bg;
+  border-radius: @table-border-radius;
+  box-shadow: @table-shadow;
 }
 
 // 表格工具栏样式
 .c-lib-table-toolbar {
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  padding: @table-toolbar-padding;
 }
 
 .c-lib-table-toolbar-default {
@@ -20,22 +20,22 @@
 }
 
 .c-lib-table-toolbar-title {
-  font-size: 16px;
-  font-weight: 500;
+  font-size: @table-toolbar-title-font-size;
+  font-weight: @table-toolbar-title-font-weight;
 }
 
 .c-lib-table-toolbar-actions {
   display: flex;
-  gap: 8px;
+  gap: @table-toolbar-actions-gap;
 }
 
 .c-lib-table {
   position: relative;
   width: 100%;
   overflow: hidden;
-  font-size: 14px;
-  background: #ffffff;
-  border-radius: 4px;
+  font-size: @table-font-size;
+  background: @table-bg;
+  border-radius: @table-border-radius;
 
   table {
     width: 100%;
@@ -47,11 +47,11 @@
 
   // 表头
   .c-lib-table-thead>tr>th {
-    color: #000000;
-    font-weight: 500;
-    background: #fafafa;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 12px 16px;
+    color: @table-header-color;
+    font-weight: @table-header-font-weight;
+    background: @table-header-bg;
+    border-bottom: @border-width-base solid @table-border-color;
+    padding: @table-cell-padding;
     position: relative;
     transition: background 0.3s ease;
   }
@@ -68,15 +68,15 @@
     position: absolute;
     right: 0;
     top: 50%;
-    width: 14px;
-    height: 14px;
+    width: @table-sorter-width;
+    height: @table-sorter-height;
     margin-top: -8px;
     text-align: center;
     cursor: pointer;
     transition: color 0.3s;
 
     &:hover {
-      color: #1890ff;
+      color: @table-sorter-active-color;
     }
   }
 
@@ -88,9 +88,9 @@
 
   .c-lib-table-sorter-up,
   .c-lib-table-sorter-down {
-    font-size: 10px;
+    font-size: @table-sorter-font-size;
     opacity: 0.5;
-    color: #d9d9d9;
+    color: @input-disabled-color;
     transition: color 0.3s, opacity 0.3s;
 
     &:hover {
@@ -99,7 +99,7 @@
 
     &.active {
       opacity: 1;
-      color: #1890ff;
+      color: @table-sorter-active-color;
     }
   }
 
@@ -112,15 +112,15 @@
 
   .c-lib-table-filter-icon {
     display: inline-block;
-    color: #d9d9d9;
+    color: @table-filter-icon-color;
     transition: color 0.3s;
 
     &:hover {
-      color: #434343;
+      color: @table-filter-icon-hover-color;
     }
 
     &.active {
-      color: #1890ff;
+      color: @table-filter-icon-active-color;
     }
   }
 
@@ -129,13 +129,13 @@
     position: absolute;
     right: 0;
     top: 100%;
-    min-width: 200px;
-    background-color: #ffffff;
-    border-radius: 4px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    min-width: @table-filter-dropdown-min-width;
+    background-color: @table-bg;
+    border-radius: @table-border-radius;
+    box-shadow: @table-shadow;
     z-index: 10;
-    margin-top: 4px;
-    padding: 4px 0;
+    margin-top: @spacing-xs;
+    padding: @spacing-xs 0;
   }
 
   .c-lib-table-filter-dropdown-list {
@@ -147,17 +147,17 @@
   }
 
   .c-lib-table-filter-dropdown-item {
-    padding: 5px 12px;
+    padding: @table-filter-dropdown-item-padding;
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: @table-filter-dropdown-item-hover-bg;
     }
   }
 
   .c-lib-table-filter-dropdown-item-label {
     display: flex;
     align-items: center;
-    padding: 2px 4px;
+    padding: @table-filter-dropdown-label-padding;
     width: 100%;
     cursor: pointer;
 
@@ -169,44 +169,44 @@
   .c-lib-table-filter-dropdown-btns {
     display: flex;
     justify-content: space-between;
-    padding: 8px 12px;
-    border-top: 1px solid #f0f0f0;
+    padding: @table-filter-dropdown-btn-padding;
+    border-top: 1px solid @table-filter-dropdown-btn-border-color;
   }
 
   .c-lib-table-filter-dropdown-link {
-    color: #000000;
-    font-size: 12px;
+    color: @table-filter-dropdown-link-color;
+    font-size: @table-filter-dropdown-link-font-size;
     background: transparent;
     border: 0;
     cursor: pointer;
-    padding: 0 7px;
+    padding: @table-filter-dropdown-link-padding;
 
     &.confirm {
-      color: #1890ff;
+      color: @table-filter-dropdown-link-confirm-color;
     }
 
     &:hover {
-      color: #1890ff;
+      color: @table-filter-dropdown-link-hover-color;
     }
   }
 
   // 表格内容
   .c-lib-table-tbody>tr>td {
-    border-bottom: 1px solid #f0f0f0;
-    padding: 12px 16px;
-    background-color: #ffffff;
+    border-bottom: 1px solid @table-tbody-border-color;
+    padding: @table-cell-padding;
+    background-color: @table-tbody-bg;
   }
 
   .c-lib-table-tbody>tr:hover>td {
-    background: #f5f5f5;
+    background: @table-hover-bg;
   }
 
   // 无数据状态
   .c-lib-table-empty {
-    padding: 40px 20px;
+    padding: @table-empty-padding;
     text-align: center;
-    color: #d9d9d9;
-    font-size: 14px;
+    color: @table-empty-color;
+    font-size: @table-empty-font-size;
   }
 
   // 加载状态
@@ -220,7 +220,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(245, 245, 245, 0.5);
+      background-color: @table-loading-bg;
       z-index: 999;
     }
   }
@@ -241,10 +241,10 @@
 
     .c-lib-table-loading-spinner {
       display: inline-block;
-      width: 32px;
-      height: 32px;
-      border: 3px solid rgba(245, 245, 245, 0.1);
-      border-top-color: #1890ff;
+      width: @table-loading-spinner-size;
+      height: @table-loading-spinner-size;
+      border: @table-loading-spinner-border-width solid @table-loading-spinner-bg;
+      border-top-color: @table-loading-spinner-color;
       border-radius: 50%;
       animation: spin 1s infinite linear;
     }
@@ -265,7 +265,7 @@
 
     .c-lib-table-thead>tr>th,
     .c-lib-table-tbody>tr>td {
-      padding: 8px 16px;
+      padding: @table-middle-cell-padding;
     }
   }
 
@@ -274,20 +274,20 @@
 
     .c-lib-table-thead>tr>th,
     .c-lib-table-tbody>tr>td {
-      padding: 4px 16px;
+      padding: @table-small-cell-padding;
     }
   }
 
   // 带边框的表格
   &.c-lib-table-bordered {
-    border: 1px solid #f0f0f0;
+    border: 1px solid @table-border-color;
 
     .c-lib-table-thead>tr>th {
-      border-right: 1px solid #f0f0f0;
+      border-right: 1px solid @table-border-color;
     }
 
     .c-lib-table-tbody>tr>td {
-      border-right: 1px solid #f0f0f0;
+      border-right: 1px solid @table-border-color;
     }
   }
 
@@ -301,7 +301,7 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background-color: #fafafa;
+      background-color: @table-header-bg;
     }
   }
 
@@ -330,7 +330,7 @@
 
       th.c-lib-table-column-fixed-left,
       th.c-lib-table-column-fixed-right {
-        background-color: #fafafa;
+        background-color: @table-header-bg;
         z-index: 3;
       }
     }
@@ -342,10 +342,10 @@
   .c-lib-table-column-fixed-right {
     position: sticky !important;
     z-index: 1;
-    background: #ffffff;
+    background: @table-bg;
 
     tr:hover & {
-      background-color: #f5f5f5;
+      background-color: @table-hover-bg;
     }
   }
 
@@ -370,7 +370,7 @@
 
 // 分页样式
 .c-lib-table-pagination {
-  margin: 16px 0;
+  margin: @table-pagination-margin;
   display: flex;
   justify-content: flex-end;
 
@@ -378,17 +378,17 @@
     position: sticky;
     bottom: 0;
     z-index: 10;
-    background: #ffffff;
-    padding: 16px;
-    border-top: 1px solid #f0f0f0;
+    background: @table-pagination-fixed-bg;
+    padding: @table-pagination-fixed-padding;
+    border-top: 1px solid @table-pagination-fixed-border-color;
     margin: 0;
-    box-shadow: 0 -3px 6px -4px rgba(0, 0, 0, 0.12);
+    box-shadow: @table-pagination-fixed-shadow;
   }
 }
 
 .c-lib-table-pagination-container {
   display: inline-block;
-  font-size: 14px;
+  font-size: @table-pagination-font-size;
 }
 
 .c-lib-table-pagination-list {
@@ -400,7 +400,7 @@
 }
 
 .c-lib-table-pagination-total {
-  margin-right: 16px;
+  margin-right: @table-pagination-total-margin;
 }
 
 .c-lib-table-pagination-item,
@@ -409,11 +409,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  margin-right: 8px;
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
+  min-width: @table-pagination-item-min-width;
+  height: @table-pagination-item-height;
+  margin-right: @table-pagination-item-margin;
+  border: 1px solid @table-pagination-item-border-color;
+  border-radius: @table-pagination-item-border-radius;
   cursor: pointer;
   transition: all 300ms;
 
@@ -425,45 +425,46 @@
     height: 100%;
   }
 
+
   &:hover {
-    color: #1890ff;
-    border-color: #1890ff;
+    color: @table-pagination-item-hover-color;
+    border-color: @table-pagination-item-hover-border-color;
   }
 
   &.c-lib-table-pagination-item-active {
-    border-color: #1890ff;
-    background-color: #e6f7ff;
-    color: #1890ff;
-    font-weight: 500;
+    border-color: @table-pagination-item-active-border-color;
+    background-color: @table-pagination-item-active-bg;
+    color: @table-pagination-item-active-color;
+    font-weight: @table-pagination-item-active-font-weight;
   }
 
   &.c-lib-table-pagination-disabled {
-    color: #d9d9d9;
+    color: @table-pagination-disabled-color;
     cursor: not-allowed;
-    border-color: #f0f0f0;
+    border-color: @table-pagination-disabled-border-color;
 
     &:hover {
-      color: #d9d9d9;
-      border-color: #f0f0f0;
+      color: @table-pagination-disabled-color;
+      border-color: @table-pagination-disabled-border-color;
     }
   }
 }
 
 .c-lib-table-pagination-options {
   display: flex;
-  margin-left: 16px;
+  margin-left: @table-pagination-options-margin;
 
   .c-lib-table-pagination-options-size-changer {
     select {
-      padding: 4px 8px;
-      height: 32px;
-      border: 1px solid #f0f0f0;
-      border-radius: 2px;
+      padding: @table-pagination-select-padding;
+      height: @table-pagination-select-height;
+      border: 1px solid @table-pagination-select-border-color;
+      border-radius: @table-pagination-select-border-radius;
       outline: none;
       cursor: pointer;
 
       &:hover {
-        border-color: #1890ff;
+        border-color: @table-pagination-select-hover-border-color;
       }
     }
   }
@@ -471,12 +472,12 @@
 
 .c-lib-table-pagination-jumper {
   display: flex;
-  margin-left: 16px;
+  margin-left: @table-pagination-options-margin;
 
   .c-lib-table-pagination-options-quick-jumper {
     display: flex;
     align-items: center;
-    height: 32px;
+    height: @table-pagination-item-height;
   }
 }
 
@@ -487,7 +488,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(245, 245, 245, 0.5);
+  background: @table-loading-bg;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -523,20 +524,20 @@
 // 操作列样式
 .c-lib-table-operation-cell {
   display: flex;
-  gap: 8px;
+  gap: @table-operation-gap;
 }
 
 .c-lib-table-operation-cell-button {
-  color: #1890ff;
+  color: @table-operation-color;
   cursor: pointer;
   transition: all 300ms;
 
   &:hover {
-    opacity: 0.8;
+    opacity: @table-operation-hover-opacity;
   }
 
   i {
-    margin-right: 4px;
+    margin-right: @table-operation-icon-margin;
   }
 }
 
@@ -544,12 +545,12 @@
   display: inline-flex;
   align-items: center;
   border: 1px dashed transparent;
-  padding: 2px 4px;
-  border-radius: 2px;
+  padding: @table-operation-more-padding;
+  border-radius: @table-operation-more-border-radius;
 
   i {
-    font-size: 12px;
-    margin-right: 4px;
+    font-size: @table-operation-more-icon-size;
+    margin-right: @table-operation-more-icon-margin;
   }
 }
 
@@ -570,7 +571,7 @@
 }
 
 .c-lib-table-checkable-cell {
-  width: 48px;
+  width: @table-checkable-width;
 
   .c-lib-table-checkable-cell-menu {
     display: inline-flex;
@@ -580,14 +581,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
-      height: 16px;
-      font-size: 12px;
-      color: #d9d9d9;
+      width: @table-checkable-menu-size;
+      height: @table-checkable-menu-size;
+      font-size: @table-checkable-menu-icon-size;
+      color: @table-checkable-menu-icon-color;
       transition: all 0.3s;
 
       &:hover {
-        color: #1890ff;
+        color: @table-checkable-menu-icon-hover-color;
       }
     }
   }
@@ -621,7 +622,7 @@
   width: 10px;
   pointer-events: none;
   transition: box-shadow 0.3s;
-  box-shadow: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+  box-shadow: @table-fixed-shadow-inset-left;
 }
 
 .c-lib-table-column-first-right-fixed::after {
@@ -633,7 +634,7 @@
   width: 10px;
   pointer-events: none;
   transition: box-shadow 0.3s;
-  box-shadow: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+  box-shadow: @table-fixed-shadow-inset-right;
 }
 
 .c-lib-table-td-wrapper {
@@ -645,36 +646,36 @@
   display: inline-flex;
   align-items: center;
   height: 100%;
-  margin-right: 8px;
+  margin-right: @table-tree-expand-margin;
 }
 
 .c-lib-table-tree-expand-indent {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: @table-tree-indent-width;
+  height: @table-tree-indent-height;
   position: relative;
 }
 
 .c-lib-table-tree-switcher {
   display: inline-flex;
-  width: 16px;
-  height: 16px;
+  width: @table-tree-switcher-width;
+  height: @table-tree-switcher-height;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
 
   &:hover {
-    color: #1890ff;
+    color: @table-tree-switcher-hover-color;
   }
 
   i {
-    font-size: 10px;
+    font-size: @table-tree-switcher-icon-size;
   }
 }
 
 .c-lib-table-tree-switcher-noop {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: @table-tree-switcher-width;
+  height: @table-tree-switcher-height;
 }

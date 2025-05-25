@@ -4,24 +4,24 @@ lib-date-timer {
 }
 
 .c-lib-date-timer-range-separator {
-    padding: 0 8px;
+    padding: @date-timer-range-separator-padding;
 }
 
 // 范围选择Tab样式
 .c-lib-date-timer-range-tabs {
     display: flex;
     width: 100%;
-    height: 40px;
-    border-bottom: 1px solid #f0f0f0;
+    height: @date-timer-range-tab-height;
+    border-bottom: @date-timer-range-tab-border;
 }
 
 .c-lib-date-timer-range-tab {
     flex: 1;
-    height: 40px;
-    line-height: 40px;
+    height: @date-timer-range-tab-height;
+    line-height: @date-timer-range-tab-height;
     text-align: center;
-    color: #434343;
-    font-size: 14px;
+    color: @date-timer-range-tab-color;
+    font-size: @date-timer-range-tab-font-size;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -29,12 +29,12 @@ lib-date-timer {
     outline: none;
 
     &:hover {
-        color: #1890ff;
+        color: @date-timer-range-tab-hover-color;
     }
 
     &.c-lib-date-timer-range-tab-active {
-        color: #1890ff;
-        background-color: #e6f7ff;
+        color: @date-timer-range-tab-active-color;
+        background-color: @date-timer-range-tab-active-bg;
         font-weight: 500;
         position: relative;
 
@@ -44,9 +44,9 @@ lib-date-timer {
             position: absolute;
             bottom: 0;
             left: 50%;
-            width: 24px;
-            height: 2px;
-            background-color: #1890ff;
+            width: @date-timer-range-tab-indicator-width;
+            height: @date-timer-range-tab-indicator-height;
+            background-color: @date-timer-range-tab-indicator-color;
             transform: translateX(-50%);
         }
     }
@@ -55,13 +55,13 @@ lib-date-timer {
 // 新增范围部分指示器样式
 .c-lib-date-timer-range-part-indicator {
     display: inline-block;
-    margin-left: 8px;
-    font-size: 12px;
-    color: #d9d9d9;
+    margin-left: @spacing-sm;
+    font-size: @font-size-sm;
+    color: @input-disabled-color;
 }
 
 .c-lib-date-timer-range-part-active {
-    color: #1890ff;
+    color: @button-primary-bg;
     font-weight: 500;
 }
 
@@ -69,30 +69,30 @@ lib-date-timer {
 .c-lib-date-timer-time-steps {
     display: flex;
     justify-content: center;
-    padding: 8px 0 0 0;
-    margin-bottom: 8px;
-    color: #d9d9d9;
-    font-size: 14px;
-    border-bottom: 1px dashed #f0f0f0;
+    padding: @spacing-sm 0 0 0;
+    margin-bottom: @spacing-sm;
+    color: @input-disabled-color;
+    font-size: @font-size-base;
+    border-bottom: 1px dashed @table-border-color;
 }
 
 .c-lib-date-timer-time-step {
-    padding: 2px 8px;
+    padding: 2px @spacing-sm;
 
     &.c-lib-date-timer-time-step-active {
-        color: #1890ff;
+        color: @button-primary-bg;
         font-weight: 500;
-        background: #e6f7ff;
-        border-radius: 2px;
+        background: @date-timer-time-step-active-bg;
+        border-radius: @date-timer-time-step-border-radius;
     }
 }
 
 // 当前活动的时间列样式
 .c-lib-date-timer-time-column-active {
-    border-radius: 4px;
+    border-radius: @border-radius-base;
 
     .c-lib-date-timer-time-column-title {
-        color: #1890ff;
+        color: @button-primary-bg;
         font-weight: 500;
     }
 }
@@ -121,26 +121,26 @@ lib-date-timer {
     align-items: center;
     width: 100%;
     min-width: 0;
-    padding: 4px 11px;
-    color: #000000;
-    font-size: 14px;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
+    padding: @date-timer-input-padding;
+    color: @date-timer-input-color;
+    font-size: @date-timer-input-font-size;
+    border: @date-timer-input-border;
+    border-radius: @date-timer-input-border-radius;
     transition: all 150ms;
 
     &:hover {
-        border-color: #40a9ff;
+        border-color: @date-timer-input-hover-border-color;
     }
 
     &.c-lib-date-timer-input-focused {
-        border-color: #40a9ff;
-        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        border-color: @date-timer-input-focus-border-color;
+        box-shadow: @date-timer-input-focus-shadow;
         outline: 0;
     }
 
     &.c-lib-date-timer-input-disabled {
-        color: #d9d9d9;
-        background-color: #f5f5f5;
+        color: @date-timer-input-disabled-color;
+        background-color: @date-timer-input-disabled-bg;
         cursor: not-allowed;
         opacity: 1;
     }
@@ -151,38 +151,38 @@ lib-date-timer {
     }
 
     &.c-lib-date-timer-input-error {
-        border-color: #ff4d4f;
+        border-color: @input-error-border-color;
 
         &:hover {
-            border-color: rgba(255, 77, 79, 0.85);
+            border-color: @input-error-border-color;
         }
 
         &.c-lib-date-timer-input-focused {
-            box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+            box-shadow: @input-error-shadow;
         }
     }
 
     &.c-lib-date-timer-input-warning {
-        border-color: #ffc409;
+        border-color: @input-warning-border-color;
 
         &:hover {
-            border-color: rgba(255, 196, 9, 0.9);
+            border-color: @input-warning-border-color;
         }
 
         &.c-lib-date-timer-input-focused {
-            box-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
+            box-shadow: @input-warning-shadow;
         }
     }
 
     &.c-lib-date-timer-input-small {
-        padding: 0 7px;
-        height: 24px;
+        padding: @date-timer-input-small-padding;
+        height: @date-timer-input-small-height;
     }
 
     &.c-lib-date-timer-input-large {
-        padding: 6.5px 11px;
-        height: 40px;
-        font-size: 16px;
+        padding: @date-timer-input-large-padding;
+        height: @date-timer-input-large-height;
+        font-size: @date-timer-input-large-font-size;
     }
 }
 
@@ -191,7 +191,7 @@ lib-date-timer {
     display: inline-block;
     width: 100%;
     min-width: 0;
-    color: #000000;
+    color: @input-color;
     font-size: inherit;
     line-height: 1.5;
     background-color: transparent;
@@ -199,15 +199,15 @@ lib-date-timer {
     border: none;
     outline: none;
     cursor: pointer;
-    transition: all 150ms;
+    transition: all @component-transition-duration;
 
     &::placeholder {
-        color: #d9d9d9;
+        color: @input-placeholder-color;
     }
 
     &:disabled {
-        color: #d9d9d9;
-        background-color: #f5f5f5;
+        color: @input-disabled-color;
+        background-color: @input-disabled-bg;
         cursor: not-allowed;
         opacity: 1;
     }
@@ -215,20 +215,20 @@ lib-date-timer {
 
 .c-lib-date-timer-clear-btn {
     display: inline-block;
-    font-size: 14px;
-    color: #d9d9d9;
+    font-size: @font-size-base;
+    color: @input-disabled-color;
     cursor: pointer;
-    transition: color 150ms;
+    transition: color @component-transition-duration;
     opacity: 0;
 
     &:hover {
-        color: #d9d9d9;
+        color: @input-disabled-color;
     }
 }
 
 .c-lib-date-timer-icon {
-    font-size: 16px;
-    color: #d9d9d9;
+    font-size: @font-size-lg;
+    color: @input-disabled-color;
 }
 
 // 范围选择
@@ -241,7 +241,7 @@ lib-date-timer {
     .c-lib-date-timer-range-separator {
         display: inline-block;
         width: 24px;
-        color: #d9d9d9;
+        color: @input-disabled-color;
         line-height: 1;
         text-align: center;
     }
@@ -254,11 +254,11 @@ lib-date-timer {
 
 // 下拉面板
 .c-lib-date-timer-dropdown {
-    z-index: 1050;
+    z-index: 1000;
     margin-top: 4px;
-    background-color: #ffffff;
-    border-radius: 4px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    background-color: @date-timer-dropdown-bg;
+    border-radius: @date-timer-dropdown-border-radius;
+    box-shadow: @date-timer-dropdown-shadow;
     transition: all 150ms;
     transform-origin: 0 0;
     opacity: 0;
@@ -270,19 +270,19 @@ lib-date-timer {
     }
 
     &.c-lib-date-timer-dropdown-time {
-        width: 180px;
+        width: @date-timer-dropdown-time-width;
     }
 
     &.c-lib-date-timer-dropdown-date-time {
-        width: 480px;
+        width: @date-timer-dropdown-date-time-width;
 
         .c-lib-date-timer-panels-container {
             display: flex;
         }
 
         .c-lib-date-timer-date-panel {
-            width: 280px;
-            border-right: 1px solid #f0f0f0;
+            width: @date-timer-panel-width;
+            border-right: 1px solid @table-border-color;
         }
 
         .c-lib-date-timer-time-panel-combined {
@@ -337,7 +337,7 @@ lib-date-timer {
 .c-lib-date-timer-mode-selector {
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid @table-border-color;
     padding: 5px 0;
     margin-bottom: 5px;
 }
@@ -346,24 +346,24 @@ lib-date-timer {
     display: inline-block;
     min-width: 38px;
     height: 28px;
-    margin: 0 4px;
-    padding: 0 8px;
-    color: #434343;
+    margin: 0 @spacing-xs;
+    padding: 0 @spacing-sm;
+    color: @input-prefix-suffix-color;
     line-height: 28px;
     text-align: center;
     background: transparent;
-    border-radius: 4px;
+    border-radius: @border-radius-base;
     cursor: pointer;
-    transition: all 150ms;
+    transition: all @component-transition-duration;
 
     &:hover {
-        color: #1890ff;
-        background: #e6f7ff;
+        color: @button-primary-bg;
+        background: @date-timer-mode-item-hover-bg;
     }
 
     &.c-lib-date-timer-mode-active {
-        color: #1890ff;
-        background: #e6f7ff;
+        color: @button-primary-bg;
+        background: @date-timer-mode-item-active-bg;
         font-weight: 500;
     }
 }
@@ -372,8 +372,8 @@ lib-date-timer {
 .c-lib-date-timer-year-panel,
 .c-lib-date-timer-month-panel,
 .c-lib-date-timer-quarter-panel {
-    width: 280px;
-    padding: 8px;
+    width: @date-timer-panel-width;
+    padding: @date-timer-panel-padding;
 }
 
 .c-lib-date-timer-year-grid,
@@ -381,8 +381,8 @@ lib-date-timer {
 .c-lib-date-timer-quarter-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    padding: 8px 0;
+    gap: @spacing-sm;
+    padding: @spacing-sm 0;
 }
 
 .c-lib-date-timer-year-cell,
@@ -393,73 +393,73 @@ lib-date-timer {
     align-items: center;
     height: 60px;
     margin: 0;
-    padding: 0 8px;
-    color: #434343;
-    font-size: 14px;
+    padding: 0 @spacing-sm;
+    color: @input-prefix-suffix-color;
+    font-size: @font-size-base;
     text-align: center;
     background: transparent;
-    border-radius: 2px;
+    border-radius: @border-radius-sm;
     cursor: pointer;
-    transition: all 150ms;
+    transition: all @component-transition-duration;
     position: relative;
     z-index: 1;
 
     &:hover {
-        background: #f5f5f5;
+        background: @date-timer-cell-hover-bg;
     }
 
     &.c-lib-date-timer-cell-selected {
-        color: #ffffff;
-        background: #1890ff;
+        color: @date-timer-cell-selected-color;
+        background: @date-timer-cell-selected-bg;
         font-weight: 500;
         position: relative;
     }
 
     &.c-lib-date-timer-cell-in-range {
-        background: #e6f7ff;
-        color: #1890ff;
+        background: @date-timer-cell-in-range-bg;
+        color: @button-primary-bg;
 
         // 选中边缘的样式覆盖
         &.c-lib-date-timer-cell-selected {
-            color: #ffffff;
-            background: #1890ff;
+            color: @date-timer-cell-selected-color;
+            background: @date-timer-cell-selected-bg;
         }
     }
 }
 
 // 周选择
 .c-lib-date-timer-week-panel {
-    width: 280px;
-    padding: 8px;
+    width: @date-timer-panel-width;
+    padding: @date-timer-panel-padding;
 }
 
 .c-lib-date-timer-week-number {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
-    margin: 2px 8px 2px 0;
-    color: #d9d9d9;
-    font-size: 12px;
-    line-height: 24px;
+    width: @date-timer-cell-size;
+    height: @date-timer-cell-size;
+    margin: @date-timer-cell-margin @spacing-sm @date-timer-cell-margin 0;
+    color: @input-disabled-color;
+    font-size: @font-size-sm;
+    line-height: @date-timer-cell-size;
     text-align: center;
-    border-radius: 2px;
+    border-radius: @border-radius-sm;
     cursor: pointer;
 
     &:hover {
-        color: #1890ff;
-        background: #e6f7ff;
+        color: @button-primary-bg;
+        background: @date-timer-week-number-hover-bg;
     }
 }
 
 .c-lib-date-timer-week-selected {
-    background: rgba(24, 144, 255, 0.1);
-    border-radius: 4px;
+    background: @date-timer-week-selected-bg;
+    border-radius: @border-radius-base;
 }
 
 .c-lib-date-timer-cell-in-week {
-    background: #e6f7ff;
+    background: @date-timer-cell-in-range-bg;
 }
 
 // 周选择增强
@@ -468,7 +468,7 @@ lib-date-timer {
     position: relative;
 
     &.c-lib-date-timer-week-in-range {
-        background: #e6f7ff;
+        background: @date-timer-cell-in-range-bg;
     }
 
     .c-lib-date-timer-week-indicator {
@@ -481,22 +481,22 @@ lib-date-timer {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
-        color: #d9d9d9;
-        border-radius: 2px;
+        font-size: @font-size-sm;
+        color: @input-disabled-color;
+        border-radius: @border-radius-sm;
         cursor: pointer;
 
         &:hover {
-            background: #e6f7ff;
-            color: #1890ff;
+            background: @date-timer-week-indicator-hover-bg;
+            color: @button-primary-bg;
         }
     }
 }
 
 // 日期面板
 .c-lib-date-timer-date-panel {
-    width: 280px;
-    padding: 8px;
+    width: @date-timer-panel-width;
+    padding: @date-timer-panel-padding;
     position: relative;
 
     &.c-lib-date-timer-date-panel-week-mode {
@@ -508,9 +508,9 @@ lib-date-timer {
 .c-lib-date-timer-header {
     display: flex;
     align-items: center;
-    padding: 0 8px;
-    height: 40px;
-    border-bottom: 1px solid #f0f0f0;
+    padding: @date-timer-header-padding;
+    height: @date-timer-header-height;
+    border-bottom: @date-timer-header-border-bottom;
 }
 
 .c-lib-date-timer-prev-year-btn,
@@ -518,60 +518,60 @@ lib-date-timer {
 .c-lib-date-timer-next-month-btn,
 .c-lib-date-timer-next-year-btn {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: @date-timer-nav-btn-size;
+    height: @date-timer-nav-btn-size;
     padding: 0;
-    color: #d9d9d9;
-    line-height: 24px;
+    color: @date-timer-nav-btn-color;
+    line-height: @date-timer-nav-btn-size;
     text-align: center;
     background: transparent;
     border: 0;
-    border-radius: 2px;
+    border-radius: @border-radius-sm;
     outline: none;
     cursor: pointer;
-    transition: color 150ms;
+    transition: color @component-transition-duration;
 
     &:hover {
-        color: #000000;
+        color: @date-timer-nav-btn-hover-color;
     }
 }
 
 .c-lib-date-timer-header-view {
     flex: auto;
     font-weight: 500;
-    line-height: 40px;
-    color: #000000;
+    line-height: @date-timer-header-height;
+    color: @date-timer-header-view-color;
     text-align: center;
     cursor: default;
 }
 
 .c-lib-date-timer-header-clickable {
     cursor: pointer;
-    padding: 2px 4px;
-    border-radius: 2px;
-    transition: all 150ms;
+    padding: 2px @spacing-xs;
+    border-radius: @border-radius-sm;
+    transition: all @component-transition-duration;
 
     &:hover {
-        color: #1890ff;
-        background-color: rgba(24, 144, 255, 0.1);
+        color: @button-primary-bg;
+        background-color: @date-timer-week-selected-bg;
     }
 }
 
 .c-lib-date-timer-weekdays {
     display: flex;
-    padding: 4px 0;
+    padding: @spacing-xs 0;
 }
 
 .c-lib-date-timer-weekday {
     flex: 1;
-    height: 24px;
-    line-height: 24px;
+    height: @date-timer-cell-size;
+    line-height: @date-timer-cell-size;
     text-align: center;
-    color: #434343;
+    color: @date-timer-weekday-color;
 }
 
 .c-lib-date-timer-body {
-    padding: 4px 0;
+    padding: @spacing-xs 0;
     position: relative;
 }
 
@@ -580,7 +580,7 @@ lib-date-timer {
     position: relative;
 
     &.c-lib-date-timer-week-in-range {
-        background: #e6f7ff;
+        background: @date-timer-cell-in-range-bg;
     }
 
     .c-lib-date-timer-week-indicator {
@@ -593,14 +593,14 @@ lib-date-timer {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 12px;
-        color: #d9d9d9;
-        border-radius: 2px;
+        font-size: @font-size-sm;
+        color: @date-timer-cell-disabled-color;
+        border-radius: @border-radius-sm;
         cursor: pointer;
 
         &:hover {
-            background: #e6f7ff;
-            color: #1890ff;
+            background: @date-timer-cell-in-range-bg;
+            color: @button-primary-bg;
         }
     }
 }
@@ -608,49 +608,49 @@ lib-date-timer {
 .c-lib-date-timer-cell {
     position: relative;
     flex: 1;
-    min-width: 24px;
-    height: 24px;
-    margin: 2px 0;
+    min-width: @date-timer-cell-size;
+    height: @date-timer-cell-size;
+    margin: @date-timer-cell-margin;
     padding: 0;
-    color: #000000;
+    color: @date-timer-cell-color;
     text-align: center;
     border: 0;
     outline: none;
     cursor: pointer;
-    transition: background 150ms, border 150ms;
+    transition: background @component-transition-duration, border @component-transition-duration;
 
     &:hover:not(.c-lib-date-timer-cell-disabled) {
-        background: #f5f5f5;
+        background: @date-timer-cell-hover-bg;
     }
 
     &.c-lib-date-timer-cell-disabled {
-        color: #d9d9d9;
+        color: @date-timer-cell-disabled-color;
         background: transparent;
         cursor: not-allowed;
 
         &.c-lib-date-timer-cell-selected .c-lib-date-timer-cell-content {
-            color: #ffffff;
-            background: #1890ff;
-            border-color: #1890ff;
+            color: @date-timer-cell-selected-color;
+            background: @date-timer-cell-selected-bg;
+            border-color: @date-timer-cell-selected-bg;
             font-weight: bold;
             position: relative;
         }
     }
 
     &.c-lib-date-timer-cell-selected .c-lib-date-timer-cell-content {
-        color: #ffffff;
-        background: #1890ff;
-        border-color: #1890ff;
+        color: @date-timer-cell-selected-color;
+        background: @date-timer-cell-selected-bg;
+        border-color: @date-timer-cell-selected-bg;
         font-weight: bold;
         position: relative;
     }
 
     &.c-lib-date-timer-cell-today .c-lib-date-timer-cell-content {
-        border: 1px solid #1890ff;
+        border: @date-timer-cell-today-border;
     }
 
     &.c-lib-date-timer-cell-in-range {
-        background: #e6f7ff;
+        background: @date-timer-cell-in-range-bg;
         position: relative;
 
         &:before {
@@ -660,14 +660,14 @@ lib-date-timer {
             right: 0;
             bottom: 0;
             left: 0;
-            background: #e6f7ff;
+            background: @date-timer-cell-in-range-bg;
             z-index: -1;
         }
     }
 
     &.c-lib-date-timer-cell-prev-month,
     &.c-lib-date-timer-cell-next-month {
-        color: #d9d9d9;
+        color: @date-timer-cell-prev-next-color;
     }
 }
 
@@ -675,24 +675,24 @@ lib-date-timer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
+    width: @date-timer-cell-size;
+    height: @date-timer-cell-size;
     margin: 0 auto;
     color: inherit;
-    border-radius: 4px;
-    transition: background 150ms, border 150ms;
+    border-radius: @date-timer-cell-border-radius;
+    transition: background @component-transition-duration, border @component-transition-duration;
 }
 
 // 时间面板
 .c-lib-date-timer-time-panel {
-    width: 180px;
-    padding: 8px 0 0 0;
+    width: @date-timer-dropdown-time-width;
+    padding: @spacing-sm 0 0 0;
 }
 
 .c-lib-date-timer-time-columns {
     display: flex;
     justify-content: space-around;
-    height: 224px;
+    height: @date-timer-time-column-height;
 }
 
 .c-lib-date-timer-time-column {
@@ -709,12 +709,12 @@ lib-date-timer {
     }
 
     .c-lib-date-timer-time-column-title {
-        color: #d9d9d9;
-        font-size: 12px;
+        color: @date-timer-time-title-color;
+        font-size: @font-size-sm;
         font-weight: 500;
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: @date-timer-dropdown-bg;
     }
 
     ul {
@@ -724,40 +724,27 @@ lib-date-timer {
         padding: 0;
         margin: 0;
         list-style: none;
-
-        &::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 3px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background-color: rgba(0, 0, 0, 0.05);
-        }
     }
 
     .c-lib-date-timer-time-cell {
-        height: 32px;
-        line-height: 32px;
+        height: @date-timer-time-cell-height;
+        line-height: @date-timer-time-cell-height;
         text-align: center;
         cursor: pointer;
-        transition: background-color 150ms;
+        transition: background-color @component-transition-duration;
 
         &:hover {
-            background-color: #f5f5f5;
+            background-color: @date-timer-cell-hover-bg;
         }
 
         &.c-lib-date-timer-time-cell-selected {
-            background-color: #e6f7ff !important;
-            color: #1890ff !important;
+            background-color: @date-timer-time-cell-selected-bg !important;
+            color: @date-timer-time-cell-selected-color !important;
             font-weight: 500 !important;
         }
 
         &.c-lib-date-timer-time-cell-disabled {
-            color: #d9d9d9;
+            color: @date-timer-cell-disabled-color;
             cursor: not-allowed;
             background-color: transparent;
         }
@@ -766,71 +753,71 @@ lib-date-timer {
 
 // 底部
 .c-lib-date-timer-footer {
-    padding: 8px;
-    line-height: 40px;
+    padding: @date-timer-footer-padding;
+    line-height: @date-timer-footer-line-height;
     text-align: center;
-    border-top: 1px solid #f0f0f0;
+    border-top: @date-timer-footer-border-top;
 }
 
 .c-lib-date-timer-time-display {
     display: inline-block;
-    color: #000000;
+    color: @date-timer-cell-color;
     font-weight: 500;
 }
 
 .c-lib-date-timer-footer-buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 8px;
+    margin-top: @spacing-sm;
 }
 
 .c-lib-date-timer-now-btn,
 .c-lib-date-timer-ok-btn {
     display: inline-block;
-    height: 24px;
-    margin-left: 8px;
-    padding: 0 7px;
-    font-size: 14px;
+    height: @date-timer-btn-height;
+    margin-left: @spacing-sm;
+    padding: @date-timer-btn-padding;
+    font-size: @date-timer-btn-font-size;
     line-height: 22px;
-    color: #1890ff;
+    color: @date-timer-btn-color;
     background: transparent;
-    border: 1px solid #1890ff;
-    border-radius: 4px;
+    border: @date-timer-btn-border;
+    border-radius: @date-timer-btn-border-radius;
     cursor: pointer;
-    transition: all 150ms;
+    transition: all @component-transition-duration;
 
     &:hover {
-        color: #40a9ff;
-        border-color: #40a9ff;
+        color: @date-timer-footer-button-hover-color;
+        border-color: @date-timer-footer-button-hover-color;
     }
 }
 
 .c-lib-date-timer-ok-btn {
-    color: #ffffff;
-    background: #1890ff;
-    border-color: #1890ff;
+    color: @date-timer-ok-btn-color;
+    background: @date-timer-ok-btn-bg;
+    border-color: @date-timer-ok-btn-bg;
 
     &:hover {
-        color: #ffffff;
-        background: #40a9ff;
-        border-color: #40a9ff;
+        color: @date-timer-ok-btn-color;
+        background: @date-timer-footer-button-hover-color;
+        border-color: @date-timer-footer-button-hover-color;
     }
 }
 
 .c-lib-date-timer-footer-extra {
-    padding: 0 12px;
-    color: #434343;
+    padding: 0 @spacing-sm;
+    color: @date-timer-footer-text-color;
     text-align: left;
     line-height: 38px;
-    border-top: 1px solid #f0f0f0;
+    border-top: @date-timer-footer-border-top;
 }
 
 .c-lib-date-timer-weekday-week-num {
     flex: 1;
-    height: 24px;
-    line-height: 24px;
+    height: @date-timer-cell-size;
+    line-height: @date-timer-cell-size;
     text-align: center;
-    color: #434343;
+    color: @date-timer-weekday-color;
 }
 
 /* 时间面板组合模式样式优化 */
@@ -838,14 +825,14 @@ lib-date-timer {
     .c-lib-date-timer-time-column-title {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: @date-timer-dropdown-bg;
     }
 }
 
 /* 恢复原始的时间选择器样式 */
 .c-lib-date-timer-time-cell.c-lib-date-timer-time-cell-selected {
-    background-color: #e6f7ff !important;
-    color: #1890ff !important;
+    background-color: @date-timer-time-cell-selected-bg !important;
+    color: @date-timer-time-cell-selected-color !important;
     font-weight: 500 !important;
 
     // 删除选中指示器
@@ -855,7 +842,7 @@ lib-date-timer {
 }
 
 .c-lib-date-timer-time-cell.c-lib-date-timer-time-cell-in-range.c-lib-date-timer-time-cell-selected {
-    background-color: #e6f7ff !important;
-    color: #1890ff !important;
+    background-color: @date-timer-time-cell-selected-bg !important;
+    color: @date-timer-time-cell-selected-color !important;
     font-weight: 500 !important;
 }

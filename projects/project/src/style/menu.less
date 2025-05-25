@@ -1,12 +1,11 @@
-// 菜单主体样式
 .c-lib-menu {
-    font-size: 14px;
+    font-size: @menu-font-size;
     font-variant: tabular-nums;
     line-height: 1.5;
     font-feature-settings: 'tnum';
-    color: #000000;
-    width: 256px;
-    background-color: #f5f5f5;
+    color: @menu-color;
+    width: @menu-width;
+    background-color: @menu-bg;
     transition: background-color 0.3s, width 0.3s;
 
     ul,
@@ -26,23 +25,23 @@
         position: relative;
         display: flex;
         align-items: center;
-        padding: 0 20px;
-        height: 40px;
-        line-height: 40px;
-        margin-bottom: 4px;
+        padding: @menu-item-padding;
+        height: @menu-item-height;
+        line-height: @menu-item-height;
+        margin-bottom: @menu-item-margin-bottom;
         cursor: pointer;
         white-space: nowrap;
         transition: all 300ms;
 
         &:hover {
-            color: #1890ff;
-            background-color: #e6f7ff;
+            color: @menu-item-hover-color;
+            background-color: @menu-item-hover-bg;
         }
 
         .c-lib-menu-icon {
             display: inline-block;
-            margin-right: 10px;
-            font-size: 16px;
+            margin-right: @menu-icon-margin-right;
+            font-size: @menu-icon-font-size;
             transition: all 300ms;
         }
 
@@ -60,7 +59,7 @@
 
         &-arrow {
             position: absolute;
-            right: 16px;
+            right: @spacing-md;
             top: 50%;
             transform: translateY(-50%);
             width: 10px;
@@ -77,7 +76,7 @@
                 background-color: currentColor;
                 width: 6px;
                 height: 1.5px;
-                border-radius: 2px;
+                border-radius: @border-radius-sm;
                 transition: transform 0.3s, background-color 0.3s;
             }
 
@@ -109,7 +108,7 @@
 
     // 内联模式
     &-inline {
-        width: 256px;
+        width: @menu-width;
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
@@ -131,9 +130,9 @@
             padding-left: 40px;
 
             &-selected {
-                background-color: #e6f7ff;
-                color: #1890ff;
-                border-right: 3px solid #1890ff;
+                background-color: @menu-item-selected-bg;
+                color: @menu-item-selected-color;
+                border-right: @menu-item-selected-border;
                 border-left: none;
             }
         }
@@ -141,21 +140,21 @@
 
     // 垂直模式
     &-vertical {
-        width: 256px;
-        border-right: 1px solid #f0f0f0;
+        width: @menu-width;
+        border-right: 1px solid @table-border-color;
 
         .c-lib-menu-submenu {
             .c-lib-menu-sub {
                 position: absolute;
                 left: 100%;
                 top: 0;
-                margin-left: 4px;
+                margin-left: @spacing-xs;
                 min-width: 160px;
                 z-index: 1050;
-                border-radius: 4px;
-                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-                background-color: #ffffff;
-                padding: 8px 0;
+                border-radius: @border-radius-base;
+                box-shadow: @menu-submenu-shadow;
+                background-color: @menu-bg;
+                padding: @spacing-sm 0;
             }
 
             // 垂直模式下子菜单项样式
@@ -174,10 +173,10 @@
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            height: 40px;
-            line-height: 40px;
-            margin: 4px 0;
-            padding: 0 20px;
+            height: @menu-item-height;
+            line-height: @menu-item-height;
+            margin: @spacing-xs 0;
+            padding: @menu-item-padding;
         }
 
         // 垂直子菜单特定样式
@@ -193,7 +192,7 @@
     // 水平模式
     &-horizontal {
         display: flex;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: @menu-horizontal-border-bottom;
         line-height: 46px;
         width: 100%;
 
@@ -214,8 +213,8 @@
             position: relative;
 
             &:hover {
-                color: #1890ff;
-                border-bottom-color: #1890ff;
+                color: @menu-horizontal-item-hover-color;
+                border-bottom-color: @menu-horizontal-item-hover-color;
             }
         }
 
@@ -226,8 +225,8 @@
 
             // 水平模式选中项
             &-selected {
-                color: #1890ff;
-                border-bottom: 2px solid #1890ff;
+                color: @menu-horizontal-item-selected-color;
+                border-bottom: 2px solid @menu-horizontal-item-selected-color;
             }
         }
 
@@ -240,7 +239,7 @@
 
             // 水平模式下选中的子菜单
             &-selected>.c-lib-menu-submenu-title {
-                color: #1890ff;
+                color: @menu-horizontal-item-selected-color;
             }
 
             .c-lib-menu-sub {
@@ -248,31 +247,31 @@
                 top: 100%;
                 left: 0;
                 min-width: 180px;
-                margin-top: 4px;
+                margin-top: @spacing-xs;
                 z-index: 1050;
-                border-radius: 4px;
-                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
-                background-color: #ffffff;
-                padding: 8px 0;
+                border-radius: @border-radius-base;
+                box-shadow: @menu-submenu-shadow;
+                background-color: @menu-submenu-bg;
+                padding: @spacing-sm 0;
 
                 .c-lib-menu-item {
-                    height: 40px;
-                    line-height: 40px;
+                    height: @menu-item-height;
+                    line-height: @menu-item-height;
                     display: block;
                     border-bottom: none;
                     margin: 0;
-                    padding: 0 16px;
+                    padding: 0 @spacing-md;
                     white-space: nowrap;
 
                     &:hover {
                         border-bottom: none;
-                        background-color: #e6f7ff;
+                        background-color: @menu-submenu-item-hover-bg;
                     }
 
                     // 下拉菜单中的选中项
                     &-selected {
-                        color: #1890ff;
-                        background-color: #e6f7ff;
+                        color: @menu-horizontal-item-selected-color;
+                        background-color: @menu-submenu-item-hover-bg;
                         border-bottom: none;
                     }
                 }
@@ -297,8 +296,8 @@
 
                     // 嵌套子菜单中的选中项
                     &-selected>.c-lib-menu-submenu-title {
-                        color: #1890ff;
-                        background-color: #e6f7ff;
+                        color: @menu-horizontal-item-selected-color;
+                        background-color: @menu-submenu-item-hover-bg;
                         border-bottom: none;
                     }
                 }
@@ -308,25 +307,25 @@
 
     // 亮色主题
     &-light {
-        background: #f5f5f5;
+        background: @menu-light-bg;
 
         .c-lib-menu-item-selected {
-            color: #1890ff;
-            background-color: #e6f7ff;
+            color: @menu-item-selected-color;
+            background-color: @menu-item-selected-bg;
             font-weight: 500;
         }
 
         // 选中父级菜单项样式
         .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-            color: #1890ff;
+            color: @menu-item-selected-color;
             font-weight: 500;
         }
 
         &.c-lib-menu-horizontal {
             .c-lib-menu-item-selected {
-                color: #1890ff;
+                color: @menu-horizontal-item-selected-color;
                 background-color: transparent;
-                border-bottom-color: #1890ff;
+                border-bottom-color: @menu-horizontal-item-selected-color;
 
                 &:after {
                     display: none;
@@ -334,88 +333,88 @@
             }
 
             .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-                color: #1890ff;
-                border-bottom-color: #1890ff;
+                color: @menu-horizontal-item-selected-color;
+                border-bottom-color: @menu-horizontal-item-selected-color;
             }
         }
     }
 
     // 暗色主题
     &-dark {
-        background: #222428;
-        color: rgba(255, 255, 255, 0.65);
+        background: @menu-dark-bg;
+        color: @menu-dark-color;
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            color: rgba(255, 255, 255, 0.65);
+            color: @menu-dark-color;
 
             &:hover {
-                color: #ffffff;
+                color: @menu-dark-hover-color;
                 background-color: transparent;
             }
         }
 
         // 提高选中项的选择器权重，确保优先级高于hover
         .c-lib-menu-item.c-lib-menu-item-selected {
-            color: #ffffff !important;
-            background-color: #1890ff !important;
+            color: @menu-dark-hover-color !important;
+            background-color: @menu-dark-selected-bg !important;
             font-weight: 500;
-            border-right: 3px solid #ffffff;
+            border-right: @menu-dark-selected-border;
             border-left: none;
 
             &:hover {
-                color: #ffffff !important;
-                background-color: #1890ff !important;
+                color: @menu-dark-hover-color !important;
+                background-color: @menu-dark-selected-bg !important;
             }
         }
 
         // 选中父级菜单项样式也提高优先级
         .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-            color: #ffffff !important;
+            color: @menu-dark-hover-color !important;
 
             &:hover {
-                color: #ffffff !important;
+                color: @menu-dark-hover-color !important;
             }
         }
 
         .c-lib-menu-sub {
-            background: #222428;
+            background: @menu-dark-bg;
         }
 
-        &.c-lib-menu-horizontal {
-            .c-lib-menu-item-selected {
-                color: #ffffff !important;
-                background-color: transparent !important;
-                border-bottom-color: #ffffff;
-
-                &:hover {
-                    color: #ffffff !important;
-                }
-            }
-
-            .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
-                color: #ffffff !important;
-                border-bottom-color: #ffffff;
-
-                &:hover {
-                    color: #ffffff !important;
-                }
-            }
-
-            .c-lib-menu-sub {
-                background: #222428;
-
-                .c-lib-menu-item:hover {
-                    background-color: rgba(255, 255, 255, 0.1);
-                    color: #ffffff;
-                }
-
+                    &.c-lib-menu-horizontal {
                 .c-lib-menu-item-selected {
-                    background-color: #1890ff !important;
-                    color: #ffffff !important;
+                    color: @menu-dark-hover-color !important;
+                    background-color: transparent !important;
+                    border-bottom-color: @menu-dark-hover-color;
+
+                    &:hover {
+                        color: @menu-dark-hover-color !important;
+                    }
+                }
+
+                .c-lib-menu-submenu-selected>.c-lib-menu-submenu-title {
+                    color: @menu-dark-hover-color !important;
+                    border-bottom-color: @menu-dark-hover-color;
+
+                    &:hover {
+                        color: @menu-dark-hover-color !important;
+                    }
+                }
+
+                .c-lib-menu-sub {
+                    background: @menu-dark-bg;
+
+                    .c-lib-menu-item:hover {
+                        background-color: @menu-dark-submenu-hover-bg;
+                        color: @menu-dark-hover-color;
+                    }
+
+                    .c-lib-menu-item-selected {
+                        background-color: @menu-dark-selected-bg !important;
+                        color: @menu-dark-hover-color !important;
+                    }
                 }
             }
-        }
 
         .c-lib-menu-item-selected {
             color: #ffffff;
@@ -423,10 +422,10 @@
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: @scrollbar-dark-thumb-bg;
 
             &:hover {
-                background-color: rgba(255, 255, 255, 0.3);
+                background-color: @scrollbar-dark-thumb-hover-bg;
             }
         }
     }
@@ -463,13 +462,13 @@
                 position: absolute;
                 left: 100%;
                 top: 0;
-                margin-left: 4px;
+                margin-left: @spacing-xs;
                 min-width: 160px;
                 z-index: 1050;
-                border-radius: 4px;
-                box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
-                background-color: #f5f5f5;
-                padding: 8px 0;
+                border-radius: @border-radius-base;
+                box-shadow: @menu-submenu-shadow;
+                background-color: @menu-light-bg;
+                padding: @spacing-sm 0;
 
                 // 子菜单内的所有项都显示文字内容
                 .c-lib-menu-title-content {
@@ -478,13 +477,13 @@
 
                 .c-lib-menu-item,
                 .c-lib-menu-submenu-title {
-                    padding: 0 16px !important;
+                    padding: 0 @spacing-md !important;
                     text-align: left;
                     justify-content: flex-start;
                     margin: 0;
 
                     .c-lib-menu-icon {
-                        margin-right: 10px;
+                        margin-right: @menu-icon-margin-right;
                     }
 
                     .c-lib-menu-submenu-arrow {
@@ -497,10 +496,10 @@
                 .c-lib-menu-sub {
                     left: 100%;
                     top: 0;
-                    margin-left: 4px;
+                    margin-left: @spacing-xs;
 
                     .c-lib-menu-item {
-                        padding: 0 16px !important;
+                        padding: 0 @spacing-md !important;
                     }
                 }
             }
@@ -508,41 +507,41 @@
 
         // 折叠模式下的选中样式
         .c-lib-menu-item-selected {
-            background-color: rgba(24, 144, 255, 0.1);
-            border-right: 3px solid #1890ff;
+            background-color: @menu-collapsed-selected-bg;
+            border-right: 3px solid @button-primary-bg;
             border-left: none;
         }
 
         &.c-lib-menu-dark {
             .c-lib-menu-sub {
-                background: #222428;
+                background: @menu-dark-bg;
 
                 .c-lib-menu-item,
                 .c-lib-menu-submenu-title {
-                    color: rgba(255, 255, 255, 0.65);
+                    color: @menu-dark-color;
 
                     &:hover {
-                        color: #ffffff;
-                        background-color: rgba(255, 255, 255, 0.1);
+                        color: @menu-dark-hover-color;
+                        background-color: @menu-dark-submenu-hover-bg;
                     }
                 }
 
                 .c-lib-menu-item.c-lib-menu-item-selected {
-                    background-color: #1890ff !important;
-                    color: #ffffff !important;
+                    background-color: @menu-dark-selected-bg !important;
+                    color: @menu-dark-hover-color !important;
 
                     &:hover {
-                        background-color: #1890ff !important;
-                        color: #ffffff !important;
+                        background-color: @menu-dark-selected-bg !important;
+                        color: @menu-dark-hover-color !important;
                     }
                 }
             }
 
             // 折叠状态下顶级菜单项的选中样式
             .c-lib-menu-item.c-lib-menu-item-selected {
-                background-color: #1890ff !important;
-                color: #ffffff !important;
-                border-right: 3px solid #ffffff;
+                background-color: @menu-dark-selected-bg !important;
+                color: @menu-dark-hover-color !important;
+                border-right: @menu-dark-selected-border;
             }
         }
     }
@@ -550,27 +549,27 @@
     // 禁用状态
     &-item-disabled,
     &-submenu-disabled>.c-lib-menu-submenu-title {
-        color: rgba(0, 0, 0, 0.25) !important;
+        color: @menu-disabled-color !important;
         background: none !important;
         cursor: not-allowed !important;
 
         &:after {
-            border-color: rgba(0, 0, 0, 0.25) !important;
+            border-color: @menu-disabled-color !important;
         }
     }
 
     &-dark &-item-disabled,
     &-dark &-submenu-disabled>.c-lib-menu-submenu-title {
-        color: rgba(255, 255, 255, 0.35) !important;
+        color: @menu-dark-disabled-color !important;
     }
 }
 
 // Overlay子菜单样式
 .c-lib-menu-overlay-container {
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
-    padding: 4px 0;
+    background-color: @menu-submenu-bg;
+    border-radius: @border-radius-base;
+    box-shadow: @menu-submenu-shadow;
+    padding: @spacing-xs 0;
     min-width: 160px;
     position: relative;
     max-height: calc(100vh - 60px);
@@ -588,40 +587,33 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: @scrollbar-thumb-bg;
         border-radius: 3px;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: @scrollbar-thumb-hover-bg;
         }
     }
 
     &.c-lib-menu-dark {
-        background-color: #222428;
+        background-color: @menu-dark-bg;
 
         .c-lib-menu-item,
         .c-lib-menu-submenu-title {
-            color: rgba(255, 255, 255, 0.65);
+            color: @menu-dark-color;
 
             &:hover {
-                color: #ffffff;
+                color: @menu-dark-hover-color;
                 background-color: transparent;
             }
         }
 
         .c-lib-menu-item-selected {
-            color: #ffffff;
-            background-color: #1890ff;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(255, 255, 255, 0.2);
-
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.3);
-            }
+            color: @menu-dark-hover-color;
+            background-color: @menu-dark-selected-bg;
         }
     }
+
 
     .c-lib-menu-sub {
         list-style: none;
@@ -645,8 +637,8 @@
         text-overflow: ellipsis;
 
         &:hover {
-            color: #1890ff;
-            background-color: rgba(24, 144, 255, 0.1);
+            color: @button-primary-bg;
+            background-color: @menu-overlay-item-hover-bg;
         }
 
         .c-lib-menu-icon {
@@ -662,8 +654,8 @@
     }
 
     .c-lib-menu-item-selected {
-        color: #1890ff;
-        background-color: rgba(24, 144, 255, 0.1);
+        color: @button-primary-bg;
+        background-color: @menu-overlay-item-hover-bg;
     }
 
     .c-lib-menu-submenu {

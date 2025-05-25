@@ -1,52 +1,52 @@
 .c-lib-slider {
   &-container {
     position: relative;
-    height: 14px;
-    margin: 14px 6px 10px;
-    padding: 5px 0;
+    height: @slider-container-height;
+    margin: @slider-container-margin;
+    padding: @slider-container-padding;
     cursor: pointer;
   }
 
   &-rail {
     position: absolute;
     width: 100%;
-    height: 4px;
-    background-color: #f0f0f0;
-    border-radius: 2px;
+    height: @slider-rail-height;
+    background-color: @slider-rail-bg;
+    border-radius: @slider-rail-border-radius;
     transition: background-color 0.3s;
   }
 
   &-track {
     position: absolute;
-    height: 4px;
-    background-color: #1890ff;
-    border-radius: 2px;
+    height: @slider-track-height;
+    background-color: @slider-track-bg;
+    border-radius: @slider-track-border-radius;
   }
 
   &-handle {
     position: absolute;
-    width: 14px;
-    height: 14px;
-    margin-top: -5px;
-    background-color: #ffffff;
+    width: @slider-handle-size;
+    height: @slider-handle-size;
+    margin-top: @slider-handle-margin-top;
+    background-color: @slider-handle-bg;
     z-index: 3;
-    border: 2px solid #1890ff;
-    border-radius: 90px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: @slider-handle-border;
+    border-radius: @slider-handle-border-radius;
+    box-shadow: @slider-handle-shadow;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(-50%);
 
     &:hover,
     &:active {
-      border-color: #1890ff;
-      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.12);
+      border-color: @slider-track-bg;
+      box-shadow: @slider-handle-hover-shadow;
     }
   }
 
   &-marks {
     position: absolute;
-    top: 18px;
+    top: @slider-mark-top;
     left: 0;
     width: 100%;
   }
@@ -61,29 +61,29 @@
       top: -12px;
       left: 50%;
       z-index: 1;
-      width: 8px;
-      height: 8px;
-      background-color: #ffffff;
-      border: 1px solid #d9d9d9;
-      border-radius: 90px;
+      width: @slider-mark-dot-size;
+      height: @slider-mark-dot-size;
+      background-color: @slider-mark-dot-bg;
+      border: @slider-mark-dot-border;
+      border-radius: @slider-mark-dot-border-radius;
       transform: translateX(-50%);
     }
 
     &-text {
       position: absolute;
       display: inline-block;
-      color: #434343;
+      color: @slider-mark-text-color;
       text-align: center;
       word-break: keep-all;
       white-space: nowrap;
       transform: translateX(-50%);
       user-select: none;
-      font-size: 12px;
-      margin-top: 8px;
+      font-size: @slider-mark-text-font-size;
+      margin-top: @slider-mark-text-margin-top;
     }
   }
 
   &-with-marks {
-    margin-bottom: 28px;
+    margin-bottom: @slider-with-marks-margin-bottom;
   }
 }

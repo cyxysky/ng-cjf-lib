@@ -1,13 +1,13 @@
 .c-lib-checkbox-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: @checkbox-group-gap;
 
     &.c-lib-checkbox-horizontal {
         .c-lib-checkbox-options {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: @checkbox-horizontal-gap;
         }
     }
 
@@ -15,7 +15,7 @@
         .c-lib-checkbox-options {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: @checkbox-group-gap;
         }
     }
 }
@@ -31,15 +31,15 @@
         opacity: 0.6;
 
         .c-lib-checkbox-label {
-            color: #d9d9d9;
+            color: @checkbox-disabled-border-color;
         }
     }
 
-    .c-lib-checkbox-input {
-        position: relative;
-        display: inline-flex;
-        margin-right: 8px;
-        align-items: center;
+            .c-lib-checkbox-input {
+            position: relative;
+            display: inline-flex;
+            margin-right: @checkbox-label-margin-left;
+            align-items: center;
 
         input[type="checkbox"] {
             position: absolute;
@@ -59,31 +59,31 @@
     }
 
     .c-lib-checkbox-label {
-        font-size: 14px;
+        font-size: @checkbox-label-font-size;
         line-height: 1.5;
     }
 }
 
 .c-lib-checkbox-checked {
-    background-color: #1890ff;
-    border-color: #1890ff;
+    background-color: @checkbox-checked-bg;
+    border-color: @checkbox-checked-border-color;
 }
 
 .c-lib-checkbox-box {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
-    background-color: #ffffff;
+    width: @checkbox-size;
+    height: @checkbox-size;
+    border: @checkbox-border-width solid @checkbox-border-color;
+    border-radius: @checkbox-border-radius;
+    background-color: @checkbox-bg;
     transition: background-color 300ms, border-color 300ms;
     cursor: pointer;
 
     &.c-lib-checkbox-checked {
-        background-color: #1890ff;
-        border-color: #1890ff;
+        background-color: @checkbox-checked-bg;
+        border-color: @checkbox-checked-border-color;
 
         .c-lib-checkbox-inner {
             opacity: 1;
@@ -92,32 +92,32 @@
     }
 
     &.c-lib-checkbox-indeterminate {
-        background-color: #ffffff;
-        border-color: #1890ff;
+        background-color: @checkbox-bg;
+        border-color: @checkbox-checked-bg;
 
         .c-lib-checkbox-inner {
             opacity: 1;
             transform: scale(0.8);
 
             &::after {
-                width: 8px;
-                height: 8px;
+                width: @checkbox-inner-height;
+                height: @checkbox-inner-height;
                 background-color: var(--before-color);
-                border: 1px solid var(--before-color);
-                border-radius: 2px;
+                border: @checkbox-border-width solid var(--before-color);
+                border-radius: @checkbox-border-radius;
                 transform: translate(-2px, -1px);
             }
         }
     }
 
     &.c-lib-checkbox-disabled {
-        background-color: #f5f5f5;
-        border-color: #d9d9d9;
+        background-color: @checkbox-disabled-bg;
+        border-color: @checkbox-disabled-border-color;
         cursor: not-allowed;
 
         .c-lib-checkbox-inner {
             &::after {
-                border-color: #d9d9d9;
+                border-color: @checkbox-disabled-border-color;
             }
         }
     }
@@ -126,8 +126,8 @@
 .c-lib-checkbox-inner {
     position: relative;
     display: inline-block;
-    width: 6px;
-    height: 8px;
+    width: @checkbox-inner-width;
+    height: @checkbox-inner-height;
     opacity: 0;
     transform: scale(0);
     transition: opacity 300ms, transform 300ms cubic-bezier(0.12, 0.4, 0.29, 1.86);
@@ -135,9 +135,9 @@
     &::after {
         content: '';
         display: block;
-        width: 6px;
-        height: 8px;
-        border: 2px solid #ffffff;
+        width: @checkbox-inner-width;
+        height: @checkbox-inner-height;
+        border: @checkbox-inner-border-width solid @checkbox-inner-border-color;
         border-left: 0;
         border-top: 0;
         transform: rotate(45deg) translate(-2px, -1px);

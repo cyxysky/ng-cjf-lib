@@ -1,16 +1,16 @@
 .c-lib-tooltip {
     position: relative;
-    max-width: 250px;
-    padding: 6px 8px;
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 6px;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+    max-width: @tooltip-max-width;
+    padding: @tooltip-padding;
+    color: @tooltip-color;
+    background-color: @tooltip-bg;
+    border-radius: @tooltip-border-radius;
+    box-shadow: @tooltip-shadow;
     pointer-events: none;
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86), transform 0.2s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-    font-size: 12px;
+    font-size: @tooltip-font-size;
 
     &.c-lib-tooltip-visible {
         opacity: 1;
@@ -24,9 +24,9 @@
 
     .c-lib-tooltip-arrow {
         position: absolute;
-        width: 5px;
-        height: 5px;
-        background: rgba(0, 0, 0, 0.75);
+        width: @tooltip-arrow-size;
+        height: @tooltip-arrow-size;
+        background: @tooltip-bg;
         transform: rotate(45deg);
     }
 

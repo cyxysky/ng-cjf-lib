@@ -1,973 +1,729 @@
 // ============================================================================
-// 组件变量配置文件
-// 定义格式：组件样式变量名称: 基础变量名称
-// 所有组件相关的尺寸、间距、字体等变量统一在此维护
+// 组件样式常量定义
 // ============================================================================
 
-@import './base.less';
+// ===== Button 按钮 =====
+@button-ripple-bg: rgba(255, 255, 255, 0.6);
+@button-height: 32px;
+@button-padding: 4px 16px;
+@button-border-width: 1px;
+@button-border-color: #d9d9d9;
+@button-border-radius: 4px;
+@button-font-size: 14px;
+@button-font-weight: 500;
+@button-box-shadow: 2px 2px rgba(0, 0, 0, 0.05);
+@button-large-height: 40px;
+@button-large-padding: 6.5px 16px;
+@button-large-font-size: 16px;
+@button-small-height: 24px;
+@button-small-padding: 0 8px;
+@button-small-font-size: 12px;
+@button-primary-bg: #1890ff;
+@button-primary-color: #ffffff;
+@button-secondary-bg: #0163aa;
+@button-tertiary-bg: #6030ff;
+@button-success-bg: #2dd55b;
+@button-success-color: #000000;
+@button-light-bg: #f4f5f8;
+@button-warning-bg: #ffc409;
+@button-danger-bg: #c5000f;
+@button-dark-bg: #222428;
+@button-medium-bg: #636469;
+@button-disabled-color: #d9d9d9;
+@button-disabled-bg: #f5f5f5;
+@button-link-color: #1890ff;
+@button-circle-border-radius: 40px;
+@button-round-border-radius: 90px;
 
-// ============================================================================
-// Button 按钮组件
-// ============================================================================
-@button-height-small: @size-small;
-@button-height-medium: @size-medium;
-@button-height-large: @size-large;
-@button-padding-small: 0 @spacing-sm;
-@button-padding-medium: @spacing-xs @spacing-lg;
-@button-padding-large: @input-large-padding-vertical @spacing-lg;
-@button-font-size-small: @font-size-xs;
-@button-font-size-medium: @base-font-size;
-@button-font-size-large: @font-size-md;
-@button-border-radius: @base-border-radius;
-@button-border-radius-round: @border-radius-circle;
-@button-shadow: @shadow-level-1 @shadow-level-1 @shadow-color-lightest;
-@button-transition: all @animation-duration-slow @ease-in-out;
-@button-font-weight: @font-weight-medium;
-@button-icon-spacing: @spacing-xs;
+// ===== Input 输入框 =====
+@input-height: 32px;
+@input-padding: 0 11px;
+@input-border-width: 1px;
+@input-border-color: #d9d9d9;
+@input-border-radius: 2px;
+@input-font-size: 14px;
+@input-bg: #ffffff;
+@input-color: #000000;
+@input-hover-border-color: #1890ff;
+@input-focus-border-color: #1890ff;
+@input-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@input-large-height: 40px;
+@input-large-padding: 6.5px 11px;
+@input-large-font-size: 16px;
+@input-small-height: 24px;
+@input-small-padding: 6.5px 11px;
+@input-small-font-size: 12px;
+@input-error-border-color: #ff4d4f;
+@input-error-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+@input-warning-border-color: #ffc409;
+@input-warning-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
+@input-disabled-bg: #f5f5f5;
+@input-disabled-color: #d9d9d9;
+@input-placeholder-color: #d9d9d9;
+@input-prefix-suffix-color: #434343;
 
-// ============================================================================
-// Input 输入框组件
-// ============================================================================
-@input-height-small: @size-small;
-@input-height-medium: @size-medium;
-@input-height-large: @size-large;
-@input-padding-horizontal: @input-padding-horizontal-value;
-@input-font-size-small: @font-size-xs;
-@input-font-size-medium: @base-font-size;
-@input-font-size-large: @font-size-md;
-@input-border-radius: @border-radius-sm;
-@input-transition: all @animation-duration-normal;
-@input-affix-spacing: @spacing-xs;
-@input-clear-spacing: @spacing-xs;
-@input-count-spacing: @spacing-sm;
-@input-focus-shadow: 0 0 0 @shadow-level-1;
+// ===== Select 选择器 =====
+@select-box-min-height: 32px;
+@select-box-padding: 4px 0 4px 11px;
+@select-box-border-width: 1px;
+@select-box-border-color: #d9d9d9;
+@select-box-border-radius: 2px;
+@select-box-font-size: 14px;
+@select-box-bg: #ffffff;
+@select-box-hover-border-color: #1890ff;
+@select-box-active-border-color: #1890ff;
+@select-box-active-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@select-box-large-min-height: 40px;
+@select-box-large-font-size: 16px;
+@select-box-small-min-height: 24px;
+@select-box-suffix-width: 32px;
+@select-tag-bg: rgba(24, 144, 255, 0.06);
+@select-tag-color: rgba(24, 144, 255, 0.67);
+@select-tag-border: 1px solid rgba(24, 144, 255, 0.12);
+@select-tag-border-radius: 2px;
+@select-tag-height: 24px;
+@select-tag-padding: 0 8px;
+@select-tag-small-height: 20px;
+@select-tag-small-padding: 0 6px;
+@select-tag-large-height: 30px;
+@select-tag-large-padding: 0 10px;
+@select-tag-close-hover-bg: rgba(0, 0, 0, 0.04);
+@select-option-height: 32px;
+@select-option-padding: 5px 12px;
+@select-option-font-size: 14px;
+@select-option-color: #000000;
+@select-option-hover-bg: #f5f5f5;
+@select-option-selected-bg: rgba(24, 144, 255, 0.06);
+@select-option-selected-color: rgba(24, 144, 255, 0.67);
+@select-option-disabled-color: #d9d9d9;
+@select-dropdown-bg: #ffffff;
+@select-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@select-dropdown-border-radius: 4px;
+@select-dropdown-max-height: 256px;
+@select-option-hover-bg: #f5f5f5;
+@select-option-selected-bg: rgba(24, 144, 255, 0.06);
+@select-option-selected-color: rgba(24, 144, 255, 0.67);
+@select-option-disabled-color: #d9d9d9;
+@select-empty-icon-color: rgba(0, 0, 0, 0.15);
+@select-group-title-bg: rgba(0, 0, 0, 0.02);
+@select-padding-left-8: 8px;
+@select-remote-loading-height: 40px;
 
-// ============================================================================
-// Checkbox 复选框组件
-// ============================================================================
+// ===== Checkbox 复选框 =====
 @checkbox-size: 16px;
-@checkbox-border-radius: @border-radius-sm;
-@checkbox-border-width: @base-border-width;
-@checkbox-transition: background-color @animation-duration-normal, border-color @animation-duration-normal;
-@checkbox-inner-width: @checkbox-inner-check-width;
-@checkbox-inner-height: @checkbox-inner-check-height;
-@checkbox-inner-border-width: @checkbox-inner-check-border-width;
-@checkbox-label-font-size: @base-font-size;
-@checkbox-label-line-height: @base-line-height;
-@checkbox-spacing-horizontal: @spacing-lg;
-@checkbox-spacing-vertical: @spacing-sm;
-@checkbox-input-spacing: @spacing-sm;
-@checkbox-disabled-opacity: @checkbox-disabled-opacity-value;
+@checkbox-border-width: 1px;
+@checkbox-border-color: #d9d9d9;
+@checkbox-border-radius: 2px;
+@checkbox-bg: #ffffff;
+@checkbox-checked-bg: #1890ff;
+@checkbox-checked-border-color: #1890ff;
+@checkbox-inner-width: 6px;
+@checkbox-inner-height: 8px;
+@checkbox-inner-border-width: 2px;
+@checkbox-inner-border-color: #ffffff;
+@checkbox-disabled-bg: #f5f5f5;
+@checkbox-disabled-border-color: #d9d9d9;
+@checkbox-label-font-size: 14px;
+@checkbox-label-margin-left: 8px;
+@checkbox-group-gap: 8px;
+@checkbox-horizontal-gap: 16px;
 
-// ============================================================================
-// Radio 单选框组件
-// ============================================================================
+// ===== Radio 单选框 =====
 @radio-size: 16px;
-@radio-dot-size: @radio-dot-size-value;
-@radio-border-width: @base-border-width;
-@radio-transition: all @animation-duration-normal;
-@radio-spacing: @spacing-lg;
-@radio-input-spacing: @spacing-sm;
-@radio-label-padding: 0 @spacing-sm;
-@radio-group-gap: @spacing-sm;
-@radio-disabled-opacity: @radio-disabled-opacity-value;
+@radio-border-width: 1px;
+@radio-border-color: #d9d9d9;
+@radio-border-radius: 90px;
+@radio-bg: #ffffff;
+@radio-checked-color: #1890ff;
+@radio-inner-size: 8px;
+@radio-label-padding: 0 8px;
+@radio-wrapper-margin-right: 16px;
 
-// ============================================================================
-// Switch 开关组件
-// ============================================================================
-@switch-height: 22px;
+// ===== Switch 开关 =====
 @switch-min-width: 44px;
-@switch-handle-size: 18px;
-@switch-handle-margin: 2px;
+@switch-height: 22px;
+@switch-bg: rgba(0, 0, 0, 0.25);
+@switch-checked-bg: #1890ff;
 @switch-border-radius: 100px;
-@switch-transition: all @animation-duration-switch;
-@switch-handle-shadow: 0 @shadow-level-1 @spacing-xs 0 fade(@black, 20%);
-@switch-inner-font-size: @font-size-xs;
-@switch-inner-margin: 0 @switch-inner-margin-left 0 @switch-inner-margin-right;
-@switch-small-height: 16px;
+@switch-handle-size: 18px;
+@switch-handle-bg: #ffffff;
+@switch-handle-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+@switch-handle-offset: 2px;
+@switch-inner-margin: 0 7px 0 24px;
+@switch-inner-font-size: 12px;
+@switch-inner-color: #ffffff;
 @switch-small-min-width: 28px;
+@switch-small-height: 16px;
 @switch-small-handle-size: 12px;
-@switch-focus-shadow: 0 0 0 @shadow-level-1;
-@switch-disabled-opacity: @opacity-light;
+@switch-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 
-// ============================================================================
-// Modal 模态框组件
-// ============================================================================
-@modal-z-index: 1000;
-@modal-container-padding: @spacing-xl 0;
-@modal-border-radius: @base-border-radius;
+// ===== Modal 模态框 =====
+@modal-mask-bg: rgba(0, 0, 0, 0.45);
+@modal-bg: #ffffff;
+@modal-border-radius: 4px;
+@modal-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 @modal-max-width: 90vw;
 @modal-max-height: 90vh;
-@modal-header-padding: @spacing-lg @spacing-xl;
-@modal-body-padding: @spacing-xl;
-@modal-footer-padding: @spacing-sm @spacing-lg;
-@modal-close-transition: color @animation-duration-normal;
-@modal-close-font-weight: 700;
+@modal-header-padding: 16px 24px;
+@modal-header-border-bottom: 1px solid #f0f0f0;
+@modal-body-padding: 24px;
+@modal-footer-padding: 8px 16px;
+@modal-footer-border-top: 1px solid #f0f0f0;
+@modal-close-color: #d9d9d9;
+@modal-close-hover-color: #434343;
 
-// ============================================================================
-// Tabs 标签页组件
-// ============================================================================
-@tabs-nav-margin: 0 0 @spacing-lg 0;
-@tabs-nav-gap: @spacing-sm;
-@tabs-tab-margin: @spacing-xxl;
-@tabs-tab-padding: @spacing-md 0;
-@tabs-tab-font-size: @base-font-size;
-@tabs-icon-spacing: @spacing-sm;
-@tabs-icon-font-size: @base-font-size;
-@tabs-close-spacing: @spacing-sm;
-@tabs-close-font-size: @font-size-xs;
-@tabs-arrow-size: @spacing-xxl;
-@tabs-arrow-border-radius: @border-radius-round;
-@tabs-arrow-margin: @spacing-sm;
-@tabs-arrow-icon-size: 6px 8px 6px 0;
-@tabs-transition: color @visible-animation-duration cubic-bezier(0.645, 0.045, 0.355, 1);
-@tabs-disabled-opacity: @radio-disabled-opacity-value;
+// ===== Drawer 抽屉 =====
+@drawer-bg: #ffffff;
+@drawer-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+@drawer-header-padding: 16px 24px;
+@drawer-header-border-width: 1px;
+@drawer-header-border-color: #f0f0f0;
+@drawer-body-padding: 24px;
+@drawer-title-font-size: 16px;
+@drawer-title-font-weight: 500;
+@drawer-title-color: #000000;
+@drawer-title-line-height: 22px;
+@drawer-close-color: #d9d9d9;
+@drawer-close-hover-color: #000000;
+@drawer-close-font-size: 18px;
 
-// ============================================================================
-// Tooltip 提示组件
-// ============================================================================
-@tooltip-max-width: @menu-overlay-max-width;
-@tooltip-padding: @spacing-xs @spacing-sm;
-@tooltip-font-size: @base-font-size;
-@tooltip-border-radius: @base-border-radius;
-@tooltip-transition: all @visible-animation-duration;
-@tooltip-arrow-size: @spacing-sm;
-@tooltip-arrow-offset: @spacing-xs;
-@tooltip-offset-distance: @spacing-md;
+// ===== Message 消息 =====
+@message-color: #000000;
+@message-font-size: 14px;
+@message-item-padding: 8px 16px;
+@message-item-border-radius: 4px;
+@message-item-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@message-item-bg: #ffffff;
+@message-item-min-width: 150px;
+@message-content-gap: 12px;
+@message-icon-font-size: 16px;
+@message-text-font-size: 14px;
+@message-wrapper-margin-bottom: 16px;
 
-// ============================================================================
-// Table 表格组件
-// ============================================================================
-@table-border-radius: @border-radius-sm;
-@table-shadow: 0 @base-border-width @spacing-xs 0 fade(@black, 10%);
-@table-toolbar-padding: @spacing-lg 0;
-@table-toolbar-gap: @spacing-lg;
-@table-toolbar-title-font-size: @font-size-md;
-@table-toolbar-title-font-weight: @font-weight-medium;
-@table-font-size: @base-font-size;
-@table-cell-padding: @spacing-lg @spacing-lg;
-@table-cell-padding-middle: @spacing-md @spacing-lg;
-@table-cell-padding-small: @spacing-sm @spacing-lg;
-@table-header-font-weight: @font-weight-medium;
-@table-empty-padding: @size-large 0;
-@table-empty-font-size: @base-font-size;
-@table-sorter-size: @spacing-lg;
-@table-sorter-icon-size: @table-sorter-icon-size-value;
-@table-filter-dropdown-min-width: @table-filter-dropdown-min-width-value;
-@table-filter-dropdown-padding: @spacing-sm 0;
-@table-filter-dropdown-margin: @spacing-xs;
-@table-filter-dropdown-max-height: @table-filter-dropdown-max-height-value;
-@table-filter-item-padding: 0 @spacing-md;
-@table-filter-item-inner-padding: @table-filter-button-padding-vertical 0;
-@table-filter-button-padding: @table-filter-button-padding-vertical @spacing-sm @table-filter-button-padding-vertical @spacing-sm;
-@table-filter-button-font-size: @table-filter-button-font-size-value;
-@table-loading-spinner-size: @size-large;
-@table-loading-spinner-border: @table-loading-spinner-border-value;
-@table-loading-spinner-border-radius: @border-radius-round;
-@table-loading-container-size: @table-loading-container-size-value;
-@table-loading-container-border-radius: @spacing-sm;
+// ===== Tooltip 提示框 =====
+@tooltip-max-width: 250px;
+@tooltip-padding: 6px 8px;
+@tooltip-color: #ffffff;
+@tooltip-bg: rgba(0, 0, 0, 0.75);
+@tooltip-border-radius: 6px;
+@tooltip-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+@tooltip-font-size: 12px;
+@tooltip-arrow-size: 5px;
 
-// ============================================================================
-// Tag 标签组件
-// ============================================================================
-@tag-padding: @shadow-level-1 @table-filter-button-padding-vertical;
-@tag-font-size: @font-size-xs;
-@tag-border-radius: @border-radius-sm;
-@tag-border-width: @base-border-width;
-@tag-transition: all @visible-animation-duration;
-@tag-close-icon-margin: @popover-arrow-shadow-offset-value;
-@tag-close-icon-font-size: @table-sorter-icon-size-value;
-@tag-disabled-opacity: @checkbox-disabled-opacity-value;
-@tag-checkable-hover-opacity: 0.85;
-@tag-checkable-active-opacity: 0.8;
+// ===== Popover 弹窗 =====
+@popover-min-width: 177px;
+@popover-border-radius: 6px;
+@popover-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+@popover-bg: #ffffff;
+@popover-font-size: 14px;
+@popover-content-padding: 12px 16px;
+@popover-content-min-height: 32px;
+@popover-title-padding: 5px 16px 0;
+@popover-title-color: #000000;
+@popover-title-font-weight: 500;
+@popover-title-border-width: 1px;
+@popover-title-border-color: rgba(0, 0, 0, 0.1);
+@popover-arrow-size: 7px;
+@popover-footer-gap: 8px;
+@popover-footer-padding: 4px 8px;
+@popover-arrow-size: 7px;
+@popover-arrow-color: #ffffff;
+@popover-arrow-shadow-top: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.15));
+@popover-arrow-shadow-bottom: drop-shadow(0px -2px 2px rgba(0, 0, 0, 0.15));
+@popover-arrow-shadow-left: drop-shadow(2px 0 2px rgba(0, 0, 0, 0.15));
+@popover-arrow-shadow-right: drop-shadow(-2px 0 2px rgba(0, 0, 0, 0.15));
 
-// ============================================================================
-// DateTimer 日期时间选择器组件
-// ============================================================================
-@date-timer-separator-padding: 0 @spacing-sm;
-@date-timer-tab-height: @size-large;
-@date-timer-tab-font-size: @base-font-size;
-@date-timer-tab-font-weight: @font-weight-medium;
-@date-timer-tab-border-width: @base-border-width;
-@date-timer-tab-transition: all @visible-animation-duration;
-@date-timer-tab-indicator-width: @spacing-xl;
-@date-timer-tab-indicator-height: @shadow-level-1;
-@date-timer-part-indicator-margin: @spacing-sm;
-@date-timer-part-indicator-font-size: @font-size-xs;
-@date-timer-time-steps-padding: @spacing-sm 0 0 0;
-@date-timer-time-steps-margin: @spacing-sm;
-@date-timer-time-steps-font-size: @font-size-sm;
-@date-timer-time-step-padding: @shadow-level-1 @spacing-sm;
-@date-timer-time-step-border-radius: @border-radius-sm;
-@date-timer-input-padding: @spacing-xs @input-padding-horizontal-value;
-@date-timer-input-font-size: @base-font-size;
-@date-timer-input-border-radius: @border-radius-sm;
-@date-timer-input-transition: all @visible-animation-duration;
-@date-timer-input-focus-shadow: 0 0 0 @shadow-level-1;
-@date-timer-dropdown-time-width: @date-timer-dropdown-time-width-value;
-@date-timer-dropdown-datetime-width: @date-timer-dropdown-datetime-width-value;
-@date-timer-date-panel-width: @date-timer-date-panel-width-value;
-@date-timer-time-panel-width: @date-timer-time-panel-width-value;
-
-// ============================================================================
-// Select 选择器组件
-// ============================================================================
-@select-option-padding: @spacing-sm @spacing-md;
-@select-option-height: @menu-sub-item-height;
-@select-option-font-size: @base-font-size;
-@select-option-border-radius: @border-radius-sm;
-@select-option-transition: all @animation-duration-dropdown ease;
-@select-option-font-weight-selected: @font-weight-medium;
-@select-empty-padding: @spacing-xxl 0;
-@select-empty-icon-margin: @spacing-lg;
-@select-empty-font-size: @base-font-size;
-@select-dropdown-margin: @cascader-menu-item-padding-vertical 0;
-@select-dropdown-border-radius: @base-border-radius;
-@select-dropdown-transition: all @visible-animation-duration;
-@select-group-title-padding: @spacing-sm @spacing-md;
-@select-group-title-font-size: @font-size-sm;
-@select-group-title-font-weight: @font-weight-medium;
-@select-option-list-max-height: @table-filter-dropdown-max-height-value;
-@select-loading-height: @date-timer-loading-height;
-@select-padding-left: @spacing-xs;
-
-// ============================================================================
-// Menu 菜单组件
-// ============================================================================
-@menu-width: @menu-width-value;
-@menu-font-size: @base-font-size;
-@menu-line-height: @base-line-height;
-@menu-item-height: @size-large;
-@menu-item-padding: 0 @spacing-lg;
-@menu-item-margin: @spacing-xs;
-@menu-item-transition: color @animation-duration-table, background-color @animation-duration-table, border-color @animation-duration-table;
-@menu-icon-margin: @menu-icon-margin-right;
-@menu-icon-font-size: @base-font-size;
-@menu-icon-transition: color @animation-duration-table, margin @animation-duration-table;
-@menu-submenu-arrow-right: @spacing-lg;
-@menu-submenu-arrow-size: 10px;
-@menu-submenu-arrow-element-size: 6px;
-@menu-submenu-arrow-element-height: 1.5px;
-@menu-submenu-arrow-element-radius: @border-radius-sm;
-@menu-submenu-padding-right: @size-large;
-@menu-item-selected-border-width: 3px;
-@menu-item-nested-padding-left: @menu-item-nested-padding-left-value;
-@menu-vertical-sub-margin: @spacing-xs;
-@menu-vertical-sub-min-width: @menu-overlay-min-width;
-@menu-vertical-sub-border-radius: @base-border-radius;
-@menu-vertical-sub-padding: @spacing-sm 0;
-@menu-vertical-item-padding: 0 @spacing-lg 0 @spacing-xl;
-@menu-horizontal-border-width: @base-border-width;
-@menu-horizontal-line-height: @menu-horizontal-line-height-value;
-
-// ============================================================================
-// Drawer 抽屉组件
-// ============================================================================
-@drawer-z-index: 1000;
-@drawer-header-padding: @spacing-lg @spacing-xl;
-@drawer-header-border-width: @base-border-width;
-@drawer-title-font-size: @font-size-md;
-@drawer-title-font-weight: @font-weight-medium;
-@drawer-title-line-height: @date-timer-title-line-height;
-@drawer-close-font-size: @font-size-md;
-@drawer-close-line-height: 1;
-@drawer-close-transition: color @animation-duration-table;
-@drawer-close-x-font-size: @drawer-close-x-font-size-value;
-@drawer-body-padding: @spacing-xl;
-
-// ============================================================================
-// Message 消息提示组件
-// ============================================================================
-@message-font-size: @base-font-size;
-@message-line-height: @base-line-height;
-@message-item-padding: @spacing-sm @spacing-lg;
-@message-item-border-radius: @base-border-radius;
-@message-item-max-width: calc(100vw - @table-container-margin-calc);
-@message-item-min-width: @table-item-min-width;
-@message-content-gap: @spacing-md;
-@message-icon-font-size: @font-size-md;
-@message-text-font-size: @base-font-size;
-@message-container-z-index: 1010;
-@message-wrapper-margin: @spacing-lg;
-
-// ============================================================================
-// Popover 气泡卡片组件
-// ============================================================================
-@popover-min-width: @table-item-min-width;
-@popover-border-radius: @base-border-radius;
-@popover-font-size: @base-font-size;
-@popover-transition: all @visible-animation-duration ease;
-@popover-content-padding: @spacing-md @spacing-lg;
-@popover-content-min-height: @date-timer-content-min-height;
-@popover-title-padding: @date-timer-title-bottom-padding @spacing-lg @spacing-xs;
-@popover-title-font-weight: @date-timer-title-font-weight;
-@popover-arrow-size: @spacing-sm;
-@popover-arrow-offset: @spacing-sm;
-@popover-arrow-shadow-offset: @popover-arrow-shadow-offset-value;
-@popover-footer-gap: @spacing-sm;
-@popover-footer-padding: @spacing-xs;
-
-// ============================================================================
-// Slider 滑块组件
-// ============================================================================
-@slider-container-height: @slider-container-height-value;
-@slider-container-margin: @base-font-size @spacing-xs @slider-mark-text-margin-top-value;
-@slider-container-padding: @spacing-xs 0;
-@slider-rail-height: @spacing-xs;
-@slider-rail-border-radius: @border-radius-sm;
-@slider-track-height: @spacing-xs;
-@slider-track-border-radius: @border-radius-sm;
-@slider-handle-size: @base-font-size;
-@slider-handle-border-width: @shadow-level-1;
-@slider-handle-border-radius: @border-radius-circle;
-@slider-handle-shadow: 0 @shadow-level-1 @spacing-xs;
-@slider-handle-transition: border-color @animation-duration-table, box-shadow @animation-duration-table, transform @animation-duration-table cubic-bezier(0.18, 0.89, 0.32, 1.28);
-@slider-handle-hover-shadow: 0 0 0 @cascader-menu-item-padding-vertical;
-@slider-marks-top: @base-font-size;
-@slider-mark-size: @spacing-sm;
-@slider-mark-border-width: @base-border-width;
-@slider-mark-text-font-size: @font-size-xs;
-@slider-mark-text-margin-top: @slider-mark-text-margin-top-value;
-@slider-with-marks-margin: @segmented-item-height-value;
-
-// ============================================================================
-// Segmented 分段控制器组件
-// ============================================================================
-@segmented-border-radius: @segmented-border-radius-value;
-@segmented-padding: @shadow-level-1;
-@segmented-gap: @spacing-xs;
-@segmented-item-height: @segmented-item-height-value;
-@segmented-item-padding: 0 @spacing-md;
-@segmented-item-transition: color @animation-duration-table;
-@segmented-item-icon-margin: @segmented-item-icon-margin-value;
-@segmented-thumb-border-radius: @spacing-xs;
-@segmented-thumb-height: @segmented-item-height-value;
-@segmented-thumb-transition: transform @animation-duration-table cubic-bezier(0.645, 0.045, 0.355, 1), width @animation-duration-table cubic-bezier(0.645, 0.045, 0.355, 1);
-@segmented-nav-size: @segmented-item-height-value;
-@segmented-nav-border-radius: @spacing-xs;
-@segmented-nav-transition: all @animation-duration-table;
-@segmented-nav-arrow-size: @spacing-xs;
-@segmented-large-padding: 3px;
-@segmented-large-item-height: @size-large;
-@segmented-large-font-size: @font-size-md;
-@segmented-large-nav-size: @spacing-xxl;
-@segmented-large-arrow-size: 5px 7px;
-@segmented-small-padding: @base-border-width;
-@segmented-small-item-height: @size-small;
-@segmented-small-font-size: @font-size-xs;
-@segmented-small-nav-size: @size-small;
-@segmented-small-arrow-size: 3px 5px;
-
-// ============================================================================
-// Card 卡片组件
-// ============================================================================
-@card-padding: @spacing-lg;
-@card-header-padding: @spacing-md @spacing-lg;
-@card-body-padding: @spacing-lg;
-@card-border-radius: @border-radius-md;
-@card-title-font-size: @font-size-md;
-@card-title-font-weight: @font-weight-medium;
-
-// ============================================================================
-// Pagination 分页组件
-// ============================================================================
-@pagination-item-size: @size-medium;
-@pagination-item-margin: 0 @spacing-xs;
-@pagination-font-size: @base-font-size;
-@pagination-border-radius: @border-radius-sm;
-
-// ============================================================================
-// Tree 树形控件组件
-// ============================================================================
-@tree-font-size: @base-font-size;
-@tree-search-padding: @spacing-sm;
-@tree-search-margin: @spacing-sm;
-@tree-search-input-padding: @spacing-xs @spacing-sm;
-@tree-search-input-border-radius: @border-radius-sm;
-@tree-search-input-transition: all @visible-animation-duration;
-@tree-search-input-focus-shadow: 0 0 0 @shadow-level-1;
-@tree-node-container-padding: 0 @spacing-xs;
-@tree-node-content-padding: 0 @spacing-xs;
-@tree-node-content-height: @size-small;
-@tree-node-content-border-radius: @border-radius-sm;
-@tree-node-content-transition: all @visible-animation-duration;
-@tree-indent-height: @size-small;
-@tree-switcher-size: @size-small;
-@tree-switcher-margin: @shadow-level-1;
-@tree-switcher-icon-size: 10px;
-@tree-switcher-icon-border-width: 5px 0 5px 6px;
-@tree-switcher-transition: all @visible-animation-duration;
-@tree-checkbox-size: @checkbox-size;
-@tree-checkbox-margin: @spacing-sm;
-@tree-checkbox-border-radius: @border-radius-sm;
-@tree-checkbox-border-width: @base-border-width;
-@tree-checkbox-transition: all @visible-animation-duration;
-@tree-checkbox-inner-size: @spacing-sm;
-@tree-checkbox-inner-check-width: 6px;
-@tree-checkbox-inner-check-height: 10px;
-@tree-checkbox-inner-check-border-width: @shadow-level-1;
-@tree-checkbox-inner-dot-size: @spacing-sm;
-@tree-checkbox-inner-dot-border-radius: @border-radius-sm;
-@tree-icon-margin: @spacing-xs;
-@tree-icon-font-size: @base-font-size;
-@tree-title-padding: @shadow-level-1 0;
-@tree-title-transition: all @visible-animation-duration;
-@tree-empty-padding: 50px;
-@tree-empty-font-weight: @font-weight-bold;
-@tree-line-width: @base-border-width;
-@tree-loading-size: @size-small;
-@tree-loading-margin: @shadow-level-1;
-@tree-loading-icon-size: @checkbox-size;
-
-// ============================================================================
-// Number-Input 数字输入框组件
-// ============================================================================
-@number-input-container-padding: 0 9px;
-@number-input-container-border-width: @base-border-width;
-@number-input-container-border-radius: @border-radius-sm;
-@number-input-container-transition: all 0.3s;
-@number-input-container-height: @size-medium;
-@number-input-container-font-size: @base-font-size;
-@number-input-font-size: @base-font-size;
-@number-input-focus-shadow: 0 0 0 @shadow-level-1;
-@number-input-prefix-suffix-padding: @shadow-level-1;
-@number-input-suffix-margin-left: @spacing-xs;
-@number-input-suffix-margin-right: @checkbox-size;
-@number-input-content-width: ~"calc(100% - 16px)";
-@number-input-handler-wrap-width: 22px;
-@number-input-handler-wrap-border-width: @base-border-width;
-@number-input-handler-transition: all 0.3s;
-@number-input-handler-arrow-size: @spacing-xs;
-@number-input-handler-up-border-width: @base-border-width;
-
-// ============================================================================
-// Drop-Menu 下拉菜单组件
-// ============================================================================
-@drop-menu-min-width: 160px;
-@drop-menu-border-radius: @spacing-xs;
-@drop-menu-border-width: @base-border-width;
-@drop-menu-z-index: 1050;
-@drop-menu-transition: all @visible-animation-duration cubic-bezier(0.4, 0, 0.2, 1);
-@drop-menu-scrollbar-width: 6px;
-@drop-menu-scrollbar-border-radius: 3px;
-@drop-menu-item-height: 38px;
-@drop-menu-item-padding: @spacing-xs @spacing-sm;
-@drop-menu-item-font-size: @base-font-size;
-@drop-menu-item-border-radius: @spacing-xs;
-@drop-menu-item-transition: all 0.2s;
-@drop-menu-item-disabled-opacity: 0.7;
-@drop-menu-item-icon-margin: 10px;
-@drop-menu-item-icon-font-size: @checkbox-size;
-@drop-menu-item-expand-margin: @spacing-sm;
-@drop-menu-arrow-size: 6px;
-@drop-menu-arrow-border-width: 1.5px;
-@drop-menu-submenu-margin: @spacing-xs;
-@drop-menu-submenu-z-index: 1051;
-@drop-menu-submenu-transition: visibility 0.3s, opacity 0.3s;
-@drop-menu-submenu-before-width: 20px;
-@drop-menu-empty-padding: @spacing-md @checkbox-size;
-@drop-menu-empty-font-size: @base-font-size;
-
-// ============================================================================
-// Cascader 级联选择器组件
-// ============================================================================
-@cascader-dropdown-border-radius: @spacing-xs;
-@cascader-dropdown-transition: all @visible-animation-duration;
-@cascader-dropdown-z-index: 1000;
-@cascader-search-result-max-height: @cascader-search-result-max-height-value;
-@cascader-search-result-padding: @spacing-xs 0;
-@cascader-search-loading-padding: @spacing-sm 0;
-@cascader-empty-padding: @checkbox-size;
-@cascader-empty-text-margin: @spacing-sm;
-@cascader-search-option-padding: @cascader-menu-item-padding-vertical @spacing-md;
-@cascader-search-option-font-weight: @font-weight-medium;
-@cascader-option-path-overflow: hidden;
-@cascader-menu-min-width: @cascader-menu-min-width-value;
-@cascader-menu-height: @cascader-menu-height-value;
-@cascader-menu-padding: @spacing-xs 0;
-@cascader-menu-border-width: @base-border-width;
-@cascader-menu-item-padding: @cascader-menu-item-padding-vertical @spacing-md;
-@cascader-menu-item-transition: all @animation-duration-table;
-@cascader-menu-item-font-weight: @font-weight-medium;
-@cascader-menu-item-expand-margin: @spacing-sm;
-
-// ============================================================================
-// Select-Basic 基础选择器组件
-// ============================================================================
-@select-basic-search-box-margin: @spacing-xs;
-@select-basic-search-input-width: @spacing-xs;
-@select-basic-tag-border-radius: @border-radius-sm;
-@select-basic-tag-border-width: @base-border-width;
-@select-basic-tag-transition: all 0.2s ease;
-@select-basic-tag-text-padding: @spacing-xs;
-@select-basic-tag-close-border-radius: @spacing-xs;
-@select-basic-tag-close-transition: all 0.2s ease;
-@select-basic-tag-base-padding: 0 @spacing-xs 0 @spacing-sm;
-@select-basic-tag-base-height: @size-small;
-@select-basic-tag-base-close-size: @checkbox-size;
-@select-basic-tag-sm-padding: 0 @shadow-level-1 0 6px;
-@select-basic-tag-sm-height: @checkbox-size;
-@select-basic-tag-sm-close-size: @spacing-md;
-@select-basic-tag-lg-padding: 0 6px 0 10px;
-@select-basic-tag-lg-height: @size-medium;
-@select-basic-tag-lg-close-size: @size-small;
-@select-basic-box-border-width: @base-border-width;
-@select-basic-box-border-radius: @border-radius-sm;
-@select-basic-box-transition: all 0.2s ease;
-@select-basic-box-min-height: @size-medium;
-@select-basic-box-font-size: @base-font-size;
-@select-basic-box-focus-shadow: 0 0 0 @shadow-level-1;
-@select-basic-box-search-height: 28px;
-@select-basic-box-lg-min-height: @size-large;
-@select-basic-box-lg-font-size: @font-size-md;
-@select-basic-box-lg-content-min-height: 36px;
-@select-basic-box-lg-search-height: 36px;
-@select-basic-box-lg-placeholder-padding: @spacing-xs;
-@select-basic-box-sm-min-height: @size-small;
-@select-basic-box-sm-content-min-height: 20px;
-@select-basic-box-sm-suffix-size: @size-small;
-@select-basic-box-sm-search-height: @checkbox-size;
-@select-basic-box-sm-search-margin: @spacing-xs;
-@select-basic-box-content-padding: @base-border-width @spacing-xs;
-@select-basic-box-content-min-height: 28px;
-@select-basic-box-content-max-width: ~"calc(100% - 30px)";
-@select-basic-box-suffix-min-width: 30px;
-@select-basic-box-suffix-max-width: 30px;
-@select-basic-box-icon-transition: all 0.3s ease-in-out;
-@select-basic-placeholder-padding: @spacing-xs;
-@select-basic-placeholder-max-width: ~"calc(100% - 8px)";
-@select-basic-tag-component-margin: @shadow-level-1 @spacing-xs @shadow-level-1 0;
-
-// ============================================================================
-// Tree-Select 树形选择器组件
-// ============================================================================
-@tree-select-dropdown-border-radius: @spacing-xs;
-@tree-select-dropdown-transition: all @visible-animation-duration;
-@tree-select-dropdown-z-index: 1000;
-
-// ============================================================================
-// 其他常用组件变量
-// ============================================================================ 
-
-// ============================================================================
-// Cascader 级联选择器 - 新增变量
-// ============================================================================
-@cascader-search-result-max-height-value: 256px;
-@cascader-menu-min-width-value: 120px;
-@cascader-menu-height-value: 180px;
-@cascader-menu-item-padding-vertical: 5px;
-
-// ============================================================================
-// Checkbox 复选框 - 新增变量
-// ============================================================================
-@checkbox-inner-check-width: 6px;
-@checkbox-inner-check-height: 8px;
-@checkbox-inner-check-border-width: 2px;
-@checkbox-disabled-opacity-value: 0.6;
-
-// ============================================================================
-// DateTimer 日期时间选择器 - 新增变量
-// ============================================================================
-@date-timer-time-cell-height: 32px;
-@date-timer-dropdown-time-width-value: 180px;
-@date-timer-dropdown-datetime-width-value: 480px;
-@date-timer-date-panel-width-value: 280px;
-@date-timer-time-panel-width-value: 210px;
-@date-timer-time-column-list-height: 204px;
-@date-timer-time-column-scrollbar-width: 6px;
-@date-timer-time-column-scrollbar-radius: 3px;
-@date-timer-time-column-container-height: 224px;
-@date-timer-time-column-title-font-size: 12px;
-@date-timer-year-month-cell-height: 60px;
-@date-timer-week-indicator-size: 24px;
-@date-timer-week-indicator-height-large: 26px;
-@date-timer-header-height: 40px;
-@date-timer-header-button-size: 24px;
-@date-timer-week-mode-padding-left: 38px;
-@date-timer-week-indicator-left-offset: -30px;
-@date-timer-close-button-font-size: 18px;
-@date-timer-title-line-height: 22px;
-@date-timer-loading-height: 100px;
-@date-timer-content-min-height: 48px;
-@date-timer-title-bottom-padding: 5px;
-@date-timer-title-font-weight: 600;
-@date-timer-footer-button-padding: 0 7px;
-@date-timer-footer-button-line-height: 22px;
-@date-timer-footer-extra-line-height: 38px;
-
-// ============================================================================
-// Drawer 抽屉 - 新增变量
-// ============================================================================
-@drawer-close-x-font-size-value: 18px;
-
-// ============================================================================
-// Drop-Menu 下拉菜单 - 新增变量
-// ============================================================================
-@drop-menu-item-height-value: 38px;
-@drop-menu-arrow-size-value: 6px;
-@drop-menu-arrow-border-width-value: 1.5px;
-@drop-menu-submenu-before-width-value: 20px;
-
-// ============================================================================
-// Input 输入框 - 新增变量
-// ============================================================================
-@input-padding-horizontal-value: 11px;
-@input-large-padding-vertical: 6.5px;
-
-// ============================================================================
-// Menu 菜单 - 新增变量
-// ============================================================================
-@menu-width-value: 240px;
-@menu-item-nested-padding-left-value: 48px;
-@menu-collapsed-width: 80px;
-@menu-collapsed-item-padding: 0 32px;
-@menu-collapsed-icon-font-size: 16px;
-@menu-overlay-min-width: 160px;
-@menu-overlay-margin: 4px;
-@menu-horizontal-sub-min-width: 180px;
-@menu-horizontal-line-height-value: 46px;
-@menu-horizontal-item-padding: 0 20px;
-@menu-sub-item-height: 40px;
-@menu-sub-item-padding: 0 16px;
+// ===== Menu 菜单 =====
+@menu-width: 256px;
+@menu-bg: #f5f5f5;
+@menu-font-size: 14px;
+@menu-color: #000000;
+@menu-item-height: 40px;
+@menu-item-padding: 0 20px;
+@menu-item-margin-bottom: 4px;
+@menu-item-hover-color: #1890ff;
+@menu-item-hover-bg: #e6f7ff;
+@menu-item-selected-bg: #e6f7ff;
+@menu-item-selected-color: #1890ff;
+@menu-item-selected-border: 3px solid #1890ff;
 @menu-icon-margin-right: 10px;
-@menu-submenu-title-padding-right: 36px;
-@menu-overlay-max-width: 300px;
-@menu-overlay-max-width-calc: 32px;
-@menu-overlay-max-height-calc: 60px;
-@menu-overlay-scrollbar-width: 6px;
-@menu-overlay-scrollbar-height: 6px;
-@menu-overlay-scrollbar-radius: 3px;
-@menu-fade-scale: 0.8;
+@menu-icon-font-size: 16px;
+@menu-collapsed-width: 80px;
+@menu-collapsed-padding: 0 32px;
+@menu-submenu-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@menu-horizontal-height: 46px;
+@menu-horizontal-border-bottom: 1px solid #f0f0f0;
+@menu-horizontal-item-border-bottom: 2px solid transparent;
+@menu-dark-bg: #222428;
+@menu-dark-color: rgba(255, 255, 255, 0.65);
+@menu-dark-hover-color: #ffffff;
+@menu-dark-selected-bg: #1890ff;
+@menu-dark-selected-border: 3px solid #ffffff;
+@menu-horizontal-item-hover-color: #1890ff;
+@menu-horizontal-item-selected-color: #1890ff;
+@menu-submenu-bg: #ffffff;
+@menu-submenu-item-hover-bg: #e6f7ff;
+@menu-light-bg: #f5f5f5;
+@menu-disabled-color: rgba(0, 0, 0, 0.25);
+@menu-dark-disabled-color: rgba(255, 255, 255, 0.35);
+@menu-dark-submenu-hover-bg: rgba(255, 255, 255, 0.1);
+@menu-collapsed-selected-bg: rgba(24, 144, 255, 0.1);
+@menu-overlay-item-hover-bg: rgba(24, 144, 255, 0.1);
 
-// ============================================================================
-// Number-Input 数字输入框 - 新增变量
-// ============================================================================
-@number-input-container-padding-horizontal: 9px;
-
-// ============================================================================
-// Popover 气泡卡片 - 新增变量
-// ============================================================================
-@popover-arrow-shadow-offset-value: 3px;
-
-// ============================================================================
-// Radio 单选框 - 新增变量
-// ============================================================================
-@radio-dot-size-value: 8px;
-@radio-dot-margin: -4px;
-@radio-disabled-opacity-value: 0.5;
-
-// ============================================================================
-// Segmented 分段控制器 - 新增变量
-// ============================================================================
-@segmented-border-radius-value: 6px;
-@segmented-item-height-value: 28px;
-@segmented-item-icon-margin-value: 6px;
-@segmented-animation-duration: 0.1s;
-@segmented-large-arrow-width: 5px;
-@segmented-large-arrow-height: 7px;
-@segmented-small-arrow-width: 3px;
-@segmented-small-arrow-height: 5px;
-
-// ============================================================================
-// Select-Basic 基础选择器 - 新增变量
-// ============================================================================
-@select-basic-search-input-width-value: 0px;
-@select-basic-box-search-height-value: 28px;
-@select-basic-box-lg-search-height-value: 36px;
-@select-basic-box-sm-content-min-height-value: 20px;
-@select-basic-box-suffix-width: 30px;
-@select-basic-placeholder-max-width-calc: 8px;
-
-// ============================================================================
-// Slider 滑块 - 新增变量
-// ============================================================================
-@slider-container-height-value: 12px;
-@slider-mark-text-margin-top-value: 10px;
-@slider-handle-margin-top: -5px;
-@slider-mark-top-offset: -12px;
-
-// ============================================================================
-// Switch 开关 - 新增变量
-// ============================================================================
-@switch-inner-margin-left: 7px;
-@switch-inner-margin-right: 24px;
-@switch-small-inner-margin-left: 18px;
-@switch-small-inner-margin-right: 5px;
-
-// ============================================================================
-// Table 表格 - 新增变量
-// ============================================================================
-@table-container-margin-calc: 48px;
-@table-item-min-width: 150px;
-@table-sorter-icon-size-value: 10px;
-@table-filter-dropdown-min-width-value: 120px;
-@table-filter-dropdown-max-height-value: 300px;
-@table-filter-button-padding-vertical: 7px;
-@table-filter-button-font-size-value: 12px;
-@table-loading-container-size-value: 60px;
-@table-loading-spinner-border-value: 3px;
-@table-empty-padding-value: 50px;
-@table-toolbar-padding-value: 16px;
-@table-z-index-loading: 999;
-@table-z-index-center-loading: 1000;
-@table-z-index-header: 2;
-@table-z-index-fixed-column: 1;
-@table-z-index-header-fixed: 3;
-@table-z-index-pagination: 5;
-@table-pagination-item-size: 32px;
-@table-pagination-item-margin: 8px;
-@table-pagination-border-radius: 2px;
-@table-pagination-font-weight: 500;
-@table-checkable-cell-width: 64px;
-@table-checkable-menu-icon-size: 24px;
-@table-checkable-menu-icon-font-size: 12px;
-@table-shadow-offset: 10px;
-@table-shadow-blur: 8px;
-
-// ============================================================================
-// Tabs 标签页 - 新增变量
-// ============================================================================
-@tabs-ink-bar-height: 2px;
-@tabs-card-item-margin: 2px;
-@tabs-card-item-padding: 8px 16px;
-@tabs-card-close-margin: 8px;
-@tabs-small-padding: 8px 0;
-@tabs-small-font-size: 12px;
-@tabs-small-close-font-size: 10px;
-@tabs-small-arrow-size: 24px;
-@tabs-small-arrow-border-width: 4px 6px 4px 0;
-@tabs-small-arrow-next-border-width: 4px 0 4px 6px;
-@tabs-large-padding: 16px 0;
-@tabs-large-font-size: 16px;
-@tabs-large-arrow-size: 36px;
-@tabs-large-arrow-border-width: 7px 9px 7px 0;
-@tabs-large-arrow-next-border-width: 7px 0 7px 9px;
-
-// ============================================================================
-// Tree 树形控件 - 新增变量
-// ============================================================================
-@tree-switcher-icon-left: 3px;
-@tree-switcher-icon-size-value: 10px;
-
-// ============================================================================
-// 动画时长和缓动函数 - 新增变量
-// ============================================================================
-@animation-duration-switch: 0.2s;
-@animation-duration-table: 0.3s;
-@animation-duration-tree: 1.2s;
-@animation-duration-loading: 2s;
-@animation-duration-spin: 1s;
-@animation-duration-menu-fade: 0.1s;
-@animation-duration-dropdown: 0.2s;
-
-// ============================================================================
-// 阴影和透明度 - 新增变量
-// ============================================================================
-@shadow-blue-base-alpha: 6%;
-@shadow-blue-base-text-alpha: 67%;
-@shadow-black-light-alpha: 15%;
-@shadow-black-medium-alpha: 25%;
-@shadow-black-icon-alpha: 10%;
-@shadow-background-light-alpha: 50%;
-@shadow-blue-base-hover-alpha: 12%;
-@shadow-blue-base-border-alpha: 12%;
-
-// ============================================================================
-// Switch 开关 - 补充变量
-// ============================================================================
-@switch-loading-icon-size: 80%;
-@switch-inner-margin-checked-left: 7px;
-@switch-inner-margin-checked-right: 24px;
-@switch-small-inner-margin-unchecked-left: 18px;
-@switch-small-inner-margin-unchecked-right: 5px;
-@switch-small-inner-margin-checked-left: 5px;
-@switch-small-inner-margin-checked-right: 18px;
-
-// ============================================================================
-// Table 表格 - 补充变量
-// ============================================================================
-@table-footer-padding: 16px 16px;
-@table-footer-border-radius: 0 0 2px 2px;
+// ===== Table 表格 =====
+@table-bg: #ffffff;
+@table-border-radius: 4px;
+@table-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@table-font-size: 14px;
+@table-cell-padding: 12px 16px;
+@table-header-bg: #fafafa;
+@table-header-color: #000000;
+@table-header-font-weight: 500;
+@table-border-color: #f0f0f0;
+@table-hover-bg: #f5f5f5;
+@table-middle-cell-padding: 8px 16px;
+@table-small-cell-padding: 4px 16px;
+@table-empty-padding: 40px 20px;
+@table-empty-color: #d9d9d9;
+@table-empty-font-size: 14px;
+@table-toolbar-padding: 16px;
+@table-toolbar-title-font-size: 16px;
+@table-toolbar-title-font-weight: 500;
 @table-pagination-margin: 16px 0;
-@table-pagination-fixed-padding: 16px;
-@table-pagination-total-margin: 16px;
-@table-pagination-options-margin: 16px;
-@table-pagination-input-padding: 0 8px;
-@table-pagination-input-height: 32px;
-@table-pagination-border-radius: 2px;
-@table-filter-popover-padding: 7px 8px;
-@table-filter-popover-button-padding: 4px 8px;
-@table-operation-gap: 8px;
-@table-operation-icon-margin: 4px;
-@table-operation-more-padding: 2px 8px;
-@table-shadow-inset-offset: 10px;
-@table-shadow-inset-blur: 8px;
-@table-shadow-inset-spread: -8px;
-@table-animation-pulse-duration: 2s;
-@table-animation-spin-duration: 1s;
-
-// ============================================================================
-// Tabs 标签页 - 补充变量
-// ============================================================================
-@tabs-shadow-spread: 3px;
-@tabs-arrow-next-border-width: 6px 0 6px 8px;
-@tabs-add-padding: 0 8px;
-@tabs-add-margin: 8px;
-@tabs-add-shadow-spread: 3px;
-@tabs-add-border-radius: 2px;
-@tabs-add-size: 32px;
-@tabs-ink-bar-height-value: 2px;
-@tabs-card-margin: 2px;
-@tabs-card-padding: 8px 16px;
-@tabs-card-border-radius: 2px 2px 0 0;
-@tabs-card-close-margin: 8px;
-@tabs-small-font-size-value: 12px;
-@tabs-small-close-font-size-value: 10px;
-@tabs-large-font-size-value: 16px;
-
-// ============================================================================
-// Tree 树形控件 - 补充变量
-// ============================================================================
-@tree-switcher-border-width: 5px 0 5px 6px;
-@tree-line-vertical-top: -50%;
-@tree-line-vertical-height: 150%;
-@tree-line-vertical-default-height: 100%;
-@tree-line-horizontal-top: 50%;
-@tree-line-horizontal-left: -50%;
-@tree-line-horizontal-width: 100%;
-
-// ============================================================================
-// Slider 滑块 - 补充变量
-// ============================================================================
-@slider-handle-transform: translateX(-50%);
-@slider-mark-transform: translateX(-50%);
-@slider-mark-top-position: -12px;
-@slider-mark-left-position: 50%;
-
-// ============================================================================
-// Tooltip/Popover 位置 - 补充变量
-// ============================================================================
-@tooltip-position-center: 50%;
-
-// ============================================================================
-// 通用尺寸和位置 - 补充变量
-// ============================================================================
-@size-full-width: 100%;
-@size-full-height: 100%;
-@position-center-transform: translate(-50%, -50%);
-@position-center-x: 50%;
-@position-center-y: 50%;
-
-// ============================================================================
-// Menu 菜单 - 补充变量
-// ============================================================================
-@menu-transition-duration: 0.3s;
-@menu-fade-in-scale: 0.8;
-@menu-fade-duration: 0.1s;
-
-// ============================================================================
-// Number-Input 数字输入框 - 补充变量
-// ============================================================================
-@number-input-handler-height: 50%;
-
-// ============================================================================
-// Select 选择器 - 补充变量
-// ============================================================================
-@select-animation-rotate-duration: 1.2s;
-
-// ============================================================================
-// 硬编码数值变量提取
-// ============================================================================
-
-// Input 输入框硬编码值
-@input-large-padding-horizontal: 11px;
-@input-large-padding-vertical: 6.5px;
-
-// Switch 开关硬编码值
-@switch-inner-margin-left-checked: 7px;
-@switch-inner-margin-right-checked: 24px;
-@switch-inner-margin-left-unchecked: 7px;
-@switch-inner-margin-right-unchecked: 24px;
-@switch-small-inner-margin-left-checked: 5px;
-@switch-small-inner-margin-right-checked: 18px;
-@switch-small-inner-margin-left-unchecked: 18px;
-@switch-small-inner-margin-right-unchecked: 5px;
-@switch-loading-icon-size-percent: 80%;
-
-// Radio 单选框硬编码值
-@radio-dot-margin-negative: -4px;
-
-// Checkbox 复选框硬编码值
-@checkbox-indeterminate-inner-size: 8px;
-
-// Segmented 分段控制器硬编码值
-@segmented-box-shadow-spread: 3px;
-@segmented-nav-arrow-width-large: 5px;
-@segmented-nav-arrow-height-large: 7px;
-@segmented-nav-arrow-width-small: 3px;
-@segmented-nav-arrow-height-small: 5px;
-
-// Table 表格硬编码值
-@table-filter-popover-padding-horizontal: 7px;
-@table-filter-popover-padding-vertical: 8px;
-@table-filter-popover-button-padding-horizontal: 4px;
-@table-filter-popover-button-padding-vertical: 8px;
-@table-operation-gap: 8px;
-@table-operation-icon-margin: 4px;
-@table-operation-more-padding-horizontal: 2px;
-@table-operation-more-padding-vertical: 8px;
-@table-shadow-inset-offset: 10px;
-@table-shadow-inset-blur: 8px;
-@table-shadow-inset-spread: -8px;
 @table-pagination-item-size: 32px;
-@table-pagination-item-margin: 8px;
-@table-pagination-total-margin: 16px;
-@table-pagination-options-margin: 16px;
-@table-pagination-input-padding-horizontal: 0px;
-@table-pagination-input-padding-vertical: 8px;
-@table-pagination-input-height: 32px;
+@table-pagination-border: 1px solid #f0f0f0;
 @table-pagination-border-radius: 2px;
-@table-footer-padding-horizontal: 16px;
-@table-footer-padding-vertical: 16px;
-@table-footer-border-radius: 0px;
-@table-pagination-margin-horizontal: 0px;
-@table-pagination-margin-vertical: 16px;
+@table-pagination-item-border-radius: 2px;
+@table-pagination-hover-color: #1890ff;
+@table-pagination-active-bg: #e6f7ff;
+@table-pagination-active-color: #1890ff;
+@table-filter-dropdown-min-width: 200px;
+@table-filter-dropdown-max-height: 300px;
+@table-sorter-width: 14px;
+@table-sorter-height: 14px;
+@table-sorter-font-size: 10px;
+@table-sorter-active-color: #1890ff;
+@table-filter-icon-color: #d9d9d9;
+@table-filter-icon-hover-color: #434343;
+@table-filter-icon-active-color: #1890ff;
+@table-filter-dropdown-item-padding: 5px 12px;
+@table-filter-dropdown-item-hover-bg: #f5f5f5;
+@table-filter-dropdown-label-padding: 2px 4px;
+@table-filter-dropdown-btn-padding: 8px 12px;
+@table-filter-dropdown-btn-border-color: #f0f0f0;
+@table-filter-dropdown-link-color: #000000;
+@table-filter-dropdown-link-font-size: 12px;
+@table-filter-dropdown-link-padding: 0 7px;
+@table-filter-dropdown-link-confirm-color: #1890ff;
+@table-filter-dropdown-link-hover-color: #1890ff;
+@table-tbody-border-color: #f0f0f0;
+@table-tbody-bg: #ffffff;
+@table-loading-bg: rgba(245, 245, 245, 0.5);
+@table-loading-spinner-color: #1890ff;
+@table-loading-spinner-bg: rgba(245, 245, 245, 0.1);
+@table-loading-spinner-size: 32px;
+@table-loading-spinner-border-width: 3px;
+@table-operation-gap: 8px;
+@table-operation-color: #1890ff;
+@table-operation-hover-opacity: 0.8;
+@table-operation-icon-margin: 4px;
+@table-operation-more-padding: 2px 4px;
+@table-operation-more-border-radius: 2px;
+@table-operation-more-icon-size: 12px;
+@table-operation-more-icon-margin: 4px;
+@table-checkable-width: 48px;
+@table-checkable-menu-size: 16px;
+@table-checkable-menu-icon-size: 12px;
+@table-checkable-menu-icon-color: #d9d9d9;
+@table-checkable-menu-icon-hover-color: #1890ff;
+@table-fixed-shadow-inset-left: inset 10px 0 8px -8px rgba(0, 0, 0, 0.15);
+@table-fixed-shadow-inset-right: inset -10px 0 8px -8px rgba(0, 0, 0, 0.15);
+@table-tree-expand-margin: 8px;
+@table-tree-indent-width: 16px;
+@table-tree-indent-height: 16px;
+@table-tree-switcher-width: 16px;
+@table-tree-switcher-height: 16px;
+@table-tree-switcher-hover-color: #1890ff;
+@table-tree-switcher-icon-size: 10px;
+@table-pagination-fixed-bg: #ffffff;
 @table-pagination-fixed-padding: 16px;
-@table-checkable-cell-width: 64px;
-@table-checkable-menu-icon-size: 24px;
-@table-checkable-menu-icon-font-size: 12px;
+@table-pagination-fixed-border-color: #f0f0f0;
+@table-pagination-fixed-shadow: 0 -3px 6px -4px rgba(0, 0, 0, 0.12);
+@table-pagination-font-size: 14px;
+@table-pagination-total-margin: 16px;
+@table-pagination-item-min-width: 32px;
+@table-pagination-item-height: 32px;
+@table-pagination-item-margin: 8px;
+@table-pagination-disabled-color: #d9d9d9;
+@table-pagination-disabled-border-color: #f0f0f0;
+@table-pagination-options-margin: 16px;
+@table-pagination-select-padding: 4px 8px;
+@table-pagination-select-height: 32px;
+@table-pagination-select-border-color: #f0f0f0;
+@table-pagination-select-border-radius: 2px;
+@table-pagination-select-hover-border-color: #1890ff;
+@table-toolbar-actions-gap: 8px;
+@table-empty-font-size: 14px;
+@table-pagination-item-border-color: #f0f0f0;
+@table-pagination-item-border-radius: 2px;
+@table-pagination-item-hover-color: #1890ff;
+@table-pagination-item-hover-border-color: #1890ff;
+@table-pagination-item-active-border-color: #1890ff;
+@table-pagination-item-active-font-weight: 500;
+@table-pagination-item-active-bg: #e6f7ff;
+@table-pagination-item-active-color: #1890ff;
+@table-filter-z-index: 10;
+@table-loading-z-index: 999;
+@table-loading-spinner-z-index: 1000;
+@table-header-z-index: 2;
+@table-fixed-column-z-index: 1;
+@table-header-fixed-z-index: 3;
+@table-pagination-z-index: 10;
+@table-loading-overlay-z-index: 10;
 
-// Date-Timer 日期时间选择器硬编码值
-@date-timer-input-padding-small-horizontal: 7px;
-@date-timer-input-padding-small-vertical: 0px;
-@date-timer-input-large-padding-horizontal: 11px;
-@date-timer-dropdown-slide-offset: 10px;
-@date-timer-mode-item-min-width: 38px;
-@date-timer-year-month-cell-height: 60px;
-@date-timer-week-number-size: 24px;
-@date-timer-week-number-margin-horizontal: 8px;
-@date-timer-week-number-margin-vertical: 2px;
-@date-timer-week-number-font-size: 12px;
-@date-timer-week-indicator-left-offset: -30px;
-@date-timer-week-indicator-size: 26px;
-@date-timer-date-panel-width: 280px;
-@date-timer-date-panel-padding: 8px;
-@date-timer-date-panel-week-mode-padding-left: 38px;
-@date-timer-header-padding-horizontal: 8px;
+// ===== Tabs 标签页 =====
+@tabs-nav-margin: 0 0 16px 0;
+@tabs-nav-gap: 8px;
+@tabs-nav-border-bottom: 1px solid #d9d9d9;
+@tabs-tab-margin-right: 32px;
+@tabs-tab-padding: 12px 0;
+@tabs-tab-font-size: 14px;
+@tabs-tab-active-color: #1890ff;
+@tabs-tab-disabled-color: #d9d9d9;
+@tabs-tab-close-margin-left: 8px;
+@tabs-tab-close-font-size: 12px;
+@tabs-tab-icon-margin-right: 8px;
+@tabs-nav-arrow-size: 32px;
+@tabs-nav-arrow-bg: #fafafa;
+@tabs-nav-arrow-color: #d9d9d9;
+@tabs-nav-arrow-hover-color: #434343;
+@tabs-nav-arrow-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+@tabs-nav-arrow-border-radius: 2px;
+@tabs-ink-bar-height: 2px;
+@tabs-ink-bar-bg: #1890ff;
+@tabs-card-tab-padding: 8px 16px;
+@tabs-card-tab-bg: #fafafa;
+@tabs-card-tab-border: 1px solid #d9d9d9;
+@tabs-add-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+@tabs-card-tab-border-radius: 2px 2px 0 0;
+@tabs-small-tab-padding: 8px 0;
+@tabs-small-tab-font-size: 12px;
+@tabs-small-arrow-size: 24px;
+@tabs-large-tab-padding: 16px 0;
+@tabs-large-tab-font-size: 16px;
+@tabs-large-arrow-size: 36px;
+@tabs-nav-arrow-z-index: 10;
+@tabs-add-z-index: 10;
+@tabs-ink-bar-z-index: 1;
+
+// ===== Tag 标签 =====
+@tag-padding: 2px 7px;
+@tag-font-size: 12px;
+@tag-border-radius: 2px;
+@tag-border-width: 1px;
+@tag-close-icon-margin-left: 3px;
+@tag-close-icon-font-size: 10px;
+@tag-disabled-opacity: 0.6;
+
+// ===== Tree 树 =====
+@tree-font-size: 14px;
+@tree-color: #000000;
+@tree-search-padding: 8px;
+@tree-search-margin-bottom: 8px;
+@tree-search-input-padding: 4px 8px;
+@tree-search-input-border: 1px solid #d9d9d9;
+@tree-search-input-border-radius: 2px;
+@tree-search-focus-border-color: #1890ff;
+@tree-search-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@tree-node-container-padding: 0 12px;
+@tree-node-content-height: 28px;
+@tree-node-content-padding: 0 4px;
+@tree-node-content-border-radius: 2px;
+@tree-node-hover-bg: #f5f5f5;
+@tree-node-disabled-color: #d9d9d9;
+@tree-switcher-size: 16px;
+@tree-switcher-margin-right: 4px;
+@tree-icon-margin-right: 4px;
+@tree-icon-font-size: 14px;
+@tree-title-padding: 0 4px;
+@tree-title-selected-bg: #e6f7ff;
+@tree-empty-padding: 40px 20px;
+@tree-line-color: #d9d9d9;
+@tree-line-width: 1px;
+@tree-loading-size: 14px;
+@tree-loading-color: #1890ff;
+
+// ===== Cascader 级联选择器 =====
+@cascader-dropdown-bg: #ffffff;
+@cascader-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+@cascader-dropdown-border-radius: 6px;
+@cascader-menu-min-width: 120px;
+@cascader-menu-height: 180px;
+@cascader-menu-padding: 4px 0;
+@cascader-menu-border-right: 1px solid #f0f0f0;
+@cascader-menu-item-padding: 5px 12px;
+@cascader-menu-item-hover-bg: #f5f5f5;
+@cascader-menu-item-selected-bg: rgba(24, 144, 255, 0.06);
+@cascader-menu-item-selected-color: rgba(24, 144, 255, 0.67);
+@cascader-menu-item-disabled-color: #d9d9d9;
+@cascader-search-result-max-height: 256px;
+@cascader-search-result-padding: 4px 0;
+@cascader-empty-padding: 16px;
+@cascader-empty-color: #d9d9d9;
+@cascader-loading-padding: 8px 0;
+
+// ===== DateTimer 日期时间选择器 =====
+@date-timer-range-separator-padding: 0 8px;
+@date-timer-range-tab-height: 40px;
+@date-timer-range-tab-border: 1px solid #f0f0f0;
+@date-timer-range-tab-color: #434343;
+@date-timer-range-tab-font-size: 14px;
+@date-timer-range-tab-hover-color: #1890ff;
+@date-timer-range-tab-active-color: #1890ff;
+@date-timer-range-tab-active-bg: #e6f7ff;
+@date-timer-range-tab-indicator-width: 24px;
+@date-timer-range-tab-indicator-height: 2px;
+@date-timer-range-tab-indicator-color: #1890ff;
+@date-timer-input-height: 32px;
+@date-timer-input-padding: 4px 11px;
+@date-timer-input-border: 1px solid #d9d9d9;
+@date-timer-input-border-radius: 2px;
+@date-timer-input-font-size: 14px;
+@date-timer-input-color: #000000;
+@date-timer-input-hover-border-color: #40a9ff;
+@date-timer-input-focus-border-color: #40a9ff;
+@date-timer-input-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@date-timer-input-error-border-color: #ff4d4f;
+@date-timer-input-warning-border-color: #ffc409;
+@date-timer-input-disabled-bg: #f5f5f5;
+@date-timer-input-disabled-color: #d9d9d9;
+@date-timer-input-small-height: 24px;
+@date-timer-input-small-padding: 0 7px;
+@date-timer-input-large-height: 40px;
+@date-timer-input-large-padding: 6.5px 11px;
+@date-timer-input-large-font-size: 16px;
+@date-timer-dropdown-bg: #ffffff;
+@date-timer-dropdown-border-radius: 4px;
+@date-timer-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+@date-timer-dropdown-margin-top: 4px;
+@date-timer-dropdown-time-width: 180px;
+@date-timer-dropdown-date-time-width: 480px;
+@date-timer-panel-width: 280px;
+@date-timer-panel-padding: 8px;
 @date-timer-header-height: 40px;
-@date-timer-header-button-size: 24px;
-@date-timer-header-line-height: 40px;
-@date-timer-header-clickable-padding-horizontal: 4px;
-@date-timer-header-clickable-padding-vertical: 2px;
-@date-timer-weekdays-padding-horizontal: 0px;
-@date-timer-weekdays-padding-vertical: 4px;
-@date-timer-weekday-height: 24px;
-@date-timer-weekday-line-height: 24px;
-@date-timer-body-padding-horizontal: 0px;
-@date-timer-body-padding-vertical: 4px;
-@date-timer-cell-min-width: 24px;
-@date-timer-cell-height: 24px;
-@date-timer-cell-margin-horizontal: 0px;
-@date-timer-cell-margin-vertical: 2px;
-@date-timer-cell-content-size: 24px;
-@date-timer-close-button-font-size: 18px; 
+@date-timer-header-padding: 0 8px;
+@date-timer-header-border-bottom: 1px solid #f0f0f0;
+@date-timer-nav-btn-size: 24px;
+@date-timer-nav-btn-color: #d9d9d9;
+@date-timer-nav-btn-hover-color: #000000;
+@date-timer-cell-size: 24px;
+@date-timer-cell-margin: 2px 0;
+@date-timer-cell-border-radius: 4px;
+@date-timer-cell-hover-bg: #f5f5f5;
+@date-timer-cell-today-border: 1px solid #1890ff;
+@date-timer-cell-selected-bg: #1890ff;
+@date-timer-cell-selected-color: #ffffff;
+@date-timer-cell-in-range-bg: #e6f7ff;
+@date-timer-cell-disabled-color: #d9d9d9;
+@date-timer-cell-prev-next-color: #d9d9d9;
+@date-timer-week-selected-bg: rgba(24, 144, 255, 0.1);
+@date-timer-nav-btn-hover-color: #000000;
+@date-timer-header-view-color: #000000;
+@date-timer-weekday-color: #434343;
+@date-timer-cell-color: #000000;
+@date-timer-time-title-color: #d9d9d9;
+@date-timer-footer-text-color: #434343;
+@date-timer-footer-button-hover-color: #40a9ff;
+@date-timer-cell-border-radius: 4px;
+@date-timer-time-column-height: 224px;
+@date-timer-time-cell-height: 32px;
+@date-timer-time-cell-selected-bg: #e6f7ff;
+@date-timer-time-cell-selected-color: #1890ff;
+@date-timer-footer-padding: 8px;
+@date-timer-footer-line-height: 40px;
+@date-timer-footer-border-top: 1px solid #f0f0f0;
+@date-timer-btn-height: 24px;
+@date-timer-btn-padding: 0 7px;
+@date-timer-btn-font-size: 14px;
+@date-timer-btn-color: #1890ff;
+@date-timer-btn-border: 1px solid #1890ff;
+@date-timer-btn-border-radius: 4px;
+@date-timer-ok-btn-bg: #1890ff;
+@date-timer-ok-btn-color: #ffffff;
+@date-timer-time-step-active-bg: rgba(24, 144, 255, 0.06);
+@date-timer-time-step-border-radius: 4px;
+@date-timer-mode-item-hover-bg: rgba(24, 144, 255, 0.06);
+@date-timer-mode-item-active-bg: rgba(24, 144, 255, 0.06);
+@date-timer-week-number-hover-bg: rgba(24, 144, 255, 0.06);
+@date-timer-week-indicator-hover-bg: rgba(24, 144, 255, 0.06);
+
+// ===== Cascader 级联选择器 =====
+@cascader-dropdown-bg: #ffffff;
+@cascader-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+@cascader-dropdown-border-radius: 6px;
+@cascader-search-result-max-height: 256px;
+@cascader-search-result-padding: 4px 0;
+@cascader-loading-padding: 8px 0;
+@cascader-empty-color: #d9d9d9;
+@cascader-empty-padding: 16px;
+@cascader-menu-min-width: 120px;
+@cascader-menu-height: 180px;
+@cascader-menu-padding: 4px 0;
+@cascader-menu-border-right: 1px solid #f0f0f0;
+@cascader-menu-item-padding: 5px 12px;
+@cascader-menu-item-hover-bg: #f5f5f5;
+@cascader-menu-item-selected-bg: rgba(24, 144, 255, 0.06);
+@cascader-menu-item-selected-color: rgba(24, 144, 255, 0.67);
+@cascader-menu-item-disabled-color: #d9d9d9;
+
+// ===== DropMenu 下拉菜单 =====
+@drop-menu-min-width: 160px;
+@drop-menu-border-radius: 6px;
+@drop-menu-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+@drop-menu-bg: #ffffff;
+@drop-menu-border: 1px solid rgba(0, 0, 0, 0.06);
+@drop-menu-item-height: 38px;
+@drop-menu-item-padding: 4px 8px;
+@drop-menu-item-font-size: 14px;
+@drop-menu-item-color: #434343;
+@drop-menu-item-border-radius: 6px;
+@drop-menu-item-hover-color: #000000;
+@drop-menu-item-hover-bg: rgba(0, 0, 0, 0.04);
+@drop-menu-item-disabled-color: #d9d9d9;
+@drop-menu-item-selected-bg: rgba(24, 144, 255, 0.06);
+@drop-menu-item-icon-margin-right: 10px;
+@drop-menu-item-icon-font-size: 16px;
+@drop-menu-item-expand-icon-margin-left: 8px;
+@drop-menu-submenu-margin-left: 4px;
+@drop-menu-empty-padding: 12px 16px;
+@drop-menu-empty-color: #d9d9d9;
+@drop-menu-empty-font-size: 14px;
+
+// ===== NumberInput 数字输入框 =====
+@number-input-height: 32px;
+@number-input-padding: 4px 11px;
+@number-input-border: 1px solid #d9d9d9;
+@number-input-border-radius: 2px;
+@number-input-font-size: 14px;
+@number-input-hover-border-color: #1890ff;
+@number-input-focus-border-color: #1890ff;
+@number-input-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@number-input-error-border-color: #ff4d4f;
+@number-input-error-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+@number-input-warning-border-color: #ffc409;
+@number-input-warning-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
+@number-input-disabled-bg: #f5f5f5;
+@number-input-disabled-color: #d9d9d9;
+@number-input-handler-width: 22px;
+@number-input-handler-border: 1px solid #d9d9d9;
+@number-input-handler-hover-bg: rgba(0, 0, 0, 0.04);
+@number-input-handler-arrow-size: 4px;
+@number-input-handler-arrow-color: #d9d9d9;
+@number-input-handler-hover-arrow-color: #1890ff;
+@number-input-prefix-suffix-color: #434343;
+
+// ===== Segmented 分段器 =====
+@segmented-bg: #f5f5f5;
+@segmented-border-radius: 4px;
+@segmented-padding: 2px;
+@segmented-gap: 2px;
+@segmented-item-height: 28px;
+@segmented-item-padding: 4px 16px;
+@segmented-item-color: #434343;
+@segmented-item-selected-color: #000000;
+@segmented-item-disabled-color: #d9d9d9;
+@segmented-thumb-bg: #ffffff;
+@segmented-thumb-border-radius: 2px;
+@segmented-thumb-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12);
+@segmented-thumb-height: 24px;
+@segmented-nav-size: 24px;
+@segmented-nav-bg: #ffffff;
+@segmented-nav-color: #434343;
+@segmented-nav-hover-bg: #fafafa;
+@segmented-nav-hover-color: #000000;
+@segmented-nav-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+@segmented-nav-border-radius: 2px;
+@segmented-large-item-height: 40px;
+@segmented-large-item-font-size: 16px;
+@segmented-large-nav-size: 32px;
+@segmented-large-thumb-height: 40px;
+@segmented-small-item-height: 20px;
+@segmented-small-item-font-size: 12px;
+@segmented-small-nav-size: 18px;
+@segmented-small-thumb-height: 20px;
+@segmented-disabled-thumb-bg: rgba(0, 0, 0, 0.04);
+@segmented-thumb-z-index: 2;
+
+// ===== Slider 滑块 =====
+@slider-container-height: 14px;
+@slider-container-margin: 14px 6px 10px;
+@slider-container-padding: 5px 0;
+@slider-rail-height: 4px;
+@slider-rail-bg: #f0f0f0;
+@slider-rail-border-radius: 2px;
+@slider-track-height: 4px;
+@slider-track-bg: #1890ff;
+@slider-track-border-radius: 2px;
+@slider-handle-size: 14px;
+@slider-handle-bg: #ffffff;
+@slider-handle-border: 2px solid #1890ff;
+@slider-handle-border-radius: 90px;
+@slider-handle-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+@slider-handle-hover-shadow: 0 4px 12px rgba(24, 144, 255, 0.12);
+@slider-handle-margin-top: -5px;
+@slider-mark-top: 18px;
+@slider-mark-dot-size: 8px;
+@slider-mark-dot-bg: #ffffff;
+@slider-mark-dot-border: 1px solid #d9d9d9;
+@slider-mark-dot-border-radius: 90px;
+@slider-mark-text-font-size: 12px;
+@slider-mark-text-color: #434343;
+@slider-mark-text-margin-top: 8px;
+@slider-with-marks-margin-bottom: 28px;
+@slider-handle-z-index: 3;
+@slider-mark-z-index: 1;
+
+// ===== TreeSelect 树选择器 =====
+@tree-select-dropdown-bg: #ffffff;
+@tree-select-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
+@tree-select-dropdown-border-radius: 6px;
+
+// ===== Tree 树形控件 =====
+@tree-font-size: 14px;
+@tree-color: #000000;
+@tree-search-padding: 8px;
+@tree-search-margin-bottom: 8px;
+@tree-search-input-padding: 4px 8px;
+@tree-search-input-border: 1px solid #d9d9d9;
+@tree-search-input-border-radius: 2px;
+@tree-search-focus-border-color: #1890ff;
+@tree-search-focus-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+@tree-node-container-padding: 0 12px;
+@tree-node-content-padding: 0 4px;
+@tree-node-content-height: 28px;
+@tree-node-content-border-radius: 2px;
+@tree-node-disabled-color: #d9d9d9;
+@tree-node-hover-bg: #f5f5f5;
+@tree-switcher-size: 16px;
+@tree-switcher-margin-right: 4px;
+@tree-icon-margin-right: 4px;
+@tree-icon-font-size: 14px;
+@tree-title-padding: 0 4px;
+@tree-title-selected-bg: #e6f7ff;
+@tree-empty-padding: 40px 20px;
+@tree-line-width: 1px;
+@tree-line-color: #d9d9d9;
+@tree-loading-color: #1890ff;
+@tree-loading-size: 14px;
+
+// ===== 通用样式 =====
+@component-transition-duration: 150ms;
+
+// ===== 动画关键帧时长 =====
+@animation-duration-slow: 0.3s;
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s;
+@animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1);
+@animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1);
+@animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1);
+@animation-curve-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);

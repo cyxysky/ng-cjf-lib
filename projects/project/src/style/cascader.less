@@ -1,10 +1,10 @@
 .c-lib-cascader-dropdown {
-    background-color: #ffffff;
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08);
-    border-radius: 6px;
+    background-color: @cascader-dropdown-bg;
+    box-shadow: @cascader-dropdown-shadow;
+    border-radius: @cascader-dropdown-border-radius;
     overflow: hidden;
     transform-origin: 0 0;
-    transition: all 150ms;
+    transition: all @component-transition-duration;
     z-index: 1000;
     opacity: 0;
     transform: scaleY(0.1);
@@ -16,17 +16,17 @@
 
     .c-lib-cascader-search-result-list {
         width: 100%;
-        max-height: 256px;
+        max-height: @cascader-search-result-max-height;
         overflow-y: auto;
-        padding: 4px 0;
+        padding: @cascader-search-result-padding;
 
         .c-lib-cascader-search-loading {
             display: flex;
             justify-content: center;
-            padding: 8px 0;
+            padding: @cascader-loading-padding;
 
             .c-lib-cascader-loading-text {
-                color: #d9d9d9;
+                color: @cascader-empty-color;
             }
         }
 
@@ -34,7 +34,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 16px;
+            padding: @cascader-empty-padding;
 
             .c-lib-cascader-empty-container {
                 display: flex;
@@ -42,32 +42,32 @@
                 align-items: center;
 
                 .c-lib-cascader-empty-text {
-                    margin-top: 8px;
-                    color: #d9d9d9;
+                    margin-top: @spacing-sm;
+                    color: @cascader-empty-color;
                 }
             }
         }
 
         .c-lib-cascader-search-options {
             .c-lib-cascader-search-option {
-                padding: 5px 12px;
+                padding: @cascader-menu-item-padding;
                 cursor: pointer;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
 
                 &:hover {
-                    background-color: #f5f5f5;
+                    background-color: @cascader-menu-item-hover-bg;
                 }
 
                 &.c-lib-cascader-selected {
                     font-weight: 500;
-                    background-color: rgba(24, 144, 255, 0.06);
-                    color: rgba(24, 144, 255, 0.67);
+                    background-color: @cascader-menu-item-selected-bg;
+                    color: @cascader-menu-item-selected-color;
                 }
 
                 &.c-lib-cascader-disabled {
-                    color: #d9d9d9;
+                    color: @cascader-menu-item-disabled-color;
                     cursor: not-allowed;
                     background-color: transparent;
 
@@ -91,11 +91,11 @@
         .c-lib-cascader-menu {
             list-style: none;
             margin: 0;
-            padding: 4px 0;
-            min-width: 120px;
-            height: 180px;
+            padding: @cascader-menu-padding;
+            min-width: @cascader-menu-min-width;
+            height: @cascader-menu-height;
             overflow-y: auto;
-            border-right: 1px solid #f0f0f0;
+            border-right: @cascader-menu-border-right;
             box-sizing: border-box;
 
             &:last-child {
@@ -103,7 +103,7 @@
             }
 
             .c-lib-cascader-menu-item {
-                padding: 5px 12px;
+                padding: @cascader-menu-item-padding;
                 cursor: pointer;
                 transition: all 0.3s;
                 display: flex;
@@ -112,11 +112,11 @@
                 box-sizing: border-box;
 
                 &:hover {
-                    background-color: #f5f5f5;
+                    background-color: @cascader-menu-item-hover-bg;
                 }
 
                 &-disabled {
-                    color: #d9d9d9;
+                    color: @cascader-menu-item-disabled-color;
                     cursor: not-allowed;
 
                     &:hover {
@@ -125,13 +125,13 @@
                 }
 
                 &-active {
-                    background-color: #f5f5f5;
+                    background-color: @cascader-menu-item-hover-bg;
                     font-weight: 500;
                 }
 
                 &-selected {
-                    color: rgba(24, 144, 255, 0.67);
-                    background-color: rgba(24, 144, 255, 0.06);
+                    color: @cascader-menu-item-selected-color;
+                    background-color: @cascader-menu-item-selected-bg;
                     font-weight: 500;
                 }
 
@@ -147,15 +147,15 @@
                     }
 
                     .c-lib-cascader-menu-item-expand-icon {
-                        margin-left: 8px;
+                        margin-left: @spacing-sm;
                         flex-shrink: 0;
                     }
                 }
             }
 
             .c-lib-cascader-menu-item-empty {
-                padding: 5px 12px;
-                color: #d9d9d9;
+                padding: @cascader-menu-item-padding;
+                color: @cascader-empty-color;
                 text-align: center;
             }
         }

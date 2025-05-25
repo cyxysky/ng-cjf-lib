@@ -1,83 +1,86 @@
 // ============================================================================
-// 基础变量定义文件
-// 定义格式：变量名称: 基础变量
+// 基础变量定义
 // ============================================================================
 
-// ===== 尺寸系统 =====
-@base-font-size: 14px;
-@base-line-height: 1.5;
-@base-border-radius: 4px;
-@base-border-width: 1px;
-
-// 组件尺寸
-@size-small: 24px;
-@size-medium: 32px;
-@size-large: 40px;
-
-// 间距系统
-@spacing-xs: 4px;
-@spacing-sm: 8px;
-@spacing-md: 12px;
-@spacing-lg: 16px;
-@spacing-xl: 24px;
-@spacing-xxl: 32px;
-
-// 字体尺寸
-@font-size-xs: 12px;
-@font-size-sm: 14px;
-@font-size-md: 16px;
-@font-size-lg: 18px;
-@font-size-xl: 20px;
-
-// 字体粗细
-@font-weight-normal: 400;
-@font-weight-medium: 500;
-@font-weight-bold: 600;
-
-// 边框圆角
-@border-radius-sm: 2px;
-@border-radius-md: 4px;
-@border-radius-lg: 6px;
-@border-radius-xl: 8px;
-@border-radius-round: 50%;
-@border-radius-circle: 90px;
-
-// Z-index层级
-@z-index-tooltip: 1060;
-@z-index-popover: 1070;
-@z-index-dropdown: 1080;
-@z-index-modal: 1090;
-@z-index-drawer: 1100;
-
-// 动画时长
-@animation-duration-fast: 150ms;
-@animation-duration-normal: 300ms;
-@animation-duration-slow: 500ms;
-
-// 动画缓动函数
-@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
-@ease-in: cubic-bezier(0.550, 0.055, 0.675, 0.190);
-@ease-out: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-
-// 阴影级别
+// ===== 阴影级别 =====
 @shadow-level-1: 2px;
 @shadow-level-2: 4px;
 @shadow-level-3: 8px;
 @shadow-level-4: 16px;
+@shadow-level-5: 32px;
 
-// 透明度
-@opacity-disabled: 0.25;
-@opacity-light: 0.45;
-@opacity-medium: 0.65;
-@opacity-high: 0.85;
-@opacity-full: 1;
+// ===== 基础尺寸 =====
+@base-unit: 4px;
+@border-radius-base: 4px;
+@border-radius-sm: 2px;
+@border-radius-lg: 6px;
 
-// 百分比值
-@percent-full: 100%;
-@percent-half: 50%;
+// ===== 字体大小 =====
+@font-size-base: 14px;
+@font-size-sm: 12px;
+@font-size-lg: 16px;
+@font-size-xl: 18px;
+@font-size-xxl: 20px;
 
-// 滚动条
-@scrollbar-size: 8px;
-@scrollbar-radius: 4px; 
+// ===== 行高 =====
+@line-height-base: 1.5;
+@line-height-sm: 1.2;
+@line-height-lg: 1.8;
 
-@visible-animation-duration: @animation-duration-fast;
+// ===== 间距 =====
+@spacing-xs: 4px;
+@spacing-sm: 8px;
+@spacing-md: 16px;
+@spacing-lg: 24px;
+@spacing-xl: 32px;
+@spacing-xxl: 48px;
+
+// ===== 边框宽度 =====
+@border-width-base: 1px;
+@border-width-thick: 2px;
+@table-border-width: 1px;
+
+// ===== 动画时长 =====
+@animation-duration-slow: 0.3s;
+@animation-duration-base: 0.2s;
+@animation-duration-fast: 0.1s;
+
+// ===== 动画曲线 =====
+@ease-base-out: cubic-bezier(0.7, 0.3, 0.1, 0.7);
+@ease-base-in: cubic-bezier(0.9, 0, 0.3, 0.7);
+@ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+@ease-in: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+@ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
+@ease-out-back: cubic-bezier(0.12, 0.4, 0.29, 1.46);
+@ease-in-back: cubic-bezier(0.71, -0.46, 0.88, 0.6);
+@ease-in-out-back: cubic-bezier(0.71, -0.46, 0.29, 1.46);
+@ease-out-circ: cubic-bezier(0.08, 0.82, 0.17, 1);
+@ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+@ease-in-out-circ: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+@ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+@ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+@ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+
+// ===== 层级 =====
+@z-index-base: 0;
+@z-index-affix: 10;
+@z-index-back-top: 40;
+@z-index-picker-panel: 850;
+@z-index-popup-close: 1000;
+@z-index-modal: 1000;
+@z-index-drawer: 1000;
+@z-index-popover: 1030;
+@z-index-dropdown: 1050;
+@z-index-picker: 1050;
+@z-index-popoconfirm: 1060;
+@z-index-tooltip: 1070;
+@z-index-notification: 1010;
+@z-index-message: 1010;
+@z-index-tour: 1001;
+
+// ===== 滚动条样式 =====
+@scrollbar-thumb-bg: rgba(0, 0, 0, 0.2);
+@scrollbar-thumb-hover-bg: rgba(0, 0, 0, 0.3);
+@scrollbar-track-bg: rgba(0, 0, 0, 0.05);
+@scrollbar-dark-thumb-bg: rgba(255, 255, 255, 0.2);
+@scrollbar-dark-thumb-hover-bg: rgba(255, 255, 255, 0.3);

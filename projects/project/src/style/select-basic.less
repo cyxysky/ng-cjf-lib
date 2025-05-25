@@ -34,19 +34,19 @@ lib-select {
     display: inline-flex;
     align-items: center;
     max-width: 100%;
-    background-color: rgba(24, 144, 255, 0.06);
-    color: rgba(24, 144, 255, 0.67);
-    border-radius: 2px;
+    background-color: @select-tag-bg;
+    color: @select-tag-color;
+    border-radius: @select-tag-border-radius;
     cursor: default;
     box-sizing: border-box;
     transition: all 300ms;
-    border: 1px solid rgba(24, 144, 255, 0.12);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    border: @select-tag-border;
+    box-shadow: @shadow-level-1;
     white-space: nowrap;
     overflow: hidden;
 
     .c-lib-select-basic-tag-text-box {
-        padding-right: 4px;
+        padding-right: @spacing-xs;
         line-height: normal;
         display: flex;
         align-items: center;
@@ -72,18 +72,18 @@ lib-select {
         flex: 0 0 auto;
 
         &:hover {
-            background-color: rgba(0, 0, 0, 0.04);
+            background-color: @select-tag-close-hover-bg;
         }
     }
 
     &:hover {
-        background-color: rgba(24, 144, 255, 0.08);
+        background-color: @select-tag-bg;
     }
 }
 
 .c-lib-select-basic-tag-base {
-    padding: 0 8px;
-    height: 24px;
+    padding: @select-tag-padding;
+    height: @select-tag-height;
 
     .c-lib-select-basic-tag-close-icon {
         width: 14px;
@@ -92,9 +92,9 @@ lib-select {
 }
 
 .c-lib-select-basic-tag-sm {
-    padding: 0 6px;
-    height: 20px;
-    border-radius: 2px;
+    padding: @select-tag-small-padding;
+    height: @select-tag-small-height;
+    border-radius: @select-tag-border-radius;
 
     .c-lib-select-basic-tag-close-icon {
         width: 12px;
@@ -103,8 +103,8 @@ lib-select {
 }
 
 .c-lib-select-basic-tag-lg {
-    padding: 0 10px;
-    height: 30px;
+    padding: @select-tag-large-padding;
+    height: @select-tag-large-height;
 
     .c-lib-select-basic-tag-close-icon {
         width: 16px;
@@ -113,12 +113,12 @@ lib-select {
 }
 
 .c-lib-select-basic-box {
-    background-color: #ffffff;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
+    background-color: @select-box-bg;
+    border: @select-box-border-width solid @select-box-border-color;
+    border-radius: @select-box-border-radius;
     transition: all 300ms;
-    min-height: 32px;
-    font-size: 14px;
+    min-height: @select-box-min-height;
+    font-size: @select-box-font-size;
     cursor: pointer;
     line-height: normal;
     display: flex;
@@ -127,12 +127,12 @@ lib-select {
     box-sizing: border-box;
 
     &:hover {
-        border-color: #1890ff;
+        border-color: @select-box-hover-border-color;
     }
 
     &.c-lib-select-basic-box-active {
-        border-color: #1890ff;
-        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        border-color: @select-box-active-border-color;
+        box-shadow: @select-box-active-shadow;
         outline: none;
     }
 
@@ -141,8 +141,8 @@ lib-select {
     }
 
     &.c-lib-select-basic-box-lg {
-        min-height: 40px;
-        font-size: 16px;
+        min-height: @select-box-large-min-height;
+        font-size: @select-box-large-font-size;
 
         .c-lib-select-basic-box-content {
             min-height: 30px;
@@ -160,8 +160,8 @@ lib-select {
     }
 
     &.c-lib-select-basic-box-sm {
-        min-height: 24px;
-        font-size: 14px;
+        min-height: @select-box-small-min-height;
+        font-size: @select-box-font-size;
 
         .c-lib-select-basic-box-content {
             min-height: 14px;
@@ -174,8 +174,8 @@ lib-select {
         }
 
         .c-lib-select-basic-box-suffix {
-            min-width: 24px;
-            max-width: 24px;
+            min-width: @input-small-height;
+            max-width: @input-small-height;
             height: 100%;
         }
 
@@ -194,20 +194,20 @@ lib-select {
     }
 
     &.c-lib-select-basic-box-error {
-        border: 1px solid #ff4d4f;
+        border: @select-box-border-width solid @input-error-border-color;
 
         &.c-lib-select-basic-box-active {
-            border: 1px solid #ff4d4f;
-            box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+            border: @select-box-border-width solid @input-error-border-color;
+            box-shadow: @input-error-shadow;
         }
     }
 
     &.c-lib-select-basic-box-warning {
-        border: 1px solid #ffc409;
+        border: @select-box-border-width solid @input-warning-border-color;
 
         &.c-lib-select-basic-box-active {
-            border: 1px solid #ffc409;
-            box-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
+            border: @select-box-border-width solid @input-warning-border-color;
+            box-shadow: @input-warning-shadow;
         }
     }
 
@@ -237,17 +237,17 @@ lib-select {
 
         .c-lib-select-basic-box-clear-icon {
             display: none;
-            color: #d9d9d9;
+            color: @input-disabled-color;
             transition: all 300ms;
 
             &:hover {
-                color: #434343;
+                color: @input-prefix-suffix-color;
             }
         }
 
         .c-lib-select-basic-box-icon {
             transition: all 300ms;
-            color: #434343;
+            color: @input-prefix-suffix-color;
         }
 
         .c-lib-select-basic-box-icon-clear {
@@ -261,7 +261,7 @@ lib-select {
 
             .c-lib-select-basic-box-loading-svg {
                 animation: rotate 1.2s linear infinite;
-                color: rgba(24, 144, 255, 0.6);
+                color: @button-primary-bg;
             }
         }
     }
@@ -283,7 +283,7 @@ lib-select {
     display: flex;
     align-items: center;
     padding-left: 11px;
-    color: #d9d9d9;
+    color: @input-placeholder-color;
     position: absolute;
     height: 100%;
     line-height: normal;
@@ -301,7 +301,7 @@ lib-select {
 
 .c-lib-select-basic-box-singal-data {
     padding-left: 11px;
-    color: #000000;
+    color: @input-color;
     position: absolute;
     max-width: 100%;
     overflow: hidden;
@@ -311,7 +311,7 @@ lib-select {
 }
 
 .c-lib-select-basic-box-singal-data-gray {
-    color: #d9d9d9;
+    color: @input-disabled-color;
 }
 
 @keyframes rotate {
@@ -326,9 +326,9 @@ lib-select {
 
 .c-lib-select-basic-box-disabled {
     cursor: not-allowed;
-    background-color: #f5f5f5;
-    color: #d9d9d9;
-    border-color: #d9d9d9 !important;
+    background-color: @input-disabled-bg;
+    color: @input-disabled-color;
+    border-color: @input-disabled-color !important;
 
     .c-lib-select-basic-box-content,
     .c-lib-select-basic-box-suffix {

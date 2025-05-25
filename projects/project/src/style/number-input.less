@@ -4,28 +4,28 @@ lib-number-input {
 }
 
 .c-lib-number-input-container.c-lib-number-input-error {
-    border-color: #ff4d4f;
+    border-color: @number-input-error-border-color;
 
     &:hover {
-        border-color: #ff4d4f;
+        border-color: @number-input-error-border-color;
     }
 
     &.c-lib-number-input-focused {
-        border-color: #ff4d4f;
-        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+        border-color: @number-input-error-border-color;
+        box-shadow: @number-input-error-shadow;
     }
 }
 
 .c-lib-number-input-container.c-lib-number-input-warning {
-    border-color: #ffc409;
+    border-color: @number-input-warning-border-color;
 
     &:hover {
-        border-color: #ffc409;
+        border-color: @number-input-warning-border-color;
     }
 
     &.c-lib-number-input-focused {
-        border-color: #ffc409;
-        box-shadow: 0 0 0 2px rgba(255, 196, 9, 0.2);
+        border-color: @number-input-warning-border-color;
+        box-shadow: @number-input-warning-shadow;
     }
 }
 
@@ -33,32 +33,32 @@ lib-number-input {
     position: relative;
     display: flex;
     align-items: stretch;
-    padding: 4px 11px;
-    border: 1px solid #d9d9d9;
-    border-radius: 2px;
+    padding: @number-input-padding;
+    border: @number-input-border;
+    border-radius: @number-input-border-radius;
     transition: all 300ms;
     box-sizing: border-box;
-    height: 32px;
-    font-size: 14px;
+    height: @number-input-height;
+    font-size: @number-input-font-size;
 
     &:hover {
-        border-color: #1890ff;
+        border-color: @number-input-hover-border-color;
     }
 
     &.c-lib-number-input-focused {
-        border-color: #1890ff;
-        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        border-color: @number-input-focus-border-color;
+        box-shadow: @number-input-focus-shadow;
     }
 
     &.c-lib-number-input-disabled {
-        background-color: #f5f5f5 !important;
-        border-color: #d9d9d9 !important;
-        color: #d9d9d9 !important;
+        background-color: @number-input-disabled-bg !important;
+        border-color: @number-input-disabled-color !important;
+        color: @number-input-disabled-color !important;
         cursor: not-allowed;
 
         input {
-            background-color: #f5f5f5 !important;
-            color: #d9d9d9 !important;
+            background-color: @number-input-disabled-bg !important;
+            color: @number-input-disabled-color !important;
             cursor: not-allowed;
         }
     }
@@ -75,7 +75,7 @@ lib-number-input {
     border: none;
     outline: none;
     padding: 0;
-    font-size: 14px;
+    font-size: @number-input-font-size;
     background: transparent;
     height: 100%;
 
@@ -92,7 +92,7 @@ lib-number-input {
     flex: none;
     align-items: center;
     padding-right: 4px;
-    color: #434343;
+    color: @number-input-prefix-suffix-color;
 }
 
 
@@ -113,9 +113,9 @@ lib-number-input {
     position: absolute;
     top: 0;
     right: 0;
-    width: 22px;
+    width: @number-input-handler-width;
     height: 100%;
-    border-left: 1px solid #d9d9d9;
+    border-left: @number-input-handler-border;
     display: flex;
     flex-direction: column;
 }
@@ -134,14 +134,14 @@ lib-number-input {
     outline: none;
 
     &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
+        background-color: @number-input-handler-hover-bg;
 
         .c-lib-number-input-handler-up-inner {
-            border-bottom-color: #1890ff;
+            border-bottom-color: @number-input-handler-hover-arrow-color;
         }
 
         .c-lib-number-input-handler-down-inner {
-            border-top-color: #1890ff;
+            border-top-color: @number-input-handler-hover-arrow-color;
         }
     }
 
@@ -149,11 +149,11 @@ lib-number-input {
         cursor: not-allowed;
 
         .c-lib-number-input-handler-up-inner {
-            border-bottom-color: #d9d9d9;
+            border-bottom-color: @number-input-handler-arrow-color;
         }
 
         .c-lib-number-input-handler-down-inner {
-            border-top-color: #d9d9d9;
+            border-top-color: @number-input-handler-arrow-color;
         }
     }
 }
