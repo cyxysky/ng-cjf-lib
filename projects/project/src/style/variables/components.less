@@ -3,692 +3,685 @@
 // ============================================================================
 
 // ===== Button 按钮 =====
-@button-ripple-bg: @color-button-ripple;
-@button-height: @height-base;
-@button-padding: @padding-xs @padding-md;
-@button-border-width: @border-width-base;
-@button-border-color: @color-border-base;
-@button-border-radius: @border-radius-base;
-@button-font-size: @font-size-base;
-@button-font-weight: @font-weight-medium;
-@button-box-shadow: @shadow-level-1 @shadow-level-1 @color-shadow-light;
-@button-large-height: @height-lg;
-@button-large-padding: 6.5px @padding-md;
-@button-large-font-size: @font-size-lg;
-@button-small-height: @height-sm;
-@button-small-padding: 0 @padding-sm;
-@button-small-font-size: @font-size-sm;
-@button-primary-bg: @color-primary;
-@button-primary-color: @color-white;
-@button-secondary-bg: @color-secondary;
-@button-tertiary-bg: @color-tertiary;
-@button-success-bg: @color-success;
-@button-success-color: @color-black;
-@button-light-bg: @color-bg-light;
-@button-warning-bg: @color-warning;
-@button-danger-bg: @color-danger;
-@button-dark-bg: @color-bg-dark;
-@button-medium-bg: @color-bg-medium;
-@button-disabled-color: @color-text-disabled;
-@button-disabled-bg: @color-bg-disabled;
-@button-link-color: @color-primary;
-@button-circle-border-radius: @border-radius-circle;
-@button-round-border-radius: @border-radius-round;
+@button-ripple-bg: @color-button-ripple; // 按钮水波纹背景色
+@button-height: @height-base; // 按钮默认高度
+@button-padding: @padding-xs @padding-md; // 按钮内边距
+@button-border-width: @border-width-base; // 按钮边框宽度
+@button-border-color: @color-border-base; // 按钮边框颜色
+@button-border-radius: @border-radius-base; // 按钮边框圆角
+@button-font-size: @font-size-base; // 按钮字体大小
+@button-font-weight: @font-weight-medium; // 按钮字体粗细
+@button-box-shadow: @shadow-level-1 @shadow-level-1 @color-shadow-light; // 按钮阴影
+@button-large-height: @height-lg; // 大号按钮高度
+@button-large-padding: 6.5px @padding-md; // 大号按钮内边距
+@button-large-font-size: @font-size-lg; // 大号按钮字体大小
+@button-small-height: @height-sm; // 小号按钮高度
+@button-small-padding: 0 @padding-sm; // 小号按钮内边距
+@button-small-font-size: @font-size-sm; // 小号按钮字体大小
+@button-primary-bg: @color-primary; // 主要按钮背景色
+@button-primary-color: @color-white; // 主要按钮文字颜色
+@button-secondary-bg: @color-secondary; // 次要按钮背景色
+@button-tertiary-bg: @color-tertiary; // 第三级按钮背景色
+@button-success-bg: @color-success; // 成功按钮背景色
+@button-success-color: @color-black; // 成功按钮文字颜色
+@button-light-bg: @color-bg-light; // 浅色按钮背景色
+@button-warning-bg: @color-warning; // 警告按钮背景色
+@button-danger-bg: @color-danger; // 危险按钮背景色
+@button-dark-bg: @color-bg-dark; // 深色按钮背景色
+@button-medium-bg: @color-bg-medium; // 中性按钮背景色
+@button-disabled-color: @color-text-disabled; // 禁用按钮文字颜色
+@button-disabled-bg: @color-bg-disabled; // 禁用按钮背景色
+@button-link-color: @color-primary; // 链接按钮文字颜色
+@button-circle-border-radius: @border-radius-circle; // 圆形按钮边框圆角
+@button-round-border-radius: @border-radius-round; // 圆角按钮边框圆角
 
 // ===== Input 输入框 =====
-@input-height: @height-base;
-@input-padding: 0 @control-padding-horizontal;
-@input-border-width: @border-width-base;
-@input-border-color: @color-border-base;
-@input-border-radius: @border-radius-sm;
-@input-font-size: @font-size-base;
-@input-bg: @color-bg-base;
-@input-color: @color-text-primary;
-@input-hover-border-color: @color-primary;
-@input-focus-border-color: @color-primary;
-@input-focus-shadow: @shadow-focus-primary;
-@input-large-height: @height-lg;
-@input-large-padding: 6.5px @control-padding-horizontal;
-@input-large-font-size: @font-size-lg;
-@input-small-height: @height-sm;
-@input-small-padding: 6.5px @control-padding-horizontal;
-@input-small-font-size: @font-size-sm;
-@input-error-border-color: @color-error;
-@input-error-shadow: @shadow-focus-error;
-@input-warning-border-color: @color-warning;
-@input-warning-shadow: @shadow-focus-warning;
-@input-disabled-bg: @color-bg-disabled;
-@input-disabled-color: @color-text-disabled;
-@input-placeholder-color: @color-text-placeholder;
-@input-prefix-suffix-color: @color-icon-darker;
-@input-clear-icon-color: @color-icon-default;
-@input-clear-icon-hover-color: @color-icon-darker;
-@input-borderless-bg: @color-bg-base;
+@input-height: @height-base; // 输入框默认高度
+@input-padding: 0 @control-padding-horizontal; // 输入框内边距
+@input-border-width: @border-width-base; // 输入框边框宽度
+@input-border-color: @color-border-base; // 输入框边框颜色
+@input-border-radius: @border-radius-sm; // 输入框边框圆角
+@input-font-size: @font-size-base; // 输入框字体大小
+@input-bg: @color-bg-base; // 输入框背景色
+@input-color: @color-text-primary; // 输入框文字颜色
+@input-hover-border-color: @color-primary; // 输入框悬停边框颜色
+@input-focus-border-color: @color-primary; // 输入框聚焦边框颜色
+@input-focus-shadow: @shadow-focus-primary; // 输入框聚焦阴影
+@input-large-height: @height-lg; // 大号输入框高度
+@input-large-padding: 6.5px @control-padding-horizontal; // 大号输入框内边距
+@input-large-font-size: @font-size-lg; // 大号输入框字体大小
+@input-small-height: @height-sm; // 小号输入框高度
+@input-small-padding: 6.5px @control-padding-horizontal; // 小号输入框内边距
+@input-small-font-size: @font-size-sm; // 小号输入框字体大小
+@input-error-border-color: @color-error; // 输入框错误状态边框颜色
+@input-error-shadow: @shadow-focus-error; // 输入框错误状态阴影
+@input-warning-border-color: @color-warning; // 输入框警告状态边框颜色
+@input-warning-shadow: @shadow-focus-warning; // 输入框警告状态阴影
+@input-disabled-bg: @color-bg-disabled; // 输入框禁用背景色
+@input-disabled-color: @color-text-disabled; // 输入框禁用文字颜色
+@input-placeholder-color: @color-text-placeholder; // 输入框占位符颜色
+@input-prefix-suffix-color: @color-icon-darker; // 输入框前缀后缀图标颜色
+@input-clear-icon-color: @color-icon-default; // 输入框清除图标颜色
+@input-clear-icon-hover-color: @color-icon-darker; // 输入框清除图标悬停颜色
+@input-borderless-bg: @color-bg-base; // 无边框输入框背景色
 
 // ===== Select 选择器 =====
-@select-box-min-height: @height-base;
-@select-box-padding: @padding-xs 0 @padding-xs @control-padding-horizontal;
-@select-box-border-width: @border-width-base;
-@select-box-border-color: @color-border-base;
-@select-box-border-radius: @border-radius-sm;
-@select-box-font-size: @font-size-base;
-@select-box-bg: @color-bg-base;
-@select-box-hover-border-color: @color-primary;
-@select-box-active-border-color: @color-primary;
-@select-box-active-shadow: @shadow-focus-primary;
-@select-box-large-min-height: @height-lg;
-@select-box-large-font-size: @font-size-lg;
-@select-box-small-min-height: @height-sm;
-@select-box-suffix-width: @width-trigger-base;
-@select-tag-bg: @color-primary-bg;
-@select-tag-color: @color-primary-selected;
-@select-tag-border: @border-width-base solid @color-primary-border;
-@select-tag-border-radius: @border-radius-sm;
-@select-tag-height: @height-sm;
-@select-tag-padding: 0 @padding-sm;
-@select-tag-small-height: @height-xxs;
-@select-tag-small-padding: 0 6px;
-@select-tag-large-height: 30px;
-@select-tag-large-padding: 0 10px;
-@select-tag-close-hover-bg: @color-hover-bg;
-@select-option-height: @height-md;
-@select-option-padding: 5px 12px;
-@select-option-font-size: @font-size-base;
-@select-option-color: @color-text-primary;
-@select-option-hover-bg: @color-hover-bg-light;
-@select-option-selected-bg: @color-primary-bg;
-@select-option-selected-color: @color-primary-light;
-@select-option-disabled-color: @color-text-disabled;
-@select-dropdown-bg: @color-bg-base;
-@select-dropdown-shadow: @shadow-base;
-@select-dropdown-border-radius: @border-radius-base;
-@select-dropdown-max-height: 256px;
-@select-option-hover-bg: @color-hover-bg-light;
-@select-option-selected-bg: @color-primary-bg;
-@select-option-selected-color: @color-primary-light;
-@select-option-disabled-color: @color-text-disabled;
-@select-empty-icon-color: @color-select-empty-icon;
-@select-group-title-bg: @color-select-group-title-bg;
-@select-padding-left-8: @padding-sm;
-@select-remote-loading-height: @height-lg;
+@select-box-border-width: @border-width-base; // 选择器边框宽度
+@select-box-border-color: @color-border-base; // 选择器边框颜色
+@select-box-border-radius: @border-radius-sm; // 选择器边框圆角
+@select-box-font-size: @font-size-base; // 选择器字体大小
+@select-box-bg: @color-bg-base; // 选择器背景色
+@select-box-hover-border-color: @color-primary; // 选择器悬停边框颜色
+@select-box-active-border-color: @color-primary; // 选择器激活边框颜色
+@select-box-active-shadow: @shadow-focus-primary; // 选择器激活阴影
+@select-box-large-min-height: @height-lg; // 大号选择器最小高度
+@select-box-large-font-size: @font-size-lg; // 大号选择器字体大小
+@select-box-small-min-height: @height-sm; // 小号选择器最小高度
+@select-tag-bg: @color-primary-bg; // 选择器标签背景色
+@select-tag-color: @color-primary-selected; // 选择器标签文字颜色
+@select-tag-border: @border-width-base solid @color-primary-border; // 选择器标签边框
+@select-tag-border-radius: @border-radius-sm; // 选择器标签边框圆角
+@select-tag-height: @height-sm; // 选择器标签高度
+@select-tag-padding: 0 @padding-sm; // 选择器标签内边距
+@select-tag-small-height: @height-xxs; // 小号选择器标签高度
+@select-tag-small-padding: 0 6px; // 小号选择器标签内边距
+@select-tag-large-height: 30px; // 大号选择器标签高度
+@select-tag-large-padding: 0 10px; // 大号选择器标签内边距
+@select-tag-close-hover-bg: @color-hover-bg; // 选择器标签关闭按钮悬停背景色
+@select-option-height: @height-md; // 选择器选项高度
+@select-option-padding: 5px 12px; // 选择器选项内边距
+@select-option-font-size: @font-size-base; // 选择器选项字体大小
+@select-option-color: @color-text-primary; // 选择器选项文字颜色
+@select-option-hover-bg: @color-hover-bg-light; // 选择器选项悬停背景色
+@select-option-selected-bg: @color-primary-bg; // 选择器选项选中背景色
+@select-option-selected-color: @color-primary-selected; // 选择器选项选中文字颜色
+@select-option-disabled-color: @color-text-disabled; // 选择器选项禁用文字颜色
+@select-dropdown-bg: @color-bg-base; // 选择器下拉框背景色
+@select-dropdown-shadow: @shadow-base; // 选择器下拉框阴影
+@select-dropdown-border-radius: @border-radius-base; // 选择器下拉框边框圆角
+@select-dropdown-max-height: 256px; // 选择器下拉框最大高度
+@select-empty-icon-color: @color-select-empty-icon; // 选择器空状态图标颜色
+@select-group-title-bg: @color-select-group-title-bg; // 选择器分组标题背景色
+@select-padding-left-8: @padding-sm; // 选择器左侧间距
+@select-remote-loading-height: @height-lg; // 选择器远程加载高度
 
 // ===== Checkbox 复选框 =====
-@checkbox-size: @padding-md;
-@checkbox-border-width: @border-width-base;
-@checkbox-border-color: @color-border-base;
-@checkbox-border-radius: @border-radius-sm;
-@checkbox-bg: @color-bg-base;
-@checkbox-checked-bg: @color-primary;
-@checkbox-checked-border-color: @color-primary;
-@checkbox-inner-width: 6px;
-@checkbox-inner-height: @padding-sm;
-@checkbox-inner-border-width: @border-width-thick;
-@checkbox-inner-border-color: @color-white;
-@checkbox-disabled-bg: @color-bg-disabled;
-@checkbox-disabled-border-color: @color-border-base;
-@checkbox-label-font-size: @font-size-base;
-@checkbox-label-margin-left: @padding-sm;
-@checkbox-group-gap: @padding-sm;
-@checkbox-horizontal-gap: @padding-md;
+@checkbox-size: @padding-md; // 复选框尺寸
+@checkbox-border-width: @border-width-base; // 复选框边框宽度
+@checkbox-border-color: @color-border-base; // 复选框边框颜色
+@checkbox-border-radius: @border-radius-sm; // 复选框边框圆角
+@checkbox-bg: @color-bg-base; // 复选框背景色
+@checkbox-checked-bg: @color-primary; // 复选框选中背景色
+@checkbox-checked-border-color: @color-primary; // 复选框选中边框颜色
+@checkbox-inner-width: 6px; // 复选框勾选图标宽度
+@checkbox-inner-height: @padding-sm; // 复选框勾选图标高度
+@checkbox-inner-border-width: @border-width-thick; // 复选框勾选图标线条宽度
+@checkbox-inner-border-color: @color-white; // 复选框勾选图标颜色
+@checkbox-disabled-bg: @color-bg-disabled; // 复选框禁用背景色
+@checkbox-disabled-border-color: @color-border-base; // 复选框禁用边框颜色
+@checkbox-label-font-size: @font-size-base; // 复选框标签字体大小
+@checkbox-label-margin-left: @padding-sm; // 复选框标签左边距
+@checkbox-group-gap: @padding-sm; // 复选框组间距
+@checkbox-horizontal-gap: @padding-md; // 复选框水平间距
 
 // ===== Radio 单选框 =====
-@radio-size: @padding-md;
-@radio-border-width: @border-width-base;
-@radio-border-color: @color-border-base;
-@radio-border-radius: @border-radius-round;
-@radio-bg: @color-bg-base;
-@radio-checked-color: @color-primary;
-@radio-inner-size: @padding-sm;
-@radio-label-padding: 0 @padding-sm;
-@radio-wrapper-margin-right: @padding-md;
+@radio-size: @padding-md; // 单选框尺寸
+@radio-border-width: @border-width-base; // 单选框边框宽度
+@radio-border-color: @color-border-base; // 单选框边框颜色
+@radio-border-radius: @border-radius-round; // 单选框边框圆角（圆形）
+@radio-bg: @color-bg-base; // 单选框背景色
+@radio-checked-color: @color-primary; // 单选框选中颜色
+@radio-inner-size: @padding-sm; // 单选框内部圆点尺寸
+@radio-label-padding: 0 @padding-sm; // 单选框标签内边距
+@radio-wrapper-margin-right: @padding-md; // 单选框组件右边距
 
 // ===== Switch 开关 =====
-@switch-min-width: 44px;
-@switch-height: 22px;
-@switch-bg: @color-switch-bg;
-@switch-checked-bg: @color-primary;
-@switch-border-radius: 100px;
-@switch-handle-size: 18px;
-@switch-handle-bg: @color-white;
-@switch-handle-shadow: 0 @border-width-thick @padding-xs 0 @color-switch-handle-shadow;
-@switch-handle-offset: @border-radius-sm;
-@switch-inner-margin: 0 7px 0 @height-sm;
-@switch-inner-font-size: @font-size-sm;
-@switch-inner-color: @color-white;
-@switch-small-min-width: 28px;
-@switch-small-height: @padding-md;
-@switch-small-handle-size: @font-size-sm;
-@switch-focus-shadow: @shadow-focus-primary;
-@switch-loading-color: @color-primary;
+@switch-min-width: 44px; // 开关最小宽度
+@switch-height: 22px; // 开关高度
+@switch-bg: @color-switch-bg; // 开关默认背景色
+@switch-checked-bg: @color-primary; // 开关选中背景色
+@switch-border-radius: 100px; // 开关边框圆角
+@switch-handle-size: 18px; // 开关滑块尺寸
+@switch-handle-bg: @color-white; // 开关滑块背景色
+@switch-handle-shadow: 0 @border-width-thick @padding-xs 0 @color-switch-handle-shadow; // 开关滑块阴影
+@switch-handle-offset: @border-radius-sm; // 开关滑块偏移量
+@switch-inner-margin: 0 7px 0 @height-sm; // 开关内部文字边距
+@switch-inner-font-size: @font-size-sm; // 开关内部文字字体大小
+@switch-inner-color: @color-white; // 开关内部文字颜色
+@switch-small-min-width: 28px; // 小号开关最小宽度
+@switch-small-height: @padding-md; // 小号开关高度
+@switch-small-handle-size: @font-size-sm; // 小号开关滑块尺寸
+@switch-focus-shadow: @shadow-focus-primary; // 开关聚焦阴影
+@switch-loading-color: @color-primary; // 开关加载状态颜色
 
 // ===== Modal 模态框 =====
-@modal-mask-bg: @color-mask;
-@modal-bg: @color-bg-base;
-@modal-border-radius: @border-radius-base;
-@modal-shadow: @shadow-base;
-@modal-max-width: 90vw;
-@modal-max-height: 90vh;
-@modal-header-padding: @padding-md @spacing-lg;
-@modal-header-border-bottom: @border-width-base solid @color-border-light;
-@modal-body-padding: @spacing-lg;
-@modal-footer-padding: @padding-sm @padding-md;
-@modal-footer-bg: @color-bg-base;
-@modal-footer-border-top: @border-width-base solid @color-border-light;
-@modal-close-color: @color-text-disabled;
-@modal-close-hover-color: @color-text-secondary;
-@modal-header-text-color: @color-text-primary;
+@modal-mask-bg: @color-mask; // 模态框遮罩背景色
+@modal-bg: @color-bg-base; // 模态框背景色
+@modal-border-radius: @border-radius-base; // 模态框边框圆角
+@modal-shadow: @shadow-base; // 模态框阴影
+@modal-max-width: 90vw; // 模态框最大宽度
+@modal-max-height: 90vh; // 模态框最大高度
+@modal-header-padding: @padding-md @spacing-lg; // 模态框头部内边距
+@modal-header-border-bottom: @border-width-base solid @color-border-light; // 模态框头部底部边框
+@modal-body-padding: @spacing-lg; // 模态框主体内边距
+@modal-footer-padding: @padding-sm @padding-md; // 模态框底部内边距
+@modal-footer-bg: @color-bg-base; // 模态框底部背景色
+@modal-footer-border-top: @border-width-base solid @color-border-light; // 模态框底部顶部边框
+@modal-close-color: @color-text-disabled; // 模态框关闭按钮颜色
+@modal-close-hover-color: @color-text-secondary; // 模态框关闭按钮悬停颜色
+@modal-header-text-color: @color-text-primary; // 模态框头部文字颜色
 
 // ===== Drawer 抽屉 =====
-@drawer-bg: @color-bg-base;
-@drawer-shadow: @shadow-overlay;
-@drawer-header-padding: @padding-md @spacing-lg;
-@drawer-header-border-width: @border-width-base;
-@drawer-header-border-color: @color-border-light;
-@drawer-body-padding: @spacing-lg;
-@drawer-title-font-size: @font-size-lg;
-@drawer-title-font-weight: @font-weight-medium;
-@drawer-title-color: @color-text-primary;
-@drawer-title-line-height: 22px;
-@drawer-close-color: @color-text-disabled;
-@drawer-close-hover-color: @color-text-primary;
-@drawer-close-font-size: @font-size-xl;
+@drawer-bg: @color-bg-base; // 抽屉背景色
+@drawer-shadow: @shadow-overlay; // 抽屉阴影
+@drawer-header-padding: @padding-md @spacing-lg; // 抽屉头部内边距
+@drawer-header-border-width: @border-width-base; // 抽屉头部边框宽度
+@drawer-header-border-color: @color-border-light; // 抽屉头部边框颜色
+@drawer-body-padding: @spacing-lg; // 抽屉主体内边距
+@drawer-title-font-size: @font-size-lg; // 抽屉标题字体大小
+@drawer-title-font-weight: @font-weight-medium; // 抽屉标题字体粗细
+@drawer-title-color: @color-text-primary; // 抽屉标题颜色
+@drawer-title-line-height: 22px; // 抽屉标题行高
+@drawer-close-color: @color-text-disabled; // 抽屉关闭按钮颜色
+@drawer-close-hover-color: @color-text-primary; // 抽屉关闭按钮悬停颜色
+@drawer-close-font-size: @font-size-xl; // 抽屉关闭按钮字体大小
 
 // ===== Message 消息 =====
-@message-color: @color-text-primary;
-@message-font-size: @font-size-base;
-@message-item-padding: @padding-sm @padding-md;
-@message-item-border-radius: @border-radius-base;
-@message-item-shadow: @shadow-base;
-@message-item-bg: @color-bg-base;
-@message-item-min-width: 150px;
-@message-content-gap: 12px;
-@message-icon-font-size: @padding-md;
-@message-text-font-size: @font-size-base;
-@message-wrapper-margin-bottom: @padding-md;
+@message-color: @color-text-primary; // 消息文字颜色
+@message-font-size: @font-size-base; // 消息字体大小
+@message-item-padding: @padding-sm @padding-md; // 消息项内边距
+@message-item-border-radius: @border-radius-base; // 消息项边框圆角
+@message-item-shadow: @shadow-base; // 消息项阴影
+@message-item-bg: @color-bg-base; // 消息项背景色
+@message-item-min-width: 150px; // 消息项最小宽度
+@message-content-gap: 12px; // 消息内容间距
+@message-icon-font-size: @padding-md; // 消息图标字体大小
+@message-text-font-size: @font-size-base; // 消息文字字体大小
+@message-wrapper-margin-bottom: @padding-md; // 消息容器底部边距
 
 // ===== Tooltip 提示框 =====
-@tooltip-max-width: 250px;
-@tooltip-padding: 6px @padding-sm;
-@tooltip-color: @color-white;
-@tooltip-bg: @color-overlay;
-@tooltip-border-radius: @border-radius-lg;
-@tooltip-shadow: @shadow-elevated;
-@tooltip-font-size: @font-size-sm;
-@tooltip-arrow-size: 5px;
+@tooltip-max-width: 250px; // 提示框最大宽度
+@tooltip-padding: 6px @padding-sm; // 提示框内边距
+@tooltip-color: @color-white; // 提示框文字颜色
+@tooltip-bg: @color-overlay; // 提示框背景色
+@tooltip-border-radius: @border-radius-lg; // 提示框边框圆角
+@tooltip-shadow: @shadow-elevated; // 提示框阴影
+@tooltip-font-size: @font-size-sm; // 提示框字体大小
+@tooltip-arrow-size: 5px; // 提示框箭头尺寸
 
 // ===== Popover 弹窗 =====
-@popover-min-width: 177px;
-@popover-border-width: @border-width-base;
-@popover-border-color: @color-border-base;
-@popover-border-radius: @border-radius-lg;
-@popover-shadow: @shadow-elevated;
-@popover-bg: @color-bg-base;
-@popover-font-size: @font-size-base;
-@popover-content-padding: 12px @padding-md;
-@popover-content-min-height: @height-base;
-@popover-title-padding: 5px @padding-md 0;
-@popover-title-color: @color-text-primary;
-@popover-title-font-weight: @font-weight-medium;
-@popover-title-border-width: @border-width-base;
-@popover-title-border-color: @color-popover-title-border;
-@popover-arrow-size: 7px;
-@popover-footer-gap: @padding-sm;
-@popover-footer-padding: @padding-xs @padding-sm;
-@popover-arrow-color: @color-bg-base;
-@popover-arrow-shadow-top: drop-shadow(0px @border-radius-sm @border-radius-sm @color-popover-arrow-shadow);
-@popover-arrow-shadow-bottom: drop-shadow(0px -@border-radius-sm @border-radius-sm @color-popover-arrow-shadow);
-@popover-arrow-shadow-left: drop-shadow(@border-radius-sm 0 @border-radius-sm @color-popover-arrow-shadow);
-@popover-arrow-shadow-right: drop-shadow(-@border-radius-sm 0 @border-radius-sm @color-popover-arrow-shadow);
+@popover-min-width: 177px; // 弹窗最小宽度
+@popover-border-width: @border-width-base; // 弹窗边框宽度
+@popover-border-color: @color-border-base; // 弹窗边框颜色
+@popover-border-radius: @border-radius-lg; // 弹窗边框圆角
+@popover-shadow: @shadow-elevated; // 弹窗阴影
+@popover-bg: @color-bg-base; // 弹窗背景色
+@popover-font-size: @font-size-base; // 弹窗字体大小
+@popover-content-padding: 12px @padding-md; // 弹窗内容内边距
+@popover-content-min-height: @height-base; // 弹窗内容最小高度
+@popover-title-padding: 5px @padding-md 0; // 弹窗标题内边距
+@popover-title-color: @color-text-primary; // 弹窗标题颜色
+@popover-title-font-weight: @font-weight-medium; // 弹窗标题字体粗细
+@popover-title-border-width: @border-width-base; // 弹窗标题边框宽度
+@popover-title-border-color: @color-popover-title-border; // 弹窗标题边框颜色
+@popover-arrow-size: 7px; // 弹窗箭头尺寸
+@popover-footer-gap: @padding-sm; // 弹窗底部间距
+@popover-footer-padding: @padding-xs @padding-sm; // 弹窗底部内边距
+@popover-arrow-color: @color-bg-base; // 弹窗箭头颜色
+@popover-arrow-shadow-top: drop-shadow(0px @border-radius-sm @border-radius-sm @color-popover-arrow-shadow); // 弹窗顶部箭头阴影
+@popover-arrow-shadow-bottom: drop-shadow(0px -@border-radius-sm @border-radius-sm @color-popover-arrow-shadow); // 弹窗底部箭头阴影
+@popover-arrow-shadow-left: drop-shadow(@border-radius-sm 0 @border-radius-sm @color-popover-arrow-shadow); // 弹窗左侧箭头阴影
+@popover-arrow-shadow-right: drop-shadow(-@border-radius-sm 0 @border-radius-sm @color-popover-arrow-shadow); // 弹窗右侧箭头阴影
 
 // ===== Menu 菜单 =====
-@menu-width: 256px;
-@menu-bg: @color-bg-elevated;
-@menu-font-size: @font-size-base;
-@menu-color: @color-text-primary;
-@menu-item-height: @height-lg;
-@menu-item-padding: 0 20px;
-@menu-item-margin-bottom: @padding-xs;
-@menu-item-hover-color: @color-primary;
-@menu-item-hover-bg: @color-primary-light;
-@menu-item-selected-bg: @color-primary-light;
-@menu-item-selected-color: @color-primary;
-@menu-item-selected-border: 3px solid @color-primary;
-@menu-icon-margin-right: 10px;
-@menu-icon-font-size: @padding-md;
-@menu-collapsed-width: 80px;
-@menu-collapsed-padding: 0 @width-trigger-base;
-@menu-submenu-shadow: @shadow-base;
-@menu-horizontal-height: 46px;
-@menu-horizontal-border-bottom: @border-width-base solid @color-border-light;
-@menu-horizontal-item-border-bottom: @border-width-thick solid transparent;
-@menu-dark-bg: @color-bg-dark;
-@menu-dark-color: @color-menu-dark-text;
-@menu-dark-hover-color: @color-white;
-@menu-dark-selected-bg: @color-primary;
-@menu-dark-selected-border: 3px solid @color-white;
-@menu-horizontal-item-hover-color: @color-primary;
-@menu-horizontal-item-selected-color: @color-primary;
-@menu-submenu-bg: @color-bg-base;
-@menu-submenu-item-hover-bg: @color-primary-light;
-@menu-light-bg: @color-bg-elevated;
-@menu-disabled-color: @color-menu-disabled;
-@menu-dark-disabled-color: @color-menu-dark-disabled;
-@menu-dark-submenu-hover-bg: @color-menu-dark-submenu-hover;
-@menu-collapsed-selected-bg: @color-menu-collapsed-selected;
-@menu-overlay-item-hover-bg: @color-menu-overlay-item-hover;
+@menu-width: 256px; // 菜单宽度
+@menu-bg: @color-bg-elevated; // 菜单背景色
+@menu-font-size: @font-size-base; // 菜单字体大小
+@menu-color: @color-text-primary; // 菜单文字颜色
+@menu-item-height: @height-lg; // 菜单项高度
+@menu-item-padding: 0 20px; // 菜单项内边距
+@menu-item-margin-bottom: @padding-xs; // 菜单项底部边距
+@menu-item-hover-color: @color-primary; // 菜单项悬停文字颜色
+@menu-item-hover-bg: @color-primary-light; // 菜单项悬停背景色
+@menu-item-selected-bg: @color-primary-light; // 菜单项选中背景色
+@menu-item-selected-color: @color-primary; // 菜单项选中文字颜色
+@menu-item-selected-border: 3px solid @color-primary; // 菜单项选中边框
+@menu-icon-margin-right: 10px; // 菜单图标右边距
+@menu-icon-font-size: @padding-md; // 菜单图标字体大小
+@menu-collapsed-width: 80px; // 菜单折叠宽度
+@menu-collapsed-padding: 0 @width-trigger-base; // 菜单折叠内边距
+@menu-submenu-shadow: @shadow-base; // 子菜单阴影
+@menu-horizontal-height: 46px; // 水平菜单高度
+@menu-horizontal-border-bottom: @border-width-base solid @color-border-light; // 水平菜单底部边框
+@menu-horizontal-item-border-bottom: @border-width-thick solid transparent; // 水平菜单项底部边框
+@menu-dark-bg: @color-bg-dark; // 深色菜单背景色
+@menu-dark-color: @color-menu-dark-text; // 深色菜单文字颜色
+@menu-dark-hover-color: @color-white; // 深色菜单悬停文字颜色
+@menu-dark-selected-bg: @color-primary; // 深色菜单选中背景色
+@menu-dark-selected-border: 3px solid @color-white; // 深色菜单选中边框
+@menu-horizontal-item-hover-color: @color-primary; // 水平菜单项悬停颜色
+@menu-horizontal-item-selected-color: @color-primary; // 水平菜单项选中颜色
+@menu-submenu-bg: @color-bg-base; // 子菜单背景色
+@menu-submenu-item-hover-bg: @color-primary-light; // 子菜单项悬停背景色
+@menu-light-bg: @color-bg-elevated; // 浅色菜单背景色
+@menu-disabled-color: @color-menu-disabled; // 菜单禁用文字颜色
+@menu-dark-disabled-color: @color-menu-dark-disabled; // 深色菜单禁用文字颜色
+@menu-dark-submenu-hover-bg: @color-menu-dark-submenu-hover; // 深色子菜单悬停背景色
+@menu-collapsed-selected-bg: @color-menu-collapsed-selected; // 折叠菜单选中背景色
+@menu-overlay-item-hover-bg: @color-menu-overlay-item-hover; // 覆盖菜单项悬停背景色
 
 // ===== Table 表格 =====
-@table-bg: @color-bg-base;
-@table-border-radius: @border-radius-base;
-@table-shadow: @shadow-base;
-@table-font-size: @font-size-base;
-@table-cell-padding: 12px @padding-md;
-@table-header-bg: @color-bg-container;
-@table-header-color: @color-text-primary;
-@table-header-font-weight: @font-weight-medium;
-@table-border-color: @color-border-light;
-@table-hover-bg: @color-hover-bg-light;
-@table-middle-cell-padding: @padding-sm @padding-md;
-@table-small-cell-padding: @padding-xs @padding-md;
-@table-empty-padding: @height-lg @height-xs;
-@table-empty-color: @color-text-disabled;
-@table-empty-font-size: @font-size-base;
-@table-toolbar-padding: @padding-md;
-@table-toolbar-title-font-size: @font-size-lg;
-@table-toolbar-title-font-weight: @font-weight-medium;
-@table-pagination-margin: @padding-md 0;
-@table-pagination-item-size: @height-base;
-@table-pagination-border: @border-width-base solid @color-border-light;
-@table-pagination-border-radius: @border-radius-sm;
-@table-pagination-item-border-radius: @border-radius-sm;
-@table-pagination-hover-color: @color-primary;
-@table-pagination-active-bg: @color-primary-light;
-@table-pagination-active-color: @color-primary;
-@table-filter-dropdown-min-width: 200px;
-@table-filter-dropdown-max-height: 300px;
-@table-filter-popover-link-color: @color-text-primary;
-@table-filter-popover-link-confirm-color: @color-primary;
-@table-filter-popover-link-hover-color: @color-primary;
-@table-sorter-width: 14px;
-@table-sorter-height: 14px;
-@table-sorter-font-size: 10px;
-@table-sorter-active-color: @color-primary;
-@table-filter-icon-color: @color-text-disabled;
-@table-filter-icon-hover-color: @color-text-secondary;
-@table-filter-icon-active-color: @color-primary;
-@table-filter-dropdown-item-padding: 5px 12px;
-@table-filter-dropdown-item-hover-bg: @color-hover-bg-light;
-@table-filter-dropdown-label-padding: @border-radius-sm @padding-xs;
-@table-filter-dropdown-btn-padding: @padding-sm 12px;
-@table-filter-dropdown-btn-border-color: @color-border-light;
-@table-filter-dropdown-link-color: @color-text-primary;
-@table-filter-dropdown-link-font-size: @font-size-sm;
-@table-filter-dropdown-link-padding: 0 7px;
-@table-filter-dropdown-link-confirm-color: @color-primary;
-@table-filter-dropdown-link-hover-color: @color-primary;
-@table-tbody-border-color: @color-border-light;
-@table-tbody-bg: @color-bg-base;
-@table-loading-bg: @color-table-loading-bg;
-@table-loading-spinner-color: @color-primary;
-@table-loading-spinner-bg: @color-table-loading-spinner-bg;
-@table-loading-spinner-size: @height-base;
-@table-loading-spinner-border-width: 3px;
-@table-operation-gap: @padding-sm;
-@table-operation-color: @color-primary;
-@table-operation-hover-opacity: @opacity-hover;
-@table-operation-icon-margin: @padding-xs;
-@table-operation-more-padding: @border-radius-sm @padding-xs;
-@table-operation-more-border-radius: @border-radius-sm;
-@table-operation-more-icon-size: @font-size-sm;
-@table-operation-more-icon-margin: @padding-xs;
-@table-checkable-width: 48px;
-@table-checkable-menu-size: @padding-md;
-@table-checkable-menu-icon-size: @font-size-sm;
-@table-checkable-menu-icon-color: @color-text-disabled;
-@table-checkable-menu-icon-hover-color: @color-primary;
-@table-fixed-shadow-inset-left: inset 10px 0 @padding-sm -@padding-sm @color-table-fixed-shadow;
-@table-fixed-shadow-inset-right: inset -10px 0 @padding-sm -@padding-sm @color-table-fixed-shadow;
-@table-tree-expand-margin: @padding-sm;
-@table-tree-indent-width: @padding-md;
-@table-tree-indent-height: @padding-md;
-@table-tree-switcher-width: @padding-md;
-@table-tree-switcher-height: @padding-md;
-@table-tree-switcher-hover-color: @color-primary;
-@table-tree-switcher-icon-size: 10px;
-@table-pagination-fixed-bg: @color-bg-base;
-@table-pagination-fixed-padding: @padding-md;
-@table-pagination-fixed-border-color: @color-border-light;
-@table-pagination-fixed-shadow: 0 -3px 6px -@padding-xs @color-table-pagination-shadow;
-@table-pagination-font-size: @font-size-base;
-@table-pagination-total-margin: @padding-md;
-@table-pagination-item-min-width: @height-base;
-@table-pagination-item-height: @height-base;
-@table-pagination-item-margin: @padding-sm;
-@table-pagination-disabled-color: @color-text-disabled;
-@table-pagination-disabled-border-color: @color-border-light;
-@table-pagination-options-margin: @padding-md;
-@table-pagination-select-padding: @padding-xs @padding-sm;
-@table-pagination-select-height: @height-base;
-@table-pagination-select-border-color: @color-border-light;
-@table-pagination-select-border-radius: @border-radius-sm;
-@table-pagination-select-hover-border-color: @color-primary;
-@table-toolbar-actions-gap: @padding-sm;
-@table-empty-font-size: @font-size-base;
-@table-pagination-item-border-color: @color-border-light;
-@table-pagination-item-border-radius: @border-radius-sm;
-@table-pagination-item-hover-color: @color-primary;
-@table-pagination-item-hover-border-color: @color-primary;
-@table-pagination-item-active-border-color: @color-primary;
-@table-pagination-item-active-font-weight: @font-weight-medium;
-@table-pagination-item-active-bg: @color-primary-light;
-@table-pagination-item-active-color: @color-primary;
+@table-bg: @color-bg-base; // 表格背景色
+@table-border-radius: @border-radius-base; // 表格边框圆角
+@table-shadow: @shadow-base; // 表格阴影
+@table-font-size: @font-size-base; // 表格字体大小
+@table-cell-padding: 12px @padding-md; // 表格单元格内边距
+@table-header-bg: @color-bg-container; // 表格头部背景色
+@table-header-color: @color-text-primary; // 表格头部文字颜色
+@table-header-font-weight: @font-weight-medium; // 表格头部字体粗细
+@table-border-color: @color-border-light; // 表格边框颜色
+@table-hover-bg: @color-hover-bg-light; // 表格行悬停背景色
+@table-middle-cell-padding: @padding-sm @padding-md; // 中等尺寸表格单元格内边距
+@table-small-cell-padding: @padding-xs @padding-md; // 小尺寸表格单元格内边距
+@table-empty-padding: @height-lg @height-xs; // 表格空状态内边距
+@table-empty-color: @color-text-disabled; // 表格空状态文字颜色
+@table-empty-font-size: @font-size-base; // 表格空状态字体大小
+@table-toolbar-padding: @padding-md; // 表格工具栏内边距
+@table-toolbar-title-font-size: @font-size-lg; // 表格工具栏标题字体大小
+@table-toolbar-title-font-weight: @font-weight-medium; // 表格工具栏标题字体粗细
+@table-pagination-margin: @padding-md 0; // 表格分页边距
+@table-pagination-item-size: @height-base; // 表格分页项尺寸
+@table-pagination-border: @border-width-base solid @color-border-light; // 表格分页边框
+@table-pagination-border-radius: @border-radius-sm; // 表格分页边框圆角
+@table-pagination-item-border-radius: @border-radius-sm; // 表格分页项边框圆角
+@table-pagination-hover-color: @color-primary; // 表格分页悬停颜色
+@table-pagination-active-bg: @color-primary-light; // 表格分页激活背景色
+@table-pagination-active-color: @color-primary; // 表格分页激活文字颜色
+@table-filter-dropdown-min-width: 200px; // 表格筛选下拉框最小宽度
+@table-filter-dropdown-max-height: 300px; // 表格筛选下拉框最大高度
+@table-filter-popover-link-color: @color-text-primary; // 表格筛选弹框链接颜色
+@table-filter-popover-link-confirm-color: @color-primary; // 表格筛选弹框确认链接颜色
+@table-filter-popover-link-hover-color: @color-primary; // 表格筛选弹框链接悬停颜色
+@table-sorter-width: 14px; // 表格排序器宽度
+@table-sorter-height: 14px; // 表格排序器高度
+@table-sorter-font-size: 10px; // 表格排序器字体大小
+@table-sorter-active-color: @color-primary; // 表格排序器激活颜色
+@table-filter-icon-color: @color-text-disabled; // 表格筛选图标颜色
+@table-filter-icon-hover-color: @color-text-secondary; // 表格筛选图标悬停颜色
+@table-filter-icon-active-color: @color-primary; // 表格筛选图标激活颜色
+@table-filter-dropdown-item-padding: 5px 12px; // 表格筛选下拉项内边距
+@table-filter-dropdown-item-hover-bg: @color-hover-bg-light; // 表格筛选下拉项悬停背景色
+@table-filter-dropdown-label-padding: @border-radius-sm @padding-xs; // 表格筛选下拉标签内边距
+@table-filter-dropdown-btn-padding: @padding-sm 12px; // 表格筛选下拉按钮内边距
+@table-filter-dropdown-btn-border-color: @color-border-light; // 表格筛选下拉按钮边框颜色
+@table-filter-dropdown-link-color: @color-text-primary; // 表格筛选下拉链接颜色
+@table-filter-dropdown-link-font-size: @font-size-sm; // 表格筛选下拉链接字体大小
+@table-filter-dropdown-link-padding: 0 7px; // 表格筛选下拉链接内边距
+@table-filter-dropdown-link-confirm-color: @color-primary; // 表格筛选下拉确认链接颜色
+@table-filter-dropdown-link-hover-color: @color-primary; // 表格筛选下拉链接悬停颜色
+@table-tbody-border-color: @color-border-light; // 表格主体边框颜色
+@table-tbody-bg: @color-bg-base; // 表格主体背景色
+@table-loading-bg: @color-table-loading-bg; // 表格加载背景色
+@table-loading-spinner-color: @color-primary; // 表格加载旋转器颜色
+@table-loading-spinner-bg: @color-table-loading-spinner-bg; // 表格加载旋转器背景色
+@table-loading-spinner-size: @height-base; // 表格加载旋转器尺寸
+@table-loading-spinner-border-width: 3px; // 表格加载旋转器边框宽度
+@table-operation-gap: @padding-sm; // 表格操作按钮间距
+@table-operation-color: @color-primary; // 表格操作按钮颜色
+@table-operation-hover-opacity: @opacity-hover; // 表格操作按钮悬停透明度
+@table-operation-icon-margin: @padding-xs; // 表格操作图标边距
+@table-operation-more-padding: @border-radius-sm @padding-xs; // 表格更多操作按钮内边距
+@table-operation-more-border-radius: @border-radius-sm; // 表格更多操作按钮边框圆角
+@table-operation-more-icon-size: @font-size-sm; // 表格更多操作图标尺寸
+@table-operation-more-icon-margin: @padding-xs; // 表格更多操作图标边距
+@table-checkable-width: 48px; // 表格选择列宽度
+@table-checkable-menu-size: @padding-md; // 表格选择菜单尺寸
+@table-checkable-menu-icon-size: @font-size-sm; // 表格选择菜单图标尺寸
+@table-checkable-menu-icon-color: @color-text-disabled; // 表格选择菜单图标颜色
+@table-checkable-menu-icon-hover-color: @color-primary; // 表格选择菜单图标悬停颜色
+@table-fixed-shadow-inset-left: inset 10px 0 @padding-sm -@padding-sm @color-table-fixed-shadow; // 表格固定列左侧阴影
+@table-fixed-shadow-inset-right: inset -10px 0 @padding-sm -@padding-sm @color-table-fixed-shadow; // 表格固定列右侧阴影
+@table-tree-expand-margin: @padding-sm; // 表格树形展开按钮边距
+@table-tree-indent-width: @padding-md; // 表格树形缩进宽度
+@table-tree-indent-height: @padding-md; // 表格树形缩进高度
+@table-tree-switcher-width: @padding-md; // 表格树形切换器宽度
+@table-tree-switcher-height: @padding-md; // 表格树形切换器高度
+@table-tree-switcher-hover-color: @color-primary; // 表格树形切换器悬停颜色
+@table-tree-switcher-icon-size: 10px; // 表格树形切换器图标尺寸
+@table-pagination-fixed-bg: @color-bg-base; // 表格固定分页背景色
+@table-pagination-fixed-padding: @padding-md; // 表格固定分页内边距
+@table-pagination-fixed-border-color: @color-border-light; // 表格固定分页边框颜色
+@table-pagination-fixed-shadow: 0 -3px 6px -@padding-xs @color-table-pagination-shadow; // 表格固定分页阴影
+@table-pagination-font-size: @font-size-base; // 表格分页字体大小
+@table-pagination-total-margin: @padding-md; // 表格分页总数边距
+@table-pagination-item-min-width: @height-base; // 表格分页项最小宽度
+@table-pagination-item-height: @height-base; // 表格分页项高度
+@table-pagination-item-margin: @padding-sm; // 表格分页项边距
+@table-pagination-disabled-color: @color-text-disabled; // 表格分页禁用颜色
+@table-pagination-disabled-border-color: @color-border-light; // 表格分页禁用边框颜色
+@table-pagination-options-margin: @padding-md; // 表格分页选项边距
+@table-pagination-select-padding: @padding-xs @padding-sm; // 表格分页选择框内边距
+@table-pagination-select-height: @height-base; // 表格分页选择框高度
+@table-pagination-select-border-color: @color-border-light; // 表格分页选择框边框颜色
+@table-pagination-select-border-radius: @border-radius-sm; // 表格分页选择框边框圆角
+@table-pagination-select-hover-border-color: @color-primary; // 表格分页选择框悬停边框颜色
+@table-toolbar-actions-gap: @padding-sm; // 表格工具栏操作按钮间距
+@table-empty-font-size: @font-size-base; // 表格空状态字体大小（重复定义）
+@table-pagination-item-border-color: @color-border-light; // 表格分页项边框颜色
+@table-pagination-item-border-radius: @border-radius-sm; // 表格分页项边框圆角（重复定义）
+@table-pagination-item-hover-color: @color-primary; // 表格分页项悬停颜色
+@table-pagination-item-hover-border-color: @color-primary; // 表格分页项悬停边框颜色
+@table-pagination-item-active-border-color: @color-primary; // 表格分页项激活边框颜色
+@table-pagination-item-active-font-weight: @font-weight-medium; // 表格分页项激活字体粗细
+@table-pagination-item-active-bg: @color-primary-light; // 表格分页项激活背景色
+@table-pagination-item-active-color: @color-primary; // 表格分页项激活颜色
 
 // ===== Tabs 标签页 =====
-@tabs-nav-margin: 0 0 16px 0;
-@tabs-nav-gap: 8px;
-@tabs-nav-border-bottom: 1px solid @color-border-base;
-@tabs-tab-margin-right: 32px;
-@tabs-tab-padding: 12px 0;
-@tabs-tab-font-size: 14px;
-@tabs-tab-active-color: @color-primary;
-@tabs-tab-disabled-color: @color-text-disabled;
-@tabs-tab-close-margin-left: 8px;
-@tabs-tab-close-font-size: 12px;
-@tabs-tab-icon-margin-right: 8px;
-@tabs-nav-arrow-size: 32px;
-@tabs-nav-arrow-bg: @color-bg-container;
-@tabs-nav-arrow-color: @color-text-secondary;
-@tabs-nav-arrow-shadow: 0 1px 3px @color-tabs-arrow-shadow;
-@tabs-nav-arrow-border-radius: 45px;
-@tabs-ink-bar-height: 2px;
-@tabs-ink-bar-bg: @color-primary;
-@tabs-card-tab-active-bg: @color-bg-container;
-@tabs-card-tab-padding: 8px 16px;
-@tabs-card-tab-bg: @color-bg-container;
-@tabs-card-tab-border: 1px solid @color-border-base;
-@tabs-card-tab-border-radius: 2px 2px 0 0;
-@tabs-add-shadow: 0 1px 3px @color-tabs-arrow-shadow;
-@tabs-small-tab-padding: 8px 0;
-@tabs-small-tab-font-size: 12px;
-@tabs-small-arrow-size: 24px;
-@tabs-large-tab-padding: 16px 0;
-@tabs-large-tab-font-size: 16px;
-@tabs-large-arrow-size: 36px;
+@tabs-nav-margin: 0 0 16px 0; // 标签页导航边距
+@tabs-nav-gap: 8px; // 标签页导航间距
+@tabs-nav-border-bottom: 1px solid @color-border-base; // 标签页导航底部边框
+@tabs-tab-margin-right: 32px; // 标签页右边距
+@tabs-tab-padding: 12px 0; // 标签页内边距
+@tabs-tab-font-size: 14px; // 标签页字体大小
+@tabs-tab-active-color: @color-primary; // 标签页激活颜色
+@tabs-tab-disabled-color: @color-text-disabled; // 标签页禁用颜色
+@tabs-tab-close-margin-left: 8px; // 标签页关闭按钮左边距
+@tabs-tab-close-font-size: 12px; // 标签页关闭按钮字体大小
+@tabs-tab-icon-margin-right: 8px; // 标签页图标右边距
+@tabs-nav-arrow-size: 32px; // 标签页导航箭头尺寸
+@tabs-nav-arrow-bg: @color-bg-container; // 标签页导航箭头背景色
+@tabs-nav-arrow-color: @color-text-secondary; // 标签页导航箭头颜色
+@tabs-nav-arrow-shadow: 0 1px 3px @color-tabs-arrow-shadow; // 标签页导航箭头阴影
+@tabs-nav-arrow-border-radius: 45px; // 标签页导航箭头边框圆角
+@tabs-ink-bar-height: 2px; // 标签页指示条高度
+@tabs-ink-bar-bg: @color-primary; // 标签页指示条背景色
+@tabs-card-tab-active-bg: @color-bg-container; // 卡片式标签页激活背景色
+@tabs-card-tab-padding: 8px 16px; // 卡片式标签页内边距
+@tabs-card-tab-bg: @color-bg-container; // 卡片式标签页背景色
+@tabs-card-tab-border: 1px solid @color-border-base; // 卡片式标签页边框
+@tabs-card-tab-border-radius: 2px 2px 0 0; // 卡片式标签页边框圆角
+@tabs-add-shadow: 0 1px 3px @color-tabs-arrow-shadow; // 标签页添加按钮阴影
+@tabs-small-tab-padding: 8px 0; // 小号标签页内边距
+@tabs-small-tab-font-size: 12px; // 小号标签页字体大小
+@tabs-small-arrow-size: 24px; // 小号标签页箭头尺寸
+@tabs-large-tab-padding: 16px 0; // 大号标签页内边距
+@tabs-large-tab-font-size: 16px; // 大号标签页字体大小
+@tabs-large-arrow-size: 36px; // 大号标签页箭头尺寸
 
 // ===== Tag 标签 =====
-@tag-padding: 2px 7px;
-@tag-font-size: 12px;
-@tag-border-radius: 2px;
-@tag-border-width: 1px;
-@tag-close-icon-margin-left: 3px;
-@tag-close-icon-font-size: 10px;
-@tag-disabled-opacity: 0.6;
+@tag-padding: 2px 7px; // 标签内边距
+@tag-font-size: 12px; // 标签字体大小
+@tag-border-radius: 2px; // 标签边框圆角
+@tag-border-width: 1px; // 标签边框宽度
+@tag-close-icon-margin-left: 3px; // 标签关闭图标左边距
+@tag-close-icon-font-size: 10px; // 标签关闭图标字体大小
+@tag-disabled-opacity: 0.6; // 标签禁用透明度
 
 // ===== Tree 树 =====
-@tree-font-size: 14px;
-@tree-color: @color-text-primary;
-@tree-search-padding: 8px;
-@tree-search-margin-bottom: 8px;
-@tree-search-input-padding: 4px 8px;
-@tree-search-input-border: 1px solid @color-border-base;
-@tree-search-input-border-radius: 2px;
-@tree-search-focus-border-color: @color-primary;
-@tree-search-focus-shadow: 0 0 0 2px @color-focus-primary;
-@tree-node-container-padding: 0 12px;
-@tree-node-content-height: 28px;
-@tree-node-content-padding: 0 4px;
-@tree-node-content-border-radius: 2px;
-@tree-node-hover-bg: @color-hover-bg-light;
-@tree-node-disabled-color: @color-text-disabled;
-@tree-switcher-size: 16px;
-@tree-switcher-margin-right: 4px;
-@tree-icon-margin-right: 4px;
-@tree-icon-font-size: 14px;
-@tree-title-padding: 0 4px;
-@tree-title-selected-bg: @color-primary-light;
-@tree-empty-padding: 40px 20px;
-@tree-line-color: @color-border-base;
-@tree-line-width: 1px;
-@tree-loading-size: 14px;
-@tree-loading-color: @color-primary;
+@tree-font-size: 14px; // 树组件字体大小
+@tree-color: @color-text-primary; // 树组件文字颜色
+@tree-search-padding: 8px; // 树搜索框内边距
+@tree-search-margin-bottom: 8px; // 树搜索框底部边距
+@tree-search-input-padding: 4px 8px; // 树搜索输入框内边距
+@tree-search-input-border: 1px solid @color-border-base; // 树搜索输入框边框
+@tree-search-input-border-radius: 2px; // 树搜索输入框边框圆角
+@tree-search-focus-border-color: @color-primary; // 树搜索输入框聚焦边框颜色
+@tree-search-focus-shadow: 0 0 0 2px @color-focus-primary; // 树搜索输入框聚焦阴影
+@tree-node-container-padding: 0 12px; // 树节点容器内边距
+@tree-node-content-height: 28px; // 树节点内容高度
+@tree-node-content-padding: 0 4px; // 树节点内容内边距
+@tree-node-content-border-radius: 2px; // 树节点内容边框圆角
+@tree-node-hover-bg: @color-hover-bg-light; // 树节点悬停背景色
+@tree-node-disabled-color: @color-text-disabled; // 树节点禁用文字颜色
+@tree-switcher-size: 16px; // 树节点展开收起图标尺寸
+@tree-switcher-margin-right: 4px; // 树节点展开收起图标右边距
+@tree-icon-margin-right: 4px; // 树节点图标右边距
+@tree-icon-font-size: 14px; // 树节点图标字体大小
+@tree-title-padding: 0 4px; // 树节点标题内边距
+@tree-title-selected-bg: @color-primary-light; // 树节点选中背景色
+@tree-empty-padding: 40px 20px; // 树组件空状态内边距
+@tree-line-color: @color-border-base; // 树连接线颜色
+@tree-line-width: 1px; // 树连接线宽度
+@tree-loading-size: 14px; // 树加载图标尺寸
+@tree-loading-color: @color-primary; // 树加载图标颜色
 
 // ===== Cascader 级联选择器 =====
-@cascader-dropdown-bg: @color-bg-base;
-@cascader-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated;
-@cascader-dropdown-border-radius: 6px;
-@cascader-menu-min-width: 120px;
-@cascader-menu-height: 180px;
-@cascader-menu-padding: 4px 0;
-@cascader-menu-border-right: 1px solid @color-border-light;
-@cascader-menu-item-padding: 5px 12px;
-@cascader-menu-item-hover-bg: @color-hover-bg-light;
-@cascader-menu-item-selected-bg: @color-primary-bg;
-@cascader-menu-item-selected-color: @color-primary-light;
-@cascader-menu-item-disabled-color: @color-text-disabled;
-@cascader-search-result-max-height: 256px;
-@cascader-search-result-padding: 4px 0;
-@cascader-empty-padding: 16px;
-@cascader-empty-color: @color-text-disabled;
-@cascader-loading-padding: 8px 0;
+@cascader-dropdown-bg: @color-bg-base; // 级联选择器下拉框背景色
+@cascader-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated; // 级联选择器下拉框阴影
+@cascader-dropdown-border-radius: 6px; // 级联选择器下拉框边框圆角
+@cascader-menu-min-width: 120px; // 级联选择器菜单最小宽度
+@cascader-menu-height: 180px; // 级联选择器菜单高度
+@cascader-menu-padding: 4px 0; // 级联选择器菜单内边距
+@cascader-menu-border-right: 1px solid @color-border-light; // 级联选择器菜单右边框
+@cascader-menu-item-padding: 5px 12px; // 级联选择器菜单项内边距
+@cascader-menu-item-hover-bg: @color-hover-bg-light; // 级联选择器菜单项悬停背景色
+@cascader-menu-item-selected-bg: @color-primary-bg; // 级联选择器菜单项选中背景色
+@cascader-menu-item-selected-color: @color-primary-light; // 级联选择器菜单项选中文字颜色
+@cascader-menu-item-disabled-color: @color-text-disabled; // 级联选择器菜单项禁用文字颜色
+@cascader-search-result-max-height: 256px; // 级联选择器搜索结果最大高度
+@cascader-search-result-padding: 4px 0; // 级联选择器搜索结果内边距
+@cascader-empty-padding: 16px; // 级联选择器空状态内边距
+@cascader-empty-color: @color-text-disabled; // 级联选择器空状态文字颜色
+@cascader-loading-padding: 8px 0; // 级联选择器加载状态内边距
 
 // ===== DateTimer 日期时间选择器 =====
-@date-timer-range-separator-padding: 0 8px;
-@date-timer-range-tab-height: 40px;
-@date-timer-range-tab-border: 1px solid @color-border-light;
-@date-timer-range-tab-color: @color-text-secondary;
-@date-timer-range-tab-font-size: 14px;
-@date-timer-range-tab-hover-color: @color-primary;
-@date-timer-range-tab-active-color: @color-primary;
-@date-timer-range-tab-active-bg: @color-primary-light;
-@date-timer-range-tab-indicator-width: 24px;
-@date-timer-range-tab-indicator-height: 2px;
-@date-timer-range-tab-indicator-color: @color-primary;
-@date-timer-input-height: 32px;
-@date-timer-input-padding: 4px 11px;
-@date-timer-input-border: 1px solid @color-border-base;
-@date-timer-input-border-radius: 2px;
-@date-timer-input-font-size: 14px;
-@date-timer-input-color: @color-text-primary;
-@date-timer-input-hover-border-color: @color-primary-hover;
-@date-timer-input-focus-border-color: @color-primary-hover;
-@date-timer-input-focus-shadow: 0 0 0 2px @color-focus-primary;
-@date-timer-input-error-border-color: @color-error;
-@date-timer-input-warning-border-color: @color-warning;
-@date-timer-input-disabled-bg: @color-bg-disabled;
-@date-timer-input-disabled-color: @color-text-disabled;
-@date-timer-input-small-height: 24px;
-@date-timer-input-small-padding: 0 7px;
-@date-timer-input-large-height: 40px;
-@date-timer-input-large-padding: 6.5px 11px;
-@date-timer-input-large-font-size: 16px;
-@date-timer-dropdown-bg: @color-bg-base;
-@date-timer-dropdown-border-radius: 4px;
-@date-timer-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated, 0 9px 28px 8px @color-shadow-light;
-@date-timer-dropdown-margin-top: 4px;
-@date-timer-dropdown-time-width: 180px;
-@date-timer-dropdown-date-time-width: 480px;
-@date-timer-panel-width: 280px;
-@date-timer-panel-padding: 8px;
-@date-timer-header-height: 40px;
-@date-timer-header-padding: 0 8px;
-@date-timer-header-border-bottom: 1px solid @color-border-light;
-@date-timer-nav-btn-size: 24px;
-@date-timer-nav-btn-color: @color-text-disabled;
-@date-timer-nav-btn-hover-color: @color-text-primary;
-@date-timer-cell-size: 24px;
-@date-timer-cell-margin: 2px 0;
-@date-timer-cell-border-radius: 4px;
-@date-timer-cell-hover-bg: @color-hover-bg-light;
-@date-timer-cell-today-border: 1px solid @color-primary;
-@date-timer-cell-selected-bg: @color-primary;
-@date-timer-cell-selected-color: @color-white;
-@date-timer-cell-in-range-bg: @color-primary-light;
-@date-timer-cell-disabled-color: @color-text-disabled;
-@date-timer-cell-prev-next-color: @color-text-disabled;
-@date-timer-week-selected-bg: @color-date-timer-week-selected;
-@date-timer-nav-btn-hover-color: @color-text-primary;
-@date-timer-header-view-color: @color-text-primary;
-@date-timer-weekday-color: @color-text-secondary;
-@date-timer-cell-color: @color-text-primary;
-@date-timer-time-title-color: @color-text-disabled;
-@date-timer-footer-text-color: @color-text-secondary;
-@date-timer-footer-button-hover-color: @color-primary-hover;
-@date-timer-cell-border-radius: 4px;
-@date-timer-time-column-height: 224px;
-@date-timer-time-cell-height: 32px;
-@date-timer-time-cell-selected-bg: @color-primary-light;
-@date-timer-time-cell-selected-color: @color-primary;
-@date-timer-footer-padding: 8px;
-@date-timer-footer-line-height: 40px;
-@date-timer-footer-border-top: 1px solid @color-border-light;
-@date-timer-btn-height: 24px;
-@date-timer-btn-padding: 0 7px;
-@date-timer-btn-font-size: 14px;
-@date-timer-btn-color: @color-primary;
-@date-timer-btn-border: 1px solid @color-primary;
-@date-timer-btn-border-radius: 4px;
-@date-timer-ok-btn-bg: @color-primary;
-@date-timer-ok-btn-color: @color-white;
-@date-timer-time-step-active-bg: @color-primary-bg;
-@date-timer-time-step-border-radius: 4px;
-@date-timer-mode-item-hover-bg: @color-primary-bg;
-@date-timer-mode-item-active-bg: @color-primary-bg;
-@date-timer-week-number-hover-bg: @color-primary-bg;
-@date-timer-week-indicator-hover-bg: @color-primary-bg;
+@date-timer-range-separator-padding: 0 8px; // 日期时间选择器范围分隔符内边距
+@date-timer-range-tab-height: 40px; // 日期时间选择器范围标签高度
+@date-timer-range-tab-border: 1px solid @color-border-light; // 日期时间选择器范围标签边框
+@date-timer-range-tab-color: @color-text-secondary; // 日期时间选择器范围标签文字颜色
+@date-timer-range-tab-font-size: 14px; // 日期时间选择器范围标签字体大小
+@date-timer-range-tab-hover-color: @color-primary; // 日期时间选择器范围标签悬停颜色
+@date-timer-range-tab-active-color: @color-primary; // 日期时间选择器范围标签激活颜色
+@date-timer-range-tab-active-bg: @color-primary-light; // 日期时间选择器范围标签激活背景色
+@date-timer-range-tab-indicator-width: 24px; // 日期时间选择器范围标签指示器宽度
+@date-timer-range-tab-indicator-height: 2px; // 日期时间选择器范围标签指示器高度
+@date-timer-range-tab-indicator-color: @color-primary; // 日期时间选择器范围标签指示器颜色
+@date-timer-input-height: 32px; // 日期时间选择器输入框高度
+@date-timer-input-padding: 4px 11px; // 日期时间选择器输入框内边距
+@date-timer-input-border: 1px solid @color-border-base; // 日期时间选择器输入框边框
+@date-timer-input-border-radius: 2px; // 日期时间选择器输入框边框圆角
+@date-timer-input-font-size: 14px; // 日期时间选择器输入框字体大小
+@date-timer-input-color: @color-text-primary; // 日期时间选择器输入框文字颜色
+@date-timer-input-hover-border-color: @color-primary-hover; // 日期时间选择器输入框悬停边框颜色
+@date-timer-input-focus-border-color: @color-primary-hover; // 日期时间选择器输入框聚焦边框颜色
+@date-timer-input-focus-shadow: 0 0 0 2px @color-focus-primary; // 日期时间选择器输入框聚焦阴影
+@date-timer-input-error-border-color: @color-error; // 日期时间选择器输入框错误边框颜色
+@date-timer-input-warning-border-color: @color-warning; // 日期时间选择器输入框警告边框颜色
+@date-timer-input-disabled-bg: @color-bg-disabled; // 日期时间选择器输入框禁用背景色
+@date-timer-input-disabled-color: @color-text-disabled; // 日期时间选择器输入框禁用文字颜色
+@date-timer-input-small-height: 24px; // 小号日期时间选择器输入框高度
+@date-timer-input-small-padding: 0 7px; // 小号日期时间选择器输入框内边距
+@date-timer-input-large-height: 40px; // 大号日期时间选择器输入框高度
+@date-timer-input-large-padding: 6.5px 11px; // 大号日期时间选择器输入框内边距
+@date-timer-input-large-font-size: 16px; // 大号日期时间选择器输入框字体大小
+@date-timer-dropdown-bg: @color-bg-base; // 日期时间选择器下拉框背景色
+@date-timer-dropdown-border-radius: 4px; // 日期时间选择器下拉框边框圆角
+@date-timer-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated, 0 9px 28px 8px @color-shadow-light; // 日期时间选择器下拉框阴影
+@date-timer-dropdown-margin-top: 4px; // 日期时间选择器下拉框顶部边距
+@date-timer-dropdown-time-width: 180px; // 日期时间选择器时间面板宽度
+@date-timer-dropdown-date-time-width: 480px; // 日期时间选择器日期时间面板宽度
+@date-timer-panel-width: 280px; // 日期时间选择器面板宽度
+@date-timer-panel-padding: 8px; // 日期时间选择器面板内边距
+@date-timer-header-height: 40px; // 日期时间选择器头部高度
+@date-timer-header-padding: 0 8px; // 日期时间选择器头部内边距
+@date-timer-header-border-bottom: 1px solid @color-border-light; // 日期时间选择器头部底部边框
+@date-timer-nav-btn-size: 24px; // 日期时间选择器导航按钮尺寸
+@date-timer-nav-btn-color: @color-text-disabled; // 日期时间选择器导航按钮颜色
+@date-timer-nav-btn-hover-color: @color-text-primary; // 日期时间选择器导航按钮悬停颜色
+@date-timer-cell-size: 24px; // 日期时间选择器单元格尺寸
+@date-timer-cell-margin: 2px 0; // 日期时间选择器单元格边距
+@date-timer-cell-border-radius: 4px; // 日期时间选择器单元格边框圆角
+@date-timer-cell-hover-bg: @color-hover-bg-light; // 日期时间选择器单元格悬停背景色
+@date-timer-cell-today-border: 1px solid @color-primary; // 日期时间选择器今日单元格边框
+@date-timer-cell-selected-bg: @color-primary; // 日期时间选择器选中单元格背景色
+@date-timer-cell-selected-color: @color-white; // 日期时间选择器选中单元格文字颜色
+@date-timer-cell-in-range-bg: @color-primary-light; // 日期时间选择器范围内单元格背景色
+@date-timer-cell-disabled-color: @color-text-disabled; // 日期时间选择器禁用单元格文字颜色
+@date-timer-cell-prev-next-color: @color-text-disabled; // 日期时间选择器上下月单元格文字颜色
+@date-timer-week-selected-bg: @color-date-timer-week-selected; // 日期时间选择器周选中背景色
+@date-timer-nav-btn-hover-color: @color-text-primary; // 日期时间选择器导航按钮悬停颜色（重复定义）
+@date-timer-header-view-color: @color-text-primary; // 日期时间选择器头部视图文字颜色
+@date-timer-weekday-color: @color-text-secondary; // 日期时间选择器星期标题颜色
+@date-timer-cell-color: @color-text-primary; // 日期时间选择器单元格文字颜色
+@date-timer-time-title-color: @color-text-disabled; // 日期时间选择器时间标题颜色
+@date-timer-footer-text-color: @color-text-secondary; // 日期时间选择器底部文字颜色
+@date-timer-footer-button-hover-color: @color-primary-hover; // 日期时间选择器底部按钮悬停颜色
+@date-timer-cell-border-radius: 4px; // 日期时间选择器单元格边框圆角（重复定义）
+@date-timer-time-column-height: 224px; // 日期时间选择器时间列高度
+@date-timer-time-cell-height: 32px; // 日期时间选择器时间单元格高度
+@date-timer-time-cell-selected-bg: @color-primary-light; // 日期时间选择器时间单元格选中背景色
+@date-timer-time-cell-selected-color: @color-primary; // 日期时间选择器时间单元格选中文字颜色
+@date-timer-footer-padding: 8px; // 日期时间选择器底部内边距
+@date-timer-footer-line-height: 40px; // 日期时间选择器底部行高
+@date-timer-footer-border-top: 1px solid @color-border-light; // 日期时间选择器底部顶部边框
+@date-timer-btn-height: 24px; // 日期时间选择器按钮高度
+@date-timer-btn-padding: 0 7px; // 日期时间选择器按钮内边距
+@date-timer-btn-font-size: 14px; // 日期时间选择器按钮字体大小
+@date-timer-btn-color: @color-primary; // 日期时间选择器按钮颜色
+@date-timer-btn-border: 1px solid @color-primary; // 日期时间选择器按钮边框
+@date-timer-btn-border-radius: 4px; // 日期时间选择器按钮边框圆角
+@date-timer-ok-btn-bg: @color-primary; // 日期时间选择器确定按钮背景色
+@date-timer-ok-btn-color: @color-white; // 日期时间选择器确定按钮文字颜色
+@date-timer-time-step-active-bg: @color-primary-bg; // 日期时间选择器时间步进激活背景色
+@date-timer-time-step-border-radius: 4px; // 日期时间选择器时间步进边框圆角
+@date-timer-mode-item-hover-bg: @color-primary-bg; // 日期时间选择器模式项悬停背景色
+@date-timer-mode-item-active-bg: @color-primary-bg; // 日期时间选择器模式项激活背景色
+@date-timer-week-number-hover-bg: @color-primary-bg; // 日期时间选择器周数悬停背景色
+@date-timer-week-indicator-hover-bg: @color-primary-bg; // 日期时间选择器周指示器悬停背景色
 
 // ===== DropMenu 下拉菜单 =====
-@drop-menu-min-width: 160px;
-@drop-menu-border-radius: 6px;
-@drop-menu-shadow: 0 0 6px 0 @shadow-color-elevated;
-@drop-menu-bg: @color-bg-base;
-@drop-menu-border: 1px solid @color-border-dropdown;
-@drop-menu-item-height: 38px;
-@drop-menu-item-padding: 4px 8px;
-@drop-menu-item-font-size: 14px;
-@drop-menu-item-color: @color-text-secondary;
-@drop-menu-item-border-radius: 6px;
-@drop-menu-item-hover-color: @color-text-primary;
-@drop-menu-item-hover-bg: @color-hover-bg;
-@drop-menu-item-disabled-color: @color-text-disabled;
-@drop-menu-item-selected-bg: @color-primary-bg;
-@drop-menu-item-icon-margin-right: 10px;
-@drop-menu-item-icon-font-size: 16px;
-@drop-menu-item-expand-icon-margin-left: 8px;
-@drop-menu-submenu-margin-left: 4px;
-@drop-menu-empty-padding: 12px 16px;
-@drop-menu-empty-color: @color-text-disabled;
-@drop-menu-empty-font-size: 14px;
+@drop-menu-min-width: 160px; // 下拉菜单最小宽度
+@drop-menu-border-radius: 6px; // 下拉菜单边框圆角
+@drop-menu-shadow: 0 0 6px 0 @shadow-color-elevated; // 下拉菜单阴影
+@drop-menu-bg: @color-bg-base; // 下拉菜单背景色
+@drop-menu-border: 1px solid @color-border-dropdown; // 下拉菜单边框
+@drop-menu-item-height: 38px; // 下拉菜单项高度
+@drop-menu-item-padding: 4px 8px; // 下拉菜单项内边距
+@drop-menu-item-font-size: 14px; // 下拉菜单项字体大小
+@drop-menu-item-color: @color-text-secondary; // 下拉菜单项文字颜色
+@drop-menu-item-border-radius: 6px; // 下拉菜单项边框圆角
+@drop-menu-item-hover-color: @color-text-primary; // 下拉菜单项悬停文字颜色
+@drop-menu-item-hover-bg: @color-hover-bg; // 下拉菜单项悬停背景色
+@drop-menu-item-disabled-color: @color-text-disabled; // 下拉菜单项禁用文字颜色
+@drop-menu-item-selected-bg: @color-primary-bg; // 下拉菜单项选中背景色
+@drop-menu-item-icon-margin-right: 10px; // 下拉菜单项图标右边距
+@drop-menu-item-icon-font-size: 16px; // 下拉菜单项图标字体大小
+@drop-menu-item-expand-icon-margin-left: 8px; // 下拉菜单项展开图标左边距
+@drop-menu-submenu-margin-left: 4px; // 下拉子菜单左边距
+@drop-menu-empty-padding: 12px 16px; // 下拉菜单空状态内边距
+@drop-menu-empty-color: @color-text-disabled; // 下拉菜单空状态文字颜色
+@drop-menu-empty-font-size: 14px; // 下拉菜单空状态字体大小
 
 // ===== NumberInput 数字输入框 =====
-@number-input-height: @height-base;
-@number-input-padding: @padding-xs @control-padding-horizontal;
-@number-input-border: @border-width-base solid @color-border-base;
-@number-input-border-radius: @border-radius-sm;
-@number-input-font-size: @font-size-base;
-@number-input-hover-border-color: @color-primary;
-@number-input-focus-border-color: @color-primary;
-@number-input-focus-shadow: @shadow-focus-primary;
-@number-input-error-border-color: @color-error;
-@number-input-error-shadow: @shadow-focus-error;
-@number-input-warning-border-color: @color-warning;
-@number-input-warning-shadow: @shadow-focus-warning;
-@number-input-disabled-bg: @color-bg-disabled;
-@number-input-disabled-color: @color-text-disabled;
-@number-input-handler-width: @width-trigger-sm;
-@number-input-handler-border: @border-width-base solid @color-border-base;
-@number-input-handler-hover-bg: @color-hover-bg;
-@number-input-handler-arrow-size: @padding-xs;
-@number-input-handler-arrow-color: @color-text-disabled;
-@number-input-handler-hover-arrow-color: @color-primary;
-@number-input-prefix-suffix-color: @color-text-secondary;
+@number-input-height: @height-base; // 数字输入框高度
+@number-input-padding: @padding-xs @control-padding-horizontal; // 数字输入框内边距
+@number-input-border: @border-width-base solid @color-border-base; // 数字输入框边框
+@number-input-border-radius: @border-radius-sm; // 数字输入框边框圆角
+@number-input-font-size: @font-size-base; // 数字输入框字体大小
+@number-input-hover-border-color: @color-primary; // 数字输入框悬停边框颜色
+@number-input-focus-border-color: @color-primary; // 数字输入框聚焦边框颜色
+@number-input-focus-shadow: @shadow-focus-primary; // 数字输入框聚焦阴影
+@number-input-error-border-color: @color-error; // 数字输入框错误边框颜色
+@number-input-error-shadow: @shadow-focus-error; // 数字输入框错误阴影
+@number-input-warning-border-color: @color-warning; // 数字输入框警告边框颜色
+@number-input-warning-shadow: @shadow-focus-warning; // 数字输入框警告阴影
+@number-input-disabled-bg: @color-bg-disabled; // 数字输入框禁用背景色
+@number-input-disabled-color: @color-text-disabled; // 数字输入框禁用文字颜色
+@number-input-handler-width: @width-trigger-sm; // 数字输入框操作按钮宽度
+@number-input-handler-border: @border-width-base solid @color-border-base; // 数字输入框操作按钮边框
+@number-input-handler-hover-bg: @color-hover-bg; // 数字输入框操作按钮悬停背景色
+@number-input-handler-arrow-size: @padding-xs; // 数字输入框操作按钮箭头尺寸
+@number-input-handler-arrow-color: @color-text-disabled; // 数字输入框操作按钮箭头颜色
+@number-input-handler-hover-arrow-color: @color-primary; // 数字输入框操作按钮箭头悬停颜色
+@number-input-prefix-suffix-color: @color-text-secondary; // 数字输入框前缀后缀颜色
 
 // ===== Segmented 分段器 =====
-@segmented-bg: @color-bg-elevated;
-@segmented-border-radius: @border-radius-base;
-@segmented-padding: @border-radius-sm;
-@segmented-gap: @border-radius-sm;
-@segmented-item-height: 28px;
-@segmented-item-padding: @padding-xs @padding-md;
-@segmented-item-color: @color-text-secondary;
-@segmented-item-selected-color: @color-text-primary;
-@segmented-item-disabled-color: @color-text-disabled;
-@segmented-thumb-bg: @color-white;
-@segmented-thumb-border-radius: @border-radius-sm;
-@segmented-thumb-shadow: @shadow-elevated;
-@segmented-thumb-height: @height-sm;
-@segmented-nav-size: @height-sm;
-@segmented-nav-bg: @color-white;
-@segmented-nav-color: @color-text-secondary;
-@segmented-nav-hover-bg: @color-bg-container;
-@segmented-nav-hover-color: @color-text-primary;
-@segmented-nav-shadow: 0 @border-radius-sm 5px @color-shadow-medium;
-@segmented-nav-border-radius: @border-radius-sm;
-@segmented-large-item-height: @height-lg;
-@segmented-large-item-font-size: @font-size-lg;
-@segmented-large-nav-size: @width-trigger-base;
-@segmented-large-thumb-height: @height-lg;
-@segmented-small-item-height: @height-xs;
-@segmented-small-item-font-size: @font-size-sm;
-@segmented-small-nav-size: 18px;
-@segmented-small-thumb-height: @height-xs;
-@segmented-disabled-thumb-bg: @color-hover-bg;
+@segmented-bg: @color-bg-elevated; // 分段器背景色
+@segmented-border-radius: @border-radius-base; // 分段器边框圆角
+@segmented-padding: @border-radius-sm; // 分段器内边距
+@segmented-gap: @border-radius-sm; // 分段器间距
+@segmented-item-height: 28px; // 分段器项高度
+@segmented-item-padding: @padding-xs @padding-md; // 分段器项内边距
+@segmented-item-color: @color-text-secondary; // 分段器项文字颜色
+@segmented-item-selected-color: @color-text-primary; // 分段器项选中文字颜色
+@segmented-item-disabled-color: @color-text-disabled; // 分段器项禁用文字颜色
+@segmented-thumb-bg: @color-white; // 分段器滑块背景色
+@segmented-thumb-border-radius: @border-radius-sm; // 分段器滑块边框圆角
+@segmented-thumb-shadow: @shadow-elevated; // 分段器滑块阴影
+@segmented-thumb-height: @height-sm; // 分段器滑块高度
+@segmented-nav-size: @height-sm; // 分段器导航尺寸
+@segmented-nav-bg: @color-white; // 分段器导航背景色
+@segmented-nav-color: @color-text-secondary; // 分段器导航文字颜色
+@segmented-nav-hover-bg: @color-bg-container; // 分段器导航悬停背景色
+@segmented-nav-hover-color: @color-text-primary; // 分段器导航悬停文字颜色
+@segmented-nav-shadow: 0 @border-radius-sm 5px @color-shadow-medium; // 分段器导航阴影
+@segmented-nav-border-radius: @border-radius-sm; // 分段器导航边框圆角
+@segmented-large-item-height: @height-lg; // 大号分段器项高度
+@segmented-large-item-font-size: @font-size-lg; // 大号分段器项字体大小
+@segmented-large-nav-size: @width-trigger-base; // 大号分段器导航尺寸
+@segmented-large-thumb-height: @height-lg; // 大号分段器滑块高度
+@segmented-small-item-height: @height-xs; // 小号分段器项高度
+@segmented-small-item-font-size: @font-size-sm; // 小号分段器项字体大小
+@segmented-small-nav-size: 18px; // 小号分段器导航尺寸
+@segmented-small-thumb-height: @height-xs; // 小号分段器滑块高度
+@segmented-disabled-thumb-bg: @color-hover-bg; // 分段器禁用滑块背景色
 
 // ===== Slider 滑块 =====
-@slider-container-height: 14px;
-@slider-container-margin: 14px 6px 10px;
-@slider-container-padding: 5px 0;
-@slider-rail-height: @padding-xs;
-@slider-rail-bg: @color-border-light;
-@slider-rail-border-radius: @border-radius-sm;
-@slider-track-height: @padding-xs;
-@slider-track-bg: @color-primary;
-@slider-track-border-radius: @border-radius-sm;
-@slider-handle-size: 14px;
-@slider-handle-bg: @color-white;
-@slider-handle-border: @border-width-thick solid @color-primary;
-@slider-handle-border-radius: @border-radius-round;
-@slider-handle-shadow: 0 @border-radius-sm 6px @color-slider-handle-shadow;
-@slider-handle-hover-shadow: 0 @padding-xs 12px @color-slider-handle-hover-shadow;
-@slider-handle-margin-top: -5px;
-@slider-mark-top: 18px;
-@slider-mark-dot-size: @padding-sm;
-@slider-mark-dot-bg: @color-white;
-@slider-mark-dot-border: @border-width-base solid @color-border-base;
-@slider-mark-dot-border-radius: @border-radius-round;
-@slider-mark-text-font-size: @font-size-sm;
-@slider-mark-text-color: @color-text-secondary;
-@slider-mark-text-margin-top: @padding-sm;
-@slider-with-marks-margin-bottom: 28px;
+@slider-container-height: 14px; // 滑块容器高度
+@slider-container-margin: 14px 6px 10px; // 滑块容器边距
+@slider-container-padding: 5px 0; // 滑块容器内边距
+@slider-rail-height: @padding-xs; // 滑块轨道高度
+@slider-rail-bg: @color-border-light; // 滑块轨道背景色
+@slider-rail-border-radius: @border-radius-sm; // 滑块轨道边框圆角
+@slider-track-height: @padding-xs; // 滑块进度条高度
+@slider-track-bg: @color-primary; // 滑块进度条背景色
+@slider-track-border-radius: @border-radius-sm; // 滑块进度条边框圆角
+@slider-handle-size: 14px; // 滑块控制柄尺寸
+@slider-handle-bg: @color-white; // 滑块控制柄背景色
+@slider-handle-border: @border-width-thick solid @color-primary; // 滑块控制柄边框
+@slider-handle-border-radius: @border-radius-round; // 滑块控制柄边框圆角
+@slider-handle-shadow: 0 @border-radius-sm 6px @color-slider-handle-shadow; // 滑块控制柄阴影
+@slider-handle-hover-shadow: 0 @padding-xs 12px @color-slider-handle-hover-shadow; // 滑块控制柄悬停阴影
+@slider-handle-margin-top: -5px; // 滑块控制柄顶部边距
+@slider-mark-top: 18px; // 滑块刻度顶部位置
+@slider-mark-dot-size: @padding-sm; // 滑块刻度圆点尺寸
+@slider-mark-dot-bg: @color-white; // 滑块刻度圆点背景色
+@slider-mark-dot-border: @border-width-base solid @color-border-base; // 滑块刻度圆点边框
+@slider-mark-dot-border-radius: @border-radius-round; // 滑块刻度圆点边框圆角
+@slider-mark-text-font-size: @font-size-sm; // 滑块刻度文字字体大小
+@slider-mark-text-color: @color-text-secondary; // 滑块刻度文字颜色
+@slider-mark-text-margin-top: @padding-sm; // 滑块刻度文字顶部边距
+@slider-with-marks-margin-bottom: 28px; // 带刻度滑块底部边距
 
 // ===== TreeSelect 树选择器 =====
-@tree-select-dropdown-bg: @color-bg-base;
-@tree-select-dropdown-shadow: @shadow-elevated;
-@tree-select-dropdown-border-radius: @border-radius-lg;
+@tree-select-dropdown-bg: @color-bg-base; // 树选择器下拉框背景色
+@tree-select-dropdown-shadow: @shadow-elevated; // 树选择器下拉框阴影
+@tree-select-dropdown-border-radius: @border-radius-lg; // 树选择器下拉框边框圆角
 
 // ===== Tree 树形控件 =====
-@tree-font-size: @font-size-base;
-@tree-color: @color-text-primary;
-@tree-search-padding: @padding-sm;
-@tree-search-margin-bottom: @padding-sm;
-@tree-search-input-padding: @padding-xs @padding-sm;
-@tree-search-input-border: @border-width-base solid @color-border-base;
-@tree-search-input-border-radius: @border-radius-sm;
-@tree-search-focus-border-color: @color-primary;
-@tree-search-focus-shadow: @shadow-focus-primary;
-@tree-node-container-padding: 0 12px;
-@tree-node-content-padding: 0 @padding-xs;
-@tree-node-content-height: 28px;
-@tree-node-content-border-radius: @border-radius-sm;
-@tree-node-disabled-color: @color-text-disabled;
-@tree-node-hover-bg: @color-hover-bg-light;
-@tree-switcher-size: @padding-md;
-@tree-switcher-margin-right: @padding-xs;
-@tree-icon-margin-right: @padding-xs;
-@tree-icon-font-size: @font-size-base;
-@tree-title-padding: 0 @padding-xs;
-@tree-title-selected-bg: @color-primary-light;
-@tree-empty-padding: @height-lg @height-xs;
-@tree-line-width: @border-width-base;
-@tree-line-color: @color-border-base;
-@tree-loading-color: @color-primary;
-@tree-loading-size: @font-size-base;
+@tree-font-size: @font-size-base; // 树形控件字体大小
+@tree-color: @color-text-primary; // 树形控件文字颜色
+@tree-search-padding: @padding-sm; // 树形控件搜索框内边距
+@tree-search-margin-bottom: @padding-sm; // 树形控件搜索框底部边距
+@tree-search-input-padding: @padding-xs @padding-sm; // 树形控件搜索输入框内边距
+@tree-search-input-border: @border-width-base solid @color-border-base; // 树形控件搜索输入框边框
+@tree-search-input-border-radius: @border-radius-sm; // 树形控件搜索输入框边框圆角
+@tree-search-focus-border-color: @color-primary; // 树形控件搜索输入框聚焦边框颜色
+@tree-search-focus-shadow: @shadow-focus-primary; // 树形控件搜索输入框聚焦阴影
+@tree-node-container-padding: 0 12px; // 树形控件节点容器内边距
+@tree-node-content-padding: 0 @padding-xs; // 树形控件节点内容内边距
+@tree-node-content-height: 28px; // 树形控件节点内容高度
+@tree-node-content-border-radius: @border-radius-sm; // 树形控件节点内容边框圆角
+@tree-node-disabled-color: @color-text-disabled; // 树形控件节点禁用文字颜色
+@tree-node-hover-bg: @color-hover-bg-light; // 树形控件节点悬停背景色
+@tree-switcher-size: @padding-md; // 树形控件展开收起图标尺寸
+@tree-switcher-margin-right: @padding-xs; // 树形控件展开收起图标右边距
+@tree-icon-margin-right: @padding-xs; // 树形控件图标右边距
+@tree-icon-font-size: @font-size-base; // 树形控件图标字体大小
+@tree-title-padding: 0 @padding-xs; // 树形控件标题内边距
+@tree-title-selected-bg: @color-primary-light; // 树形控件标题选中背景色
+@tree-empty-padding: @height-lg @height-xs; // 树形控件空状态内边距
+@tree-line-width: @border-width-base; // 树形控件连接线宽度
+@tree-line-color: @color-border-base; // 树形控件连接线颜色
+@tree-loading-color: @color-primary; // 树形控件加载图标颜色
+@tree-loading-size: @font-size-base; // 树形控件加载图标尺寸
