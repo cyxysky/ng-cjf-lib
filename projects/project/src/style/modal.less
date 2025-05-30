@@ -38,7 +38,7 @@
         justify-content: space-between;
         align-items: center;
         padding: @modal-header-padding;
-        color: @text-color;
+        color: @modal-header-text-color;
         background: @modal-bg;
         border-bottom: @modal-header-border-bottom;
         border-radius: @modal-border-radius @modal-border-radius 0 0;
@@ -75,7 +75,7 @@
         color: #d9d9d9;
         font-weight: 700;
         cursor: pointer;
-        transition: color 300ms;
+        transition: color @transition-duration-base;
 
         &:hover {
             color: #434343;

@@ -11,8 +11,6 @@
     cursor: pointer;
     font-size: @select-option-font-size;
     color: @select-option-color;
-    border-radius: 0;
-    transition: background-color 300ms;
 
     &:hover,
     &.c-lib-select-option-active {
@@ -38,7 +36,6 @@
 
 .c-lib-select-option-selected-base() {
     background-color: @select-option-selected-bg !important;
-    font-weight: 500;
     color: @select-option-selected-color;
 }
 
@@ -71,7 +68,7 @@
     transform-origin: 0 0;
     opacity: 0;
     transform: scaleY(0.1);
-    transition: opacity 300ms, transform 300ms;
+    transition: opacity @transition-duration-base, transform @transition-duration-fast;
 
     &.c-lib-select-dropdown-visible {
         opacity: 1;
@@ -154,7 +151,7 @@
         font-size: @select-option-font-size;
         color: @select-option-color;
         border-radius: 0;
-        transition: background-color 300ms;
+        transition: background-color @transition-duration-base;
 
         .c-lib-select-option-text {
             max-width: 100%;

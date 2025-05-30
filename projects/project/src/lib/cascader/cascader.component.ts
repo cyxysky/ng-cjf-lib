@@ -1220,7 +1220,36 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   }
 
   /**
-   * 处理复选框点击事件
+   * 处理复选框变化事件
+   * @param option 选项
+   * @param columnIndex 列索引
+   * @param checked 新的选中状态
+   */
+  public onCheckboxChange(option: CascaderOption, columnIndex: number, checked: boolean): void {
+    if (option.disabled || option.disableCheckbox) return;
+    
+    // 直接设置选项状态为新的值
+    option.checked = checked;
+    option.halfChecked = false;
+    
+    // 更新子节点状态
+    this.setChildrenCheckedState(option, checked);
+    // 更新父节点状态
+    this.updateParentCheckedState(option);
+    // 更新选中路径映射
+    this.updateSelectedPathsMap();
+    // 更新多选值
+    this.updateMultipleValues();
+    // 触发事件
+    this.emitValueChange();
+    // 强制触发变更检测，确保UI立即更新
+    this.cdr.detectChanges();
+    // 如果下拉菜单打开，则聚焦搜索
+    this.isDropdownOpen && this.focusSearch();
+  }
+
+  /**
+   * 处理复选框点击事件（保留兼容性）
    * @param option 选项
    * @param columnIndex 列索引
    * @param event 事件
@@ -1228,7 +1257,6 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   public onCheckboxClick(option: CascaderOption, columnIndex: number, event: Event | null): void {
     event?.stopPropagation();
     if (option.disabled || option.disableCheckbox) return;
-    this.tempSelectedOptions[columnIndex] = option;
     // 调用多选切换函数
     this.toggleMultipleSelection(option);
   }

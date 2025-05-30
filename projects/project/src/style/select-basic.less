@@ -39,9 +39,8 @@ lib-select {
     border-radius: @select-tag-border-radius;
     cursor: default;
     box-sizing: border-box;
-    transition: all 300ms;
+    transition: all @transition-duration-base;
     border: @select-tag-border;
-    box-shadow: @shadow-level-1;
     white-space: nowrap;
     overflow: hidden;
 
@@ -68,7 +67,7 @@ lib-select {
         cursor: pointer;
         pointer-events: all;
         border-radius: 2px;
-        transition: all 300ms;
+        transition: all @transition-duration-base;
         flex: 0 0 auto;
 
         &:hover {
@@ -116,8 +115,7 @@ lib-select {
     background-color: @select-box-bg;
     border: @select-box-border-width solid @select-box-border-color;
     border-radius: @select-box-border-radius;
-    transition: all 300ms;
-    min-height: @select-box-min-height;
+    transition: all @transition-duration-base;
     font-size: @select-box-font-size;
     cursor: pointer;
     line-height: normal;
@@ -137,7 +135,19 @@ lib-select {
     }
 
     .c-lib-select-basic-search-input {
-        height: 22px;
+        height: 28px;
+    }
+
+    .c-lib-select-basic-box-content {
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1px 0 1px 4px;
+        min-height: 30px;
+        position: relative;
+        align-items: center;
+        max-width: calc(100% - 32px);
+        overflow: hidden;
     }
 
     &.c-lib-select-basic-box-lg {
@@ -145,17 +155,17 @@ lib-select {
         font-size: @select-box-large-font-size;
 
         .c-lib-select-basic-box-content {
-            min-height: 30px;
+            padding: 2px 0 2px 4px;
+            min-height: 38px;
         }
 
         .c-lib-select-basic-box-placeholder,
         .c-lib-select-basic-box-singal-data {
             font-size: 16px;
-            padding-left: 11px;
         }
 
         .c-lib-select-basic-search-input {
-            height: 30px;
+            height: 34px;
         }
     }
 
@@ -164,27 +174,16 @@ lib-select {
         font-size: @select-box-font-size;
 
         .c-lib-select-basic-box-content {
-            min-height: 14px;
+            min-height: 22px;
         }
 
         .c-lib-select-basic-box-placeholder,
         .c-lib-select-basic-box-singal-data {
             font-size: 14px;
-            padding-left: 11px;
         }
 
-        .c-lib-select-basic-box-suffix {
-            min-width: @input-small-height;
-            max-width: @input-small-height;
-            height: 100%;
-        }
-
-        .c-lib-select-basic-search-box {
-            margin-left: 2px;
-
-            .c-lib-select-basic-search-input {
-                height: 14px;
-            }
+        .c-lib-select-basic-search-input {
+            height: 20px;
         }
     }
 
@@ -211,18 +210,6 @@ lib-select {
         }
     }
 
-    .c-lib-select-basic-box-content {
-        flex-grow: 1;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 4px 0 4px 11px;
-        min-height: 22px;
-        position: relative;
-        gap: 0px;
-        align-items: center;
-        max-width: calc(100% - 32px);
-        overflow: hidden;
-    }
 
     .c-lib-select-basic-box-suffix {
         display: flex;
@@ -238,7 +225,7 @@ lib-select {
         .c-lib-select-basic-box-clear-icon {
             display: none;
             color: @input-disabled-color;
-            transition: all 300ms;
+            transition: all @transition-duration-base;
 
             &:hover {
                 color: @input-prefix-suffix-color;
@@ -246,7 +233,7 @@ lib-select {
         }
 
         .c-lib-select-basic-box-icon {
-            transition: all 300ms;
+            transition: all @transition-duration-base;
             color: @input-prefix-suffix-color;
         }
 
@@ -282,7 +269,7 @@ lib-select {
 .c-lib-select-basic-box-placeholder {
     display: flex;
     align-items: center;
-    padding-left: 11px;
+    padding-left: 4px;
     color: @input-placeholder-color;
     position: absolute;
     height: 100%;
@@ -300,7 +287,7 @@ lib-select {
 }
 
 .c-lib-select-basic-box-singal-data {
-    padding-left: 11px;
+    padding-left: 4px;
     color: @input-color;
     position: absolute;
     max-width: 100%;
@@ -345,5 +332,5 @@ lib-select {
 .c-lib-select-basic-box-tag-component {
     display: inline-flex;
     margin: 2px;
-    max-width: 100%;
+    max-width: calc(100% - 4px);
 }

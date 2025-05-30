@@ -99,7 +99,7 @@
                                     [checkboxIndeterminate]="option.halfChecked" 
                                     [checkboxDisabled]="option.disabled || option.disableCheckbox"
                                     [checkboxSingleLabel]="''"
-                                    (click)="onCheckboxClick(option, i, $event)"
+                                    (ngModelChange)="onCheckboxChange(option, i, $event)"
                                     >
                                 </lib-checkbox>
                             </ng-container>

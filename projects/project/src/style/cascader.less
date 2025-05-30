@@ -4,7 +4,7 @@
     border-radius: @cascader-dropdown-border-radius;
     overflow: hidden;
     transform-origin: 0 0;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
     z-index: 1000;
     opacity: 0;
     transform: scaleY(0.1);
@@ -105,7 +105,7 @@
             .c-lib-cascader-menu-item {
                 padding: @cascader-menu-item-padding;
                 cursor: pointer;
-                transition: all 0.3s;
+                transition: all @transition-duration-base;
                 display: flex;
                 align-items: center;
                 width: 100%;
@@ -126,13 +126,10 @@
 
                 &-active {
                     background-color: @cascader-menu-item-hover-bg;
-                    font-weight: 500;
                 }
 
                 &-selected {
-                    color: @cascader-menu-item-selected-color;
                     background-color: @cascader-menu-item-selected-bg;
-                    font-weight: 500;
                 }
 
                 &-content {

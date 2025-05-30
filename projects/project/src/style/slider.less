@@ -13,7 +13,7 @@
     height: @slider-rail-height;
     background-color: @slider-rail-bg;
     border-radius: @slider-rail-border-radius;
-    transition: background-color 0.3s;
+    transition: background-color @transition-duration-base;
   }
 
   &-track {
@@ -34,7 +34,6 @@
     border-radius: @slider-handle-border-radius;
     box-shadow: @slider-handle-shadow;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateX(-50%);
 
     &:hover,

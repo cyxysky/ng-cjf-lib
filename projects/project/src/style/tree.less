@@ -20,7 +20,7 @@
             padding: @tree-search-input-padding;
             border: @tree-search-input-border;
             border-radius: @tree-search-input-border-radius;
-            transition: all 300ms;
+            transition: all @transition-duration-base;
 
             &:focus {
                 border-color: @tree-search-focus-border-color;
@@ -54,7 +54,7 @@
             height: @tree-node-content-height;
             border-radius: @tree-node-content-border-radius;
             cursor: pointer;
-            transition: background-color 300ms;
+            transition: background-color @transition-duration-base;
 
             &-disabled {
                 color: @tree-node-disabled-color;
@@ -86,7 +86,7 @@
         height: @tree-switcher-size;
         margin-right: @tree-switcher-margin-right;
         cursor: pointer;
-        transition: all 300ms;
+        transition: all @transition-duration-base;
 
         &-expanded {
             .c-lib-tree-switcher-icon {
@@ -151,7 +151,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         padding: @tree-title-padding;
-        transition: background-color 300ms;
+        transition: background-color @transition-duration-base;
 
         &:not(.c-lib-tree-title-disabled):hover {
             background-color: @tree-node-hover-bg;
