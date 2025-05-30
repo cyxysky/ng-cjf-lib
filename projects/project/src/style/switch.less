@@ -7,17 +7,9 @@
   line-height: @switch-height;
   vertical-align: middle;
   background-color: @switch-bg;
-  border: 0;
   border-radius: @switch-border-radius;
   cursor: pointer;
   transition: all 0.2s;
-  user-select: none;
-  padding: 0;
-  outline: none;
-
-  &:focus {
-    outline: none;
-  }
 
   &-focused {
     box-shadow: @switch-focus-shadow;
@@ -56,14 +48,14 @@
     animation: loadingCircle 2s infinite linear;
     align-items: center;
     justify-content: center;
-    color: #1890ff;
+    color: @switch-loading-color;
   }
 
   &-inner {
     margin: 0 7px 0 24px;
-    color: #ffffff;
-    font-size: 12px;
-    transition: margin 0.2s;
+    color: @switch-inner-color;
+    font-size: @switch-inner-font-size;
+    transition: margin @transition-duration-fast;
   }
 
   &-checked &-inner {

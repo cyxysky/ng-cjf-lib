@@ -75,18 +75,12 @@
 
       <!-- 子节点递归 - 树节点模板中 -->
       @if (useExpandAnimation) {
-        <div 
-          class="c-lib-tree-children" 
-          *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])" 
-          @expandCollapse
+        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])"  @expandCollapse
           >
           <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
         </div>
       } @else {
-        <div 
-          class="c-lib-tree-children" 
-          *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])" 
-          >
+        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])" >
           <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
         </div>
       }

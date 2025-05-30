@@ -355,7 +355,7 @@
 .c-lib-table-title {
   padding: 12px 16px;
   border-radius: 4px 4px 0 0;
-  border: 1px solid #f0f0f0;
+  border: 1px solid @table-border-color;
   border-bottom: 0;
   font-weight: 500;
 }
@@ -364,7 +364,7 @@
 .c-lib-table-footer {
   padding: 16px;
   border-radius: 0 0 4px 4px;
-  border: 1px solid #f0f0f0;
+  border: 1px solid @table-border-color;
   border-top: 0;
 }
 
@@ -500,11 +500,11 @@
   display: flex;
   justify-content: space-between;
   padding: 8px 12px;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid @table-border-color;
 }
 
 .c-lib-table-filter-popover-link {
-  color: #000000;
+  color: @table-filter-popover-link-color;
   font-size: 12px;
   background: transparent;
   border: 0;
@@ -513,11 +513,11 @@
   transition: all @transition-duration-base;
 
   &.confirm {
-    color: #1890ff;
+    color: @table-filter-popover-link-confirm-color;
   }
 
   &:hover {
-    color: #1890ff;
+    color: @table-filter-popover-link-hover-color;
   }
 }
 

@@ -1,5 +1,6 @@
-<button
+<span
   #switchButton
+  tabindex="-1"
   type="button"
   class="c-lib-switch"
   [class.c-lib-switch-checked]="checked()"
@@ -28,4 +29,4 @@
     <ng-content select="[unCheckedChildren]"></ng-content>
     <ng-container *ngIf="isTemplate(unCheckedChildren)" [ngTemplateOutlet]="unCheckedChildren"></ng-container>
   </span>
-</button>
+</span>

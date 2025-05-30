@@ -48,10 +48,10 @@
 @input-focus-border-color: @color-primary;
 @input-focus-shadow: @shadow-focus-primary;
 @input-large-height: @height-lg;
-@input-large-padding: 6.5px 4px;
+@input-large-padding: 6.5px @control-padding-horizontal;
 @input-large-font-size: @font-size-lg;
 @input-small-height: @height-sm;
-@input-small-padding: 6.5px 4px;
+@input-small-padding: 6.5px @control-padding-horizontal;
 @input-small-font-size: @font-size-sm;
 @input-error-border-color: @color-error;
 @input-error-shadow: @shadow-focus-error;
@@ -63,6 +63,7 @@
 @input-prefix-suffix-color: @color-icon-darker;
 @input-clear-icon-color: @color-icon-default;
 @input-clear-icon-hover-color: @color-icon-darker;
+@input-borderless-bg: @color-bg-base;
 
 // ===== Select 选择器 =====
 @select-box-min-height: @height-base;
@@ -158,6 +159,7 @@
 @switch-small-height: @padding-md;
 @switch-small-handle-size: @font-size-sm;
 @switch-focus-shadow: @shadow-focus-primary;
+@switch-loading-color: @color-primary;
 
 // ===== Modal 模态框 =====
 @modal-mask-bg: @color-mask;
@@ -170,6 +172,7 @@
 @modal-header-border-bottom: @border-width-base solid @color-border-light;
 @modal-body-padding: @spacing-lg;
 @modal-footer-padding: @padding-sm @padding-md;
+@modal-footer-bg: @color-bg-base;
 @modal-footer-border-top: @border-width-base solid @color-border-light;
 @modal-close-color: @color-text-disabled;
 @modal-close-hover-color: @color-text-secondary;
@@ -303,6 +306,9 @@
 @table-pagination-active-color: @color-primary;
 @table-filter-dropdown-min-width: 200px;
 @table-filter-dropdown-max-height: 300px;
+@table-filter-popover-link-color: @color-text-primary;
+@table-filter-popover-link-confirm-color: @color-primary;
+@table-filter-popover-link-hover-color: @color-primary;
 @table-sorter-width: 14px;
 @table-sorter-height: 14px;
 @table-sorter-font-size: 10px;
@@ -391,17 +397,17 @@
 @tabs-tab-icon-margin-right: 8px;
 @tabs-nav-arrow-size: 32px;
 @tabs-nav-arrow-bg: @color-bg-container;
-@tabs-nav-arrow-color: @color-text-disabled;
-@tabs-nav-arrow-hover-color: @color-text-secondary;
+@tabs-nav-arrow-color: @color-text-secondary;
 @tabs-nav-arrow-shadow: 0 1px 3px @color-tabs-arrow-shadow;
-@tabs-nav-arrow-border-radius: 2px;
+@tabs-nav-arrow-border-radius: 45px;
 @tabs-ink-bar-height: 2px;
 @tabs-ink-bar-bg: @color-primary;
+@tabs-card-tab-active-bg: @color-bg-container;
 @tabs-card-tab-padding: 8px 16px;
 @tabs-card-tab-bg: @color-bg-container;
 @tabs-card-tab-border: 1px solid @color-border-base;
-@tabs-add-shadow: 0 1px 3px @color-tabs-arrow-shadow;
 @tabs-card-tab-border-radius: 2px 2px 0 0;
+@tabs-add-shadow: 0 1px 3px @color-tabs-arrow-shadow;
 @tabs-small-tab-padding: 8px 0;
 @tabs-small-tab-font-size: 12px;
 @tabs-small-arrow-size: 24px;
@@ -686,6 +692,3 @@
 @tree-line-color: @color-border-base;
 @tree-loading-color: @color-primary;
 @tree-loading-size: @font-size-base;
-
-// ===== 通用样式 =====
-@component-transition-duration: 150ms;

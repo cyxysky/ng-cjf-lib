@@ -16,10 +16,10 @@
   }
 
   &-bottom {
-        .c-lib-tabs-nav-wrapper {
-        order: 1;
-        margin-top: @spacing-md;
-        margin-bottom: 0;
+    .c-lib-tabs-nav-wrapper {
+      order: 1;
+      margin-top: @spacing-md;
+      margin-bottom: 0;
     }
 
     .c-lib-tabs-nav {
@@ -48,16 +48,8 @@
     &-view {
       flex: 1;
       width: 100%;
-      overflow-x: auto;
+      overflow-x: hidden;
       overflow-y: hidden;
-      scrollbar-width: none;
-      /* Firefox */
-      -ms-overflow-style: none;
-
-      /* IE 和 Edge */
-      &::-webkit-scrollbar {
-        display: none;
-      }
 
       &.c-lib-tabs-nav-centered,
       &.c-lib-tabs-nav-right {
@@ -82,14 +74,11 @@
       max-width: @tabs-nav-arrow-size;
       width: @tabs-nav-arrow-size;
       height: @tabs-nav-arrow-size;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 0;
       background: @tabs-nav-arrow-bg;
-      border: 0;
-      outline: none;
       cursor: pointer;
       color: @tabs-nav-arrow-color;
       transition: color @transition-duration-fast;
@@ -97,41 +86,34 @@
       box-shadow: @tabs-nav-arrow-shadow;
       border-radius: @tabs-nav-arrow-border-radius;
 
-      &:hover {
-        color: @tabs-nav-arrow-hover-color;
-      }
-
       &-disabled {
         color: @tabs-nav-arrow-color;
         cursor: not-allowed;
-        pointer-events: none;
         opacity: 0.5;
       }
 
       &-icon {
-        width: 0;
-        height: 0;
         border-style: solid;
         display: inline-block;
       }
     }
 
-        &-prev {
-        margin-right: @spacing-sm;
+    &-prev {
+      margin-right: @spacing-sm;
 
-        .c-lib-tabs-nav-arrow-icon {
-            border-width: 6px 8px 6px 0;
-            border-color: transparent currentColor transparent transparent;
-        }
+      .c-lib-tabs-nav-arrow-icon {
+        border-width: 6px 8px 6px 0;
+        border-color: transparent currentColor transparent transparent;
+      }
     }
 
     &-next {
-        margin-left: @spacing-sm;
+      margin-left: @spacing-sm;
 
-        .c-lib-tabs-nav-arrow-icon {
-            border-width: 6px 0 6px 8px;
-            border-color: transparent transparent transparent currentColor;
-        }
+      .c-lib-tabs-nav-arrow-icon {
+        border-width: 6px 0 6px 8px;
+        border-color: transparent transparent transparent currentColor;
+      }
     }
   }
 
@@ -144,29 +126,18 @@
     padding: @tabs-tab-padding;
     font-size: @tabs-tab-font-size;
     background: transparent;
-    border: 0;
-    outline: none;
     cursor: pointer;
     transition: color @transition-duration-fast;
-
-    &:last-of-type {
-      margin-right: 0;
-    }
 
     &-btn {
       display: flex;
       align-items: center;
-      outline: none;
       transition: all @transition-duration-fast;
     }
 
-        &-icon {
-        margin-right: @spacing-sm;
-        font-size: @font-size-base;
-
-        i {
-            display: inline-block;
-        }
+    &-icon {
+      margin-right: @spacing-sm;
+      font-size: @font-size-base;
     }
 
     &-text {
@@ -184,47 +155,47 @@
       cursor: not-allowed;
     }
 
-        &-close {
-        margin-left: @tabs-tab-close-margin-left;
-        padding: 0;
-        font-size: @tabs-tab-close-font-size;
-        background: transparent;
-        border: 0;
-        outline: none;
-        cursor: pointer;
-        transition: all @component-transition-duration;
+    &-close {
+      margin-left: @tabs-tab-close-margin-left;
+      padding: 0;
+      font-size: @tabs-tab-close-font-size;
+      background: transparent;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      transition: all @transition-duration-fast;
 
-        &:hover {
-            color: @input-color;
-        }
+      &:hover {
+        color: @input-color;
+      }
     }
 
-        &-add {
-        padding: 0 @spacing-sm;
-        background: @table-header-bg;
-        z-index: 10;
+    &-add {
+      padding: 0 @spacing-sm;
+      background: @table-header-bg;
+      z-index: 10;
 
-        &:hover {
-            color: @button-primary-bg;
-            border-color: @button-primary-bg;
-        }
+      &:hover {
+        color: @button-primary-bg;
+        border-color: @button-primary-bg;
+      }
 
-        &-icon {
-            font-size: @font-size-sm;
-        }
+      &-icon {
+        font-size: @font-size-sm;
+      }
 
-        &-fixed {
-            position: relative;
-            margin-left: @spacing-sm;
-            flex-shrink: 0;
-            box-shadow: @tabs-add-shadow;
-            border-radius: @border-radius-sm;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 32px;
-            height: 32px;
-        }
+      &-fixed {
+        position: relative;
+        margin-left: @spacing-sm;
+        flex-shrink: 0;
+        box-shadow: @tabs-add-shadow;
+        border-radius: @border-radius-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+      }
     }
   }
 
@@ -235,22 +206,20 @@
     height: @tabs-ink-bar-height;
     background-color: @tabs-ink-bar-bg;
     z-index: 1;
-    transition: transform @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1),
-      width @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1),
-      left @component-transition-duration cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all @transition-duration-fast cubic-bezier(0.645, 0.045, 0.355, 1),
   }
 
   &-card {
     .c-lib-tabs-tab {
       margin-right: 2px;
-      padding: 8px 16px;
-      background: #fafafa;
-      border: 1px solid #d9d9d9;
-      border-radius: 2px 2px 0 0;
+      padding: @tabs-card-tab-padding;
+      background: @tabs-card-tab-bg;
+      border: @tabs-card-tab-border;
+      border-radius: @tabs-card-tab-border-radius;
       transition: all @transition-duration-fast cubic-bezier(0.645, 0.045, 0.355, 1);
 
       &-active {
-        background: #fafafa;
+        background: @tabs-card-tab-active-bg;
       }
 
       &-close {

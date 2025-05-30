@@ -46,10 +46,6 @@
         .c-lib-modal-draggable {
             cursor: move;
             user-select: none;
-
-            &:hover {
-                background-color: #fafafa;
-            }
         }
     }
 
@@ -64,21 +60,21 @@
     .c-lib-modal-footer {
         display: flex;
         justify-content: flex-end;
-        padding: 8px 16px;
-        background: #ffffff;
-        border-top: 1px solid #f0f0f0;
+        padding: @modal-footer-padding;
+        background: @modal-footer-bg;
+        border-top: @modal-footer-border-top;
         border-radius: 0 0 4px 4px;
     }
 
     .c-lib-modal-close {
         z-index: 10;
-        color: #d9d9d9;
+        color: @modal-close-color;
         font-weight: 700;
         cursor: pointer;
         transition: color @transition-duration-base;
 
         &:hover {
-            color: #434343;
+            color: @modal-close-hover-color;
         }
     }
 }

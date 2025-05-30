@@ -241,6 +241,7 @@ export class TabsComponent implements OnChanges, AfterContentInit, AfterViewInit
       left: Math.max(0, currentScroll - scrollStep),
       behavior: 'smooth'
     });
+    this.cdr.detectChanges();
   }
 
   /**
@@ -258,6 +259,7 @@ export class TabsComponent implements OnChanges, AfterContentInit, AfterViewInit
       left: Math.min(navScrollWidth - navWidth, currentScroll + scrollStep),
       behavior: 'smooth'
     });
+    this.cdr.detectChanges();
   }
 
   /**

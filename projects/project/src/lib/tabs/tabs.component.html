@@ -7,14 +7,14 @@
   [class.c-lib-tabs-large]="size === 'large'"
   >
   <div class="c-lib-tabs-nav-wrapper">
-    <button 
+    <span 
       *ngIf="showScrollNav && isHorizontal" 
       class="c-lib-tabs-nav-arrow c-lib-tabs-nav-prev"
       [class.c-lib-tabs-nav-arrow-disabled]="!canScrollLeft" 
       (click)="scrollPrev()"
       >
       <i class="c-lib-tabs-nav-arrow-icon"></i>
-    </button>
+    </span>
     <div class="c-lib-tabs-nav">
       <div 
         #tabsNav 
@@ -68,14 +68,14 @@
         </div>
       </div>
     </div>
-    <button 
+    <span 
       *ngIf="showScrollNav && isHorizontal" 
       class="c-lib-tabs-nav-arrow c-lib-tabs-nav-next"
       [class.c-lib-tabs-nav-arrow-disabled]="!canScrollRight"
       (click)="scrollNext()"
       >
       <i class="c-lib-tabs-nav-arrow-icon"></i>
-    </button>
+    </span>
     <ng-container *ngIf="!hideAdd">
       <div 
         *ngIf="showScrollNav" 

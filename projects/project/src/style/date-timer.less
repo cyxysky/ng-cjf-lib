@@ -199,7 +199,7 @@ lib-date-timer {
     border: none;
     outline: none;
     cursor: pointer;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
 
     &::placeholder {
         color: @input-placeholder-color;
@@ -218,7 +218,7 @@ lib-date-timer {
     font-size: @font-size-base;
     color: @input-disabled-color;
     cursor: pointer;
-    transition: color @component-transition-duration;
+    transition: color @transition-duration-fast;
     opacity: 0;
 
     &:hover {
@@ -354,7 +354,7 @@ lib-date-timer {
     background: transparent;
     border-radius: @border-radius-base;
     cursor: pointer;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
 
     &:hover {
         color: @button-primary-bg;
@@ -400,7 +400,7 @@ lib-date-timer {
     background: transparent;
     border-radius: @border-radius-sm;
     cursor: pointer;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
     position: relative;
     z-index: 1;
 
@@ -529,7 +529,7 @@ lib-date-timer {
     border-radius: @border-radius-sm;
     outline: none;
     cursor: pointer;
-    transition: color @component-transition-duration;
+    transition: color @transition-duration-fast;
 
     &:hover {
         color: @date-timer-nav-btn-hover-color;
@@ -549,7 +549,7 @@ lib-date-timer {
     cursor: pointer;
     padding: 2px @spacing-xs;
     border-radius: @border-radius-sm;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
 
     &:hover {
         color: @button-primary-bg;
@@ -617,7 +617,7 @@ lib-date-timer {
     border: 0;
     outline: none;
     cursor: pointer;
-    transition: background @component-transition-duration, border @component-transition-duration;
+    transition: background @transition-duration-fast, border @transition-duration-fast;
 
     &:hover:not(.c-lib-date-timer-cell-disabled) {
         background: @date-timer-cell-hover-bg;
@@ -680,7 +680,7 @@ lib-date-timer {
     margin: 0 auto;
     color: inherit;
     border-radius: @date-timer-cell-border-radius;
-    transition: background @component-transition-duration, border @component-transition-duration;
+    transition: background @transition-duration-fast, border @transition-duration-fast;
 }
 
 // 时间面板
@@ -731,7 +731,7 @@ lib-date-timer {
         line-height: @date-timer-time-cell-height;
         text-align: center;
         cursor: pointer;
-        transition: background-color @component-transition-duration;
+        transition: background-color @transition-duration-fast;
 
         &:hover {
             background-color: @date-timer-cell-hover-bg;
@@ -784,7 +784,7 @@ lib-date-timer {
     border: @date-timer-btn-border;
     border-radius: @date-timer-btn-border-radius;
     cursor: pointer;
-    transition: all @component-transition-duration;
+    transition: all @transition-duration-fast;
 
     &:hover {
         color: @date-timer-footer-button-hover-color;
