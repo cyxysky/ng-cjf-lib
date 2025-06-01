@@ -1,7 +1,4 @@
 .c-lib-message {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     color: @message-color;
     font-size: @message-font-size;
     line-height: 1.5;
@@ -24,7 +21,6 @@
 .c-lib-message-content {
     display: flex;
     align-items: baseline;
-    position: relative;
     gap: @message-content-gap;
 }
 
@@ -52,15 +48,13 @@
 // 消息容器样式
 .c-lib-message-container {
     pointer-events: none;
-    z-index: 1080;
+    z-index: @z-index-message;
 }
-
 
 // 消息包装容器样式
 .c-lib-message-wrapper {
     pointer-events: auto;
     margin-bottom: @message-wrapper-margin-bottom;
-    width: 100%;
     display: flex;
     justify-content: center;
 }

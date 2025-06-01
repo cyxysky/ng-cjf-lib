@@ -36,16 +36,22 @@
       <div demo>
         <div class="size-demo">
           <lib-input 
-            inputPlaceholder="大尺寸" 
+            inputPlaceholder="大尺寸"
+            [inputMaxlength]="10"
+            [inputShowCount]="true"
             inputSize="large"
             [(ngModel)]="largeValue">
           </lib-input>
           <lib-input 
-            inputPlaceholder="默认尺寸" 
+            inputPlaceholder="默认尺寸"
+            [inputMaxlength]="10"
+            [inputShowCount]="true"
             [(ngModel)]="defaultValue">
           </lib-input>
           <lib-input 
-            inputPlaceholder="小尺寸" 
+            inputPlaceholder="小尺寸"
+            [inputMaxlength]="10"
+            [inputShowCount]="true"
             inputSize="small"
             [(ngModel)]="smallValue">
           </lib-input>

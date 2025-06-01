@@ -37,7 +37,7 @@
 
 // ===== Input 输入框 =====
 @input-height: @height-base; // 输入框默认高度
-@input-padding: 0 @control-padding-horizontal; // 输入框内边距
+@input-padding: 0 @control-input-padding; // 输入框内边距
 @input-border-width: @border-width-base; // 输入框边框宽度
 @input-border-color: @color-border-base; // 输入框边框颜色
 @input-border-radius: @border-radius-sm; // 输入框边框圆角
@@ -48,10 +48,10 @@
 @input-focus-border-color: @color-primary; // 输入框聚焦边框颜色
 @input-focus-shadow: @shadow-focus-primary; // 输入框聚焦阴影
 @input-large-height: @height-lg; // 大号输入框高度
-@input-large-padding: 6.5px @control-padding-horizontal; // 大号输入框内边距
+@input-large-padding: 6.5px @control-input-padding; // 大号输入框内边距
 @input-large-font-size: @font-size-lg; // 大号输入框字体大小
 @input-small-height: @height-sm; // 小号输入框高度
-@input-small-padding: 6.5px @control-padding-horizontal; // 小号输入框内边距
+@input-small-padding: 6.5px @control-input-padding; // 小号输入框内边距
 @input-small-font-size: @font-size-sm; // 小号输入框字体大小
 @input-error-border-color: @color-error; // 输入框错误状态边框颜色
 @input-error-shadow: @shadow-focus-error; // 输入框错误状态阴影
@@ -66,6 +66,7 @@
 @input-borderless-bg: @color-bg-base; // 无边框输入框背景色
 
 // ===== Select 选择器 =====
+@select-box-padding: @control-select-padding; // 选择器内边距
 @select-box-border-width: @border-width-base; // 选择器边框宽度
 @select-box-border-color: @color-border-base; // 选择器边框颜色
 @select-box-border-radius: @border-radius-sm; // 选择器边框圆角
@@ -77,16 +78,20 @@
 @select-box-large-min-height: @height-lg; // 大号选择器最小高度
 @select-box-large-font-size: @font-size-lg; // 大号选择器字体大小
 @select-box-small-min-height: @height-sm; // 小号选择器最小高度
+@select-box-small-font-size: @font-size-sm; // 小号选择器字体大小
 @select-tag-bg: @color-primary-bg; // 选择器标签背景色
 @select-tag-color: @color-primary-selected; // 选择器标签文字颜色
 @select-tag-border: @border-width-base solid @color-primary-border; // 选择器标签边框
 @select-tag-border-radius: @border-radius-sm; // 选择器标签边框圆角
 @select-tag-height: @height-sm; // 选择器标签高度
 @select-tag-padding: 0 @padding-sm; // 选择器标签内边距
+@select-tag-font-size: @font-size-base; // 选择器标签字体大小
 @select-tag-small-height: @height-xxs; // 小号选择器标签高度
 @select-tag-small-padding: 0 6px; // 小号选择器标签内边距
-@select-tag-large-height: 30px; // 大号选择器标签高度
+@select-tag-small-font-size: @font-size-sm; // 小号选择器标签字体大小
+@select-tag-large-height: @height-base; // 大号选择器标签高度
 @select-tag-large-padding: 0 10px; // 大号选择器标签内边距
+@select-tag-large-font-size: @font-size-lg; // 大号选择器标签字体大小
 @select-tag-close-hover-bg: @color-hover-bg; // 选择器标签关闭按钮悬停背景色
 @select-option-height: @height-md; // 选择器选项高度
 @select-option-padding: 5px 12px; // 选择器选项内边距
@@ -99,10 +104,10 @@
 @select-dropdown-bg: @color-bg-base; // 选择器下拉框背景色
 @select-dropdown-shadow: @shadow-base; // 选择器下拉框阴影
 @select-dropdown-border-radius: @border-radius-base; // 选择器下拉框边框圆角
-@select-dropdown-max-height: 256px; // 选择器下拉框最大高度
 @select-empty-icon-color: @color-select-empty-icon; // 选择器空状态图标颜色
 @select-group-title-bg: @color-select-group-title-bg; // 选择器分组标题背景色
-@select-padding-left-8: @padding-sm; // 选择器左侧间距
+@select-group-title-color: @color-text-primary; // 选择器分组标题文字颜色
+@select-group-title-font-size: @font-size-lg; // 选择器分组标题字体大小
 @select-remote-loading-height: @height-lg; // 选择器远程加载高度
 
 // ===== Checkbox 复选框 =====
@@ -158,7 +163,7 @@
 @modal-mask-bg: @color-mask; // 模态框遮罩背景色
 @modal-bg: @color-bg-base; // 模态框背景色
 @modal-border-radius: @border-radius-base; // 模态框边框圆角
-@modal-shadow: @shadow-base; // 模态框阴影
+@modal-shadow: @shadow-overlay; // 模态框阴影
 @modal-max-width: 90vw; // 模态框最大宽度
 @modal-max-height: 90vh; // 模态框最大高度
 @modal-header-padding: @padding-md @spacing-lg; // 模态框头部内边距
@@ -191,7 +196,7 @@
 @message-font-size: @font-size-base; // 消息字体大小
 @message-item-padding: @padding-sm @padding-md; // 消息项内边距
 @message-item-border-radius: @border-radius-base; // 消息项边框圆角
-@message-item-shadow: @shadow-base; // 消息项阴影
+@message-item-shadow: @shadow-overlay; // 消息项阴影
 @message-item-bg: @color-bg-base; // 消息项背景色
 @message-item-min-width: 150px; // 消息项最小宽度
 @message-content-gap: 12px; // 消息内容间距
@@ -447,7 +452,7 @@
 
 // ===== Cascader 级联选择器 =====
 @cascader-dropdown-bg: @color-bg-base; // 级联选择器下拉框背景色
-@cascader-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated; // 级联选择器下拉框阴影
+@cascader-dropdown-shadow: 0 3px 6px -4px @shadow-color-3, 0 6px 16px 0 @shadow-color-1; // 级联选择器下拉框阴影
 @cascader-dropdown-border-radius: 6px; // 级联选择器下拉框边框圆角
 @cascader-menu-min-width: 120px; // 级联选择器菜单最小宽度
 @cascader-menu-height: 180px; // 级联选择器菜单高度
@@ -496,7 +501,7 @@
 @date-timer-input-large-font-size: 16px; // 大号日期时间选择器输入框字体大小
 @date-timer-dropdown-bg: @color-bg-base; // 日期时间选择器下拉框背景色
 @date-timer-dropdown-border-radius: 4px; // 日期时间选择器下拉框边框圆角
-@date-timer-dropdown-shadow: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated, 0 9px 28px 8px @color-shadow-light; // 日期时间选择器下拉框阴影
+@date-timer-dropdown-shadow: 0 3px 6px -4px @shadow-color-3, 0 6px 16px 0 @shadow-color-1, 0 9px 28px 8px @color-shadow-light; // 日期时间选择器下拉框阴影
 @date-timer-dropdown-margin-top: 4px; // 日期时间选择器下拉框顶部边距
 @date-timer-dropdown-time-width: 180px; // 日期时间选择器时间面板宽度
 @date-timer-dropdown-date-time-width: 480px; // 日期时间选择器日期时间面板宽度
@@ -552,7 +557,7 @@
 // ===== DropMenu 下拉菜单 =====
 @drop-menu-min-width: 160px; // 下拉菜单最小宽度
 @drop-menu-border-radius: 6px; // 下拉菜单边框圆角
-@drop-menu-shadow: 0 0 6px 0 @shadow-color-elevated; // 下拉菜单阴影
+@drop-menu-shadow: 0 0 6px 0 @shadow-color-1; // 下拉菜单阴影
 @drop-menu-bg: @color-bg-base; // 下拉菜单背景色
 @drop-menu-border: 1px solid @color-border-dropdown; // 下拉菜单边框
 @drop-menu-item-height: 38px; // 下拉菜单项高度
@@ -574,7 +579,7 @@
 
 // ===== NumberInput 数字输入框 =====
 @number-input-height: @height-base; // 数字输入框高度
-@number-input-padding: @padding-xs @control-padding-horizontal; // 数字输入框内边距
+@number-input-padding: @padding-xs @control-input-padding; // 数字输入框内边距
 @number-input-border: @border-width-base solid @color-border-base; // 数字输入框边框
 @number-input-border-radius: @border-radius-sm; // 数字输入框边框圆角
 @number-input-font-size: @font-size-base; // 数字输入框字体大小

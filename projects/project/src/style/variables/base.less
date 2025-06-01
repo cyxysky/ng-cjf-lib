@@ -10,16 +10,29 @@
 @shadow-level-4: 16px;
 @shadow-level-5: 32px;
 
-@shadow-color-base: rgba(0, 0, 0, 0.3);
-@shadow-color-overlay: rgba(0, 0, 0, 0.2);
-@shadow-color-elevated: rgba(0, 0, 0, 0.1);
+
+@shadow-color-1: rgba(0, 0, 0, 0.1);
+@shadow-color-2: rgba(0, 0, 0, 0.2);
+@shadow-color-3: rgba(0, 0, 0, 0.3);
+@shadow-color-4: rgba(0, 0, 0, 0.4);
+@shadow-color-5: rgba(0, 0, 0, 0.5);
+@shadow-color-6: rgba(0, 0, 0, 0.6);
+@shadow-color-7: rgba(0, 0, 0, 0.7);
+@shadow-color-8: rgba(0, 0, 0, 0.8);
+@shadow-color-9: rgba(0, 0, 0, 0.9);
+@shadow-color-10: rgba(0, 0, 0, 1);
 
 // 复合阴影（使用主题颜色变量）
-@shadow-base: 0 3px 6px -4px @shadow-color-base, 0 6px 16px 0 @shadow-color-elevated, 0 9px 28px 8px @color-shadow-light;
-@shadow-elevated: 0 1px 7px -4px @shadow-color-elevated;
-@shadow-overlay: 0 0 10px @shadow-color-overlay;
+@shadow-base: 0 3px 6px -4px @shadow-color-3, 0 6px 16px 0 @shadow-color-1, 0 9px 28px 8px @shadow-color-1;
+// 影响范围，气泡系列，tooltip，树形选择，分段控制器
+@shadow-elevated: 0 1px 7px -4px @shadow-color-5;
+// 浮层阴影，模态框，抽屉，消息
+@shadow-overlay: 0 0 10px @shadow-color-2;
+// 聚焦阴影，输入框，选择器
 @shadow-focus-primary: 0 0 0 2px @color-focus-primary;
+// 错误阴影，输入框，选择器
 @shadow-focus-error: 0 0 0 2px @color-focus-error;
+// 警告阴影，输入框，选择器
 @shadow-focus-warning: 0 0 0 2px @color-focus-warning;
 
 // ===== 基础尺寸 =====
@@ -96,6 +109,7 @@
 @z-index-popover: 1070;
 @z-index-tooltip: 1080;
 @z-index-notification: 1090;
+@z-index-message: 1080;
 
 // ===== 透明度 =====
 @opacity-disabled: 0.6;
@@ -103,14 +117,13 @@
 @opacity-hover: 0.8;
 
 // ===== 控制元素尺寸 =====
-@control-padding-horizontal: 4px;
-@control-height: @height-base;
-@control-height-sm: @height-sm;
-@control-height-lg: @height-lg;
+// 输入框、数字输入框padding
+@control-input-padding: 8px;
+// 选择器padding
+@control-select-padding: 1px 0 1px 4px;
 
 // ===== 过渡动画 =====
 @transition-duration-base: 0.3s;
 @transition-duration-fast: 0.15s;
 @transition-duration-slow: 0.4s;
 @transition-duration-slower: 0.6s;
-

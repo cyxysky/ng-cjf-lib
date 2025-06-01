@@ -36,14 +36,9 @@
     [cdkConnectedOverlayOpen]="isOverlayOpen"
     (overlayOutsideClick)="closeDropdown()"
     >
-    <div 
-        class="c-lib-select-dropdown" 
-        [class.c-lib-select-dropdown-visible]="isDropdownOpen"
+    <div class="c-lib-select-dropdown" [class.c-lib-select-dropdown-visible]="isDropdownOpen"
         >
-        <div 
-            [style.max-height]="optionPanelMaxHeight" 
-            class="c-lib-select-option-list-container" 
-            id="option-list-container">
+        <div [style.max-height]="optionPanelMaxHeight" id="option-list-container">
             <div *ngIf="remoteLoading" class="c-lib-select-remote-loading">
                 <div class="c-lib-select-loading-text">搜索中...</div>
             </div>

@@ -3,42 +3,13 @@ lib-input {
     width: 100%;
 }
 
-.c-lib-input-container {
-    position: relative;
-    display: inline-flex;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-
-.c-lib-input-control {
-    height: @input-height;
-    line-height: @input-height;
-    box-sizing: border-box;
-    font-size: @input-font-size;
-    background-color: @input-bg;
-    transition: all 300ms;
-    width: 100%;
-    outline: none;
-
-    &::placeholder {
-        color: @input-placeholder-color;
-    }
-}
-
 .c-lib-input-affix-wrapper {
     display: inline-flex;
     padding: @input-padding;
-    box-sizing: border-box;
     width: 100%;
     border: @input-border-width solid @input-border-color;
     border-radius: @input-border-radius;
-    transition: all 300ms;
-
-    .c-lib-input-control {
-        border: none;
-        box-shadow: none;
-    }
+    transition: all @transition-duration-base;
 
     &:hover {
         border-color: @input-hover-border-color;
@@ -48,46 +19,63 @@ lib-input {
         border-color: @input-focus-border-color;
         box-shadow: @input-focus-shadow;
     }
-}
 
-.c-lib-input-prefix {
-    margin-right: 4px;
-    display: flex;
-    align-items: center;
-    color: @input-prefix-suffix-color;
+    .c-lib-input-control {
+        height: @input-height;
+        line-height: @input-height;
+        font-size: @input-font-size;
+        background-color: @input-bg;
+        transition: all @transition-duration-base;
+        width: 100%;
+        outline: none;
+        border: none;
 
-    .c-lib-input-prefix-icon {
+        &::placeholder {
+            color: @input-placeholder-color;
+        }
+    }
+
+    .c-lib-input-prefix {
         margin-right: 4px;
+        display: flex;
+        align-items: center;
+        color: @input-prefix-suffix-color;
+
+        .c-lib-input-prefix-icon {
+            margin-right: 4px;
+        }
     }
-}
 
-.c-lib-input-suffix {
-    margin-left: 4px;
-    display: flex;
-    align-items: center;
-    color: @input-prefix-suffix-color;
-
-    .c-lib-input-suffix-icon {
+    .c-lib-input-suffix {
         margin-left: 4px;
+        display: flex;
+        align-items: center;
+        color: @input-prefix-suffix-color;
+
+        .c-lib-input-suffix-icon {
+            margin-left: 4px;
+        }
+
+        .c-lib-input-clear-icon {
+            cursor: pointer;
+            color: @input-clear-icon-color;
+            transition: color @transition-duration-base;
+            margin-left: 4px;
+
+            &:hover {
+                color: @input-clear-icon-hover-color;
+            }
+        }
+
+        .c-lib-input-char-count {
+            color: @input-placeholder-color;
+            margin-left: 8px;
+            font-size: @input-font-size;
+        }
     }
 }
 
-.c-lib-input-clear-icon {
-    cursor: pointer;
-    color: @input-clear-icon-color;
-    transition: color @transition-duration-base;
-    margin-left: 4px;
-
-    &:hover {
-        color: @input-clear-icon-hover-color;
-    }
-}
-
-.c-lib-input-char-count {
-    color: @input-disabled-color;
-    margin-left: 8px;
-}
-
+// 大号
 .c-lib-input-lg {
     .c-lib-input-control {
         height: @input-large-height;
@@ -95,8 +83,13 @@ lib-input {
         padding: @input-large-padding;
         font-size: @input-large-font-size;
     }
+
+    .c-lib-input-char-count {
+        font-size: @input-large-font-size;
+    }
 }
 
+// 小号
 .c-lib-input-sm {
     .c-lib-input-control {
         height: @input-small-height;
@@ -104,8 +97,13 @@ lib-input {
         padding: @input-small-padding;
         font-size: @input-small-font-size;
     }
+
+    .c-lib-input-char-count {
+        font-size: @input-small-font-size;
+    }
 }
 
+// 错误状态
 .c-lib-input-status-error {
     border-color: @input-error-border-color;
 
@@ -129,6 +127,7 @@ lib-input {
     }
 }
 
+// 警告状态
 .c-lib-input-status-warning {
     border-color: @input-warning-border-color;
 
@@ -152,6 +151,7 @@ lib-input {
     }
 }
 
+// 禁用状态
 .c-lib-input-disabled {
     background-color: @input-disabled-bg !important;
     border-color: @input-disabled-color !important;
@@ -170,6 +170,7 @@ lib-input {
     }
 }
 
+// 无边框
 .c-lib-input-borderless {
     border: none;
     box-shadow: none;
