@@ -25,13 +25,11 @@ import * as _ from 'lodash';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAccessor {
-  // 视图引用
   @ViewChild(CdkOverlayOrigin, { static: false }) overlayOrigin!: CdkOverlayOrigin;
   @ViewChild(CdkConnectedOverlay, { static: false }) overlay!: CdkConnectedOverlay;
   @ViewChild('searchInput', { static: false }) searchInput!: SelectBoxComponent;
   @ViewChild(TreeComponent, { static: false }) treeComponent!: TreeComponent;
 
-  // 输入属性
   /** 树节点数据 */
   @Input({ alias: 'treeSelectOptions' }) originTreeData: TreeNodeOptions[] = [];
   /** 是否显示搜索框 */
@@ -93,7 +91,6 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
   /** 树节点缩进 */
   @Input({ alias: 'treeSelectIndent' }) treeIndent: number = 24;
 
-  // 输出事件
   /** 选中节点变化事件 */
   @Output('treeSelectChange') selectionChange = new EventEmitter<TreeNodeOptions[]>();
   /** 可见性变化事件 */
@@ -103,7 +100,6 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
   /** 复选框变化事件 */
   @Output('treeSelectCheckBoxChange') checkBoxChange = new EventEmitter<{ checked: boolean, node: TreeNodeOptions }>();
 
-  // 内部状态
   /** 选中值 */
   public value: string[] = [];
   /** key到节点的映射 */
@@ -143,7 +139,6 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
     public utilsService: UtilsService
   ) { }
 
-  // 生命周期方法
   ngOnInit(): void {
     this.initNodeMap();
   }
@@ -354,10 +349,8 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
    * 更新数据
    */
   public updateData() {
-    // 将value转换为节点列表
     const selectedNodes: TreeNodeOptions[] = this.value && this.value.length > 0 ? this.value.map(key => this.nodeMap.get(key) as TreeNodeOptions) : [];
     this.selectionChange.emit(selectedNodes);
-    // 单选模式下只返回第一个元素，多选模式下返回整个数组
     this.onChange(this.multiple ? this.value : this.value.length > 0 ? this.value[0] : null);
     this.updateOverlayPosition();
   }

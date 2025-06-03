@@ -13,7 +13,6 @@ import * as _ from 'lodash';
   standalone: true,
   imports: [CommonModule, FormsModule, CdkOverlayOrigin, CheckboxComponent, SelectBoxComponent, CdkConnectedOverlay],
   templateUrl: './cascader.component.html',
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,6 +20,7 @@ import * as _ from 'lodash';
       multi: true
     }
   ],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccessor {
@@ -1227,11 +1227,11 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    */
   public onCheckboxChange(option: CascaderOption, columnIndex: number, checked: boolean): void {
     if (option.disabled || option.disableCheckbox) return;
-    
+
     // 直接设置选项状态为新的值
     option.checked = checked;
     option.halfChecked = false;
-    
+
     // 更新子节点状态
     this.setChildrenCheckedState(option, checked);
     // 更新父节点状态

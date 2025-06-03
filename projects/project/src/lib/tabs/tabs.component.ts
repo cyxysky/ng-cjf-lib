@@ -30,8 +30,8 @@ import { UtilsService } from '@project';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tabs.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
   /** 选中的标签索引 */

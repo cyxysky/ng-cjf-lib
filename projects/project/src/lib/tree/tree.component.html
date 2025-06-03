@@ -75,8 +75,7 @@
 
       <!-- 子节点递归 - 树节点模板中 -->
       @if (useExpandAnimation) {
-        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])"  @expandCollapse
-          >
+        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])"  @expandCollapse>
           <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
         </div>
       } @else {
@@ -128,20 +127,22 @@
     [class.c-lib-tree-flat-line]="showLine && level !== 0"
     [class.c-lib-tree-switcher-expanded]="node.expanded"
     [class.c-lib-tree-switcher-disabled]="node.disabled"
+    [style.width.px]="indent"
     (click)="$event.stopPropagation(); onNodeExpand(node)"
     >
+    <!-- 展开/折叠图标模板 -->
     <ng-container *ngTemplateOutlet="expandedIcon || defaultExpandedIconTpl; context: { $implicit: node }"></ng-container>
     <ng-template #defaultExpandedIconTpl>
       @if (useExpandAnimation) {
-        <i class="c-lib-tree-switcher-icon" [@rotate]="node.expanded ? 'end' : 'start'"></i>
+        <i class="bi-caret-right-fill c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'c-lib-tree-switcher-icon-open' : 'c-lib-tree-switcher-icon-close'"></i>
       } @else {
-        <i class="c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'folder-open-icon' : 'folder-icon'"></i>
+        <i class="c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'bi-caret-down-fill ' : 'bi-caret-right-fill'"></i>
       }
     </ng-template>
   </span>
   <!-- 异步加载 -->
   <span *ngIf="node.asyncLoading">
-    <div class="c-lib-tree-loading-icon">
+    <div class="c-lib-tree-loading-icon" [style.width.px]="indent">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" class="c-lib-tree-loading-svg" color="rgba(23, 184, 199, 0.6)" fill="currentColor">
         <path d="M8 0a8 8 0 0 1 8 8h-2A6 6 0 0 0 8 2V0z" />
       </svg>
@@ -150,8 +151,9 @@
   <!-- 没有子节点的 -->
   <span 
     *ngIf="!node.children || (!node.children.length && !asyncData) || node.isLeaf" 
-    class="c-lib-tree-switcher" 
-    [class.c-lib-tree-flat-line]="showLine">
+    class="c-lib-tree-switcher"
+    [class.c-lib-tree-flat-line]="showLine"
+    [style.width.px]="indent">
   </span>
 </ng-template>
 

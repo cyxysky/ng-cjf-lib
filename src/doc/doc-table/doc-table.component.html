@@ -7,11 +7,6 @@
   自定义内容-{{ data?.[column.field] }}
 </ng-template>
 
-<!-- 添加HTML导出工具 -->
-<div class="html-export-tools">
-  <button class="export-button" (click)="downloadHtmlAsPng()">导出为PNG</button>
-</div>
-
 <div class="table-docs-grid">
   <!-- 基础用法 -->
   <app-doc-box title="基础用法" [sourceCode]="basicTableSource">

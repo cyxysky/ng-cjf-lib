@@ -2,6 +2,7 @@ import { TemplateRef, Component, ComponentRef } from "@angular/core";
 import { ModalComponent } from "./modal.component";
 import { OverlayRef } from "@angular/cdk/overlay";
 
+/** 模态框配置 */
 export interface ModalOptions {
     /** 模态框宽度 */
     width?: string | number;
@@ -35,4 +36,5 @@ export interface ModalOptions {
     componentOutputs?: any;
 }
 
+/** 模态框引用 */
 export type ModalRefMap = Map<string, { overlayRef: OverlayRef, componentRef: ComponentRef<ModalComponent> }>

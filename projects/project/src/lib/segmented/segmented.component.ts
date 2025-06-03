@@ -1,15 +1,9 @@
-import { Component, Input, Output, EventEmitter, forwardRef, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef, OnChanges, SimpleChanges, ViewChild, OnDestroy, NgZone, Renderer2, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef, OnChanges, SimpleChanges, ViewChild, OnDestroy, NgZone, Renderer2, TemplateRef, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subject, timer, Subscription } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
-
-export interface SegmentedOption {
-  value: string | number | any;
-  label: string;
-  disabled?: boolean;
-  icon?: string;
-}
+import { SegmentedOption } from './segmented.interface';
 
 @Component({
   selector: 'lib-segmented',
@@ -24,9 +18,9 @@ export interface SegmentedOption {
     }
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, OnChanges, OnDestroy {
-  //#region ViewChild 引用
   /** 选项列表 */
   @ViewChildren('segmentItem') segmentItems!: QueryList<ElementRef>;
   /** 容器 */
@@ -37,9 +31,7 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
   @ViewChild('thumb') thumbElement!: ElementRef;
   /** 根元素 */
   @ViewChild('rootElement') rootElement!: ElementRef;
-  //#endregion
 
-  //#region 输入属性 (Inputs)
   /** 选项 */
   @Input({ alias: 'segmentedOptions' }) options: SegmentedOption[] = [];
   /** 是否禁用 */
@@ -54,9 +46,7 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
   @Input({ alias: 'segmentedAdaptParentWidth' }) adaptParentWidth = true;
   /** 模板 */
   @Input({ alias: 'segmentedTemplate' }) template: TemplateRef<any> | null = null;
-  //#endregion
 
-  //#region 内部状态变量
   /** 当前值 */
   value: string | number | null = null;
   /** 是否为首次渲染 */
@@ -85,9 +75,7 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
   private subscriptions: Subscription[] = [];
   /** 选项位置信息 */
   private optionPositions = new Map<string | number, { left: number, width: number }>();
-  //#endregion
 
-  //#region 构造函数
   constructor(
     private cdr: ChangeDetectorRef,
     private ngZone: NgZone,
@@ -105,13 +93,11 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
 
     this.subscriptions.push(scrollSub);
   }
-  //#endregion
 
-  //#region 生命周期钩子
   ngAfterViewInit() {
     // 应用最大宽度并适应父容器
     this.applyWidthSettings();
-    
+
     // 延迟初始化，确保DOM已完全渲染
     timer(0).pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.initializeThumb();
@@ -120,7 +106,7 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
       this.calculateAllOptionPositions();
       this.observeResize();
       this.monitorItemChanges();
-      
+
       // 首次渲染后更改标记
       this.firstRender = false;
       this.cdr.detectChanges();
@@ -167,9 +153,7 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
     // 取消所有订阅
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
-  //#endregion
 
-  //#region 数据初始化与处理
   /**
    * 初始化thumb位置
    */
@@ -239,13 +223,10 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   private calculateAllOptionPositions(): void {
     if (!this.segmentItems || this.segmentItems.length === 0) return;
-
     this.optionPositions.clear();
-
     this.segmentItems.forEach((item, index) => {
       const element = item.nativeElement;
       const option = this.options[index];
-
       if (option) {
         this.optionPositions.set(option.value, {
           left: element.offsetLeft,
@@ -254,22 +235,18 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
       }
     });
   }
-  //#endregion
 
-  //#region 业务方法
   /**
    * 选择选项
    */
   selectOption(option: SegmentedOption): void {
     if (this.disabled || option.disabled) return;
-
     // 只在值有变化时更新
     if (this.value !== option.value) {
       // 更新选中值
       this.value = option.value;
       this.onChange(this.value);
       this.onTouched();
-
       // 找到对应选项的索引和元素
       const index = this.options.findIndex(o => o.value === option.value);
       if (index !== -1 && this.segmentItems) {
@@ -296,19 +273,15 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   updateThumbPosition(immediate = false): void {
     if (!this.thumbElement || this.value === null) return;
-
     // 找到选中项的索引
     this.selectedIndex = this.options.findIndex(option => option.value === this.value);
     if (this.selectedIndex === -1 || !this.segmentItems) return;
-
     // 获取选中项元素
     const selectedElement = this.segmentItems.toArray()[this.selectedIndex]?.nativeElement;
     if (!selectedElement) return;
-
     // 获取选中项的尺寸和位置
     const width = selectedElement.offsetWidth;
     const left = selectedElement.offsetLeft;
-
     // 移动滑块到目标位置
     this.moveThumbToPosition(left, width, immediate);
   }
@@ -318,13 +291,11 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   scrollLeft(): void {
     if (!this.segmentContainer || !this.canScrollLeft) return;
-
     const container = this.segmentContainer.nativeElement;
     container.scrollBy({
       left: -this.scrollStep,
       behavior: 'smooth'
     });
-
     timer(300).pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updateThumbPosition();
       this.checkScrollButtons();
@@ -336,13 +307,11 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   scrollRight(): void {
     if (!this.segmentContainer || !this.canScrollRight) return;
-
     const container = this.segmentContainer.nativeElement;
     container.scrollBy({
       left: this.scrollStep,
       behavior: 'smooth'
     });
-
     timer(300).pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.updateThumbPosition();
       this.checkScrollButtons();
@@ -354,14 +323,11 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   scrollToSelected(): void {
     if (!this.segmentItems || !this.segmentContainer) return;
-
     const selectedIndex = this.options.findIndex(option => this.isSelected(option));
     if (selectedIndex === -1) return;
-
     const container = this.segmentContainer.nativeElement;
     const selectedItem = this.segmentItems.toArray()[selectedIndex]?.nativeElement;
     if (!selectedItem) return;
-
     // 获取选中项和容器的位置信息
     const itemLeft = selectedItem.offsetLeft;
     const itemWidth = selectedItem.offsetWidth;
@@ -369,7 +335,6 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
     const containerWidth = container.clientWidth;
     const scrollLeft = container.scrollLeft;
     const scrollRight = scrollLeft + containerWidth;
-
     // 确保选中项完全可见
     if (itemLeft < scrollLeft) {
       // 如果选中项在左侧不可见区域
@@ -388,7 +353,6 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
         behavior: this.firstRender ? 'auto' : 'smooth'
       });
     }
-
     // 更新按钮状态
     timer(300).pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.checkScrollButtons();
@@ -401,24 +365,19 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
   onScroll(): void {
     this.scrollDebounce$.next();
     this.checkScrollButtons();
-
     // 滚动时可能需要重新计算所有位置
-    timer(50).pipe(takeUntil(this.destroy$)).subscribe(() => {
+    timer(0).pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.calculateAllOptionPositions();
     });
   }
-  //#endregion
 
-  //#region 工具方法
   /**
    * 应用宽度设置
    */
   private applyWidthSettings(): void {
     if (!this.adaptParentWidth) return;
-    
     // 设置100%宽度
     this.renderer.setStyle(this.el.nativeElement, 'width', '100%');
-
     // 如果没有指定最大宽度，则使用父容器宽度
     if (!this.maxWidth || this.maxWidth <= 0) {
       const parent = this.el.nativeElement.parentElement;
@@ -429,7 +388,6 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
         }
       }
     }
-    
     // 延迟更新滚动按钮可见性
     timer(100).subscribe(() => {
       this.updateScrollButtonsVisibility();
@@ -441,18 +399,14 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   private moveThumbToPosition(left: number, width: number, immediate = false): void {
     if (!this.thumbElement) return;
-
     const thumbElement = this.thumbElement.nativeElement;
-
     if (immediate || this.firstRender) {
       // 无动画移动
       this.renderer.setStyle(thumbElement, 'transition', 'none');
       this.renderer.setStyle(thumbElement, 'width', `${width}px`);
       this.renderer.setStyle(thumbElement, 'transform', `translateX(${left}px)`);
-
       // 强制浏览器重绘
       void thumbElement.offsetWidth;
-
       // 恢复动画
       requestAnimationFrame(() => {
         this.renderer.removeStyle(thumbElement, 'transition');
@@ -460,14 +414,12 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
     } else {
       // 有动画移动
       this.renderer.setStyle(thumbElement, 'transition', 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1), width 300ms cubic-bezier(0.4, 0, 0.2, 1)');
-
       // 使用requestAnimationFrame确保过渡效果被正确应用
       requestAnimationFrame(() => {
         this.renderer.setStyle(thumbElement, 'width', `${width}px`);
         this.renderer.setStyle(thumbElement, 'transform', `translateX(${left}px)`);
       });
     }
-
     // 确保滑块可见
     thumbElement.style.display = 'block';
     this.cdr.detectChanges();
@@ -478,26 +430,21 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   updateScrollButtonsVisibility(): void {
     if (!this.segmentContainer || !this.segmentGroup || !this.rootElement) return;
-
     // 使用rootElement获取wrapper的宽度
     const wrapper = this.rootElement.nativeElement;
     const container = this.segmentContainer.nativeElement;
     const group = this.segmentGroup.nativeElement;
-
     // 检查真实的内容是否溢出wrapper宽度
     const wrapperWidth = wrapper.clientWidth;
     const contentWidth = group.getBoundingClientRect().width;
     const hasOverflow = contentWidth > wrapperWidth + 4; // 添加一点容差
-
     // 更新显示状态
     const oldState = this.showScrollButtons;
     this.showScrollButtons = hasOverflow;
-
     // 强制更新滚动按钮状态
     if (!hasOverflow) {
       this.canScrollLeft = false;
       this.canScrollRight = false;
-
       // 强制滚动回起始位置
       if (container.scrollLeft > 0) {
         container.scrollLeft = 0;
@@ -506,7 +453,6 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
       // 重新检查滚动状态
       this.checkScrollButtons();
     }
-
     if (oldState !== this.showScrollButtons) {
       this.cdr.detectChanges();
     }
@@ -517,29 +463,23 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
    */
   checkScrollButtons(): void {
     if (!this.segmentContainer || !this.segmentGroup) return;
-
     const container = this.segmentContainer.nativeElement;
     const group = this.segmentGroup.nativeElement;
-
     // 检查是否有溢出内容
     const hasOverflow = group.scrollWidth > container.clientWidth;
-
     // 更新是否可以滚动
     const oldLeftState = this.canScrollLeft;
     const oldRightState = this.canScrollRight;
-
     this.canScrollLeft = hasOverflow && container.scrollLeft > 1;
     this.canScrollRight = hasOverflow &&
       (container.scrollLeft + container.clientWidth < group.scrollWidth - 1);
-
     // 只有状态变化时才触发变更检测
     if (oldLeftState !== this.canScrollLeft || oldRightState !== this.canScrollRight) {
       this.cdr.detectChanges();
     }
   }
-  //#endregion
 
-  //#region ControlValueAccessor 实现
+  // ControlValueAccessor 实现
   /** ngModel实现接口 */
   private onChange: (value: string | number | null) => void = () => { };
   private onTouched: () => void = () => { };
@@ -547,12 +487,9 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
   writeValue(value: string | number | null): void {
     const valueChanged = this.value !== value;
     this.value = value;
-
     if (valueChanged && this.segmentItems) {
       this.cdr.markForCheck();
-      
-      // 延迟更新滑块位置
-      setTimeout(() => {
+      timer(0).pipe(takeUntil(this.destroy$)).subscribe(() => {
         // 如果是首次设置值，使用无动画更新
         this.updateThumbPosition(this.firstRender);
         this.scrollToSelected();
@@ -577,5 +514,4 @@ export class SegmentedComponent implements ControlValueAccessor, AfterViewInit, 
       this.updateThumbPosition();
     });
   }
-  //#endregion
 }

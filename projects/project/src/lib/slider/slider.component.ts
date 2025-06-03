@@ -1,12 +1,10 @@
-import { Component, ElementRef, forwardRef, HostListener, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, forwardRef, HostListener, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TooltipDirective, UtilsService } from '@project';
 import * as _ from 'lodash';
-export interface Mark {
-  value: number;
-  label: string;
-}
+import { Mark } from './slider.interface';
+
 @Component({
   selector: 'lib-slider',
   standalone: true,
@@ -20,6 +18,7 @@ export interface Mark {
     }
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderComponent implements OnInit, ControlValueAccessor {
   @ViewChild('sliderContainer') sliderContainer!: ElementRef<HTMLElement>;
@@ -72,7 +71,8 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   public currentHandle = 0;
 
   constructor(
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    public cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -89,6 +89,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
         label: value
       }));
     }
+    this.cdr.detectChanges();
   }
 
   /**
@@ -119,6 +120,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     document.addEventListener('mousemove', this.onMouseMove);
     document.addEventListener('mouseup', this.onMouseUp);
     this.onTouched();
+    this.cdr.detectChanges();
   }
 
   /**
@@ -131,6 +133,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     const percent = Math.min(Math.max((event.clientX - sliderRect.left) / sliderRect.width * 100, 0), 100);
     const newValue = this.valueFromPercent(percent);
     this.isRange ? this.handleRangeValueChange(newValue) : this.handleSingleValueChange(newValue);
+    this.cdr.detectChanges();
   }
 
   /**
@@ -142,6 +145,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     const percent = Math.min(Math.max((event.clientX - sliderRect.left) / sliderRect.width * 100, 0), 100);
     const newValue = this.valueFromPercent(percent);
     this.isRange ? this.handleRangeDrag(newValue) : this.handleSingleValueChange(newValue);
+    this.cdr.detectChanges();
   };
 
   /**
@@ -157,6 +161,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.singalSliderHandleStrictVisible = false;
     this.rangeLeftSliderHandleStrictVisible = false;
     this.rangeRightSliderHandleStrictVisible = false;
+    this.cdr.detectChanges();
   };
 
   /**
@@ -171,6 +176,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
       this.rangeValues[1] = percentValue;
     }
     this.updateRangeValues();
+    this.cdr.detectChanges();
   }
 
   /**
@@ -186,6 +192,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
       this.rangeValues[1] = this.rangeValues[0];
     }
     this.updateRangeValues();
+    this.cdr.detectChanges();
   }
 
   /**
@@ -200,6 +207,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
       this.valueFromPercent(this.rangeValues[1] / 100 * (this.max - this.min) + this.min)
     ];
     this.onChange(actualValues);
+    this.cdr.detectChanges();
   }
 
   /**
@@ -210,6 +218,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.value = _.round(this.value);
     this.updateTrackWidth();
     this.onChange(newValue);
+    this.cdr.detectChanges();
   }
 
   /**
@@ -234,6 +243,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     // 更新提示位置和内容
     this.tooltip?.updatePosition();
     this.tooltip?.updateContent(value);
+    this.cdr.detectChanges();
   }
 
   /**
@@ -289,6 +299,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
       this.value = this.percentOf(Math.round(value));
     }
     this.updateTrackWidth();
+    this.cdr.detectChanges();
   }
 
   /**

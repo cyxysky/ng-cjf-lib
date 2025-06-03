@@ -1,5 +1,6 @@
 import { TemplateRef } from "@angular/core";
 
+/** 抽屉配置 */
 export interface DrawerOptions {
     /** 抽屉标题 */
     title?: string | TemplateRef<{ $implicit: any }>;

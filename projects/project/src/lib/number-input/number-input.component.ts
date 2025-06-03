@@ -1,4 +1,4 @@
-import { Component, forwardRef, signal, computed, input, Input, booleanAttribute, ViewEncapsulation } from '@angular/core';
+import { Component, forwardRef, signal, computed, input, Input, booleanAttribute, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/f
     }
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NumberInputComponent implements ControlValueAccessor {
   /** 最小值 */
@@ -46,6 +47,8 @@ export class NumberInputComponent implements ControlValueAccessor {
   /** 格式化函数 */
   @Input({ alias: 'numberInputFormatter' }) formatter: (value: number) => any = (value) => value;
 
+  constructor(public cdr: ChangeDetectorRef) { }
+
   /** 当前值 */
   public value = signal<number | null>(null);
   /** 是否获得焦点 */
@@ -70,6 +73,7 @@ export class NumberInputComponent implements ControlValueAccessor {
     if (this.isValueInRange(newValue)) {
       this.updateValue(newValue);
     }
+    this.cdr.detectChanges();
   }
 
   /**
@@ -82,6 +86,7 @@ export class NumberInputComponent implements ControlValueAccessor {
     if (this.isValueInRange(newValue)) {
       this.updateValue(newValue);
     }
+    this.cdr.detectChanges();
   }
 
   /**
@@ -90,6 +95,7 @@ export class NumberInputComponent implements ControlValueAccessor {
   onInputChange(value: number | null): void {
     if (value === null) {
       this.updateValue(null);
+      this.cdr.detectChanges();
       return;
     }
     if (isNaN(value)) return;
@@ -99,6 +105,7 @@ export class NumberInputComponent implements ControlValueAccessor {
       this.value.set(value);
       this.onChange(value);
     }
+    this.cdr.detectChanges();
   }
 
   /**
@@ -112,6 +119,7 @@ export class NumberInputComponent implements ControlValueAccessor {
     if (currentValue !== null) {
       this.updateValue(currentValue);
     }
+    this.cdr.detectChanges();
   }
 
   /**
@@ -119,6 +127,7 @@ export class NumberInputComponent implements ControlValueAccessor {
    */
   onFocus(): void {
     this.focused.set(true);
+    this.cdr.detectChanges();
   }
 
   /**

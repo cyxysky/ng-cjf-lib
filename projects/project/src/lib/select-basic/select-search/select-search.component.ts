@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'lib-select-search',
   imports: [FormsModule],

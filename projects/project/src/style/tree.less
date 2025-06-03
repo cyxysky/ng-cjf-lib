@@ -42,7 +42,6 @@
         &-list {
             list-style: none;
             padding: 0;
-            transform-origin: 0 0;
         }
 
         &-content {
@@ -81,17 +80,10 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: @tree-switcher-size;
-        height: @tree-switcher-size;
+        height: 100%;
         margin-right: @tree-switcher-margin-right;
         cursor: pointer;
         transition: all @transition-duration-base;
-
-        &-expanded {
-            .c-lib-tree-switcher-icon {
-                transform: rotate(90deg);
-            }
-        }
 
         &-noop {
             visibility: hidden;
@@ -103,21 +95,15 @@
         }
 
         .c-lib-tree-switcher-icon {
-            position: relative;
-            display: inline-block;
-            width: 8px;
-            height: 8px;
+            z-index: 1;
+            transition: transform @transition-duration-base;
 
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 3px;
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 4px 0 4px 6px;
-                border-color: transparent transparent transparent currentColor;
+            &-open {
+                transform: rotate(90deg);
+            }
+        
+            &-close {
+                transform: rotate(0deg);
             }
         }
     }
@@ -214,8 +200,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: @tree-switcher-size;
-    height: @tree-switcher-size;
     margin-right: @tree-switcher-margin-right;
 
     .c-lib-tree-loading-svg {

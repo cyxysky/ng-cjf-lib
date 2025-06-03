@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { OverlayService } from '../core/overlay/overlay.service';
 import { UtilsService } from '../core/utils/utils.service';
 import { SelectBoxComponent } from '../select-basic/select-box/select-box.component';
+
 @Component({
   selector: 'lib-select',
   imports: [CommonModule, FormsModule, ScrollingModule, CdkVirtualScrollViewport, CdkOverlayOrigin, SelectBoxComponent, CdkConnectedOverlay],
@@ -19,8 +20,8 @@ import { SelectBoxComponent } from '../select-basic/select-box/select-box.compon
       multi: true
     }
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit {
   /** 浮层初始位置 */

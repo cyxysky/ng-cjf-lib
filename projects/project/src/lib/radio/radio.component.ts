@@ -1,12 +1,7 @@
-import { Component, Input, Output, EventEmitter, forwardRef, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { Component, Input, forwardRef, TemplateRef, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule } from '@angular/forms';
-
-export interface RadioOption {
-  label: string;
-  value: any;
-  disabled?: boolean;
-}
+import { RadioOption } from './radio.interface';
 
 @Component({
   selector: 'lib-radio',
@@ -21,6 +16,7 @@ export interface RadioOption {
     }
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioComponent implements ControlValueAccessor {
   /** 选项 */
@@ -35,12 +31,37 @@ export class RadioComponent implements ControlValueAccessor {
   value: any;
   disabled: boolean = false;
 
+  constructor(private cdr: ChangeDetectorRef) { }
+
+  /**
+   * 选择选项
+   * @param option 选项
+   */
+  selectOption(option: RadioOption): void {
+    if (this.disabled || option.disabled) {
+      return;
+    }
+    this.value = option.value;
+    this.onChange(this.value);
+    this.cdr.detectChanges();
+  }
+
+  /**
+   * 判断选项是否被选中
+   * @param option 选项
+   * @returns 是否被选中
+   */
+  isChecked(option: RadioOption): boolean {
+    return this.value === option.value;
+  }
+
   // ControlValueAccessor 接口实现
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
   writeValue(value: any): void {
     this.value = value;
+    this.cdr.detectChanges();
   }
 
   registerOnChange(fn: any): void {
@@ -53,21 +74,5 @@ export class RadioComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
-  }
-
-  // 选择选项
-  selectOption(option: RadioOption): void {
-    if (this.disabled || option.disabled) {
-      return;
-    }
-    
-    this.value = option.value;
-    this.onChange(this.value);
-    this.onTouched();
-  }
-
-  // 判断选项是否被选中
-  isChecked(option: RadioOption): boolean {
-    return this.value === option.value;
   }
 }

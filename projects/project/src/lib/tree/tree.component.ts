@@ -21,12 +21,11 @@ import * as _ from 'lodash';
     CheckboxComponent
   ],
   templateUrl: './tree.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     expandCollapse,
-    rotate(90)
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements OnInit, OnChanges {
   /** 树数据 */
@@ -150,31 +149,34 @@ export class TreeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    // 搜索值变化时，进行搜索
     if (changes['searchValue'] && !changes['searchValue'].firstChange) {
-      this.searching = true;
       this.handleSearch();
-      this.searching = false;
     }
+    // 树数据变化时，进行扁平化
     if (changes['originTreeData']) {
       this.treeData = _.cloneDeep(this.originTreeData);
       this.flattenTree();
     }
+    // 默认展开所有节点时，进行展开
     if (changes['defaultExpandAll']) {
-      if (this.defaultExpandAll) {
-        this.handleExpandAll();
-      }
+      this.defaultExpandAll && this.handleExpandAll();
     }
+    // 默认展开的节点变化时，进行初始化
     if (changes['defaultExpandedKeys']) {
       this.initDefaultExpandedKeys();
     }
+    // 默认选中的节点变化时，进行初始化
     if (changes['defaultSelectedKeys']) {
       this.selectedKeys.clear();
       this.initDefaultSelectedKeys();
     }
+    // 默认选中的节点变化时，进行初始化
     if (changes['defaultCheckedKeys']) {
       this.checkedKeys.clear();
       this.initDefaultCheckedKeys();
     }
+    // 检测变化
     this.cdr.detectChanges();
   }
 
@@ -223,7 +225,6 @@ export class TreeComponent implements OnInit, OnChanges {
         this.updateParentCheckState(node);
       }
     });
-    console.log(this.treeData);
     this.cdr.detectChanges();
   }
 
@@ -283,7 +284,7 @@ export class TreeComponent implements OnInit, OnChanges {
    * @param nodes 
    */
   private traverseNodesForExpandAll(nodes: TreeNodeOptions[]): void {
-    nodes.forEach(node => {
+    nodes && nodes.forEach(node => {
       if (!node.isLeaf && node?.[this.childrenProperty] && node?.[this.childrenProperty]?.length) {
         this.expandedKeys.add(node[this.valueProperty]);
         node.expanded = true;
@@ -354,9 +355,7 @@ export class TreeComponent implements OnInit, OnChanges {
    * @param checked 是否选中
    */
   public onNodeCheck(node: TreeNodeOptions, checked: boolean): void {
-    if (node.disabled || node.disableCheckbox) {
-      return;
-    }
+    if (node.disabled || node.disableCheckbox) return;
     node.checked = checked;
     node.indeterminate = false;
     if (checked) {
@@ -385,9 +384,13 @@ export class TreeComponent implements OnInit, OnChanges {
           child.indeterminate = false;
           checked ? this.checkedKeys.add(child[this.valueProperty]) : this.checkedKeys.delete(child[this.valueProperty]);
           this.indeterminateKeys.delete(child[this.valueProperty]);
-          this.updateChildrenCheckState(child, checked);
+          // 使用requestIdleCallback来更新子节点的checkbox状态，保证不出现卡顿
+          requestIdleCallback(() => {
+            this.updateChildrenCheckState(child, checked);
+          })
         }
       });
+      this.cdr.detectChanges();
     }
   }
 
@@ -430,13 +433,18 @@ export class TreeComponent implements OnInit, OnChanges {
         this.indeterminateKeys.add(parent[this.valueProperty]);
       }
     }
-    this.updateParentCheckState(parent);
+    // 使用requestIdleCallback来更新父节点的checkbox状态，保证不出现卡顿
+    requestIdleCallback(() => {
+      this.updateParentCheckState(parent);
+    });
+    this.cdr.detectChanges();
   }
 
   /**
    * 处理搜索
    */
   public handleSearch(): void {
+    this.searching = true;
     // 简化搜索逻辑
     if (!this.searchValue) {
       this.searchResults = [];
@@ -450,18 +458,7 @@ export class TreeComponent implements OnInit, OnChanges {
     // 只在有结果时执行展开操作
     this.searchResults.length > 0 && this.expandSearchResults();
     this.cdr.detectChanges();
-  }
-
-
-  /**
-   * 重置树的展开状态到初始状态
-   */
-  public resetExpandedStateNoCdr(): void {
-    // 清空当前展开的所有节点
-    this.expandedKeys.clear();
-    this.utilsService.traverseAllNodes(this.treeData, (node: any) => {
-      node.expanded = false;
-    });
+    this.searching = false;
   }
 
   /**
@@ -511,9 +508,7 @@ export class TreeComponent implements OnInit, OnChanges {
    * 展开搜索结果
    */
   private expandSearchResults(): void {
-    this.searchResults.forEach(node => {
-      this.expandNodeParents(node, false);
-    });
+    this.searchResults.forEach(node => this.expandNodeParents(node, false));
     this.cdr.detectChanges();
   }
 
@@ -541,10 +536,7 @@ export class TreeComponent implements OnInit, OnChanges {
    * @returns 
    */
   public showEmptyState(): boolean {
-    return this.searchValue !== undefined &&
-      this.searchValue !== '' &&
-      this.searchResults.length === 0 &&
-      !this.searching;
+    return this.searchValue !== undefined && this.searchValue !== '' && this.searchResults.length === 0 && !this.searching;
   }
 
   /**
@@ -619,7 +611,6 @@ export class TreeComponent implements OnInit, OnChanges {
    */
   public isNodeVisible(nodeKey: string): boolean {
     if (!this.virtualFlattenNodesParentMap.has(nodeKey)) return true;
-
     let currentKey = nodeKey;
     while (this.virtualFlattenNodesParentMap.has(currentKey)) {
       const parentKey = this.virtualFlattenNodesParentMap.get(currentKey)!;
@@ -629,7 +620,6 @@ export class TreeComponent implements OnInit, OnChanges {
     return true;
   }
 
-  // 对外暴露的方法
   /**
    * 获取展开的节点
    * @returns 展开的节点
@@ -757,5 +747,15 @@ export class TreeComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
+  /**
+   * 重置树的展开状态到初始状态
+   */
+  public resetExpandedStateNoCdr(): void {
+    // 清空当前展开的所有节点
+    this.expandedKeys.clear();
+    this.utilsService.traverseAllNodes(this.treeData, (node: any) => {
+      node.expanded = false;
+    });
+  }
 
 }

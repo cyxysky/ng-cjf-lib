@@ -1,7 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, HostBinding, input, output, booleanAttribute, model, computed, effect, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, input, output, booleanAttribute, model, computed, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ColorType, presetColors, TagColor } from './tag.interface';
-
 
 @Component({
   selector: 'lib-tag',
@@ -9,6 +8,7 @@ import { ColorType, presetColors, TagColor } from './tag.interface';
   imports: [CommonModule],
   templateUrl: './tag.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TagComponent {
   /** 标签是否可以关闭 */
@@ -29,7 +29,9 @@ export class TagComponent {
   checkedChange = output<boolean>();
   /** 标签是否显示边框 */
   border = input(true, { transform: booleanAttribute, alias: 'tagBorder' });
-  
+
+  constructor(public cdr: ChangeDetectorRef) {}
+
   /** 获取当前标签样式 */
   tagStyle = computed(() => {
     const colorValue = this.color();
@@ -45,20 +47,28 @@ export class TagComponent {
     }
     return isChecked && this.checkable() ? presetColors['default'].inverse : presetColors['default'].default;
   });
-  
 
+  /**
+   * 关闭标签
+   * @param e 事件对象
+   */
   closeTag(e: MouseEvent): void {
     e.stopPropagation();
     if (!this.disabled()) {
       this.close.emit('close');
     }
+    this.cdr.detectChanges();
   }
-  
+
+  /**
+   * 点击标签
+   */
   handleClick(): void {
     if (this.checkable() && !this.disabled()) {
       const newValue = !this.checked();
       this.checked.set(newValue);
       this.checkedChange.emit(newValue);
     }
+    this.cdr.detectChanges();
   }
 }

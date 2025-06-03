@@ -1,21 +1,10 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, OnDestroy, ChangeDetectorRef, ElementRef, ViewContainerRef, TemplateRef, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { cloneDeep, isEqual } from 'lodash';
+import * as _ from 'lodash';
 import { DropMenuDirective } from '../drop-menu/drop-menu.directive';
 import { DropMenu } from '../drop-menu/drop-menu.interface';
 import { CustomerExpandCollapse } from '../core';
-
-// 定义菜单项接口
-export interface MenuItem {
-  key: string;
-  title: string;
-  icon?: string;
-  isOpen?: boolean;
-  selected?: boolean;
-  disabled?: boolean;
-  children?: MenuItem[];
-  link?: string;
-}
+import { MenuItem } from './menu.interface';
 
 @Component({
   selector: 'lib-menu',
@@ -59,7 +48,7 @@ export class MenuComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // 深拷贝输入数据，实现数据隔离
-    this.internalItems = cloneDeep(this.items);
+    this.internalItems = _.cloneDeep(this.items);
     this.updateSelectedItems();
     // 确保初始时所有子菜单都是关闭的
     this.ensureAllMenusClosed();
@@ -69,7 +58,7 @@ export class MenuComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     // 当输入数据变化时更新内部数据
     if (changes['items']) {
-      this.internalItems = cloneDeep(this.items);
+      this.internalItems = _.cloneDeep(this.items);
     }
     if (changes['selectedKeys'] && !changes['selectedKeys'].firstChange) {
       this.updateSelectedItems();
@@ -83,7 +72,9 @@ export class MenuComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  // 确保所有菜单初始时是关闭的
+  /**
+   * 确保所有菜单初始时是关闭的
+   */
   private ensureAllMenusClosed(): void {
     if (this.internalItems) {
       this.internalItems.forEach(item => {
@@ -97,7 +88,10 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  // 递归关闭所有子菜单
+  /**
+   * 递归关闭所有子菜单
+   * @param items 菜单项
+   */
   private closeAllSubMenus(items: MenuItem[]): void {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
@@ -107,7 +101,10 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  // 切换子菜单状态 - 只用于内联模式
+  /**
+   * 切换子菜单状态 - 只用于内联模式
+   * @param item 菜单项
+   */
   toggleSubMenu(item: MenuItem): void {
     if (item.disabled || !item.children || item.children.length === 0 || !(this.mode === 'inline' && !this.inlineCollapsed)) {
       return;
@@ -118,7 +115,11 @@ export class MenuComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  // 点击菜单项
+  /**
+   * 点击菜单项
+   * @param item 菜单项
+   * @param event 事件
+   */
   public onMenuItemClick(item: MenuItem, event?: MouseEvent | null): void {
     if (this.selectable && !item.disabled) {
       // 先取消所有选中状态
@@ -141,7 +142,13 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  // 根据key查找原始数据中的菜单项
+  /**
+   * 根据key查找原始数据中的菜单项
+   * @param key 键
+   * @param items 菜单项
+   * @param findKey 查找键
+   * @returns 菜单项
+   */
   private findOriginalItem(key: string, items: MenuItem[], findKey: string = 'key'): MenuItem | null {
     for (const item of items) {
       if (item[findKey as keyof MenuItem] === key) return item;
@@ -153,7 +160,11 @@ export class MenuComponent implements OnInit, OnChanges {
     return null;
   }
 
-  // 检查是否有选中的子菜单项
+  /**
+   * 检查是否有选中的子菜单项
+   * @param item 菜单项
+   * @returns 是否包含
+   */
   hasSelectedChild(item: MenuItem): boolean {
     if (!item.children) {
       return false;
@@ -172,7 +183,11 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  // 打开选中项的所有父级菜单
+  /**
+   * 打开选中项的所有父级菜单
+   * @param items 菜单项
+   * @param selectedItem 选中项
+   */
   private openParentMenus(items: MenuItem[], selectedItem: MenuItem): void {
     for (const item of items) {
       if (item.children && item.children.length > 0) {
@@ -192,7 +207,12 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  // 检查菜单树中是否包含指定的菜单项
+  /**
+   * 检查菜单树中是否包含指定的菜单项
+   * @param parent 父菜单项
+   * @param targetItem 目标菜单项
+   * @returns 是否包含
+   */
   private hasSelectedChildInTree(parent: MenuItem, targetItem: MenuItem): boolean {
     if (!parent.children) return false;
     for (const child of parent.children) {
@@ -204,7 +224,10 @@ export class MenuComponent implements OnInit, OnChanges {
     return false;
   }
 
-  // 清除所有菜单项的选中状态
+  /**
+   * 清除所有菜单项的选中状态
+   * @param items 菜单项
+   */
   private clearSelectedState(items: MenuItem[]): void {
     items.forEach(item => {
       item.selected = false;
@@ -214,7 +237,9 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  // 根据selectedKeys更新选中状态
+  /**
+   * 根据selectedKeys更新选中状态
+   */
   private updateSelectedItems(): void {
     if (!this.selectedKeys || this.selectedKeys.length === 0) {
       // 如果没有选中项，清除所有选中状态
@@ -232,7 +257,11 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  // 根据单个key设置选中项
+  /**
+   * 根据单个key设置选中项
+   * @param items 菜单项
+   * @param key 键
+   */
   private setSelectedByKey(items: MenuItem[], key: string): void {
     for (const item of items) {
       if (item.key === key) {
@@ -245,7 +274,10 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-  // 确保所有选中项的父菜单是展开的
+  /**
+   * 确保所有选中项的父菜单是展开的
+   * @param items 菜单项
+   */
   private ensureParentMenusOpen(items: MenuItem[]): void {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
@@ -258,7 +290,10 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  // 收起所有子菜单
+  /**
+   * 收起所有子菜单
+   * @param items 菜单项
+   */
   private collapseAllSubMenus(items: MenuItem[]): void {
     items.forEach(item => {
       if (item.children && item.children.length > 0) {
@@ -268,8 +303,12 @@ export class MenuComponent implements OnInit, OnChanges {
     });
   }
 
-  // 处理从DropMenu指令传递过来的菜单项点击
-  onDropMenuItemClick(dropMenuItem: DropMenu, event?: MouseEvent | null): void {
+  /**
+   * 处理从DropMenu指令传递过来的菜单项点击事件
+   * @param dropMenuItem 菜单项
+   * @param event 事件
+   */
+  public onDropMenuItemClick(dropMenuItem: DropMenu, event?: MouseEvent | null): void {
     // 查找对应的MenuItem
     const menuItem = this.findOriginalItem(dropMenuItem.title, this.internalItems, 'title');
     if (menuItem && !menuItem.disabled && !menuItem.children) {
@@ -277,8 +316,10 @@ export class MenuComponent implements OnInit, OnChanges {
     }
   }
 
-
-
+  /**
+   * 判断是否显示下拉菜单
+   * @returns 是否显示
+   */
   public showDropMenu(): boolean {
     return this.mode !== 'vertical' && !this.inlineCollapsed && this.mode !== 'horizontal'
   }

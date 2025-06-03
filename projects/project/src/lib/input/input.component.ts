@@ -16,8 +16,8 @@ import { InputSize, InputStatus } from './input.interface';
       multi: true
     }
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor {
   /** 输入框大小 */

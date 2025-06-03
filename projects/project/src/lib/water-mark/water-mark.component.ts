@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'lib-water-mark',
   standalone: true,
@@ -8,18 +9,30 @@ import { CommonModule } from '@angular/common';
   encapsulation: ViewEncapsulation.None
 })
 export class WaterMarkComponent implements OnInit, OnDestroy {
+  /** 水印文字 */
   @Input({ alias: 'waterMarkText' }) text = '水印文字';
+  /** 水印字体颜色 */
   @Input({ alias: 'waterMarkFontColor' }) fontColor = 'rgba(0, 0, 0, 0.15)';
+  /** 水印字体大小 */
   @Input({ alias: 'waterMarkFontSize' }) fontSize = 16;
+  /** 水印字体 */
   @Input({ alias: 'waterMarkFontFamily' }) fontFamily = '"Microsoft YaHei", "PingFang SC", Arial, sans-serif';
+  /** 水印字体粗细 */
   @Input({ alias: 'waterMarkFontWeight' }) fontWeight = '200';
+  /** 水印间距 */
   @Input({ alias: 'waterMarkGap' }) gap = 40;
+  /** 水印层级 */
   @Input({ alias: 'waterMarkZIndex' }) zIndex = 9999;
+  /** 水印旋转角度 */
   @Input({ alias: 'waterMarkRotate' }) rotate = -22;
+  /** 水印宽度 */
   @Input({ alias: 'waterMarkWidth' }) width = 240;
+  /** 水印高度 */
   @Input({ alias: 'waterMarkHeight' }) height = 120;
+  /** 水印偏移量 */
   @Input({ alias: 'waterMarkOffsetLeft' }) offsetLeft = 0;
   @Input({ alias: 'waterMarkOffsetTop' }) offsetTop = 0;
+  /** 水印图片 */
   @Input({ alias: 'waterMarkImageBase64' }) imageBase64: string | null = null;
 
   private watermarkElement?: HTMLDivElement;

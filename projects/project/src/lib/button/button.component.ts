@@ -1,17 +1,16 @@
-import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, CUSTOM_ELEMENTS_SCHEMA, Input, input, numberAttribute, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { rippleAnimation } from '../core/animation/ripple.animation';
 import * as _ from 'lodash';
 import { ButtonColor, ButtonShape, ButtonSize, ButtonType } from './button.interface';
 import { UtilsService } from '../core/utils/utils.service';
+
 @Component({
 	selector: 'lib-button',
 	standalone: true,
-	encapsulation: ViewEncapsulation.None,
 	imports: [CommonModule],
 	templateUrl: './button.component.html',
-	changeDetection: ChangeDetectionStrategy.OnPush,
 	animations: [
 		trigger('ripple', [
 			transition(':enter', useAnimation(rippleAnimation)),
@@ -20,7 +19,9 @@ import { UtilsService } from '../core/utils/utils.service';
 	host: {
 		'[class]': 'disabled ? "disabled" : ""',
 		'[style.pointer-events]': 'disabled ? "none" : "auto"',
-	}
+	},
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
 	/** 按钮大小 */
@@ -39,7 +40,7 @@ export class ButtonComponent {
 	@Input({ alias: 'buttonBlock', transform: booleanAttribute }) block: boolean = false;
 	/** 按钮图标 */
 	@Input({ alias: 'buttonIcon' }) icon: string | undefined;
-	
+
 	/** 波纹 */
 	public ripple: { x?: number; y?: number; size?: number } = {};
 

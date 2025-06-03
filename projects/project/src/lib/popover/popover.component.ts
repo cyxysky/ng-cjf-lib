@@ -3,6 +3,7 @@ import { OverlayBasicPosition } from '../core/overlay/overlay-basic.directive';
 import { CommonModule } from '@angular/common';
 import { ButtonType, ButtonColor } from '../button/button.interface';
 import { ButtonComponent } from '../button/button.component';
+
 @Component({
   selector: 'lib-popover',
   imports: [CommonModule, ButtonComponent],
@@ -45,11 +46,11 @@ export class PopoverComponent implements AfterViewInit {
 
   constructor(
     public cdr: ChangeDetectorRef
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void { }
 
   ngOnChanges(changes: any): void {
     this.cdr.detectChanges();
@@ -102,5 +103,5 @@ export class PopoverComponent implements AfterViewInit {
   onCancelClick(): void {
     this.onCancel.emit();
   }
-  
+
 }

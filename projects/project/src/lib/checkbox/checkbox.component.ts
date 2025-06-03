@@ -8,7 +8,6 @@ import { CheckboxOption, CheckboxDirection } from './checkbox.interface';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './checkbox.component.html',
-  encapsulation: ViewEncapsulation.None,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -16,6 +15,7 @@ import { CheckboxOption, CheckboxDirection } from './checkbox.interface';
       multi: true
     }
   ],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor, OnInit {

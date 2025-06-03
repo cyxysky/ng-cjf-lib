@@ -11,7 +11,7 @@
   (click)="toggle()"
   (focus)="onFocus()"
   (blur)="onBlur()"
->
+  >
   <div class="c-lib-switch-handle">
     <span *ngIf="loading" class="c-lib-switch-loading-icon">
       <svg viewBox="0 0 1024 1024" class="c-lib-switch-loading-icon" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true">
@@ -19,14 +19,22 @@
       </svg>
     </span>
   </div>
+  <!-- 选中 -->
   <span *ngIf="checked()" class="c-lib-switch-inner c-lib-switch-inner-checked">
-    {{ isString(checkedChildren) ? checkedChildren : '' }}
-    <ng-content select="[checkedChildren]"></ng-content>
+    <!-- 字符串 -->
+    <ng-container *ngIf="isString(checkedChildren)">{{ checkedChildren }}</ng-container>
+    <!-- 模板 -->
     <ng-container *ngIf="isTemplate(checkedChildren)" [ngTemplateOutlet]="checkedChildren"></ng-container>
+    <!-- 内容 -->
+    <ng-content select="[checkedChildren]"></ng-content>
   </span>
+  <!-- 未选中 -->
   <span *ngIf="!checked()" class="c-lib-switch-inner c-lib-switch-inner-unchecked">
-    {{ isString(unCheckedChildren) ? unCheckedChildren : '' }}
-    <ng-content select="[unCheckedChildren]"></ng-content>
+    <!-- 字符串 -->
+    <ng-container *ngIf="isString(unCheckedChildren)">{{ unCheckedChildren }}</ng-container>
+    <!-- 模板 -->
     <ng-container *ngIf="isTemplate(unCheckedChildren)" [ngTemplateOutlet]="unCheckedChildren"></ng-container>
+    <!-- 内容 -->
+    <ng-content select="[unCheckedChildren]"></ng-content>
   </span>
 </span>

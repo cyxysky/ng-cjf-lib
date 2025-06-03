@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, ElementRef, forwardRef, Input, input, model, output, signal, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, forwardRef, Input, input, model, output, signal, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
     }
   ],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SwitchComponent implements ControlValueAccessor {
   @ViewChild('switchButton') switchButton!: ElementRef;
@@ -28,17 +29,17 @@ export class SwitchComponent implements ControlValueAccessor {
   @Input({ alias: 'switchUnCheckedChildren' }) unCheckedChildren: string | TemplateRef<any> | any = null;
   /** 大小 */
   @Input({ alias: 'switchSize' }) size: 'default' | 'small' = 'default';
-  // 使用model()函数创建双向绑定
+
+  constructor(public cdr: ChangeDetectorRef) { }
+
+  /** 是否选中 */
   checked = signal(false);
+  /** 是否聚焦 */
+  focused = signal(false);
 
-  // 使用Signal管理内部状态
-  private focusedState = signal(false);
-  focused = this.focusedState.asReadonly();
-
-  // ControlValueAccessor接口实现
-  private onChange: (value: boolean) => void = () => { };
-  private onTouched: () => void = () => { };
-
+  /**
+   * 切换
+   */
   toggle(): void {
     if (this.disabled || this.loading) {
       return;
@@ -46,21 +47,32 @@ export class SwitchComponent implements ControlValueAccessor {
     const newValue = !this.checked();
     this.checked.set(newValue);
     this.onChange(newValue);
+    this.cdr.detectChanges();
   }
 
+  /**
+   * 是否字符串
+   * @param value 
+   * @returns 是否
+   */
   isString(value: any): boolean {
-    if (!value) {
-      return false;
-    }
+    if (!value) return false;
     return typeof value === 'string';
   }
 
+  /**
+   * 是否模板
+   * @param value 值
+   * @returns 是否
+   */
   isTemplate(value: any): boolean {
-    if (!value) {
-      return false;
-    }
+    if (!value) return false;
     return value instanceof TemplateRef;
   }
+
+  // ControlValueAccessor接口实现
+  private onChange: (value: boolean) => void = () => { };
+  private onTouched: () => void = () => { };
 
   // ControlValueAccessor接口方法
   writeValue(value: boolean): void {
@@ -80,11 +92,11 @@ export class SwitchComponent implements ControlValueAccessor {
   }
 
   onFocus(): void {
-    this.focusedState.set(true);
+    this.focused.set(true);
     this.onTouched();
   }
 
   onBlur(): void {
-    this.focusedState.set(false);
+    this.focused.set(false);
   }
 }

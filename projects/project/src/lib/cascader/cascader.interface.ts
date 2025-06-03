@@ -1,4 +1,3 @@
-
 /** 级联选择器选项 */
 export interface CascaderOption {
     /** 值 */
@@ -27,7 +26,9 @@ export interface CascaderOption {
 
 /** 级联选择器展开触发类型 */
 export type CascaderExpandTrigger = 'click' | 'hover';
+
 /** 级联选择器触发类型 */
 export type CascaderTriggerType = 'click' | 'hover';
+
 /** 级联选择器大小 */
 export type CascaderSize = 'large' | 'default' | 'small';

@@ -6,6 +6,7 @@ import { PopoverComponent } from './popover.component';
 import { OverlayService } from '../core/overlay/overlay.service';
 import * as _ from 'lodash';
 import { UtilsService } from '../core/utils/utils.service';
+
 @Directive({
   selector: '[libPopover]'
 })
@@ -31,7 +32,7 @@ export class PopoverDirective implements OverlayBasicDirective {
   /** 提示显示状态改变事件 */
   @Output('popoverVisibleChange') visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  /** 气泡 */ 
+  /** 气泡 */
   private overlayRef: OverlayRef | null = null;
   /** 进入计时器 */
   private enterTimer: any;

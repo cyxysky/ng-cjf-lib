@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, SimpleChanges, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { OverlayBasicPosition } from '../core/overlay/overlay-basic.directive';
+
 @Component({
   selector: 'lib-tooltip',
   standalone: true,

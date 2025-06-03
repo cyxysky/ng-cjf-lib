@@ -17,15 +17,15 @@ import { UtilsService } from '@project';
     CdkConnectedOverlay
   ],
   templateUrl: './date-timer.component.html',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DateTimerComponent),
       multi: true
     }
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DateTimerComponent implements OnInit, ControlValueAccessor {
   /** 模式 */
