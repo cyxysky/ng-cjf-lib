@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-lib": "ng build myproject"
+    "build-lib": "ng build myproject",
+    "postbuild-lib": "gulp build-css",
+    "build-css": "gulp build-css",
+    "build-css-watch": "gulp build-css-watch"
   },
   "private": true,
   "dependencies": {
@@ -44,6 +47,12 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "ng-packagr": "^19.2.0",
-    "typescript": "~5.6.2"
+    "typescript": "~5.6.2",
+    "gulp": "^4.0.2",
+    "gulp-less": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "del": "^6.1.1"
   }
 }
