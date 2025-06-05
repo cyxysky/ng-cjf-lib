@@ -79,7 +79,7 @@ function buildThemeCSS(theme) {
                 level: 2,
                 format: 'beautify'
             }))
-            .pipe(rename(`style-${theme.name}.css`))
+            .pipe(rename(`${theme.name}.css`))
             .pipe(sourcemaps.write('.'))
             .pipe(gulp.dest(paths.styles.dest))
             .on('end', () => {
@@ -122,7 +122,7 @@ function buildMinifiedCSS(theme) {
             .pipe(cleanCSS({
                 level: 2
             }))
-            .pipe(rename(`style-${theme.name}.min.css`))
+            .pipe(rename(`${theme.name}.min.css`))
             .pipe(gulp.dest(paths.styles.dest))
             .on('end', () => {
                 // 恢复原始variables/index.less文件

@@ -117,7 +117,7 @@
         </div>
         <!-- 添加节点按钮 -->
         <div class="add-node-button-box">
-          <div class="add-node-button" nz-dropdown [nzDropdownMenu]="menu">
+          <div class="add-node-button" libDropMenu [dropMenuTemplate]="fullCustomTpl">
             <div *ngIf="data.type !== 'endNode'" style="display: flex;align-items: center;">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -156,7 +156,7 @@
 <!-- 分支节点结束 -->
 <div *ngIf="data.branchs">
   <div *ngIf="data.type !== NodeType.END" class="branchs-node-end-add-button-box">
-    <div class="add-node-button" nz-dropdown [nzDropdownMenu]="menus">
+    <div class="add-node-button" libDropMenu [dropMenuTemplate]="fullCustomTpls">
       <div *ngIf="data.type !== NodeType.END" style="display: flex;align-items: center;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -209,19 +209,18 @@
 </ng-template>
 
 <!-- 添加流程节点模板内容 -->
-<nz-dropdown-menu #menu="nzDropdownMenu">
-  <ul nz-menu  class="ul-add-list"  *ngFor="let item of addNodeConfig;index as i" (click)="add(NodeOperateType.ADD,item)">
-    <li nz-menu-item class="add-list" >
+<ng-template #fullCustomTpl>
+  <ul class="ul-add-list"  *ngFor="let item of addNodeConfig;index as i" (click)="add(NodeOperateType.ADD,item)">
+    <li class="add-list" >
       <span class="li-name">{{item.name}}</span>	
     </li>
   </ul>
-</nz-dropdown-menu>
+</ng-template>
 
-<!-- 条件节点末端添加流程节点模板内容 -->
-<nz-dropdown-menu #menus="nzDropdownMenu">
-  <ul nz-menu  *ngFor="let item of addNodeConfig;index as i" (click)="add('branchEndAdd',item)">
-    <li nz-menu-item class="add-list">
+<ng-template #fullCustomTpls>
+  <ul *ngFor="let item of addNodeConfig;index as i" (click)="add('branchEndAdd',item)">
+    <li class="add-list">
       <span class="li-name">{{item.name}}</span>	
     </li>
   </ul>
-</nz-dropdown-menu>
+</ng-template>

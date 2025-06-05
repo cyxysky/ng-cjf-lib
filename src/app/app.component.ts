@@ -2,7 +2,6 @@ import { Component, effect, resource, signal, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuItem, ProjectModule } from '../../projects/project/src/public-api';
 import { of, delay, interval } from 'rxjs';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { DocModule } from '../doc/doc.module';
@@ -10,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import * as _ from 'lodash'
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ProjectModule, NzMenuModule, ScrollingModule, DocModule, RouterOutlet, CommonModule],
+  imports: [FormsModule, ProjectModule, ScrollingModule, DocModule, RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less'
 })

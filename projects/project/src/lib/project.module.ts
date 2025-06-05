@@ -132,7 +132,6 @@ export * from './table';
     CustomerFormComponent,
     ProcessTreeComponent,
     DynamicTableComponent,
-    GeneratePngComponent,
     CustomerFormModalComponent,
     MultiDimensionalFlowchartComponent,
     ProcessTreeNodeComponent,

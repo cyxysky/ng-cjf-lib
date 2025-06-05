@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Output, s
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { InputSize, InputStatus } from './input.interface';
 
 @Component({
   selector: 'lib-input',
-  imports: [FormsModule, CommonModule, NzIconModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './input.component.html',
   providers: [
     {

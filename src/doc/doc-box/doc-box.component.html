@@ -25,17 +25,19 @@
   </div>
   
   <div class="doc-box-code" *ngIf="codeVisible">
-    <nz-tabset nzSize="small" nzCentered *ngIf="showTabs">
-      <nz-tab *ngFor="let tab of tabs" [nzTitle]="tab.title">
-        <div class="code-container">
-          <button class="tab-copy-button" (click)="copyTabCode(tab)">
-            <span class="copy-icon">{{ tab.copied ? '✓' : '📋' }}</span>
-          </button>
-          <pre><code [class]="tab.language">
-            {{ tab.content }}
-          </code></pre>
-        </div>
-      </nz-tab>
-    </nz-tabset>
+    <lib-tabs>
+        <lib-tab *ngFor="let tab of tabs" [tabTitle]="tab.title">
+            <div class="code-container">
+                <button class="tab-copy-button" (click)="copyTabCode(tab)">
+                    <span class="copy-icon">{{ tab.copied ? '✓' : '📋' }}</span>
+                </button>
+                <pre>
+                    <code [class]="tab.language">
+                        {{ tab.content }}
+                    </code>
+                </pre>
+            </div>
+        </lib-tab>
+    </lib-tabs>
   </div>
 </div>

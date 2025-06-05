@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CdkOverlayOrigin, Overlay, OverlayConfig, OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import user from './user';
 import * as _ from 'lodash';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { timer } from 'rxjs';
@@ -94,9 +93,10 @@ export class UserSelectComponent implements ControlValueAccessor {
   public ORDER_TYPE = ORDER_TYPE;
   public searchValue = '';
   public searchOnCompositionValue = '';
+  public user: any[] = [];
 
   ngOnInit() {
-    this.originUsers = _.filter(user, user => user.state !== 1).sort((a, b) => a.pinYin[0].localeCompare(b.pinYin[0]));
+    this.originUsers = _.filter(this.user, user => user.state !== 1).sort((a, b) => a.pinYin[0].localeCompare(b.pinYin[0]));
     this.users = this.initUserListAndScroll(_.cloneDeep(this.originUsers));
     this.cdr.detectChanges();
   }

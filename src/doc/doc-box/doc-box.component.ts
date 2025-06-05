@@ -1,9 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { take, timer } from 'rxjs';
-
+import { TabsComponent, TabComponent } from '@project';
 interface CodeTab {
   title: string;
   language: string;
@@ -14,7 +12,7 @@ interface CodeTab {
 @Component({
   selector: 'app-doc-box',
   standalone: true,
-  imports: [CommonModule, NzTabsModule, NzIconModule],
+  imports: [CommonModule, TabsComponent, TabComponent],
   templateUrl: './doc-box.component.html',
   styleUrl: './doc-box.component.less'
 })

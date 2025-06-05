@@ -2,15 +2,13 @@ import { Component, inject, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NodeNumberType, NodeOperateType, NodeType } from '../process-tree.component';
 import { WidgetSource } from '../../../core/directive/widget.directive';
-
-
+import { DropMenuDirective } from '../../../drop-menu/drop-menu.directive';
 @Component({
   selector: 'lib-process-tree-node',
   standalone: true,
-  imports: [FormsModule, CommonModule, NzDropDownModule],
+  imports: [FormsModule, CommonModule, DropMenuDirective],
   templateUrl: './process-tree-node.component.html',
   styleUrl: './process-tree-node.component.less',
   providers: [WidgetSource]

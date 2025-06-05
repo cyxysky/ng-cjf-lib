@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NzInputModule } from 'ng-zorro-antd/input';
 @Component({
   selector: 'lib-customer-form-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, NzInputModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './customer-form-component.component.html',
   styleUrl: './customer-form-component.component.less',
   providers: [
