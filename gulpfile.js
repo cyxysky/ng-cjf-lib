@@ -13,6 +13,10 @@ const paths = {
         src: 'projects/project/src/style/style.less',
         variablesIndex: 'projects/project/src/style/variables/index.less',
         dest: 'dist/project/assets/css'
+    },
+    fonts: {
+        src: 'node_modules/bootstrap-icons/font/fonts/*',
+        dest: 'dist/project/assets/css/fonts'
     }
 };
 
@@ -32,6 +36,7 @@ const themes = [
 function clean() {
     return del([paths.styles.dest]);
 }
+
 
 // 动态创建主题变量文件内容
 function createThemeVariables(themeImport) {

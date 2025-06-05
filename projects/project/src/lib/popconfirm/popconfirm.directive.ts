@@ -2,7 +2,7 @@ import { booleanAttribute, ComponentRef, Directive, ElementRef, EventEmitter, Ho
 import { OverlayBasicDirective, OverlayBasicPosition, OverlayBasicPositionConfigs, OverlayBasicTrigger } from '../core/overlay/overlay-basic.directive';
 import { OverlayRef, Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { PopoverComponent } from '@project';
+import { PopoverComponent } from '../popover/popover.component';
 import _ from 'lodash';
 import { OverlayService } from '../core/overlay/overlay.service';
 import { ButtonType, ButtonColor } from '../button/button.interface';

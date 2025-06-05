@@ -24,7 +24,7 @@ import { TabComponent } from './tab.component';
 import { Subject, timer } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { TabItem, tabsDirection, tabsSize, tabsType, tabsAlign } from './tabs.interface';
-import { UtilsService } from '@project';
+import { UtilsService } from '../core';
 @Component({
   selector: 'lib-tabs',
   standalone: true,

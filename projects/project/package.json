@@ -1,13 +1,12 @@
 {
-  "name": "cjf-project-lib",
-  "version": "0.0.2",
+  "name": "cjf-project",
+  "version": "0.0.3",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
-    "@angular/cdk": "^19.2.15",
-    "bootstrap-icons": "^1.11.3",
-    "@types/lodash": "^4.17.16",
-    "date-fns": "^3.0.0"
+    "@angular/cdk": "^19.2.0",
+    "@angular/animations": "^19.2.0",
+    "bootstrap-icons": "^1.11.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"

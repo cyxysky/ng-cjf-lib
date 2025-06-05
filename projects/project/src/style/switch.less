@@ -1,10 +1,10 @@
 .c-lib-switch {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   min-width: @switch-min-width;
   height: @switch-height;
-  line-height: @switch-height;
-  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
   background-color: @switch-bg;
   border-radius: @switch-border-radius;
   cursor: pointer;
@@ -33,6 +33,14 @@
     border-radius: @switch-border-radius;
     background-color: @switch-handle-bg;
     box-shadow: @switch-handle-shadow;
+
+    .c-lib-switch-loading-box {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   &-checked &-handle {
@@ -44,7 +52,7 @@
     display: inline-flex;
     width: 80%;
     height: 80%;
-    animation: loadingCircle 2s infinite linear;
+    animation: loadingCircle 1s infinite linear;
     align-items: center;
     justify-content: center;
     color: @switch-loading-color;

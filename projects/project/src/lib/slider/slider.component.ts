@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, forwardRef, HostListener, Input, OnInit, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TooltipDirective, UtilsService } from '@project';
+import { UtilsService } from '../core';
+import { TooltipDirective } from '../tooltip';
 import * as _ from 'lodash';
 import { Mark } from './slider.interface';
 

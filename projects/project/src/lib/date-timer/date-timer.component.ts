@@ -2,10 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter, forwardRef, TemplateRef
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DateTimerMode, DateTimerSize, DateTimerStatus, DateTimerSelectType, RangeValue } from './date-timer.interface';
-import { addDays, addMonths, addYears, differenceInDays, endOfDay, endOfMonth, endOfQuarter, endOfWeek, endOfYear, format, getDay, getDate, getHours, getMinutes, getMonth, getSeconds, getYear, isAfter, isBefore, isSameDay, isSameMonth, isSameYear, parse, setDate, setHours, setMinutes, setMonth, setSeconds, setYear, startOfDay, startOfMonth, startOfQuarter, startOfWeek, startOfYear, subMonths, subYears } from 'date-fns';
 import { OverlayService } from '../core/overlay/overlay.service';
 import { CdkOverlayOrigin, CdkConnectedOverlay, ConnectedPosition } from '@angular/cdk/overlay';
-import { UtilsService } from '@project';
+import { UtilsService } from '../core';
 
 @Component({
   selector: 'lib-date-timer',
@@ -31,7 +30,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   /** 模式 */
   @Input({ alias: 'dateTimerMode' }) mode: DateTimerMode = 'date';
   /** 格式 */
-  @Input({ alias: 'dateTimerFormat' }) format = 'yyyy-MM-dd';
+  @Input({ alias: 'dateTimerFormat' }) formatPattern = 'yyyy-MM-dd';
   /** 大小 */
   @Input({ alias: 'dateTimerSize' }) size: DateTimerSize = 'default';
   /** 状态 */
@@ -114,20 +113,222 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   timeSelectStep: 'hour' | 'minute' | 'second' | 'complete' = 'hour';
 
   constructor(
-    private cdr: ChangeDetectorRef,
-    private overlayService: OverlayService,
-    private utilsService: UtilsService
+    public cdr: ChangeDetectorRef,
+    public overlayService: OverlayService,
+    public utilsService: UtilsService
   ) { }
+
+  // 原生日期处理方法，替代 date-fns
+  public addDays(date: Date, amount: number): Date {
+    const result = new Date(date);
+    result.setDate(result.getDate() + amount);
+    return result;
+  }
+
+  public addMonths(date: Date, amount: number): Date {
+    const result = new Date(date);
+    result.setMonth(result.getMonth() + amount);
+    return result;
+  }
+
+  public addYears(date: Date, amount: number): Date {
+    const result = new Date(date);
+    result.setFullYear(result.getFullYear() + amount);
+    return result;
+  }
+
+  public subMonths(date: Date, amount: number): Date {
+    return this.addMonths(date, -amount);
+  }
+
+  public subYears(date: Date, amount: number): Date {
+    return this.addYears(date, -amount);
+  }
+
+  public differenceInDays(laterDate: Date, earlierDate: Date): number {
+    const diffTime = laterDate.getTime() - earlierDate.getTime();
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+
+  public startOfDay(date: Date): Date {
+    const result = new Date(date);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  public endOfDay(date: Date): Date {
+    const result = new Date(date);
+    result.setHours(23, 59, 59, 999);
+    return result;
+  }
+
+  public startOfMonth(date: Date): Date {
+    const result = new Date(date);
+    result.setDate(1);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  public endOfMonth(date: Date): Date {
+    const result = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    result.setHours(23, 59, 59, 999);
+    return result;
+  }
+
+  public startOfYear(date: Date): Date {
+    const result = new Date(date);
+    result.setMonth(0, 1);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  public endOfYear(date: Date): Date {
+    const result = new Date(date);
+    result.setMonth(11, 31);
+    result.setHours(23, 59, 59, 999);
+    return result;
+  }
+
+  public startOfQuarter(date: Date): Date {
+    const quarter = Math.floor(date.getMonth() / 3);
+    const result = new Date(date);
+    result.setMonth(quarter * 3, 1);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  public endOfQuarter(date: Date): Date {
+    const quarter = Math.floor(date.getMonth() / 3);
+    const result = new Date(date);
+    result.setMonth(quarter * 3 + 3, 0);
+    result.setHours(23, 59, 59, 999);
+    return result;
+  }
+
+  public startOfWeek(date: Date, options: { weekStartsOn: number } = { weekStartsOn: 0 }): Date {
+    const result = new Date(date);
+    const day = result.getDay();
+    const diff = (day < options.weekStartsOn ? 7 : 0) + day - options.weekStartsOn;
+    result.setDate(result.getDate() - diff);
+    result.setHours(0, 0, 0, 0);
+    return result;
+  }
+
+  public endOfWeek(date: Date, options: { weekStartsOn: number } = { weekStartsOn: 0 }): Date {
+    const result = this.startOfWeek(date, options);
+    result.setDate(result.getDate() + 6);
+    result.setHours(23, 59, 59, 999);
+    return result;
+  }
+
+  public getDay(date: Date): number {
+    return date.getDay();
+  }
+
+  public getDate(date: Date): number {
+    return date.getDate();
+  }
+
+  public getMonth(date: Date): number {
+    return date.getMonth();
+  }
+
+  public getYear(date: Date): number {
+    return date.getFullYear();
+  }
+
+  public getHours(date: Date): number {
+    return date.getHours();
+  }
+
+  public getMinutes(date: Date): number {
+    return date.getMinutes();
+  }
+
+  public getSeconds(date: Date): number {
+    return date.getSeconds();
+  }
+
+  public setDate(date: Date, dayOfMonth: number): Date {
+    const result = new Date(date);
+    result.setDate(dayOfMonth);
+    return result;
+  }
+
+  public setMonth(date: Date, month: number): Date {
+    const result = new Date(date);
+    result.setMonth(month);
+    return result;
+  }
+
+  public setHours(date: Date, hours: number): Date {
+    const result = new Date(date);
+    result.setHours(hours);
+    return result;
+  }
+
+  public setMinutes(date: Date, minutes: number): Date {
+    const result = new Date(date);
+    result.setMinutes(minutes);
+    return result;
+  }
+
+  public setSeconds(date: Date, seconds: number): Date {
+    const result = new Date(date);
+    result.setSeconds(seconds);
+    return result;
+  }
+
+  public isSameDay(dateLeft: Date, dateRight: Date): boolean {
+    return dateLeft.getFullYear() === dateRight.getFullYear() &&
+      dateLeft.getMonth() === dateRight.getMonth() &&
+      dateLeft.getDate() === dateRight.getDate();
+  }
+
+  public isSameMonth(dateLeft: Date, dateRight: Date): boolean {
+    return dateLeft.getFullYear() === dateRight.getFullYear() &&
+      dateLeft.getMonth() === dateRight.getMonth();
+  }
+
+  public isSameYear(dateLeft: Date, dateRight: Date): boolean {
+    return dateLeft.getFullYear() === dateRight.getFullYear();
+  }
+
+  public isAfter(date: Date, dateToCompare: Date): boolean {
+    return date.getTime() > dateToCompare.getTime();
+  }
+
+  public isBefore(date: Date, dateToCompare: Date): boolean {
+    return date.getTime() < dateToCompare.getTime();
+  }
+
+  public format(date: Date, formatStr: string): string {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    return formatStr
+      .replace(/yyyy/g, year.toString())
+      .replace(/MM/g, month.toString().padStart(2, '0'))
+      .replace(/dd/g, day.toString().padStart(2, '0'))
+      .replace(/HH/g, hours.toString().padStart(2, '0'))
+      .replace(/mm/g, minutes.toString().padStart(2, '0'))
+      .replace(/ss/g, seconds.toString().padStart(2, '0'))
+      .replace(/QQ/g, `Q${Math.floor(date.getMonth() / 3) + 1}`)
+      .replace(/ww/g, `W${this.getWeekNumber(date)}`);
+  }
 
   ngOnInit(): void {
     this.generateDateMatrix();
     this.updateYears();
     // 根据模式设置合适的格式
     if (this.mode === 'time') {
-      this.format = 'HH:mm:ss';
+      this.formatPattern = 'HH:mm:ss';
       this.currentPanelMode = 'time';
     } else if (this.showTime && this.mode === 'date') {
-      this.format = 'yyyy-MM-dd HH:mm:ss';
+      this.formatPattern = 'yyyy-MM-dd HH:mm:ss';
     }
     // 设置初始面板模式 - 直接对应当前mode
     if (this.mode !== 'time') {
@@ -141,63 +342,63 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
       const newMode = changes['mode'].currentValue;
       if (newMode === 'time') {
         this.currentPanelMode = 'time';
-        this.format = 'HH:mm:ss';
+        this.formatPattern = 'HH:mm:ss';
       } else {
         this.currentPanelMode = newMode === 'week' ? 'date' : newMode;
         if (oldMode === 'time' && this.selectedValue) {
           // 设置合适的格式
           if (this.showTime && newMode === 'date') {
-            this.format = 'yyyy-MM-dd HH:mm:ss';
+            this.formatPattern = 'yyyy-MM-dd HH:mm:ss';
           } else if (newMode === 'date') {
-            this.format = 'yyyy-MM-dd';
+            this.formatPattern = 'yyyy-MM-dd';
           } else if (newMode === 'year') {
-            this.format = 'yyyy';
+            this.formatPattern = 'yyyy';
           } else if (newMode === 'month') {
-            this.format = 'yyyy-MM';
+            this.formatPattern = 'yyyy-MM';
           } else if (newMode === 'quarter') {
-            this.format = 'yyyy-QQ';
+            this.formatPattern = 'yyyy-QQ';
           } else if (newMode === 'week') {
-            this.format = 'yyyy-ww';
+            this.formatPattern = 'yyyy-ww';
           }
           if (this.isRangeValue(this.selectedValue)) {
             const rangeValue = this.selectedValue as RangeValue<Date>;
             if (rangeValue.start) {
               let start, end;
               if (newMode === 'year') {
-                start = startOfYear(rangeValue.start);
-                end = rangeValue.end ? endOfYear(rangeValue.end) : null;
+                start = this.startOfYear(rangeValue.start);
+                end = rangeValue.end ? this.endOfYear(rangeValue.end) : null;
               } else if (newMode === 'month') {
-                start = startOfMonth(rangeValue.start);
-                end = rangeValue.end ? endOfMonth(rangeValue.end) : null;
+                start = this.startOfMonth(rangeValue.start);
+                end = rangeValue.end ? this.endOfMonth(rangeValue.end) : null;
               } else if (newMode === 'quarter') {
-                start = startOfQuarter(rangeValue.start);
-                end = rangeValue.end ? endOfQuarter(rangeValue.end) : null;
+                start = this.startOfQuarter(rangeValue.start);
+                end = rangeValue.end ? this.endOfQuarter(rangeValue.end) : null;
               } else if (newMode === 'week') {
-                start = startOfWeek(rangeValue.start, { weekStartsOn: 1 });
-                end = rangeValue.end ? endOfWeek(rangeValue.end, { weekStartsOn: 1 }) : null;
+                start = this.startOfWeek(rangeValue.start, { weekStartsOn: 1 });
+                end = rangeValue.end ? this.endOfWeek(rangeValue.end, { weekStartsOn: 1 }) : null;
               } else {
-                start = startOfDay(rangeValue.start);
-                end = rangeValue.end ? endOfDay(rangeValue.end) : null;
+                start = this.startOfDay(rangeValue.start);
+                end = rangeValue.end ? this.endOfDay(rangeValue.end) : null;
               }
               this.selectedValue = { start, end };
             }
           } else if (this.isSingleDate(this.selectedValue)) {
             const date = this.selectedValue as Date;
             if (newMode === 'year') {
-              const start = startOfYear(date);
-              const end = endOfYear(date);
+              const start = this.startOfYear(date);
+              const end = this.endOfYear(date);
               this.selectedValue = { start, end };
             } else if (newMode === 'month') {
-              const start = startOfMonth(date);
-              const end = endOfMonth(date);
+              const start = this.startOfMonth(date);
+              const end = this.endOfMonth(date);
               this.selectedValue = { start, end };
             } else if (newMode === 'quarter') {
-              const start = startOfQuarter(date);
-              const end = endOfQuarter(date);
+              const start = this.startOfQuarter(date);
+              const end = this.endOfQuarter(date);
               this.selectedValue = { start, end };
             } else if (newMode === 'week') {
-              const start = startOfWeek(date, { weekStartsOn: 1 });
-              const end = endOfWeek(date, { weekStartsOn: 1 });
+              const start = this.startOfWeek(date, { weekStartsOn: 1 });
+              const end = this.endOfWeek(date, { weekStartsOn: 1 });
               this.selectedValue = { start, end };
             }
           }
@@ -332,7 +533,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 更新年份
    */
   public updateYears(): void {
-    const year = getYear(this.currentViewDate);
+    const year = this.getYear(this.currentViewDate);
     const startYear = Math.floor(year / 10) * 10;
     this.years = Array.from({ length: 12 }, (_, i) => startYear - 1 + i);
     this.yearRangeText = `${this.years[0]} - ${this.years[11]}`;
@@ -342,22 +543,22 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 生成日期矩阵
    */
   public generateDateMatrix(): void {
-    const firstDayOfMonth = startOfMonth(this.currentViewDate);
-    const lastDayOfMonth = endOfMonth(this.currentViewDate);
-    const daysInMonth = differenceInDays(lastDayOfMonth, firstDayOfMonth) + 1;
+    const firstDayOfMonth = this.startOfMonth(this.currentViewDate);
+    const lastDayOfMonth = this.endOfMonth(this.currentViewDate);
+    const daysInMonth = this.differenceInDays(lastDayOfMonth, firstDayOfMonth) + 1;
     // 修改这里：使用1作为weekStartsOn参数，表示周一是一周的第一天
-    const firstWeekday = getDay(firstDayOfMonth) || 7; // 如果是0(周日)则改为7
+    const firstWeekday = this.getDay(firstDayOfMonth) || 7; // 如果是0(周日)则改为7
     const daysFromPrevMonth = firstWeekday === 1 ? 0 : firstWeekday - 1;
     const matrix: Date[][] = [];
     let week: Date[] = [];
     // 上个月的天数
     for (let i = 0; i < daysFromPrevMonth; i++) {
-      const date = addDays(firstDayOfMonth, -daysFromPrevMonth + i);
+      const date = this.addDays(firstDayOfMonth, -daysFromPrevMonth + i);
       week.push(date);
     }
     // 当前月的天数
     for (let i = 0; i < daysInMonth; i++) {
-      const date = addDays(firstDayOfMonth, i);
+      const date = this.addDays(firstDayOfMonth, i);
       week.push(date);
       if (week.length === 7) {
         matrix.push(week);
@@ -368,7 +569,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (week.length > 0) {
       const daysFromNextMonth = 7 - week.length;
       for (let i = 0; i < daysFromNextMonth; i++) {
-        const date = addDays(lastDayOfMonth, i + 1);
+        const date = this.addDays(lastDayOfMonth, i + 1);
         week.push(date);
       }
       matrix.push(week);
@@ -490,14 +691,14 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    */
   public formatDate(date: Date): string {
     if (!date) return '';
-    return format(date, this.format);
+    return this.format(date, this.formatPattern);
   }
 
   /**
    * 导航控制
    */
   public prevYear(): void {
-    this.currentViewDate = subYears(this.currentViewDate, 1);
+    this.currentViewDate = this.subYears(this.currentViewDate, 1);
     this.generateDateMatrix();
     this.updateYears();
     this.cdr.detectChanges();
@@ -507,7 +708,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 下一年
    */
   public nextYear(): void {
-    this.currentViewDate = addYears(this.currentViewDate, 1);
+    this.currentViewDate = this.addYears(this.currentViewDate, 1);
     this.generateDateMatrix();
     this.updateYears();
     this.cdr.detectChanges();
@@ -517,7 +718,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 上个月
    */
   public prevMonth(): void {
-    this.currentViewDate = subMonths(this.currentViewDate, 1);
+    this.currentViewDate = this.subMonths(this.currentViewDate, 1);
     this.generateDateMatrix();
     this.cdr.detectChanges();
   }
@@ -526,7 +727,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 下个月
    */
   public nextMonth(): void {
-    this.currentViewDate = addMonths(this.currentViewDate, 1);
+    this.currentViewDate = this.addMonths(this.currentViewDate, 1);
     this.generateDateMatrix();
     this.cdr.detectChanges();
   }
@@ -535,7 +736,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 上一年范围
    */
   public prevYearRange(): void {
-    this.currentViewDate = subYears(this.currentViewDate, 10);
+    this.currentViewDate = this.subYears(this.currentViewDate, 10);
     this.updateYears();
     this.cdr.detectChanges();
   }
@@ -544,7 +745,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
    * 下一年范围
    */
   public nextYearRange(): void {
-    this.currentViewDate = addYears(this.currentViewDate, 10);
+    this.currentViewDate = this.addYears(this.currentViewDate, 10);
     this.updateYears();
     this.cdr.detectChanges();
   }
@@ -809,8 +1010,8 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (dates.length === 0) return;
     if (this.mode === 'week') {
       if (this.selectType === 'single') {
-        const weekStart = startOfWeek(dates[0], { weekStartsOn: 1 });
-        const weekEnd = endOfWeek(dates[0], { weekStartsOn: 1 });
+        const weekStart = this.startOfWeek(dates[0], { weekStartsOn: 1 });
+        const weekEnd = this.endOfWeek(dates[0], { weekStartsOn: 1 });
         this.selectedValue = { start: weekStart, end: weekEnd };
         this.displayValue = this.formatSelectedValue(this.selectedValue);
         this._onChange(this.selectedValue);
@@ -849,15 +1050,15 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         if (this.isRangeValue(this.selectedValue)) {
           // 如果已经是范围值，保留start的时间部分
           if (this.selectedValue.start) {
-            selectedDate = setHours(selectedDate, getHours(this.selectedValue.start));
-            selectedDate = setMinutes(selectedDate, getMinutes(this.selectedValue.start));
-            selectedDate = setSeconds(selectedDate, getSeconds(this.selectedValue.start));
+            selectedDate = this.setHours(selectedDate, this.getHours(this.selectedValue.start));
+            selectedDate = this.setMinutes(selectedDate, this.getMinutes(this.selectedValue.start));
+            selectedDate = this.setSeconds(selectedDate, this.getSeconds(this.selectedValue.start));
           }
         } else if (this.isSingleDate(this.selectedValue)) {
           // 如果是单一日期，保留其时间部分
-          selectedDate = setHours(selectedDate, getHours(this.selectedValue));
-          selectedDate = setMinutes(selectedDate, getMinutes(this.selectedValue));
-          selectedDate = setSeconds(selectedDate, getSeconds(this.selectedValue));
+          selectedDate = this.setHours(selectedDate, this.getHours(this.selectedValue));
+          selectedDate = this.setMinutes(selectedDate, this.getMinutes(this.selectedValue));
+          selectedDate = this.setSeconds(selectedDate, this.getSeconds(this.selectedValue));
         }
       }
       // 根据mode决定如何处理选中的日期
@@ -867,8 +1068,8 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         this.displayValue = this.formatSelectedValue(selectedDate);
       } else {
         // 其他模式创建范围
-        const start = startOfDay(selectedDate);
-        const end = endOfDay(selectedDate);
+        const start = this.startOfDay(selectedDate);
+        const end = this.endOfDay(selectedDate);
         this.selectedValue = { start, end };
         this.displayValue = this.formatSelectedValue(this.selectedValue);
       }
@@ -1230,11 +1431,11 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         // 对于date和time模式，使用单一日期
         let date = (this.selectedValue as Date) || new Date();
         if (type === 'hour') {
-          date = setHours(date, value);
+          date = this.setHours(date, value);
         } else if (type === 'minute') {
-          date = setMinutes(date, value);
+          date = this.setMinutes(date, value);
         } else if (type === 'second') {
-          date = setSeconds(date, value);
+          date = this.setSeconds(date, value);
         }
         this.selectedValue = date;
         this.displayValue = this.formatSelectedValue(date);
@@ -1246,14 +1447,14 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
           let start = new Date(range.start);
           let end = range.end ? new Date(range.end) : null;
           if (type === 'hour') {
-            start = setHours(start, value);
-            if (end) end = setHours(end, value);
+            start = this.setHours(start, value);
+            if (end) end = this.setHours(end, value);
           } else if (type === 'minute') {
-            start = setMinutes(start, value);
-            if (end) end = setMinutes(end, value);
+            start = this.setMinutes(start, value);
+            if (end) end = this.setMinutes(end, value);
           } else if (type === 'second') {
-            start = setSeconds(start, value);
-            if (end) end = setSeconds(end, value);
+            start = this.setSeconds(start, value);
+            if (end) end = this.setSeconds(end, value);
           }
           range.start = start;
           if (end) range.end = end;
@@ -1268,21 +1469,21 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
       if (this.rangePart === 'start' && range.start) {
         let date = new Date(range.start);
         if (type === 'hour') {
-          date = setHours(date, value);
+          date = this.setHours(date, value);
         } else if (type === 'minute') {
-          date = setMinutes(date, value);
+          date = this.setMinutes(date, value);
         } else if (type === 'second') {
-          date = setSeconds(date, value);
+          date = this.setSeconds(date, value);
         }
         range.start = date;
       } else if (this.rangePart === 'end' && range.end) {
         let date = new Date(range.end);
         if (type === 'hour') {
-          date = setHours(date, value);
+          date = this.setHours(date, value);
         } else if (type === 'minute') {
-          date = setMinutes(date, value);
+          date = this.setMinutes(date, value);
         } else if (type === 'second') {
-          date = setSeconds(date, value);
+          date = this.setSeconds(date, value);
         }
         range.end = date;
       } else if (this.rangePart === 'start' && !range.start) {
@@ -1323,9 +1524,9 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
       this.selectedValue = now;
     } else if (this.isSingleDate(this.selectedValue)) {
       // 保留年月日，只改变时分秒
-      this.selectedValue = setHours(this.selectedValue, getHours(now));
-      this.selectedValue = setMinutes(this.selectedValue, getMinutes(now));
-      this.selectedValue = setSeconds(this.selectedValue, getSeconds(now));
+      this.selectedValue = this.setHours(this.selectedValue, this.getHours(now));
+      this.selectedValue = this.setMinutes(this.selectedValue, this.getMinutes(now));
+      this.selectedValue = this.setSeconds(this.selectedValue, this.getSeconds(now));
     }
     this.displayValue = this.formatSelectedValue(this.selectedValue);
     this._onChange(this.selectedValue);
@@ -1344,29 +1545,29 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         let start: Date, end: Date;
         switch (this.mode) {
           case 'year':
-            start = new Date(getYear(today), 0, 1, 0, 0, 0);
-            end = new Date(getYear(today), 11, 31, 23, 59, 59);
+            start = new Date(this.getYear(today), 0, 1, 0, 0, 0);
+            end = new Date(this.getYear(today), 11, 31, 23, 59, 59);
             break;
           case 'month':
-            const lastDay = new Date(getYear(today), getMonth(today) + 1, 0).getDate();
-            start = new Date(getYear(today), getMonth(today), 1, 0, 0, 0);
-            end = new Date(getYear(today), getMonth(today), lastDay, 23, 59, 59);
+            const lastDay = new Date(this.getYear(today), this.getMonth(today) + 1, 0).getDate();
+            start = new Date(this.getYear(today), this.getMonth(today), 1, 0, 0, 0);
+            end = new Date(this.getYear(today), this.getMonth(today), lastDay, 23, 59, 59);
             break;
           case 'quarter':
-            const quarter = Math.floor(getMonth(today) / 3);
+            const quarter = Math.floor(this.getMonth(today) / 3);
             const startMonth = quarter * 3;
             const endMonth = startMonth + 2;
-            const quarterLastDay = new Date(getYear(today), endMonth + 1, 0).getDate();
-            start = new Date(getYear(today), startMonth, 1, 0, 0, 0);
-            end = new Date(getYear(today), endMonth, quarterLastDay, 23, 59, 59);
+            const quarterLastDay = new Date(this.getYear(today), endMonth + 1, 0).getDate();
+            start = new Date(this.getYear(today), startMonth, 1, 0, 0, 0);
+            end = new Date(this.getYear(today), endMonth, quarterLastDay, 23, 59, 59);
             break;
           case 'week':
-            start = startOfWeek(today, { weekStartsOn: 0 });
-            end = endOfWeek(today, { weekStartsOn: 0 });
+            start = this.startOfWeek(today, { weekStartsOn: 0 });
+            end = this.endOfWeek(today, { weekStartsOn: 0 });
             break;
           default:
-            start = startOfDay(today);
-            end = endOfDay(today);
+            start = this.startOfDay(today);
+            end = this.endOfDay(today);
         }
         this.selectedValue = { start, end };
         this.displayValue = this.formatSelectedValue(this.selectedValue);
@@ -1382,7 +1583,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
 
   // 辅助方法
   isToday(date: Date): boolean {
-    return isSameDay(date, new Date());
+    return this.isSameDay(date, new Date());
   }
 
   isSelectedDay(date: Date): boolean {
@@ -1391,24 +1592,24 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (this.mode === 'date' || this.mode === 'week') {
-        const isStartSelected = range.start ? isSameDay(date, range.start) : false;
-        const isEndSelected = range.end ? isSameDay(date, range.end) : false;
+        const isStartSelected = range.start ? this.isSameDay(date, range.start) : false;
+        const isEndSelected = range.end ? this.isSameDay(date, range.end) : false;
         return isStartSelected || isEndSelected;
       } else if (this.mode === 'month') {
-        const isStartSelected = range.start ? isSameMonth(date, range.start) : false;
-        const isEndSelected = range.end ? isSameMonth(date, range.end) : false;
+        const isStartSelected = range.start ? this.isSameMonth(date, range.start) : false;
+        const isEndSelected = range.end ? this.isSameMonth(date, range.end) : false;
         return isStartSelected || isEndSelected;
       } else if (this.mode === 'quarter') {
-        const isStartSelected = range.start ? (Math.floor(getMonth(date) / 3) === Math.floor(getMonth(range.start) / 3) && getYear(date) === getYear(range.start)) : false;
-        const isEndSelected = range.end ? (Math.floor(getMonth(date) / 3) === Math.floor(getMonth(range.end) / 3) && getYear(date) === getYear(range.end)) : false;
+        const isStartSelected = range.start ? (Math.floor(this.getMonth(date) / 3) === Math.floor(this.getMonth(range.start) / 3) && this.getYear(date) === this.getYear(range.start)) : false;
+        const isEndSelected = range.end ? (Math.floor(this.getMonth(date) / 3) === Math.floor(this.getMonth(range.end) / 3) && this.getYear(date) === this.getYear(range.end)) : false;
         return isStartSelected || isEndSelected;
       } else if (this.mode === 'year') {
-        const isStartSelected = range.start ? (getYear(date) === getYear(range.start)) : false;
-        const isEndSelected = range.end ? (getYear(date) === getYear(range.end)) : false;
+        const isStartSelected = range.start ? (this.getYear(date) === this.getYear(range.start)) : false;
+        const isEndSelected = range.end ? (this.getYear(date) === this.getYear(range.end)) : false;
         return isStartSelected || isEndSelected;
       }
     } else if (this.isSingleDate(this.selectedValue)) {
-      return isSameDay(date, this.selectedValue);
+      return this.isSameDay(date, this.selectedValue);
     }
 
     return false;
@@ -1420,12 +1621,12 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start) {
-        const isStartSelected = getMonth(range.start) === month && isSameYear(range.start, this.currentViewDate);
-        const isEndSelected = range.end && getMonth(range.end) === month && isSameYear(range.end, this.currentViewDate);
+        const isStartSelected = this.getMonth(range.start) === month && this.isSameYear(range.start, this.currentViewDate);
+        const isEndSelected = range.end && this.getMonth(range.end) === month && this.isSameYear(range.end, this.currentViewDate);
         return isStartSelected || isEndSelected;
       }
     } else if (this.isSingleDate(this.selectedValue)) {
-      return getMonth(this.selectedValue) === month && isSameYear(this.selectedValue, this.currentViewDate);
+      return this.getMonth(this.selectedValue) === month && this.isSameYear(this.selectedValue, this.currentViewDate);
     }
     return false;
   }
@@ -1436,12 +1637,12 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start) {
-        const isStartSelected = Math.floor(getMonth(range.start) / 3) === quarter && isSameYear(range.start, this.currentViewDate);
-        const isEndSelected = range.end && Math.floor(getMonth(range.end) / 3) === quarter && isSameYear(range.end, this.currentViewDate);
+        const isStartSelected = Math.floor(this.getMonth(range.start) / 3) === quarter && this.isSameYear(range.start, this.currentViewDate);
+        const isEndSelected = range.end && Math.floor(this.getMonth(range.end) / 3) === quarter && this.isSameYear(range.end, this.currentViewDate);
         return isStartSelected || isEndSelected;
       }
     } else if (this.isSingleDate(this.selectedValue)) {
-      return Math.floor(getMonth(this.selectedValue) / 3) === quarter && isSameYear(this.selectedValue, this.currentViewDate);
+      return Math.floor(this.getMonth(this.selectedValue) / 3) === quarter && this.isSameYear(this.selectedValue, this.currentViewDate);
     }
     return false;
   }
@@ -1452,12 +1653,12 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start) {
-        const isStartSelected = getYear(range.start) === year;
-        const isEndSelected = range.end && getYear(range.end) === year;
+        const isStartSelected = this.getYear(range.start) === year;
+        const isEndSelected = range.end && this.getYear(range.end) === year;
         return isStartSelected || isEndSelected;
       }
     } else if (this.isSingleDate(this.selectedValue)) {
-      return getYear(this.selectedValue) === year;
+      return this.getYear(this.selectedValue) === year;
     }
     return false;
   }
@@ -1549,27 +1750,27 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.currentPanelMode === 'year') {
       return this.yearRangeText;
     } else if (this.currentPanelMode === 'month') {
-      return `${getYear(this.currentViewDate)}`;
+      return `${this.getYear(this.currentViewDate)}`;
     } else if (this.currentPanelMode === 'quarter') {
-      return `${getYear(this.currentViewDate)}`;
+      return `${this.getYear(this.currentViewDate)}`;
     } else {
-      return `${getYear(this.currentViewDate)}年${getMonth(this.currentViewDate) + 1}月`;
+      return `${this.getYear(this.currentViewDate)}年${this.getMonth(this.currentViewDate) + 1}月`;
     }
   }
 
   getHeaderYear(): string {
-    return `${getYear(this.currentViewDate)}年`;
+    return `${this.getYear(this.currentViewDate)}年`;
   }
 
   getHeaderMonth(): string {
-    return `${getMonth(this.currentViewDate) + 1}月`;
+    return `${this.getMonth(this.currentViewDate) + 1}月`;
   }
 
   renderDateCell(date: Date): string | TemplateRef<any> {
     if (this.dateRender) {
       return this.dateRender(date);
     }
-    return getDate(date).toString();
+    return this.getDate(date).toString();
   }
 
   isWeekInDateRange(week: Date[]): boolean {
@@ -1627,16 +1828,16 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   }
 
   // 日期获取辅助方法
-  getYear(date: Date | null): number {
-    return date ? getYear(date) : 0;
+  getYearHelper(date: Date | null): number {
+    return date ? this.getYear(date) : 0;
   }
 
-  getMonth(date: Date | null): number {
-    return date ? getMonth(date) : 0;
+  getMonthHelper(date: Date | null): number {
+    return date ? this.getMonth(date) : 0;
   }
 
-  getDate(date: Date | null): number {
-    return date ? getDate(date) : 0;
+  getDateHelper(date: Date | null): number {
+    return date ? this.getDate(date) : 0;
   }
 
   // 类型检查辅助方法
@@ -1679,8 +1880,8 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  private _onChange: (value: Date | RangeValue<Date> | null) => void = () => { };
-  private _onTouched: () => void = () => { };
+  public _onChange: (value: Date | RangeValue<Date> | null) => void = () => { };
+  public _onTouched: () => void = () => { };
 
   isInRange(date: Date | null): boolean {
     if (!date || this.selectType !== 'range') return false;
@@ -1693,19 +1894,19 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         if (this.rangeStart && this.hoverValue) {
           // 根据不同mode比较日期
           if (this.mode === 'year') {
-            const startYear = getYear(this.rangeStart);
-            const endYear = getYear(this.hoverValue);
-            const currentYear = getYear(date);
+            const startYear = this.getYear(this.rangeStart);
+            const endYear = this.getYear(this.hoverValue);
+            const currentYear = this.getYear(date);
 
             return (startYear <= currentYear && currentYear <= endYear) ||
               (endYear <= currentYear && currentYear <= startYear);
           } else if (this.mode === 'month') {
-            const startYear = getYear(this.rangeStart);
-            const startMonth = getMonth(this.rangeStart);
-            const endYear = getYear(this.hoverValue);
-            const endMonth = getMonth(this.hoverValue);
-            const currentYear = getYear(date);
-            const currentMonth = getMonth(date);
+            const startYear = this.getYear(this.rangeStart);
+            const startMonth = this.getMonth(this.rangeStart);
+            const endYear = this.getYear(this.hoverValue);
+            const endMonth = this.getMonth(this.hoverValue);
+            const currentYear = this.getYear(date);
+            const currentMonth = this.getMonth(date);
 
             const startValue = startYear * 12 + startMonth;
             const endValue = endYear * 12 + endMonth;
@@ -1714,12 +1915,12 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
             return (startValue <= currentValue && currentValue <= endValue) ||
               (endValue <= currentValue && currentValue <= startValue);
           } else if (this.mode === 'quarter') {
-            const startYear = getYear(this.rangeStart);
-            const startQuarter = Math.floor(getMonth(this.rangeStart) / 3);
-            const endYear = getYear(this.hoverValue);
-            const endQuarter = Math.floor(getMonth(this.hoverValue) / 3);
-            const currentYear = getYear(date);
-            const currentQuarter = Math.floor(getMonth(date) / 3);
+            const startYear = this.getYear(this.rangeStart);
+            const startQuarter = Math.floor(this.getMonth(this.rangeStart) / 3);
+            const endYear = this.getYear(this.hoverValue);
+            const endQuarter = Math.floor(this.getMonth(this.hoverValue) / 3);
+            const currentYear = this.getYear(date);
+            const currentQuarter = Math.floor(this.getMonth(date) / 3);
 
             const startValue = startYear * 4 + startQuarter;
             const endValue = endYear * 4 + endQuarter;
@@ -1729,42 +1930,42 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
               (endValue <= currentValue && currentValue <= startValue);
           } else if (this.mode === 'week') {
             // 周模式使用日期比较
-            const start = isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
-            const end = isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
-            return isAfter(date, start) && isBefore(date, end);
+            const start = this.isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
+            const end = this.isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
+            return this.isAfter(date, start) && this.isBefore(date, end);
           } else {
             // 日期模式使用日期比较
-            const start = isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
-            const end = isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
-            return isAfter(date, start) && isBefore(date, end);
+            const start = this.isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
+            const end = this.isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
+            return this.isAfter(date, start) && this.isBefore(date, end);
           }
         }
         return false;
       }
       // 已完成的范围选择
       if (this.mode === 'year') {
-        const startYear = getYear(range.start);
-        const endYear = getYear(range.end);
-        const currentYear = getYear(date);
+        const startYear = this.getYear(range.start);
+        const endYear = this.getYear(range.end);
+        const currentYear = this.getYear(date);
         return startYear <= currentYear && currentYear <= endYear;
       } else if (this.mode === 'month') {
-        const startYear = getYear(range.start);
-        const startMonth = getMonth(range.start);
-        const endYear = getYear(range.end);
-        const endMonth = getMonth(range.end);
-        const currentYear = getYear(date);
-        const currentMonth = getMonth(date);
+        const startYear = this.getYear(range.start);
+        const startMonth = this.getMonth(range.start);
+        const endYear = this.getYear(range.end);
+        const endMonth = this.getMonth(range.end);
+        const currentYear = this.getYear(date);
+        const currentMonth = this.getMonth(date);
         const startValue = startYear * 12 + startMonth;
         const endValue = endYear * 12 + endMonth;
         const currentValue = currentYear * 12 + currentMonth;
         return startValue <= currentValue && currentValue <= endValue;
       } else if (this.mode === 'quarter') {
-        const startYear = getYear(range.start);
-        const startQuarter = Math.floor(getMonth(range.start) / 3);
-        const endYear = getYear(range.end);
-        const endQuarter = Math.floor(getMonth(range.end) / 3);
-        const currentYear = getYear(date);
-        const currentQuarter = Math.floor(getMonth(date) / 3);
+        const startYear = this.getYear(range.start);
+        const startQuarter = Math.floor(this.getMonth(range.start) / 3);
+        const endYear = this.getYear(range.end);
+        const endQuarter = Math.floor(this.getMonth(range.end) / 3);
+        const currentYear = this.getYear(date);
+        const currentQuarter = Math.floor(this.getMonth(date) / 3);
         const startValue = startYear * 4 + startQuarter;
         const endValue = endYear * 4 + endQuarter;
         const currentValue = currentYear * 4 + currentQuarter;
@@ -1772,7 +1973,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         return startValue <= currentValue && currentValue <= endValue;
       } else {
         // 日期和周模式使用日期比较
-        return isAfter(date, range.start) && isBefore(date, range.end);
+        return this.isAfter(date, range.start) && this.isBefore(date, range.end);
       }
     }
 
@@ -1791,7 +1992,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   // 月份选择的Hover事件
   onCellMonthHover(month: number): void {
     if (this.selectType === 'range' && this.rangePart === 'end' && this.rangeStart) {
-      const date = new Date(getYear(this.currentViewDate), month, 1);
+      const date = new Date(this.getYear(this.currentViewDate), month, 1);
       this.hoverValue = date;
       this.cdr.markForCheck();
     }
@@ -1801,7 +2002,7 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   onCellQuarterHover(quarter: number): void {
     if (this.selectType === 'range' && this.rangePart === 'end' && this.rangeStart) {
       const startMonth = quarter * 3;
-      const date = new Date(getYear(this.currentViewDate), startMonth, 1);
+      const date = new Date(this.getYear(this.currentViewDate), startMonth, 1);
       this.hoverValue = date;
       this.cdr.markForCheck();
     }
@@ -1814,15 +2015,15 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start && range.end) {
-        const startYear = getYear(range.start);
-        const endYear = getYear(range.end);
+        const startYear = this.getYear(range.start);
+        const endYear = this.getYear(range.end);
         return year >= startYear && year <= endYear;
       }
     }
     // 处理还未完成的范围选择（用户选择了起始日期但还未选择结束日期）
     if (this.rangeStart && this.hoverValue) {
-      const startYear = getYear(this.rangeStart);
-      const endYear = getYear(this.hoverValue);
+      const startYear = this.getYear(this.rangeStart);
+      const endYear = this.getYear(this.hoverValue);
       if (startYear <= endYear) {
         return year >= startYear && year <= endYear;
       } else {
@@ -1836,16 +2037,16 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   // 判断月份是否在选择范围内
   isInMonthRange(month: number): boolean {
     if (this.selectType !== 'range') return false;
-    const currentYear = getYear(this.currentViewDate);
+    const currentYear = this.getYear(this.currentViewDate);
     const currentMonthValue = currentYear * 12 + month;
     // 处理已完成的范围选择
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start && range.end) {
-        const startYear = getYear(range.start);
-        const startMonth = getMonth(range.start);
-        const endYear = getYear(range.end);
-        const endMonth = getMonth(range.end);
+        const startYear = this.getYear(range.start);
+        const startMonth = this.getMonth(range.start);
+        const endYear = this.getYear(range.end);
+        const endMonth = this.getMonth(range.end);
         const startValue = startYear * 12 + startMonth;
         const endValue = endYear * 12 + endMonth;
         return currentMonthValue >= startValue && currentMonthValue <= endValue;
@@ -1853,10 +2054,10 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     }
     // 处理还未完成的范围选择
     if (this.rangeStart && this.hoverValue) {
-      const startYear = getYear(this.rangeStart);
-      const startMonth = getMonth(this.rangeStart);
-      const endYear = getYear(this.hoverValue);
-      const endMonth = getMonth(this.hoverValue);
+      const startYear = this.getYear(this.rangeStart);
+      const startMonth = this.getMonth(this.rangeStart);
+      const endYear = this.getYear(this.hoverValue);
+      const endMonth = this.getMonth(this.hoverValue);
       const startValue = startYear * 12 + startMonth;
       const endValue = endYear * 12 + endMonth;
       if (startValue <= endValue) {
@@ -1871,16 +2072,16 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   // 判断季度是否在选择范围内
   isInQuarterRange(quarter: number): boolean {
     if (this.selectType !== 'range') return false;
-    const currentYear = getYear(this.currentViewDate);
+    const currentYear = this.getYear(this.currentViewDate);
     const currentQuarterValue = currentYear * 4 + quarter;
     // 处理已完成的范围选择
     if (this.isRangeValue(this.selectedValue)) {
       const range = this.selectedValue as RangeValue<Date>;
       if (range.start && range.end) {
-        const startYear = getYear(range.start);
-        const startQuarter = Math.floor(getMonth(range.start) / 3);
-        const endYear = getYear(range.end);
-        const endQuarter = Math.floor(getMonth(range.end) / 3);
+        const startYear = this.getYear(range.start);
+        const startQuarter = Math.floor(this.getMonth(range.start) / 3);
+        const endYear = this.getYear(range.end);
+        const endQuarter = Math.floor(this.getMonth(range.end) / 3);
 
         const startValue = startYear * 4 + startQuarter;
         const endValue = endYear * 4 + endQuarter;
@@ -1890,10 +2091,10 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     }
     // 处理还未完成的范围选择
     if (this.rangeStart && this.hoverValue) {
-      const startYear = getYear(this.rangeStart);
-      const startQuarter = Math.floor(getMonth(this.rangeStart) / 3);
-      const endYear = getYear(this.hoverValue);
-      const endQuarter = Math.floor(getMonth(this.hoverValue) / 3);
+      const startYear = this.getYear(this.rangeStart);
+      const startQuarter = Math.floor(this.getMonth(this.rangeStart) / 3);
+      const endYear = this.getYear(this.hoverValue);
+      const endQuarter = Math.floor(this.getMonth(this.hoverValue) / 3);
       const startValue = startYear * 4 + startQuarter;
       const endValue = endYear * 4 + endQuarter;
       if (startValue <= endValue) {
@@ -1925,21 +2126,21 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
       if (range.start && range.end) {
         // 检查周的开始或结束日期是否在选择范围内
         return (
-          !isBefore(weekStart, range.start) && !isAfter(weekStart, range.end) ||
-          !isBefore(weekEnd, range.start) && !isAfter(weekEnd, range.end) ||
-          !isBefore(range.start, weekStart) && !isAfter(range.start, weekEnd)
+          !this.isBefore(weekStart, range.start) && !this.isAfter(weekStart, range.end) ||
+          !this.isBefore(weekEnd, range.start) && !this.isAfter(weekEnd, range.end) ||
+          !this.isBefore(range.start, weekStart) && !this.isAfter(range.start, weekEnd)
         );
       }
     }
     // 处理还未完成的范围选择
     if (this.rangeStart && this.hoverValue) {
-      const start = isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
-      const end = isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
+      const start = this.isBefore(this.rangeStart, this.hoverValue) ? this.rangeStart : this.hoverValue;
+      const end = this.isBefore(this.rangeStart, this.hoverValue) ? this.hoverValue : this.rangeStart;
       // 检查周的开始或结束日期是否在选择范围内
       return (
-        !isBefore(weekStart, start) && !isAfter(weekStart, end) ||
-        !isBefore(weekEnd, start) && !isAfter(weekEnd, end) ||
-        !isBefore(start, weekStart) && !isAfter(start, weekEnd)
+        !this.isBefore(weekStart, start) && !this.isAfter(weekStart, end) ||
+        !this.isBefore(weekEnd, start) && !this.isAfter(weekEnd, end) ||
+        !this.isBefore(start, weekStart) && !this.isAfter(start, weekEnd)
       );
     }
     return false;
@@ -1948,16 +2149,16 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
   // 获取周数
   getWeekNumber(date: Date): number {
     if (!date) return 0;
-    const firstDayOfYear = new Date(getYear(date), 0, 1);
-    const pastDaysOfYear = differenceInDays(date, firstDayOfYear);
-    const weekNumber = Math.ceil((pastDaysOfYear + getDay(firstDayOfYear)) / 7);
+    const firstDayOfYear = new Date(this.getYear(date), 0, 1);
+    const pastDaysOfYear = this.differenceInDays(date, firstDayOfYear);
+    const weekNumber = Math.ceil((pastDaysOfYear + this.getDay(firstDayOfYear)) / 7);
     return weekNumber;
   }
 
   // 格式化时间（不包含日期部分）
   formatTime(date: Date): string {
     if (!date) return '';
-    return `${this.padZero(getHours(date))}:${this.padZero(getMinutes(date))}:${this.padZero(getSeconds(date))}`;
+    return `${this.padZero(this.getHours(date))}:${this.padZero(this.getMinutes(date))}:${this.padZero(this.getSeconds(date))}`;
   }
 
   // 为数字补0
@@ -1975,21 +2176,21 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
         if (this.rangePart === 'start' && range.start) {
           // 在选择开始时间的情况下
           if (this.timeSelectStep === 'hour' && unit === 'hour') {
-            return getHours(range.start) === value;
+            return this.getHours(range.start) === value;
           } else if (this.timeSelectStep === 'minute' && unit === 'minute') {
-            return getMinutes(range.start) === value;
+            return this.getMinutes(range.start) === value;
           } else if (this.timeSelectStep === 'second' && unit === 'second') {
-            return getSeconds(range.start) === value;
+            return this.getSeconds(range.start) === value;
           }
           return this.isTimeUnitMatch(range.start, unit, value);
         } else if (this.rangePart === 'end' && range.end) {
           // 在选择结束时间的情况下
           if (this.timeSelectStep === 'hour' && unit === 'hour') {
-            return getHours(range.end) === value;
+            return this.getHours(range.end) === value;
           } else if (this.timeSelectStep === 'minute' && unit === 'minute') {
-            return getMinutes(range.end) === value;
+            return this.getMinutes(range.end) === value;
           } else if (this.timeSelectStep === 'second' && unit === 'second') {
-            return getSeconds(range.end) === value;
+            return this.getSeconds(range.end) === value;
           }
           return this.isTimeUnitMatch(range.end, unit, value);
         }
@@ -2010,11 +2211,11 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
     if (!date) return false;
     switch (unit) {
       case 'hour':
-        return getHours(date) === value;
+        return this.getHours(date) === value;
       case 'minute':
-        return getMinutes(date) === value;
+        return this.getMinutes(date) === value;
       case 'second':
-        return getSeconds(date) === value;
+        return this.getSeconds(date) === value;
       default:
         return false;
     }
@@ -2150,13 +2351,11 @@ export class DateTimerComponent implements OnInit, ControlValueAccessor {
           }
         }
       }
-
       if (!date) return 0;
-
       switch (unit) {
-        case 'hour': return getHours(date);
-        case 'minute': return getMinutes(date);
-        case 'second': return getSeconds(date);
+        case 'hour': return this.getHours(date);
+        case 'minute': return this.getMinutes(date);
+        case 'second': return this.getSeconds(date);
         default: return 0;
       }
     };
