@@ -68,6 +68,7 @@ lib-select {
         border-radius: 2px;
         transition: all @transition-duration-base;
         flex: 0 0 auto;
+        opacity: 0;
 
         &:hover {
             background-color: @select-tag-close-hover-bg;
@@ -124,6 +125,10 @@ lib-select {
 
     &:hover {
         border-color: @select-box-hover-border-color;
+
+        .c-lib-select-basic-tag-close-icon {
+            opacity: 1 !important;
+        }
     }
 
     &.c-lib-select-basic-box-active {

@@ -1,62 +1,629 @@
-.doc-title {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: rgba(0, 0, 0, 0.85);
+// ===== 现代化文档容器 =====
+.modern-doc-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+// ===== 页面头部样式 =====
+.doc-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  margin: -24px -24px 0 -24px;
+  padding: 48px 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+    pointer-events: none;
   }
-  
-  .doc-section-title {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 40px 0 16px;
-    color: rgba(0, 0, 0, 0.85);
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: start;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
   }
-  
-  .doc-sub-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 24px 0 16px;
-    color: rgba(0, 0, 0, 0.85);
+
+  .title-section {
+    .main-title {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin: 0 0 24px 0;
+      color: white;
+
+      .component-icon {
+        font-size: 42px;
+        line-height: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+
+      .title-text {
+        font-size: 48px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .title-subtitle {
+        font-size: 28px;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-left: -8px;
+      }
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+
+        .title-text {
+          font-size: 36px;
+        }
+
+        .title-subtitle {
+          font-size: 22px;
+          margin-left: 0;
+        }
+      }
+    }
+
+    .main-description {
+      font-size: 18px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      max-width: 600px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
+    }
   }
-  
-  .doc-description {
-    font-size: 14px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.65);
-    margin-bottom: 16px;
+
+  .usage-section {
+    .usage-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+      .usage-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        margin: 0 0 16px 0;
+
+        svg {
+          opacity: 0.9;
+        }
+      }
+
+      .usage-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          position: relative;
+          padding: 8px 0 8px 20px;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 14px;
+          line-height: 1.5;
+
+          &::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: bold;
+          }
+
+          &:hover {
+            color: white;
+            transform: translateX(2px);
+            transition: all 0.2s ease;
+          }
+        }
+      }
+    }
   }
-  
-  // 响应式网格布局
-  .doc-grid {
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// ===== 演示区域样式 =====
+.demo-section {
+  margin-top: 48px;
+
+  .section-header {
+    margin-bottom: 32px;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a202c;
+      margin: 0;
+
+      svg {
+        color: #667eea;
+      }
+    }
+  }
+
+  .demo-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
-    width: 100%;
-    margin-bottom: 32px;
-    
+    gap: 32px;
+
     @media (min-width: 1200px) {
-      grid-template-columns: 50% 50%;
+      grid-template-columns: 1fr 1fr;
     }
   }
-  
-  // 示例内容样式
-  .example-content {
-    padding: 16px;
+}
+
+// ===== 演示容器样式 =====
+.demo-container {
+  .demo-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 16px;
-    
-    lib-segmented {
-      width: 100%;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .demo-section-item {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
     }
-    
-    .example-value {
-      margin-top: 16px;
-      color: #666;
+
+    .demo-subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: #4a5568;
+      margin: 0 0 12px 0;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e2e8f0;
     }
   }
-  
-  // API 表格样式
-  app-doc-api-table {
+
+  .control-section {
+    margin: 16px 0;
+  }
+
+  .value-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border-left: 4px solid #667eea;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .value-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      min-width: 80px;
+    }
+
+    .value-content {
+      font-size: 14px;
+      color: #667eea;
+      font-weight: 500;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      background: rgba(102, 126, 234, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+
+      &.state {
+        &.disabled {
+          color: #f56565;
+          background: rgba(245, 101, 101, 0.1);
+        }
+      }
+    }
+  }
+
+  .custom-template {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    .custom-icon {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  }
+
+  .width-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+
+    .control-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a5568;
+      min-width: 80px;
+    }
+
+    .width-input {
+      width: 100px;
+    }
+
+    .control-unit {
+      font-size: 14px;
+      color: #718096;
+      font-weight: 500;
+    }
+  }
+
+  .width-hint {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: #edf2f7;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #4a5568;
+    font-style: italic;
+  }
+}
+
+// ===== 特性列表样式 =====
+.feature-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #4a5568;
+    transition: all 0.2s ease;
+
+    svg {
+      color: #667eea;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: #2d3748;
+      transform: translateX(2px);
+    }
+  }
+}
+
+// ===== 自定义特性样式 =====
+.custom-features {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+
+  .custom-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #4a5568;
+    transition: all 0.2s ease;
+
+    svg {
+      color: #667eea;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: #2d3748;
+      transform: translateX(2px);
+    }
+  }
+}
+
+// ===== 状态特性样式 =====
+.state-features {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+
+  .state-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    .state-indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+
+      &.enabled {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.2);
+      }
+
+      &.disabled {
+        background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+        box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.2);
+      }
+    }
+
+    .state-info {
+      flex: 1;
+
+      strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 4px;
+      }
+
+      span {
+        font-size: 13px;
+        color: #718096;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// ===== 尺寸列表样式 =====
+.size-list {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+
+  .size-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    .size-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+
+      &.small {
+        background: linear-gradient(135deg, #ed8936, #dd6b20);
+      }
+
+      &.medium {
+        background: linear-gradient(135deg, #4299e1, #3182ce);
+      }
+
+      &.large {
+        background: linear-gradient(135deg, #48bb78, #38a169);
+      }
+    }
+
+    .size-info {
+      flex: 1;
+
+      strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 4px;
+      }
+
+      span {
+        font-size: 13px;
+        color: #718096;
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+// ===== 宽度特性样式 =====
+.width-features {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+
+  .width-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #4a5568;
+    transition: all 0.2s ease;
+
+    svg {
+      color: #667eea;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: #2d3748;
+      transform: translateX(2px);
+    }
+  }
+}
+
+// ===== API 文档区域 =====
+.api-section {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid #e2e8f0;
+
+  .section-header {
     margin-bottom: 32px;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a202c;
+      margin: 0 0 8px 0;
+
+      svg {
+        color: #667eea;
+      }
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: #718096;
+      margin: 0;
+    }
   }
+
+  .api-container {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// ===== 响应式设计 =====
+@media (max-width: 768px) {
+  .modern-doc-container {
+    padding: 0 16px;
+  }
+
+  .doc-header {
+    margin: -16px -16px 0 -16px;
+    padding: 32px 24px;
+
+    .header-content {
+      gap: 24px;
+
+      .title-section .main-title {
+        .component-icon {
+          font-size: 32px;
+        }
+      }
+    }
+
+    .usage-section .usage-card {
+      padding: 20px;
+    }
+  }
+
+  .demo-section {
+    margin-top: 32px;
+
+    .section-header .section-title {
+      font-size: 24px;
+    }
+
+    .demo-grid {
+      gap: 24px;
+    }
+  }
+
+  .demo-container {
+    .demo-row {
+      gap: 12px;
+    }
+
+    .width-control {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+
+      .control-label {
+        min-width: auto;
+      }
+
+      .width-input {
+        width: 100%;
+      }
+    }
+  }
+
+  .api-section {
+    margin-top: 48px;
+
+    .section-header .section-title {
+      font-size: 24px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+
+  .size-list,
+  .state-features {
+
+    .size-item,
+    .state-feature {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+
+      .size-badge,
+      .state-indicator {
+        margin-top: 0;
+      }
+    }
+  }
+}

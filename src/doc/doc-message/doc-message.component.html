@@ -1,86 +1,260 @@
-<div class="doc-container">
-  <h1 class="doc-title">全局消息 Message</h1>
-  
-  <p class="doc-description">
-    全局展示操作反馈信息。
-  </p>
-  
-  <h2 class="doc-section-title">何时使用</h2>
-  <p class="doc-description">
-    当需要向用户全局展示提示信息时，例如操作成功、警告或错误信息。顶部居中显示并自动消失，是一种不打断用户操作的轻量级提示方式。
-  </p>
-  
-  <h2 class="doc-section-title">代码演示</h2>
-  
-  <div class="doc-grid">
-    <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <div class="demo-button-group">
-          <button class="demo-button" (click)="showInfo()">显示信息</button>
-          <button class="demo-button success" (click)="showSuccess()">显示成功</button>
-          <button class="demo-button warning" (click)="showWarning()">显示警告</button>
-          <button class="demo-button error" (click)="showError()">显示错误</button>
+<div class="modern-doc-container">
+  <!-- 页面头部 -->
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="component-icon">💬</span>
+          <span class="title-text">Message</span>
+          <span class="title-subtitle">全局消息</span>
+        </h1>
+        <p class="main-description">
+          全局展示操作反馈信息。当需要向用户全局展示提示信息时，例如操作成功、警告或错误信息。顶部居中显示并自动消失，是一种不打断用户操作的轻量级提示方式。
+        </p>
+      </div>
+      
+      <div class="usage-section">
+        <div class="usage-card">
+          <h3 class="usage-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            何时使用
+          </h3>
+          <ul class="usage-list">
+            <li>操作成功的确认反馈</li>
+            <li>警告用户注意信息</li>
+            <li>错误信息的即时提醒</li>
+            <li>系统状态的实时通知</li>
+          </ul>
         </div>
       </div>
-      <div description>
-        最简单的用法，四种类型的消息提示：信息（info）、成功（success）、警告（warning）和错误（error）。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义时长 -->
-    <app-doc-box
-      title="自定义时长"
-      [sourceCode]="durationSource">
-      <div demo>
-        <div class="demo-button-group">
-          <button class="demo-button" (click)="showLongMessage()">显示长时间消息(10s)</button>
-          <button class="demo-button" (click)="showPermanentMessage()">显示永久消息</button>
-          <button class="demo-button warning" (click)="removeAllMessages()">移除所有消息</button>
-        </div>
-      </div>
-      <div description>
-        可以自定义消息显示的时长，当设置为 0 时，消息将不会自动关闭。通过 removeAll 方法可一次性清除所有消息。
-      </div>
-    </app-doc-box>
-    
-    <!-- 使用模板 -->
-    <app-doc-box
-      title="使用模板"
-      [sourceCode]="templateSource">
-      <div demo>
-        <ng-template #customTpl let-data>
-          <div class="template-message">
-            <strong>您好，{{data?.name}}!</strong>
-            <div>消息时间: {{data?.time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+    </div>
+  </div>
+
+  <!-- 代码演示区域 -->
+  <div class="demo-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z"/>
+        </svg>
+        <span>代码演示</span>
+      </h2>
+    </div>
+
+    <div class="demo-grid">
+      <!-- 基本用法 -->
+      <app-doc-box title="基本用法" [sourceCode]="basicSource">
+        <div demo class="demo-container">
+          <div class="demo-button-group">
+            <button class="modern-button info" (click)="showInfo()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+              显示信息
+            </button>
+            <button class="modern-button success" (click)="showSuccess()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.061L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </svg>
+              显示成功
+            </button>
+            <button class="modern-button warning" (click)="showWarning()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+              </svg>
+              显示警告
+            </button>
+            <button class="modern-button error" (click)="showError()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+              </svg>
+              显示错误
+            </button>
           </div>
-        </ng-template>
-        
-        <button class="demo-button" (click)="showTemplateMessage(customTpl)">显示模板消息</button>
-      </div>
-      <div description>
-        使用自定义模板创建复杂内容的消息。通过模板引用和数据传递，可以实现更加丰富的消息展示。模板中可访问传入的data对象。
-      </div>
-    </app-doc-box>
-    
-    <!-- 手动关闭 -->
-    <app-doc-box
-      title="手动关闭"
-      [sourceCode]="manualCloseSource">
-      <div demo>
-        <div class="demo-button-group">
-          <button class="demo-button success" (click)="showMessage()">显示消息</button>
-          <button class="demo-button error" (click)="closeMessage()">关闭上一条消息</button>
         </div>
-      </div>
-      <div description>
-        手动关闭消息。通过调用 MessageService 的 remove 方法并传入消息 ID，可以在任意时刻关闭指定的消息。每次创建消息时会返回唯一ID。
-      </div>
-    </app-doc-box>
+        <div description>
+          <p>最简单的用法，四种类型的消息提示：信息（info）、成功（success）、警告（warning）和错误（error）。</p>
+          <div class="type-list">
+            <div class="type-item">
+              <div class="type-dot info"></div>
+              <div class="type-info">
+                <strong>信息提示 (info)</strong>
+                <span>用于一般的信息提示和说明</span>
+              </div>
+            </div>
+            <div class="type-item">
+              <div class="type-dot success"></div>
+              <div class="type-info">
+                <strong>成功提示 (success)</strong>
+                <span>用于操作成功的确认反馈</span>
+              </div>
+            </div>
+            <div class="type-item">
+              <div class="type-dot warning"></div>
+              <div class="type-info">
+                <strong>警告提示 (warning)</strong>
+                <span>用于警告用户注意的信息</span>
+              </div>
+            </div>
+            <div class="type-item">
+              <div class="type-dot error"></div>
+              <div class="type-info">
+                <strong>错误提示 (error)</strong>
+                <span>用于错误信息的即时提醒</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 自定义时长 -->
+      <app-doc-box title="自定义时长" [sourceCode]="durationSource">
+        <div demo class="demo-container">
+          <div class="demo-button-group">
+            <button class="modern-button info" (click)="showLongMessage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+              </svg>
+              显示长时间消息(10s)
+            </button>
+            <button class="modern-button warning" (click)="showPermanentMessage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm.25 2.25a.25.25 0 0 0-.5 0v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25h-.5zM12.25 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0z"/>
+              </svg>
+              显示永久消息
+            </button>
+            <button class="modern-button error" (click)="removeAllMessages()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+              </svg>
+              移除所有消息
+            </button>
+          </div>
+        </div>
+        <div description>
+          <p>可以自定义消息显示的时长，当设置为 0 时，消息将不会自动关闭。通过 removeAll 方法可一次性清除所有消息。</p>
+          <div class="duration-features">
+            <div class="duration-feature">
+              <div class="duration-icon">⏱️</div>
+              <div class="duration-info">
+                <strong>时长控制</strong>
+                <span>自定义消息显示时长，默认3秒</span>
+              </div>
+            </div>
+            <div class="duration-feature">
+              <div class="duration-icon">📌</div>
+              <div class="duration-info">
+                <strong>永久显示</strong>
+                <span>设置为0时消息不会自动关闭</span>
+              </div>
+            </div>
+            <div class="duration-feature">
+              <div class="duration-icon">🧹</div>
+              <div class="duration-info">
+                <strong>批量清除</strong>
+                <span>一键清除所有显示的消息</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 使用模板 -->
+      <app-doc-box title="使用模板" [sourceCode]="templateSource">
+        <div demo class="demo-container">
+          <ng-template #customTpl let-data>
+            <div class="template-message">
+              <div class="template-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                <strong>您好，{{data?.name}}!</strong>
+              </div>
+              <div class="template-content">
+                消息时间: {{data?.time | date:'yyyy-MM-dd HH:mm:ss'}}
+              </div>
+            </div>
+          </ng-template>
+          
+          <button class="modern-button success" (click)="showTemplateMessage(customTpl)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.061L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+            显示模板消息
+          </button>
+        </div>
+        <div description>
+          <p>使用自定义模板创建复杂内容的消息。通过模板引用和数据传递，可以实现更加丰富的消息展示。</p>
+          <div class="template-features">
+            <div class="template-feature">
+              <div class="template-icon">🎨</div>
+              <div class="template-info">
+                <strong>自定义模板</strong>
+                <span>支持复杂的HTML内容结构</span>
+              </div>
+            </div>
+            <div class="template-feature">
+              <div class="template-icon">📊</div>
+              <div class="template-info">
+                <strong>数据绑定</strong>
+                <span>模板中可访问传入的data对象</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 手动关闭 -->
+      <app-doc-box title="手动关闭" [sourceCode]="manualCloseSource">
+        <div demo class="demo-container">
+          <div class="demo-button-group">
+            <button class="modern-button success" (click)="showMessage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.061L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </svg>
+              显示消息
+            </button>
+            <button class="modern-button error" (click)="closeMessage()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+              </svg>
+              关闭上一条消息
+            </button>
+          </div>
+        </div>
+        <div description>
+          <p>手动关闭消息。通过调用 MessageService 的 remove 方法并传入消息 ID，可以在任意时刻关闭指定的消息。</p>
+          <div class="manual-info">
+            <div class="manual-tip">
+              <strong>控制机制：</strong>每次创建消息时会返回唯一ID，可用于精确控制特定消息的生命周期，提供更灵活的用户交互体验。
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+    </div>
   </div>
   
-  <h2 class="doc-section-title">API</h2>
-  <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+  <!-- API 文档区域 -->
+  <div class="api-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <span>API 文档</span>
+      </h2>
+      <p class="section-description">详细的属性、事件和方法说明</p>
+    </div>
+    
+    <div class="api-container">
+      <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+    </div>
+  </div>
 </div>

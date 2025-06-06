@@ -1,78 +1,582 @@
-.doc-title {
-  font-size: 28px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  color: rgba(0, 0, 0, 0.85);
-}
 
-.doc-section-title {
-  font-size: 22px;
-  font-weight: 500;
-  margin: 40px 0 16px;
-  color: rgba(0, 0, 0, 0.85);
-}
 
-.doc-sub-title {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 24px 0 16px;
-  color: rgba(0, 0, 0, 0.85);
-}
+// 现代化 Menu 文档组件样式
+.modern-doc-container {
+  margin: 0 auto;
+  min-height: 100vh;
 
-.doc-description {
-  font-size: 14px;
-  line-height: 1.5;
-  color: rgba(0, 0, 0, 0.65);
-  margin-bottom: 16px;
-}
+  // 页面头部样式
+  .doc-header {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    margin: -24px -24px 0 -24px;
+    padding: 48px 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
 
-// 响应式网格布局
-.doc-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  width: 100%;
-  margin-bottom: 32px;
-  
-  @media (min-width: 1200px) {
-    grid-template-columns: 50% 50%;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: start;
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    .title-section {
+      .main-title {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 0 0 24px 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        .component-icon {
+          font-size: 3.5rem;
+          filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .title-text {
+          background: linear-gradient(45deg, #fff, #e3f2fd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+
+        .title-subtitle {
+          font-size: 1.8rem;
+          opacity: 0.9;
+          font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 2.2rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+
+          .component-icon {
+            font-size: 2.5rem;
+          }
+
+          .title-subtitle {
+            font-size: 1.4rem;
+          }
+        }
+      }
+
+      .main-description {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        opacity: 0.95;
+        max-width: 600px;
+        margin: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+        @media (max-width: 768px) {
+          font-size: 1.1rem;
+        }
+      }
+    }
+
+    .usage-section {
+      .usage-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+        .usage-title {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin: 0 0 16px 0;
+          color: rgba(255, 255, 255, 0.95);
+
+          svg {
+            opacity: 0.8;
+          }
+        }
+
+        .usage-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.4;
+
+            &::before {
+              content: '→';
+              position: absolute;
+              left: 0;
+              color: rgba(255, 255, 255, 0.7);
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
   }
-}
 
-// 示例内容样式
-.example-value {
-  margin-top: 16px;
-  color: #666;
-}
+  // 演示区域样式
+  .demo-section {
+    padding: 48px 0;
 
-// 菜单演示相关样式
-.menu-container {
-  width: 240px;
-  min-height: 300px;
-}
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
 
-.collapse-button {
-  margin-bottom: 16px;
-  padding: 4px 12px;
-  border: 1px solid #d9d9d9;
-  border-radius: 2px;
-  background: #fff;
-  cursor: pointer;
-  transition: all 0.3s;
-}
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0 0 16px 0;
 
-.collapse-button:hover {
-  color: #1890ff;
-  border-color: #1890ff;
-}
+        svg {
+          color: #8b5cf6;
+        }
 
-// 自定义标签样式
-.custom-label {
-  color: #1890ff;
-  font-weight: 500;
-}
+        @media (max-width: 768px) {
+          font-size: 1.8rem;
+        }
+      }
 
-// API 表格样式
-app-doc-api-table {
-  margin-bottom: 32px;
+      .section-description {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+      }
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 32px;
+
+      @media (max-width: 600px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+
+  // 演示容器样式
+  .demo-container {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+
+    .collapse-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .menu-container {
+      min-width: 240px;
+      min-height: 300px;
+    }
+
+    .modern-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+
+      &:hover {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+      }
+
+      svg {
+        opacity: 0.9;
+      }
+    }
+
+    .example-value {
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+      color: #6d28d9;
+      border-left: 4px solid #8b5cf6;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  // 描述区域现代化样式
+  [description] {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
+
+    p {
+      margin: 0 0 16px 0;
+      font-weight: 500;
+    }
+
+    code {
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      color: #7c3aed;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    // 特性列表样式
+    .feature-list {
+      display: grid;
+      gap: 12px;
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: #faf5ff;
+        border-radius: 8px;
+        border-left: 4px solid #8b5cf6;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f3e8ff;
+          transform: translateX(4px);
+        }
+
+        .feature-icon {
+          font-size: 20px;
+          width: 24px;
+          text-align: center;
+          filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+
+        .feature-info {
+          flex: 1;
+
+          strong {
+            color: #6d28d9;
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    // 主题特性样式
+    .theme-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+
+      .theme-feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        background: #faf5ff;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f3e8ff;
+          transform: translateX(4px);
+        }
+
+        .theme-icon {
+          font-size: 24px;
+          width: 32px;
+          text-align: center;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
+          &.dark {
+            color: #4c1d95;
+          }
+        }
+
+        .theme-info {
+          flex: 1;
+
+          strong {
+            display: block;
+            color: #6d28d9;
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    // 模式列表样式
+    .mode-list {
+      display: grid;
+      gap: 12px;
+
+      .mode-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: #faf5ff;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f3e8ff;
+          transform: translateX(4px);
+        }
+
+        .mode-indicator {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          flex-shrink: 0;
+
+          &.vertical {
+            background: #8b5cf6;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
+          }
+
+          &.horizontal {
+            background: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+          }
+
+          &.popup {
+            background: #6d28d9;
+            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.2);
+          }
+
+          &.responsive {
+            background: #a855f7;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
+          }
+        }
+
+        .mode-info {
+          strong {
+            display: block;
+            color: #6d28d9;
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    // 折叠特性样式
+    .collapse-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+
+      .collapse-feature {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        background: #faf5ff;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f3e8ff;
+          transform: translateX(4px);
+        }
+
+        .collapse-icon {
+          font-size: 24px;
+          color: #8b5cf6;
+          width: 32px;
+          text-align: center;
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .collapse-info {
+          flex: 1;
+
+          strong {
+            display: block;
+            color: #6d28d9;
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    // 禁用信息样式
+    .disabled-info {
+      margin-top: 16px;
+
+      .disabled-tip {
+        padding: 16px;
+        background: #faf5ff;
+        border-radius: 12px;
+        border-left: 4px solid #8b5cf6;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        strong {
+          color: #6d28d9;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  // API 区域样式
+  .api-section {
+    padding: 48px 0;
+    background: white;
+    margin: 0 -24px;
+    border-radius: 24px 24px 0 0;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 24px;
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0 0 16px 0;
+
+        svg {
+          color: #8b5cf6;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 1.8rem;
+        }
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+      }
+    }
+
+    .api-container {
+      padding: 0 24px;
+    }
+  }
+
+  // 响应式适配
+  @media (max-width: 768px) {
+    padding: 0 16px;
+
+    .doc-header {
+      margin: -16px -16px 0 -16px;
+      padding: 32px 16px;
+    }
+
+    .demo-section .demo-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .demo-container {
+      .menu-container {
+        min-width: 200px;
+      }
+    }
+
+    .api-section {
+      margin: 0 -16px;
+
+      .api-container {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    [description] {
+      .theme-features,
+      .collapse-features {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
 }

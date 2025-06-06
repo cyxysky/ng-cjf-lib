@@ -1,198 +1,327 @@
-<div class="doc-container">
-  <h1 class="doc-title">输入框 Input</h1>
-  
-  <p class="doc-description">
-    基本的表单输入组件，用于接收用户输入的信息。
-  </p>
-  
-  <h2 class="doc-section-title">何时使用</h2>
-  <p class="doc-description">
-    需要用户输入文本内容时，可以使用输入框组件。适用于表单数据收集、搜索框、用户名密码等各类场景。
-  </p>
-  
-  <h2 class="doc-section-title">代码演示</h2>
-  
-  <div class="doc-grid">
-    <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <lib-input 
-          inputPlaceholder="请输入内容" 
-          [(ngModel)]="basicValue">
-        </lib-input>
-        <p class="example-value">当前值: {{ basicValue }}</p>
+<div class="modern-doc-container">
+  <!-- 页面头部 -->
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="component-icon">📝</span>
+          <span class="title-text">Input</span>
+          <span class="title-subtitle">输入框</span>
+        </h1>
+        <p class="main-description">
+          基本的表单输入组件，用于接收用户输入的信息。通过鼠标或键盘输入字符，是最基础的表单域的包装。
+        </p>
       </div>
-      <div description>
-        最简单的用法，指定输入框的提示文字和默认值。
+      
+      <div class="usage-section">
+        <div class="usage-card">
+          <h3 class="usage-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            何时使用
+          </h3>
+          <ul class="usage-list">
+            <li>需要用户输入文本内容时</li>
+            <li>适用于表单数据收集</li>
+            <li>搜索框、用户名密码等场景</li>
+            <li>需要限制输入格式或长度时</li>
+          </ul>
+        </div>
       </div>
-    </app-doc-box>
-    
-    <!-- 三种大小 -->
-    <app-doc-box
-      title="三种大小"
-      [sourceCode]="sizeSource">
-      <div demo>
-        <div class="size-demo">
+    </div>
+  </div>
+
+  <!-- 代码演示区域 -->
+  <div class="demo-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z"/>
+        </svg>
+        <span>代码演示</span>
+      </h2>
+    </div>
+
+    <div class="demo-grid">
+      <!-- 基本用法 -->
+      <app-doc-box title="基本用法" [sourceCode]="basicSource">
+        <div demo class="demo-container">
           <lib-input 
-            inputPlaceholder="大尺寸"
+            inputPlaceholder="请输入内容" 
+            [(ngModel)]="basicValue">
+          </lib-input>
+          <p class="example-value">当前值: {{ basicValue }}</p>
+        </div>
+        <div description>
+          <p>最简单的用法，指定输入框的提示文字和默认值。</p>
+        </div>
+      </app-doc-box>
+      
+      <!-- 三种大小 -->
+      <app-doc-box title="三种大小" [sourceCode]="sizeSource">
+        <div demo class="demo-container">
+          <div class="size-demo">
+            <lib-input 
+              inputPlaceholder="大尺寸"
+              [inputMaxlength]="10"
+              [inputShowCount]="true"
+              inputSize="large"
+              [(ngModel)]="largeValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="默认尺寸"
+              [inputMaxlength]="10"
+              [inputShowCount]="true"
+              [(ngModel)]="defaultValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="小尺寸"
+              [inputMaxlength]="10"
+              [inputShowCount]="true"
+              inputSize="small"
+              [(ngModel)]="smallValue">
+            </lib-input>
+          </div>
+        </div>
+        <div description>
+          <p>输入框有三种尺寸：大、默认和小，可以根据不同场景选择合适的尺寸。</p>
+          <div class="size-list">
+            <div class="size-item">
+              <span class="size-badge small">S</span>
+              <div class="size-info">
+                <strong>小尺寸 (small)</strong>
+                <span>适用于紧凑的表单布局和工具栏</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge medium">M</span>
+              <div class="size-info">
+                <strong>默认尺寸</strong>
+                <span>标准大小，适用于大部分表单场景</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge large">L</span>
+              <div class="size-info">
+                <strong>大尺寸 (large)</strong>
+                <span>适用于重要表单项和移动端使用</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 前缀和后缀 -->
+      <app-doc-box title="前缀和后缀" [sourceCode]="affixSource">
+        <div demo class="demo-container">
+          <div class="affix-demo">
+            <lib-input 
+              inputPlaceholder="前缀" 
+              inputPrefix="￥"
+              [(ngModel)]="prefixValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="后缀" 
+              inputSuffix="RMB"
+              [(ngModel)]="suffixValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="前缀图标" 
+              inputPrefixIcon="bi-truck-flatbed"
+              [(ngModel)]="prefixIconValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="后缀图标" 
+              inputSuffixIcon="bi-tiktok"
+              [(ngModel)]="suffixIconValue">
+            </lib-input>
+          </div>
+        </div>
+        <div description>
+          <p>可以添加前缀和后缀，用于在输入框前后添加文本或图标。</p>
+          <div class="affix-features">
+            <div class="affix-feature">
+              <div class="affix-icon prefix">📝</div>
+              <div class="affix-info">
+                <strong>前缀支持</strong>
+                <span>文本前缀和图标前缀，以及ng-content支持</span>
+              </div>
+            </div>
+            <div class="affix-feature">
+              <div class="affix-icon suffix">📋</div>
+              <div class="affix-info">
+                <strong>后缀支持</strong>
+                <span>文本后缀和图标后缀，以及ng-content支持</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 允许清除 -->
+      <app-doc-box title="允许清除" [sourceCode]="clearSource">
+        <div demo class="demo-container">
+          <lib-input 
+            inputPlaceholder="输入后显示清除按钮" 
+            [inputAllowClear]="true"
+            [(ngModel)]="clearValue">
+          </lib-input>
+        </div>
+        <div description>
+          <p>可以添加清除按钮，点击清除按钮可以一键清除输入框内容。</p>
+        </div>
+      </app-doc-box>
+      
+      <!-- 禁用和只读 -->
+      <app-doc-box title="禁用和只读" [sourceCode]="disabledSource">
+        <div demo class="demo-container">
+          <div class="disabled-demo">
+            <lib-input 
+              inputPlaceholder="禁用状态" 
+              [inputDisabled]="true"
+              [(ngModel)]="disabledValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="只读状态" 
+              [inputReadonly]="true"
+              [(ngModel)]="readonlyValue">
+            </lib-input>
+          </div>
+        </div>
+        <div description>
+          <p>输入框可以设置为禁用或只读状态，用于不同的交互场景。</p>
+          <div class="state-list">
+            <div class="state-item">
+              <div class="state-dot disabled"></div>
+              <div class="state-info">
+                <strong>禁用状态</strong>
+                <span>完全不可编辑，通常用于表单验证失败</span>
+              </div>
+            </div>
+            <div class="state-item">
+              <div class="state-dot readonly"></div>
+              <div class="state-info">
+                <strong>只读状态</strong>
+                <span>可以选择但不能修改，适合展示场景</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 状态 -->
+      <app-doc-box title="状态" [sourceCode]="statusSource">
+        <div demo class="demo-container">
+          <div class="status-demo">
+            <lib-input 
+              inputPlaceholder="错误状态" 
+              inputStatus="error"
+              [(ngModel)]="errorValue">
+            </lib-input>
+            <lib-input 
+              inputPlaceholder="警告状态" 
+              inputStatus="warning"
+              [(ngModel)]="warningValue">
+            </lib-input>
+          </div>
+        </div>
+        <div description>
+          <p>输入框可以有不同的状态，用于表示错误或警告信息。</p>
+          <div class="status-list">
+            <div class="status-item">
+              <div class="status-dot normal"></div>
+              <div class="status-info">
+                <strong>正常状态</strong>
+                <span>默认样式，无特殊状态指示</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <div class="status-dot error"></div>
+              <div class="status-info">
+                <strong>错误状态 (error)</strong>
+                <span>表示输入有误或验证失败</span>
+              </div>
+            </div>
+            <div class="status-item">
+              <div class="status-dot warning"></div>
+              <div class="status-info">
+                <strong>警告状态 (warning)</strong>
+                <span>提示用户注意或可能的问题</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 字数限制 -->
+      <app-doc-box title="字数限制" [sourceCode]="countSource">
+        <div demo class="demo-container">
+          <lib-input 
+            inputPlaceholder="最多输入10个字符" 
             [inputMaxlength]="10"
             [inputShowCount]="true"
-            inputSize="large"
-            [(ngModel)]="largeValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="默认尺寸"
-            [inputMaxlength]="10"
-            [inputShowCount]="true"
-            [(ngModel)]="defaultValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="小尺寸"
-            [inputMaxlength]="10"
-            [inputShowCount]="true"
-            inputSize="small"
-            [(ngModel)]="smallValue">
+            [(ngModel)]="countValue">
           </lib-input>
         </div>
-      </div>
-      <div description>
-        输入框有三种尺寸：大、默认和小，可以根据不同场景选择合适的尺寸。
-      </div>
-    </app-doc-box>
-    
-    <!-- 前缀和后缀 -->
-    <app-doc-box
-      title="前缀和后缀"
-      [sourceCode]="affixSource">
-      <div demo>
-        <div class="affix-demo">
-          <lib-input 
-            inputPlaceholder="前缀" 
-            inputPrefix="￥"
-            [(ngModel)]="prefixValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="后缀" 
-            inputSuffix="RMB"
-            [(ngModel)]="suffixValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="前缀图标" 
-            inputPrefixIcon="bi-truck-flatbed"
-            [(ngModel)]="prefixIconValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="后缀图标" 
-            inputSuffixIcon="bi-tiktok"
-            [(ngModel)]="suffixIconValue">
-          </lib-input>
+        <div description>
+          <p>可以限制输入字符的最大数量，并显示字数统计。</p>
+          <div class="count-features">
+            <div class="count-feature">
+              <div class="count-icon">🔢</div>
+              <div class="count-info">
+                <strong>长度限制</strong>
+                <span>设置最大输入字符数</span>
+              </div>
+            </div>
+            <div class="count-feature">
+              <div class="count-icon">📊</div>
+              <div class="count-info">
+                <strong>实时统计</strong>
+                <span>显示当前/最大字符数</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div description>
-        可以添加前缀和后缀，用于在输入框前后添加文本或图标。
-      </div>
-    </app-doc-box>
-    
-    <!-- 允许清除 -->
-    <app-doc-box
-      title="允许清除"
-      [sourceCode]="clearSource">
-      <div demo>
-        <lib-input 
-          inputPlaceholder="输入后显示清除按钮" 
-          [inputAllowClear]="true"
-          [(ngModel)]="clearValue">
-        </lib-input>
-      </div>
-      <div description>
-        可以添加清除按钮，点击清除按钮可以一键清除输入框内容。
-      </div>
-    </app-doc-box>
-    
-    <!-- 禁用和只读 -->
-    <app-doc-box
-      title="禁用和只读"
-      [sourceCode]="disabledSource">
-      <div demo>
-        <div class="disabled-demo">
-          <lib-input 
-            inputPlaceholder="禁用状态" 
-            [inputDisabled]="true"
-            [(ngModel)]="disabledValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="只读状态" 
-            [inputReadonly]="true"
-            [(ngModel)]="readonlyValue">
-          </lib-input>
+      </app-doc-box>
+      
+      <!-- 无边框 -->
+      <app-doc-box title="无边框" [sourceCode]="borderlessSource">
+        <div demo class="demo-container">
+          <div class="borderless-demo">
+            <lib-input 
+              inputPlaceholder="无边框输入框" 
+              [inputBordered]="false"
+              [(ngModel)]="borderlessValue">
+            </lib-input>
+          </div>
         </div>
-      </div>
-      <div description>
-        输入框可以设置为禁用或只读状态，禁用状态下不可编辑，只读状态下可以选择但不能修改。
-      </div>
-    </app-doc-box>
-    
-    <!-- 状态 -->
-    <app-doc-box
-      title="状态"
-      [sourceCode]="statusSource">
-      <div demo>
-        <div class="status-demo">
-          <lib-input 
-            inputPlaceholder="错误状态" 
-            inputStatus="error"
-            [(ngModel)]="errorValue">
-          </lib-input>
-          <lib-input 
-            inputPlaceholder="警告状态" 
-            inputStatus="warning"
-            [(ngModel)]="warningValue">
-          </lib-input>
+        <div description>
+          <p>无边框样式的输入框，适用于特定的设计场景。</p>
+          <div class="borderless-info">
+            <div class="borderless-tip">
+              <strong>应用场景：</strong>适用于卡片内部、表格编辑、内联编辑等需要隐藏边框的场景。
+            </div>
+          </div>
         </div>
-      </div>
-      <div description>
-        输入框可以有不同的状态，用于表示错误或警告信息。
-      </div>
-    </app-doc-box>
-    
-    <!-- 限制输入长度 -->
-    <app-doc-box
-      title="字数限制"
-      [sourceCode]="countSource">
-      <div demo>
-        <lib-input 
-          inputPlaceholder="最多输入10个字符" 
-          [inputMaxlength]="10"
-          [inputShowCount]="true"
-          [(ngModel)]="countValue">
-        </lib-input>
-      </div>
-      <div description>
-        可以限制输入字符的最大数量，并显示字数统计。
-      </div>
-    </app-doc-box>
-    
-    <!-- 无边框 -->
-    <app-doc-box
-      title="无边框"
-      [sourceCode]="borderlessSource">
-      <div demo>
-        <div class="borderless-demo">
-          <lib-input 
-            inputPlaceholder="无边框输入框" 
-            [inputBordered]="false"
-            [(ngModel)]="borderlessValue">
-          </lib-input>
-        </div>
-      </div>
-      <div description>
-        无边框样式的输入框，适用于特定场景。
-      </div>
-    </app-doc-box>
+      </app-doc-box>
+    </div>
   </div>
   
-  <h2 class="doc-section-title">API</h2>
-  <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+  <!-- API 文档区域 -->
+  <div class="api-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <span>API 文档</span>
+      </h2>
+      <p class="section-description">详细的属性、事件和方法说明</p>
+    </div>
+    
+    <div class="api-container">
+      <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+    </div>
+  </div>
 </div>

@@ -1,414 +1,220 @@
-<h1>Chart 图表</h1>
-
-<p>图表是数据可视化的重要组件，帮助用户直观地理解和分析数据。</p>
-
-<h2>何时使用</h2>
-<p>当需要展示数据趋势、比较数据大小或表示数据分布时，图表是理想的选择。柱状图特别适合比较不同类别的数据值，饼图适合展示占比关系。</p>
-
-<h2>柱状图示例</h2>
-
-<div class="chart-docs-grid">
-  <!-- 基本用法 -->
-  <app-doc-box title="基本折线图" [sourceCode]="basicChartCode">
-    <div demo>
-      <lib-button (click)="refreshData()">刷新数据</lib-button>
-      <lib-chart [data]="basicData" [options]="basicLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>最基本的折线图用法，展示一组数据的趋势。</p>
-      <p>只需提供 <code>data</code> 数组，每个数据项包含 <code>name</code> 和 <code>data</code>，并将 <code>chartType</code> 设置为 <code>'line'</code>。</p>
-    </div>
-  </app-doc-box>
-
-
-  <!-- 基本用法 -->
-  <app-doc-box title="基本柱状图" [sourceCode]="basicChartCode">
-    <div demo>
-      <lib-button (click)="refreshData()">刷新数据</lib-button>
-      <lib-chart [data]="basicData" [options]="basicBarOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>最基本的柱状图用法，展示一组数据的比较。</p>
-      <p>只需提供 <code>data</code> 数组，每个数据项包含 <code>name</code> 和 <code>value</code>，并将 <code>chartType</code> 设置为 <code>'bar'</code>。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 多柱状图 -->
-  <app-doc-box title="多系列柱状图" [sourceCode]="multiSeriesChartCode">
-    <div demo>
-      <lib-chart [data]="multiSeriesData" [options]="multiSeriesBarOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>多系列柱状图可展示多组数据的对比，每个类别包含多个数据系列。</p>
-      <p>点击图例可以切换显示/隐藏对应的数据系列。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 多柱状图自定义 -->
-  <app-doc-box title="自定义多系列柱状图" [sourceCode]="customMultiSeriesChartCode">
-    <div demo>
-      <lib-chart [data]="customMultiSeriesData" [options]="customMultiSeriesOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>可以为每个系列设置单独的名称和颜色，并自定义图例位置。</p>
-      <p>即使所有系列都被隐藏，图表框架仍会保留，方便再次显示数据。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 自定义颜色 -->
-  <app-doc-box title="自定义颜色" [sourceCode]="colorChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="colorOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>options</code> 属性中的 <code>colors</code> 设置柱形颜色。</p>
-      <p>自定义颜色可以增强数据的视觉区分度或符合品牌标识。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 带标题的柱状图 -->
-  <app-doc-box title="带标题的柱状图" [sourceCode]="titleChartCode">
-    <div demo>
-      <lib-chart [data]="salesData" [options]="titleOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>options</code> 属性中的 <code>title</code> 添加图表标题。</p>
-      <p>标题可以帮助用户理解图表内容和上下文。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 无网格线 -->
-  <app-doc-box title="无网格线柱状图" [sourceCode]="noGridChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="noGridOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>showGrid: false</code> 可以隐藏网格线，使图表更加简洁。</p>
-      <p>在数据精确度不是关键时，无网格线的样式更加美观。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 自定义圆角 -->
-  <app-doc-box title="自定义圆角" [sourceCode]="radiusChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="radiusOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>borderRadius</code> 可以调整柱形的圆角大小。</p>
-      <p>更大的圆角可以创造现代、友好的视觉效果。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 无动画效果 -->
-  <app-doc-box title="无动画效果" [sourceCode]="noAnimateChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="noAnimateOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>animate: false</code> 可以禁用图表的动画效果。</p>
-      <p>在某些场景下，如数据频繁更新时，禁用动画可能更合适。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 悬停效果 -->
-  <app-doc-box title="悬停效果" [sourceCode]="hoverChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="hoverOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>hoverEffect</code> 可以启用悬停效果，包括贯穿柱形的辅助线和悬浮框。</p>
-      <p>将鼠标悬停在柱形上，可以看到垂直贯穿的虚线和显示数据的悬浮框。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 零值测试 -->
-  <app-doc-box title="零值处理测试" [sourceCode]="hoverChartCode">
-    <div demo>
-      <lib-chart [data]="zeroValueData" [options]="zeroValueOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>当数据值为0时，不会显示柱形，同时将数值标签显示在基线上方。</p>
-      <p>这避免了因圆角设置导致在底部出现突出的半圆形问题。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 点击事件 -->
-  <app-doc-box title="点击事件" [sourceCode]="clickChartCode">
-    <div demo>
-      <lib-chart [data]="salesData" [options]="clickOptions"></lib-chart>
-      <div *ngIf="clickedItem" class="click-result">
-        <div class="click-result-title">点击结果：</div>
-        <div class="click-result-content">
-          <div>名称：{{ clickedItem.item.name }}</div>
-          <div>数值：{{ clickedItem.item.data }}</div>
-          <div>索引：{{ clickedItem.index }}</div>
-          <div>图表标题：{{ clickedItem.options.title || '无标题' }}</div>
-        </div>
+<!-- 现代化头部区域 -->
+<div class="modern-header">
+  <div class="header-content">
+    <div class="component-info">
+      <div class="component-icon">📊</div>
+      <div class="component-details">
+        <h1 class="component-title">Chart 图表</h1>
+        <p class="component-description">功能丰富的数据可视化组件，支持柱状图、折线图和饼图</p>
       </div>
     </div>
-    <div description>
-      <p>通过设置 <code>onClick</code> 回调函数可以响应柱形的点击事件。</p>
-      <p>回调函数会接收一个包含完整上下文信息的对象，包括点击的数据项、索引、完整数据集、图表配置和点击事件等。</p>
+    
+    <div class="usage-guide">
+      <h2>使用指南</h2>
+      <ul class="feature-list">
+        <li>✨ 支持柱状图、折线图、饼图三种图表类型</li>
+        <li>🎨 丰富的自定义配置选项</li>
+        <li>📱 完全响应式设计</li>
+        <li>🖱️ 支持点击和悬停交互</li>
+        <li>🔧 自定义悬浮框模板</li>
+        <li>🎬 可配置的动画效果</li>
+      </ul>
     </div>
-  </app-doc-box>
-
-  <!-- 自定义悬浮框 -->
-  <app-doc-box title="自定义悬浮框" [sourceCode]="customTooltipCode">
-    <div demo>
-      <lib-chart [data]="salesData" [options]="customTooltipOptions" [tooltipTemplate]="customTooltip"></lib-chart>
-      
-      <ng-template #customTooltip let-item>
-        <!-- 自定义悬浮框内容，右侧边框由组件设置 -->
-        <div style="display: flex; width: 100%; flex-direction: column;">
-          <div style="padding: 12px;">
-            <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px; color: #222; letter-spacing: -0.3px;">
-              {{item.name}}
-            </div>
-            <div style="display: flex; flex-direction: column;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #555; font-size: 13px; font-weight: 500;">销售额</span>
-                <span style="font-weight: 500; color: #000; font-size: 13px; padding: 4px 10px;min-width: 60px; text-align: center;">{{formatSalesValue(item.item.data)}}</span>
-              </div>
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #555; font-size: 13px; font-weight: 500;">占比</span>
-                <span style="font-weight: 500; color: #000; font-size: 13px; padding: 4px 10px; min-width: 60px; text-align: center;">{{((item.item.data / 840) * 100).toFixed(1)}}%</span>
-              </div>
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #555; font-size: 13px; font-weight: 500;">详情</span>
-                <span style="font-weight: 500; color: #3498db; font-size: 13px; padding: 4px 10px; min-width: 60px; text-align: center; cursor: pointer;">查看</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </div>
-    <div description>
-      <p>通过 <code>tooltipTemplate</code> 属性可以使用 Angular 模板自定义悬浮框的内容和样式。</p>
-      <p>右侧彩色边框会自动使用对应柱形的颜色，保持视觉一致性。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 多系列悬浮框 -->
-  <app-doc-box title="多系列悬浮框" [sourceCode]="multiSeriesTooltipCode">
-    <div demo>
-      <lib-chart [data]="multiSeriesData" [options]="multiSeriesTooltipOptions" [tooltipTemplate]="multiSeriesTooltip"></lib-chart>
-      
-      <ng-template #multiSeriesTooltip let-data>
-        <div style="display: flex; width: 100%; flex-direction: column;">
-          <div style="padding: 12px;">
-            <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px; color: #222; letter-spacing: -0.3px;">
-              {{data.series}} - {{data.item.name}}
-            </div>
-            <div style="display: flex; flex-direction: column;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
-                <span style="color: #555; font-size: 13px; font-weight: 500;">数值</span>
-                <span style="font-weight: 500; color: #000; font-size: 13px; padding: 4px 10px;min-width: 60px; text-align: center;">{{formatValue(data.item.data)}}</span>
-              </div>
-              <div style="display: flex; align-items: center; justify-content: space-between;">
-                <span style="color: #555; font-size: 13px; font-weight: 500;">系列索引</span>
-                <span style="font-weight: 500; color: #000; font-size: 13px; padding: 4px 10px; min-width: 60px; text-align: center;">{{data.seriesIndex}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </div>
-    <div description>
-      <p>多系列图表的悬浮框可以显示更丰富的信息，包括系列名称、数据点名称和值。</p>
-      <p>通过模板可以自定义显示内容和样式，增强用户体验。</p>
-    </div>
-  </app-doc-box>
+  </div>
 </div>
 
-<!-- 折线图示例部分 -->
-<h2>折线图示例</h2>
-<div class="chart-docs-grid">
-  <!-- 多系列折线图 -->
-  <app-doc-box title="多系列折线图" [sourceCode]="multiSeriesLineChartCode">
-    <div demo>
-      <lib-chart [data]="multiSeriesData" [options]="multiSeriesLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>多系列折线图可展示多组数据的趋势对比。</p>
-      <p>点击图例可以切换显示/隐藏对应的数据系列。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 自定义颜色折线图 -->
-  <app-doc-box title="自定义颜色折线图" [sourceCode]="customColorLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="customColorLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>options</code> 中的 <code>colors</code> 数组为折线图指定一系列颜色。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 带标题的折线图 -->
-  <app-doc-box title="带标题的折线图" [sourceCode]="titleLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="titleLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>options</code> 中的 <code>title</code> 为折线图添加标题。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 无动画折线图 -->
-  <app-doc-box title="无动画折线图" [sourceCode]="noAnimateLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="noAnimateLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>animate: false</code> 禁用折线图的动画效果。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 悬停效果折线图 -->
-  <app-doc-box title="悬停效果折线图" [sourceCode]="hoverLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="hoverLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>hoverEffect</code> 配置启用悬停效果，如显示工具提示。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 点击事件折线图 -->
-  <app-doc-box title="点击事件折线图" [sourceCode]="clickLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="clickLineOptions"></lib-chart>
-      <div *ngIf="clickedLineItem" class="click-result">
-        <div class="click-result-title">点击结果：</div>
-        <pre>{{ clickedLineItem | json }}</pre>
-      </div>
-    </div>
-    <div description>
-      <p>通过 <code>onClick</code> 回调响应数据点的点击事件。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 平滑曲线折线图 -->
-  <app-doc-box title="平滑曲线折线图" [sourceCode]="smoothLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="smoothLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>line.smoothLine: true</code> 将折线渲染为平滑曲线。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 区域填充折线图 -->
-  <app-doc-box title="区域填充折线图" [sourceCode]="areaFillLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="areaFillLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>line.areaFill: true</code> 启用折线下方的区域填充。</p>
-      <p>可使用 <code>line.areaFillColor</code> 和 <code>line.areaFillOpacity</code> 自定义填充样式。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 多系列区域填充折线图 -->
-  <app-doc-box title="多系列区域填充" [sourceCode]="multiSeriesAreaFillLineChartCode">
-    <div demo>
-      <lib-chart [data]="multiSeriesData" [options]="multiSeriesAreaFillLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>多系列数据同样支持区域填充，每个系列可以有独立的填充色（通过数据项的 <code>color</code> 属性或全局 <code>colors</code> 数组并结合透明度）。</p>
-    </div>
-  </app-doc-box>
+<!-- 代码演示区域 -->
+<div class="demo-section">
+  <div class="section-header">
+    <h2 class="section-title">
+      <span class="section-icon">🎯</span>
+      <span>代码演示</span>
+    </h2>
+  </div>
   
-  <!-- 自定义数据点样式 -->
-  <app-doc-box title="自定义数据点样式" [sourceCode]="customPointLineChartCode">
-    <div demo>
-      <lib-chart [data]="basicData" [options]="customPointLineOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过 <code>line.pointStyle</code>, <code>line.pointSize</code>, <code>line.pointColor</code>, <code>line.pointBorderColor</code>, <code>line.pointBorderWidth</code> 等选项自定义数据点的外观。</p>
-    </div>
-  </app-doc-box>
+  <div class="demo-grid">
+    <!-- 基本柱状图 -->
+    <app-doc-box title="基本柱状图" [sourceCode]="basicChartCode">
+      <div demo>
+        <lib-button (click)="refreshData()">刷新数据</lib-button>
+        <lib-chart [data]="basicData" [options]="basicBarOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>最基本的柱状图用法，展示一组数据的比较。</p>
+        <p>只需提供 <code>data</code> 数组，每个数据项包含 <code>name</code> 和 <code>value</code>。</p>
+      </div>
+    </app-doc-box>
 
-</div>
+    <!-- 多系列柱状图 -->
+    <app-doc-box title="多系列柱状图" [sourceCode]="multiSeriesChartCode">
+      <div demo>
+        <lib-chart [data]="multiSeriesData" [options]="multiSeriesBarOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>多系列柱状图可展示多组数据的对比，每个类别包含多个数据系列。</p>
+        <p>点击图例可以切换显示/隐藏对应的数据系列。</p>
+      </div>
+    </app-doc-box>
 
-<!-- 饼图示例部分 -->
-<h2>饼图示例</h2>
+    <!-- 基本折线图 -->
+    <app-doc-box title="基本折线图" [sourceCode]="basicChartCode">
+      <div demo>
+        <lib-chart [data]="basicData" [options]="basicLineOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>折线图用于展示数据的趋势变化，适合时间序列数据。</p>
+        <p>将 <code>chartType</code> 设置为 <code>'line'</code> 即可创建折线图。</p>
+      </div>
+    </app-doc-box>
 
-<div class="chart-docs-grid">
-  <!-- 基本饼图 -->
-  <app-doc-box title="基本饼图" [sourceCode]="basicPieChartCode">
-    <div demo>
-      <lib-chart [data]="pieData" [options]="basicPieOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>基本饼图用于展示不同类别数据的占比关系。</p>
-      <p>通过配置 <code>showLabels</code> 和 <code>showPercentage</code> 可以在扇区上显示名称和百分比。</p>
-    </div>
-  </app-doc-box>
+    <!-- 区域填充折线图 -->
+    <app-doc-box title="区域填充折线图" [sourceCode]="areaFillLineChartCode">
+      <div demo>
+        <lib-chart [data]="basicData" [options]="areaFillLineOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>通过 <code>line.areaFill: true</code> 启用折线下方的区域填充。</p>
+        <p>可使用 <code>line.areaFillColor</code> 自定义填充样式。</p>
+      </div>
+    </app-doc-box>
 
-  <!-- 环形图 -->
-  <app-doc-box title="环形图" [sourceCode]="donutPieChartCode">
-    <div demo>
-      <lib-chart [data]="donutPieData" [options]="donutPieOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>innerRadius</code> 可以创建环形图，适合在中心显示总计数据。</p>
-      <p>环形图比传统饼图更现代化，同时可以在中心区域显示附加信息。</p>
-    </div>
-  </app-doc-box>
+    <!-- 基本饼图 -->
+    <app-doc-box title="基本饼图" [sourceCode]="basicPieChartCode">
+      <div demo>
+        <lib-chart [data]="pieData" [options]="basicPieOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>饼图用于展示不同类别数据的占比关系。</p>
+        <p>通过配置 <code>showLabels</code> 和 <code>showPercentage</code> 显示名称和百分比。</p>
+      </div>
+    </app-doc-box>
 
-  <!-- 悬停效果饼图 -->
-  <app-doc-box title="悬停效果" [sourceCode]="hoverPieChartCode">
-    <div demo>
-      <lib-chart [data]="pieData" [options]="hoverPieOptions"></lib-chart>
-    </div>
-    <div description>
-      <p>通过设置 <code>hoverEffect</code> 可以启用悬停效果，包括悬浮框和扇区突出显示。</p>
-      <p>当鼠标悬停在扇区上时，扇区会向外突出并显示详细信息。</p>
-    </div>
-  </app-doc-box>
+    <!-- 环形图 -->
+    <app-doc-box title="环形图" [sourceCode]="donutPieChartCode">
+      <div demo>
+        <lib-chart [data]="donutPieData" [options]="donutPieOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>通过设置 <code>innerRadius</code> 可以创建环形图。</p>
+        <p>环形图比传统饼图更现代化，适合在中心显示总计数据。</p>
+      </div>
+    </app-doc-box>
 
-  <!-- 饼图点击事件 -->
-  <app-doc-box title="点击事件" [sourceCode]="pieClickChartCode">
-    <div demo>
-      <lib-chart [data]="pieData" [options]="pieClickOptions"></lib-chart>
-      <div *ngIf="clickedPieItem" class="click-result">
-        <div class="click-result-title">点击结果：</div>
-        <div class="click-result-content">
-          <div>名称：{{ clickedPieItem.item.name }}</div>
-          <div>数值：{{ clickedPieItem.item.value }}</div>
-          <div>百分比：{{ clickedPieItem.item.percentage.toFixed(1) }}%</div>
-          <div>索引：{{ clickedPieItem.index }}</div>
+    <!-- 自定义颜色 -->
+    <app-doc-box title="自定义颜色" [sourceCode]="colorChartCode">
+      <div demo>
+        <lib-chart [data]="basicData" [options]="colorOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>通过 <code>options</code> 中的 <code>colors</code> 数组自定义图表颜色。</p>
+        <p>自定义颜色可以增强数据的视觉区分度或符合品牌标识。</p>
+      </div>
+    </app-doc-box>
+
+    <!-- 悬停效果 -->
+    <app-doc-box title="悬停效果" [sourceCode]="hoverChartCode">
+      <div demo>
+        <lib-chart [data]="basicData" [options]="hoverOptions"></lib-chart>
+      </div>
+      <div description>
+        <p>通过设置 <code>hoverEffect</code> 启用悬停效果和悬浮框。</p>
+        <p>将鼠标悬停在图表元素上，可以看到详细数据信息。</p>
+      </div>
+    </app-doc-box>
+
+    <!-- 点击事件 -->
+    <app-doc-box title="点击事件" [sourceCode]="clickChartCode">
+      <div demo>
+        <lib-chart [data]="salesData" [options]="clickOptions"></lib-chart>
+        <div *ngIf="clickedItem" class="result-display">
+          <div class="result-header">
+            <span class="result-icon">🎯</span>
+            <span class="result-title">点击结果</span>
+          </div>
+          <div class="result-content">
+            <div class="result-item">
+              <span class="result-label">名称</span>
+              <span class="result-value">{{ clickedItem.item.name }}</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">数值</span>
+              <span class="result-value">{{ clickedItem.item.data }}</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">索引</span>
+              <span class="result-value">{{ clickedItem.index }}</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div description>
-      <p>通过设置 <code>onClick</code> 回调函数可以响应扇区的点击事件。</p>
-      <p>回调函数会接收包含完整上下文信息的对象，包括点击的扇区数据、索引和百分比等。</p>
-    </div>
-  </app-doc-box>
-
-  <!-- 图表类型切换 -->
-  <app-doc-box title="图表类型切换" [sourceCode]="toggleChartTypeCode">
-    <div demo>
-      <div style="margin-bottom: 16px;">
-        <lib-button (click)="toggleChartType()">
-          切换到{{ isBarChart ? '饼图' : '柱状图' }}
-        </lib-button>
+      <div description>
+        <p>通过设置 <code>onClick</code> 回调函数响应图表元素的点击事件。</p>
+        <p>回调函数接收包含完整上下文信息的对象，便于进行后续处理。</p>
       </div>
-      
-      <lib-chart 
-        [data]="isBarChart ? toggleChartData : togglePieData" 
-        [options]="isBarChart ? barChartOptions : pieChartOptions">
-      </lib-chart>
-    </div>
-    <div description>
-      <p>可以根据需要在柱状图和饼图之间切换，以不同方式可视化相同的数据。</p>
-      <p>饼图和柱状图在切换时保持颜色一致性，提供更好的用户体验。</p>
-      <p>使用<code>ChartService</code>中的转换方法可以简化图表类型间的转换过程。</p>
-    </div>
-  </app-doc-box>
+    </app-doc-box>
+
+    <!-- 自定义悬浮框 -->
+    <app-doc-box title="自定义悬浮框" [sourceCode]="customTooltipCode">
+      <div demo>
+        <lib-chart [data]="salesData" [options]="customTooltipOptions" [tooltipTemplate]="customTooltip"></lib-chart>
+        
+        <ng-template #customTooltip let-item>
+          <div style="display: flex; width: 100%; flex-direction: column;">
+            <div style="padding: 12px;">
+              <div style="font-weight: 600; font-size: 16px; margin-bottom: 8px; color: #222;">
+                {{item.name}}
+              </div>
+              <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+                  <span style="color: #555; font-size: 13px; font-weight: 500;">销售额</span>
+                  <span style="font-weight: 500; color: #000; font-size: 13px;">{{formatSalesValue(item.item.data)}}</span>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <span style="color: #555; font-size: 13px; font-weight: 500;">占比</span>
+                  <span style="font-weight: 500; color: #000; font-size: 13px;">{{((item.item.data / 840) * 100).toFixed(1)}}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div description>
+        <p>通过 <code>tooltipTemplate</code> 使用 Angular 模板自定义悬浮框内容。</p>
+        <p>可以创建丰富的交互式悬浮框，提升用户体验。</p>
+      </div>
+    </app-doc-box>
+
+    <!-- 图表类型切换 -->
+    <app-doc-box title="图表类型切换" [sourceCode]="toggleChartTypeCode">
+      <div demo>
+        <div class="demo-controls">
+          <lib-button (click)="toggleChartType()">
+            切换到{{ isBarChart ? '饼图' : '柱状图' }}
+          </lib-button>
+        </div>
+        
+        <lib-chart 
+          [data]="isBarChart ? toggleChartData : togglePieData" 
+          [options]="isBarChart ? barChartOptions : pieChartOptions">
+        </lib-chart>
+      </div>
+      <div description>
+        <p>可以根据需要在不同图表类型间切换，以不同方式可视化相同数据。</p>
+        <p>使用转换方法可以简化图表类型间的切换过程。</p>
+      </div>
+    </app-doc-box>
+  </div>
 </div>
 
-<h2>API</h2>
-<app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+<!-- API 文档区域 -->
+<div class="api-section">
+  <div class="section-header">
+    <h2 class="section-title">
+      <span class="section-icon">📋</span>
+      <span>API 参考</span>
+    </h2>
+    <p class="section-description">详细的组件属性、方法和事件说明</p>
+  </div>
+  
+  <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+</div>

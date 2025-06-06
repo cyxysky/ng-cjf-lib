@@ -1,71 +1,403 @@
-.chart-docs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-  gap: 24px;
-}
-
-// 演示区样式
-[demo] {
-  padding: 24px 16px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  height: 450px;
+/* 现代化头部区域 */
+.modern-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 48px 32px;
+  margin-bottom: 48px;
+  border-radius: 12px;
+  position: relative;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)" /></svg>');
+    opacity: 0.3;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .component-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+
+    .component-icon {
+      font-size: 48px;
+      line-height: 1;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .component-details {
+      flex: 1;
+
+      .component-title {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 0 0 12px 0;
+        letter-spacing: -0.5px;
+      }
+
+      .component-description {
+        font-size: 18px;
+        opacity: 0.9;
+        line-height: 1.6;
+        margin: 0;
+      }
+    }
+  }
+
+  .usage-guide {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 24px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0 0 16px 0;
+      color: white;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+
+      li {
+        padding: 8px 0;
+        font-size: 15px;
+        line-height: 1.5;
+        opacity: 0.95;
+      }
+    }
+  }
 }
 
-// 描述区域样式
-[description] {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333;
-  
-  ul {
-    padding-left: 20px;
-    margin: 8px 0;
+/* 演示区域 */
+.demo-section {
+  margin-bottom: 48px;
+
+  .section-header {
+    margin-bottom: 32px;
+    text-align: center;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin: 0 0 8px 0;
+
+      .section-icon {
+        font-size: 32px;
+      }
+    }
+
+    .section-description {
+      color: #718096;
+      font-size: 16px;
+      margin: 0;
+    }
   }
-  
-  code {
-    background-color: #f0f0f0;
-    padding: 2px 4px;
-    border-radius: 3px;
-    font-family: monospace;
-    font-size: 12px;
-  }
-  
-  strong {
-    font-weight: 600;
+
+  .demo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+    gap: 32px;
+    margin: 0 auto;
   }
 }
 
-// 适配移动设备的额外样式
-@media (max-width: 600px) {
-  [demo] {
-    padding: 16px 8px;
+/* API 文档区域 */
+.api-section {
+  .section-header {
+    margin-bottom: 32px;
+    text-align: center;
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a202c;
+      margin: 0 0 8px 0;
+
+      .section-icon {
+        font-size: 32px;
+      }
+    }
+
+    .section-description {
+      color: #718096;
+      font-size: 16px;
+      margin: 0;
+    }
   }
 }
 
-.click-result {
-  margin-top: 16px;
-  padding: 12px 16px;
+/* 演示容器样式增强 */
+:host ::ng-deep app-doc-box {
+  .doc-box {
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .doc-title {
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      padding: 16px 24px;
+      font-weight: 600;
+      color: #2d3748;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 16px;
+    }
+
+    [demo] {
+      padding: 32px 24px;
+      min-height: 400px;
+      background: #fafafa;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      lib-chart {
+        flex: 1;
+        min-height: 300px;
+      }
+    }
+
+    [description] {
+      padding: 20px 24px;
+      background: white;
+      
+      p {
+        margin: 0 0 12px 0;
+        line-height: 1.6;
+        color: #4a5568;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      code {
+        background: #edf2f7;
+        color: #805ad5;
+        padding: 3px 6px;
+        border-radius: 4px;
+        font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* 结果显示样式 */
+.result-display {
+  margin-top: 20px;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  background-color: #f8fafc;
+  background: #f8fafc;
+  overflow: hidden;
+
+  .result-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .result-icon {
+      font-size: 16px;
+    }
+
+    .result-title {
+      font-size: 14px;
+    }
+  }
+
+  .result-content {
+    padding: 16px;
+
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #e2e8f0;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      .result-label {
+        font-weight: 500;
+        color: #4a5568;
+        font-size: 14px;
+      }
+
+      .result-value {
+        font-weight: 600;
+        color: #2d3748;
+        font-size: 14px;
+        background: #edf2f7;
+        padding: 4px 8px;
+        border-radius: 4px;
+      }
+    }
+  }
 }
 
-.click-result-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #334155;
+/* 演示控制按钮样式 */
+.demo-controls {
+  margin-bottom: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
 }
 
-.click-result-content {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-}
-
+/* 响应式设计 */
 @media (max-width: 768px) {
-  .click-result-content {
-    grid-template-columns: 1fr;
+  .modern-header {
+    padding: 32px 20px;
+    margin-bottom: 32px;
+
+    .component-info {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+
+      .component-icon {
+        align-self: center;
+        font-size: 40px;
+        padding: 12px;
+      }
+
+      .component-details {
+        .component-title {
+          font-size: 28px;
+        }
+
+        .component-description {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .usage-guide {
+      padding: 20px;
+
+      .feature-list {
+        grid-template-columns: 1fr;
+        gap: 8px;
+
+        li {
+          font-size: 14px;
+          padding: 6px 0;
+        }
+      }
+    }
+  }
+
+  .demo-section {
+    .demo-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  :host ::ng-deep app-doc-box {
+    .doc-box {
+      [demo] {
+        padding: 20px 16px;
+        min-height: 320px;
+
+        lib-chart {
+          min-height: 250px;
+        }
+      }
+
+      [description] {
+        padding: 16px 20px;
+      }
+    }
+  }
+
+  .result-display {
+    .result-content {
+      .result-item {
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+
+        .result-value {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-header {
+    padding: 24px 16px;
+
+    .component-info {
+      .component-details {
+        .component-title {
+          font-size: 24px;
+        }
+
+        .component-description {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+
+  .demo-section {
+    .section-header {
+      .section-title {
+        font-size: 24px;
+        
+        .section-icon {
+          font-size: 28px;
+        }
+      }
+    }
   }
 }

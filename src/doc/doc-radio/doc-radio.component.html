@@ -1,112 +1,248 @@
-<div class="doc-container">
-  <h1 class="doc-title">单选框 Radio</h1>
-  
-  <p class="doc-description">
-    用于在一组互斥选项中选择一个选项。
-  </p>
-  
-  <h2 class="doc-section-title">何时使用</h2>
-  <p class="doc-description">
-    当用户需要从一组数据中选择单个选项时；
-    当用户只能选择一个选项且选项数量较少时。
-  </p>
-  
-  <h2 class="doc-section-title">代码演示</h2>
-  
-  <div class="doc-grid">
-    <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <lib-radio 
-          [(ngModel)]="basicValue" 
-          [radioOptions]="basicOptions">
-        </lib-radio>
-        <p class="example-value">当前值: {{ basicValue }}</p>
+<div class="modern-doc-container">
+  <!-- 页面头部 -->
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="component-icon">🔘</span>
+          <span class="title-text">Radio</span>
+          <span class="title-subtitle">单选框</span>
+        </h1>
+        <p class="main-description">
+          用于在一组互斥选项中选择一个选项。当用户需要从一组数据中选择单个选项时，且选项数量较少时使用。提供直观的单选交互体验，确保用户在多个选项中只能选择一个。
+        </p>
       </div>
-      <div description>
-        最简单的用法，展示多个单选框选项。
+      
+      <div class="usage-section">
+        <div class="usage-card">
+          <h3 class="usage-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            何时使用
+          </h3>
+          <ul class="usage-list">
+            <li>需要从一组数据中选择单个选项时</li>
+            <li>选项数量较少且需要显示所有选项</li>
+            <li>用户需要看到所有可选项进行对比</li>
+            <li>替代下拉选择框的展示方式</li>
+          </ul>
+        </div>
       </div>
-    </app-doc-box>
-    
-    <!-- 垂直排列 -->
-    <app-doc-box
-      title="垂直排列"
-      [sourceCode]="verticalSource">
-      <div demo>
-        <lib-radio 
-          [(ngModel)]="verticalValue" 
-          [radioOptions]="basicOptions"
-          radioDirection="vertical">
-        </lib-radio>
-        <p class="example-value">当前值: {{ verticalValue }}</p>
-      </div>
-      <div description>
-        通过设置 radioDirection="vertical" 属性使单选框垂直排列。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义颜色 -->
-    <app-doc-box
-      title="自定义颜色,自定义选项"
-      [sourceCode]="colorSource">
-      <div demo>
-        <lib-radio 
-          [(ngModel)]="colorValue" 
-          [radioOptions]="basicOptions"
-          [radioColor]="'#ff4d4f'">
-        </lib-radio>
-        <lib-radio 
-          [(ngModel)]="colorValue" 
-          [radioOptions]="basicOptions"
-          [radioLabelTemplate]="customLabelTemplate">
-        </lib-radio>
-        <ng-template #customLabelTemplate let-option>
-            <span class="custom-label">自定义 - {{ option.label }}</span>
-        </ng-template>
-        <p class="example-value">当前值: {{ colorValue }}</p>
-      </div>
-      <div description>
-        可以自定义单选框的选中颜色。
-      </div>
-    </app-doc-box>
-    
-    <!-- 禁用状态 -->
-    <app-doc-box
-      title="禁用某个选项状态"
-      [sourceCode]="disabledSource">
-      <div demo>
-        <lib-radio 
-          [(ngModel)]="disabledValue" 
-          [radioOptions]="disabledOptions">
-        </lib-radio>
-        <p class="example-value">当前值: {{ disabledValue }}</p>
-      </div>
-      <div description>
-        可以禁用单个选项。
-      </div>
-    </app-doc-box>
-    
-    <!-- 事件监听 -->
-    <app-doc-box
-      title="事件监听"
-      [sourceCode]="eventSource">
-      <div demo>
-        <lib-radio 
-          [(ngModel)]="eventValue" 
-          [radioOptions]="basicOptions"
-          (valueChange)="onValueChange($event)">
-        </lib-radio>
-        <p class="example-value">当前值: {{ eventValue }}</p>
-        <p class="example-value">上次改变: {{ lastChangedValue }}</p>
-      </div>
-      <div description>
-        可以监听选中值的变化事件。
-      </div>
-    </app-doc-box>
+    </div>
   </div>
-  
-  <h2 class="doc-section-title">API</h2>
-  <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+
+  <!-- 代码演示区域 -->
+  <div class="demo-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z"/>
+        </svg>
+        <span>代码演示</span>
+      </h2>
+    </div>
+
+    <div class="demo-grid">
+      <!-- 基本用法 -->
+      <app-doc-box title="基本用法" [sourceCode]="basicSource">
+        <div demo class="demo-container">
+          <div class="demo-row">
+            <lib-radio 
+              [(ngModel)]="basicValue" 
+              [radioOptions]="basicOptions">
+            </lib-radio>
+          </div>
+        </div>
+        <div description>
+          <p>最简单的用法，展示多个单选框选项。</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+              <span>支持双向数据绑定</span>
+            </div>
+            <div class="feature-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+              <span>自动处理互斥选择逻辑</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 垂直排列 -->
+      <app-doc-box title="垂直排列" [sourceCode]="verticalSource">
+        <div demo class="demo-container">
+          <div class="demo-row">
+            <lib-radio 
+              [(ngModel)]="verticalValue" 
+              [radioOptions]="basicOptions"
+              radioDirection="vertical">
+            </lib-radio>
+          </div>
+        </div>
+        <div description>
+          <p>通过设置 <code>radioDirection="vertical"</code> 属性使单选框垂直排列。</p>
+          <div class="direction-list">
+            <div class="direction-item">
+              <div class="direction-icon horizontal"></div>
+              <div class="direction-info">
+                <strong>水平排列 (horizontal)</strong>
+                <span>默认排列方式，适合选项较少的场景</span>
+              </div>
+            </div>
+            <div class="direction-item">
+              <div class="direction-icon vertical"></div>
+              <div class="direction-info">
+                <strong>垂直排列 (vertical)</strong>
+                <span>选项垂直排列，适合选项较多或需要节省横向空间</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 自定义颜色和模板 -->
+      <app-doc-box title="自定义样式" [sourceCode]="colorSource">
+        <div demo class="demo-container">
+          <div class="demo-section-item">
+            <h4 class="demo-subtitle">自定义颜色</h4>
+            <lib-radio 
+              [(ngModel)]="colorValue" 
+              [radioOptions]="basicOptions"
+              [radioColor]="'#ff4d4f'">
+            </lib-radio>
+          </div>
+          <div class="demo-section-item">
+            <h4 class="demo-subtitle">自定义标签模板</h4>
+            <lib-radio 
+              [(ngModel)]="colorValue" 
+              [radioOptions]="basicOptions"
+              [radioLabelTemplate]="customLabelTemplate">
+            </lib-radio>
+            <ng-template #customLabelTemplate let-option>
+              <span class="custom-label">
+                <i class="custom-icon">✨</i>
+                自定义 - {{ option.label }}
+              </span>
+            </ng-template>
+          </div>
+        </div>
+        <div description>
+          <p>支持自定义单选框的样式和标签显示：</p>
+          <div class="custom-features">
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+                <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 0-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 0-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 0 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 0 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 0 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 0 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 0-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 0-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
+              </svg>
+              <span>自定义选中状态颜色</span>
+            </div>
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v-.5A.5.5 0 0 1 1.5 11h13a.5.5 0 0 1 .5.5v.5l-2.17-2.17a.5.5 0 0 0-.58-.06l-3.248 1.624L6.5 8.5l.577-.093L9.75 6.75a.5.5 0 0 1 .58.06L12.5 8.94V3.5a.5.5 0 0 1 .5-.5h1z"/>
+              </svg>
+              <span>使用模板自定义标签显示</span>
+            </div>
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+              </svg>
+              <span>支持图标和富文本内容</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 禁用状态 -->
+      <app-doc-box title="禁用状态" [sourceCode]="disabledSource">
+        <div demo class="demo-container">
+          <div class="demo-row">
+            <lib-radio 
+              [(ngModel)]="disabledValue" 
+              [radioOptions]="disabledOptions">
+            </lib-radio>
+          </div>
+        </div>
+        <div description>
+          <p>可以禁用单个或多个选项，禁用的选项不可选择：</p>
+          <div class="state-features">
+            <div class="state-feature">
+              <div class="state-indicator enabled"></div>
+              <div class="state-info">
+                <strong>启用状态</strong>
+                <span>选项可以正常选择和交互</span>
+              </div>
+            </div>
+            <div class="state-feature">
+              <div class="state-indicator disabled"></div>
+              <div class="state-info">
+                <strong>禁用状态</strong>
+                <span>选项显示为灰色，不可选择</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 事件监听 -->
+      <app-doc-box title="事件监听" [sourceCode]="eventSource">
+        <div demo class="demo-container">
+          <div class="demo-row">
+            <lib-radio 
+              [(ngModel)]="eventValue" 
+              [radioOptions]="basicOptions"
+              (valueChange)="onValueChange($event)">
+            </lib-radio>
+          </div>
+        </div>
+        <div description>
+          <p>可以监听选中值的变化事件，实时响应用户操作：</p>
+          <div class="event-features">
+            <div class="event-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+              <span>valueChange 事件监听值变化</span>
+            </div>
+            <div class="event-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+              </svg>
+              <span>实时获取当前选中的值</span>
+            </div>
+            <div class="event-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+              </svg>
+              <span>支持表单验证和数据处理</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+    </div>
+  </div>
+
+  <!-- API 文档区域 -->
+  <div class="api-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <span>API 文档</span>
+      </h2>
+      <p class="section-description">详细的属性、事件和方法说明</p>
+    </div>
+    
+    <div class="api-container">
+      <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+    </div>
+  </div>
 </div>

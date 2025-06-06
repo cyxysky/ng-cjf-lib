@@ -30,9 +30,11 @@ export class DocSwitchComponent implements OnInit {
   
   // 带文字的开关
   textSwitchChecked = true;
+  textSwitchChecked2 = false;
   
   // 小尺寸开关
   smallSwitchChecked = false;
+  sizeSwitchChecked = false;
   
   // 代码示例
   basicSwitchSource = `

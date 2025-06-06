@@ -18,6 +18,9 @@
 @button-small-height: @height-sm; // 小号按钮高度
 @button-small-padding: 0 @padding-sm; // 小号按钮内边距
 @button-small-font-size: @font-size-sm; // 小号按钮字体大小
+@button-circle-border-radius: @border-radius-circle; // 圆形按钮边框圆角
+@button-round-border-radius: @border-radius-round; // 圆角按钮边框圆角
+
 @button-primary-bg: @color-primary; // 主要按钮背景色
 @button-primary-color: @color-white; // 主要按钮文字颜色
 @button-secondary-bg: @color-secondary; // 次要按钮背景色
@@ -32,8 +35,7 @@
 @button-disabled-color: @color-text-disabled; // 禁用按钮文字颜色
 @button-disabled-bg: @color-bg-disabled; // 禁用按钮背景色
 @button-link-color: @color-primary; // 链接按钮文字颜色
-@button-circle-border-radius: @border-radius-circle; // 圆形按钮边框圆角
-@button-round-border-radius: @border-radius-round; // 圆角按钮边框圆角
+
 
 // ===== Input 输入框 =====
 @input-height: @height-base; // 输入框默认高度
@@ -222,7 +224,7 @@
 @popover-font-size: @font-size-base; // 弹窗字体大小
 @popover-content-padding: 12px @padding-md; // 弹窗内容内边距
 @popover-content-min-height: @height-base; // 弹窗内容最小高度
-@popover-title-padding: 5px @padding-md 0; // 弹窗标题内边距
+@popover-title-padding: 5px @padding-md; // 弹窗标题内边距
 @popover-title-color: @color-text-primary; // 弹窗标题颜色
 @popover-title-font-weight: @font-weight-medium; // 弹窗标题字体粗细
 @popover-title-border-width: @border-width-base; // 弹窗标题边框宽度
@@ -466,6 +468,7 @@
 @cascader-loading-padding: 8px 0; // 级联选择器加载状态内边距
 
 // ===== DateTimer 日期时间选择器 =====
+@date-timer-clear-icon-hover-color: @color-icon-darker; // 输入框清除图标悬停颜色
 @date-timer-range-separator-padding: 0 8px; // 日期时间选择器范围分隔符内边距
 @date-timer-range-tab-height: 40px; // 日期时间选择器范围标签高度
 @date-timer-range-tab-border: 1px solid @color-border-light; // 日期时间选择器范围标签边框

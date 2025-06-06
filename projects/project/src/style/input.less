@@ -14,6 +14,10 @@ lib-input {
 
     &:hover {
         border-color: @input-hover-border-color;
+        
+        .c-lib-input-clear-icon {
+            opacity: 1 !important;
+        }
     }
 
     &.c-lib-input-focused {
@@ -61,6 +65,7 @@ lib-input {
             color: @input-clear-icon-color;
             transition: color @transition-duration-base;
             margin-left: 4px;
+            opacity: 0;
 
             &:hover {
                 color: @input-clear-icon-hover-color;
