@@ -1,7 +1,6 @@
 import { Component, effect, resource, signal, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { MenuItem, ProjectModule } from '../../projects/project/src/public-api';
-import { of, delay, interval } from 'rxjs';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { DocModule } from '../doc/doc.module';
@@ -14,135 +13,19 @@ import * as _ from 'lodash'
   styleUrl: './app.component.less'
 })
 export class AppComponent {
-  title = 'project';
-  show = signal(false);
-  text = signal('hellossssssss');
-  mySignal = signal({
-    ok: 'false'
-  });
-  nowComponent = signal('popconfirm');
-  checked = signal(false);
-  menuCollapsed = signal(false);  // 菜单折叠状态
+  /** 标题 */
+  title = 'ng-cjf-lib';
 
-  // 菜单项数据
+  /** 当前组件 */
+  nowComponent = signal('button');
+
+  /** 菜单折叠状态 */
+  menuCollapsed = signal(false);
+
+  /** 菜单项数据 */
   menuItems: MenuItem[] = [];
 
-  onCheckedChange(checked: boolean) {
-    this.checked.set(checked);
-  }
-  onClose(event: string) {
-    console.log(event);
-  }
-  sets() {
-    this.mySignal.set({
-      ok: 'true'
-    })
-  }
-  constructor(private router: Router) {
-    effect(() => {
-      console.log('change')
-    })
-    // resource({
-    //   request: () => [this.mySignal(), this.show()],
-    //   loader: async ({request: id}) => {
-    //     console.log(id);
-    //   }
-    // })
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.nowComponent.set(event.urlAfterRedirects.split('/').pop() || '');
-      }
-    });
-    // 初始化菜单数据
-    this.initMenuItems();
-  }
-
-  // 初始化菜单数据方法
-  private initMenuItems(): void {
-    // 将组件列表转换为MenuItem类型，每个组件菜单项设置为默认展开
-    const componentMenuItems: MenuItem[] = this.components.map(item => ({
-      key: item.path,
-      title: item.name,
-      link: item.path,
-      isOpen: true,
-      icon: item.icon // 添加图标
-    }));
-
-    // 将业务组件列表转换为MenuItem类型，每个业务组件菜单项设置为默认展开
-    const businessMenuItems: MenuItem[] = this.businessComponents.map(item => ({
-      key: item.path,
-      title: item.name,
-      link: item.path,
-      isOpen: true,
-      icon: 'fas fa-cogs' // 添加图标
-    }));
-
-    // 构建完整的菜单结构，所有菜单和子菜单都默认展开
-    this.menuItems = [
-      {
-        key: 'components',
-        title: '基础组件',
-        children: componentMenuItems,
-        isOpen: true,
-        icon: 'fas fa-th'
-      },
-      {
-        key: 'business',
-        title: '业务组件',
-        children: businessMenuItems,
-        isOpen: true,
-        icon: 'fas fa-project-diagram'
-      }
-    ];
-  }
-
-  // 菜单点击处理
-  handleMenuClick(item: MenuItem): void {
-    if (item.link) {
-      this.nowComponent.set(item.key);
-      this.nav(item.link);
-    }
-  }
-
-  ngOnInit() {
-
-    let a = [
-      {
-        type: 'number',
-      },
-      {
-        type: 'number'
-      },
-      {
-        type: 'text'
-      },
-      {
-        type: 'text'
-      }
-    ]
-    a =_.sortBy(a, (z) => z.type === 'number')
-    console.log(a)
-    of(true).pipe(delay(2000)).subscribe((data) => {
-      this.show.set(data)
-    })
-
-    // const obs$ = toObservable(this.mySignal);
-    // obs$.subscribe(value => console.log(value));
-    // mySignal.set(1);
-    // mySignal.set(2);
-    // mySignal.set(3);
-
-  }
-
-  nav(path: string) {
-    this.router.navigate([path]);
-  }
-
-  // 切换菜单折叠状态
-  toggleMenuCollapse(): void {
-    this.menuCollapsed.update(value => !value);
-  }
-
+  /** 组件列表 */
   components = [
     { name: '气泡确认框', path: 'popconfirm', icon: 'bi-chat-dots-fill' },
     { name: '气泡', path: 'popover', icon: 'bi-chat' },
@@ -171,6 +54,7 @@ export class AppComponent {
     { name: '表格', path: 'table', icon: 'bi-table' },
   ]
 
+  /** 业务组件列表 */
   businessComponents = [
     { name: '多维流程图', path: 'multi-dimensional-flowchart' },
     { name: '拖拽生成表单', path: 'customer-form' },
@@ -181,4 +65,85 @@ export class AppComponent {
     { name: '用户选择', path: 'user-select' },
     { name: '图表', path: 'chart' },
   ]
+
+  constructor(private router: Router) {
+    // 初始化菜单数据
+    this.initMenuItems();
+  }
+
+  /**
+   * 初始化菜单数据
+   */
+  private initMenuItems(): void {
+    // 将组件列表转换为MenuItem类型，每个组件菜单项设置为默认展开
+    const componentMenuItems: MenuItem[] = this.components.map(item => ({
+      key: item.path,
+      title: item.name,
+      link: item.path,
+      isOpen: true,
+      icon: item.icon // 添加图标
+    }));
+
+    // 将业务组件列表转换为MenuItem类型，每个业务组件菜单项设置为默认展开
+    const businessMenuItems: MenuItem[] = this.businessComponents.map(item => ({
+      key: item.path,
+      title: item.name,
+      link: item.path,
+      isOpen: true,
+      icon: 'bi-diagram-3-fill' // 添加图标
+    }));
+
+    // 构建完整的菜单结构，所有菜单和子菜单都默认展开
+    this.menuItems = [
+      {
+        key: 'start',
+        title: '开始',
+        link: 'start',
+        isOpen: true,
+        icon: 'bi-house'
+      },
+      {
+        key: 'components',
+        title: '基础组件',
+        children: componentMenuItems,
+        isOpen: true,
+        icon: 'bi-grid-3x3-gap'
+      },
+      {
+        key: 'business',
+        title: '业务组件',
+        children: businessMenuItems,
+        isOpen: true,
+        icon: 'bi-diagram-3'
+      }
+    ];
+  }
+
+  /**
+   * 菜单点击处理
+   * @param item 菜单项
+   */
+  handleMenuClick(item: MenuItem): void {
+    if (item.link) {
+      this.nowComponent.set(item.key);
+      this.nav(item.link);
+    }
+  }
+
+  /**
+   * 导航
+   * @param path 路径
+   */
+  nav(path: string) {
+    this.router.navigate([path]);
+  }
+
+  /**
+   * 切换菜单折叠状态
+   */
+  toggleMenuCollapse(): void {
+    this.menuCollapsed.update(value => !value);
+  }
+
+
 }

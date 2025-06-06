@@ -14,10 +14,6 @@ const paths = {
         variablesIndex: 'projects/project/src/style/variables/index.less',
         dest: 'dist/project/assets/css'
     },
-    fonts: {
-        src: 'node_modules/bootstrap-icons/font/fonts/*',
-        dest: 'dist/project/assets/css/fonts'
-    }
 };
 
 // 主题配置

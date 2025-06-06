@@ -1,7 +1,6 @@
 .c-lib-message {
     color: @message-color;
     font-size: @message-font-size;
-    line-height: 1.5;
     display: block;
     width: 100%;
     text-align: center;
@@ -18,10 +17,12 @@
     min-width: @message-item-min-width;
 }
 
+// 消息的盒子，包括  icon  ，  消息，  关闭按钮
 .c-lib-message-content {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: @message-content-gap;
+    justify-content: space-between;
 }
 
 .c-lib-message-icon {

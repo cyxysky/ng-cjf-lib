@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { DocPopconfirmComponent } from '../doc/doc-popconfirm/doc-popconfirm.component';
 import { DocPopoverComponent } from '../doc/doc-popover/doc-popover.component';
 import { DocButtonComponent } from '../doc/doc-button/doc-button.component';
@@ -33,7 +32,18 @@ import { UserSelectComponent } from '@project';
 import { DocMenuComponent } from '../doc/doc-menu/doc-menu.component';
 import { DocTableComponent } from '../doc/doc-table/doc-table.component';
 import { DocChartComponent } from '../doc/doc-chart/doc-chart.component';
+import { DocStartComponent } from '../doc/doc-start/doc-start.component';
+
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'start',
+        pathMatch: 'full'
+    },
+    {
+        path: 'start',
+        component: DocStartComponent
+    },
     {
         path: 'popconfirm',
         component: DocPopconfirmComponent

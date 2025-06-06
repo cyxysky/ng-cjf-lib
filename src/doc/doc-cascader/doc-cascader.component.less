@@ -1,116 +1,114 @@
 .doc-title {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: rgba(0, 0, 0, 0.85);
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.doc-section-title {
+  font-size: 22px;
+  font-weight: 500;
+  margin: 40px 0 16px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.doc-sub-title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 24px 0 16px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.doc-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  margin-bottom: 16px;
+}
+
+// 响应式网格布局
+.doc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  width: 100%;
+  margin-bottom: 32px;
+
+  @media (min-width: 1200px) {
+    grid-template-columns: 50% 50%;
   }
-  
-  .doc-section-title {
-    font-size: 22px;
-    font-weight: 500;
-    margin: 40px 0 16px;
-    color: rgba(0, 0, 0, 0.85);
-  }
-  
-  .doc-sub-title {
-    font-size: 18px;
-    font-weight: 500;
-    margin: 24px 0 16px;
-    color: rgba(0, 0, 0, 0.85);
-  }
-  
-  .doc-description {
-    font-size: 14px;
-    line-height: 1.5;
-    color: rgba(0, 0, 0, 0.65);
-    margin-bottom: 16px;
-  }
-  
-  // 响应式网格布局
-  .doc-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    width: 100%;
-    margin-bottom: 32px;
-    
-    @media (min-width: 1200px) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  
-  // 示例内容样式
-  .example-content {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    
-    .example-value {
-      margin-top: 16px;
-      color: #666;
-    }
-  }
-  
-  // API 表格样式
-  app-doc-api-table {
-    margin-bottom: 32px;
-  }
-  
-  .demo-buttons {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  
+}
+
+// 示例内容样式
+.example-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
   .example-value {
     margin-top: 16px;
-    padding: 8px;
-    border-radius: 4px;
-    background-color: #f5f5f5;
     color: #666;
   }
-  
-  .tip {
-    margin-top: 8px;
+}
+
+// API 表格样式
+app-doc-api-table {
+  margin-bottom: 32px;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.example-value {
+  margin-top: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  color: #666;
+}
+
+.tip {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+// 尺寸演示容器
+.size-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// 状态演示容器
+.status-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// 无边框演示容器
+.borderless-container {
+  padding: 16px;
+  border-radius: 4px;
+}
+
+// 自定义选项样式
+.custom-option {
+  align-items: center;
+  gap: 8px;
+
+  .bi {
+    font-size: 16px;
+  }
+
+  .option-desc {
     font-size: 12px;
     color: #999;
-    font-style: italic;
+    margin-left: auto;
   }
-  
-  // 尺寸演示容器
-  .size-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  // 状态演示容器
-  .status-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-  
-  // 无边框演示容器
-  .borderless-container {
-    padding: 16px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-  }
-  
-  // 自定义选项样式
-  .custom-option {
-    align-items: center;
-    gap: 8px;
-    
-    .bi {
-      font-size: 16px;
-    }
-    
-    .option-desc {
-      font-size: 12px;
-      color: #999;
-      margin-left: auto;
-    }
-  }
+}

@@ -39,32 +39,41 @@
   <!-- 带文字的开关 -->
   <app-doc-box title="带文字的开关" [sourceCode]="textSwitchSource">
     <div demo>
-      <lib-switch 
-        [(ngModel)]="textSwitchChecked"
-        [switchCheckedChildren]="'开'"
-        [switchUnCheckedChildren]="'关'">
-      </lib-switch>
-      <lib-switch 
-        [(ngModel)]="textSwitchChecked"
-        [switchCheckedChildren]="checkedChildren"
-        [switchUnCheckedChildren]="unCheckedChildren">
-      </lib-switch>
-      <ng-template #checkedChildren>
-        使用template 开
-      </ng-template>
-      <ng-template #unCheckedChildren>
-        使用template 关
-      </ng-template>
-      <lib-switch 
-        [(ngModel)]="textSwitchChecked"
-        >
-        <span checkedChildren>
-          <i class="bi bi-check2"></i>
-        </span>
-        <span unCheckedChildren>
-          <i class="bi bi-x"></i>
-        </span>
-      </lib-switch>
+      <div style="margin-bottom: 16px;">
+        <lib-switch 
+          [(ngModel)]="textSwitchChecked"
+          [switchCheckedChildren]="'开'"
+          [switchUnCheckedChildren]="'关'">
+        </lib-switch>
+        使用文字
+      </div>
+      <div style="margin-bottom: 16px;">
+        <lib-switch 
+          [(ngModel)]="textSwitchChecked"
+          [switchCheckedChildren]="checkedChildren"
+          [switchUnCheckedChildren]="unCheckedChildren">
+        </lib-switch>
+        <ng-template #checkedChildren>
+          使用template 开
+        </ng-template>
+        <ng-template #unCheckedChildren>
+          使用template 关
+        </ng-template>
+        使用模板
+      </div>
+      <div>
+        <lib-switch 
+          [(ngModel)]="textSwitchChecked"
+          >
+          <span checkedChildren>
+            <i class="bi bi-check2"></i>
+          </span>
+          <span unCheckedChildren>
+            <i class="bi bi-x"></i>
+          </span>
+        </lib-switch>
+        使用ng-content
+      </div>
     </div>
     <div description>
       可以在开关上自定义显示的文字，通过设置 checkedChildren 和 unCheckedChildren 属性。

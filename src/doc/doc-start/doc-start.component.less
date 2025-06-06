@@ -1,0 +1,369 @@
+.start-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  line-height: 1.6;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* 欢迎区域 */
+.welcome-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  border-radius: 16px;
+  margin: 40px 0 60px;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .welcome-content {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.main-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 24px;
+  
+  .gradient-text {
+    background: linear-gradient(45deg, #fff, #f0f8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.9;
+    display: block;
+    margin-top: 8px;
+  }
+}
+
+.description {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 32px;
+  opacity: 0.9;
+  line-height: 1.7;
+}
+
+.feature-badges {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 章节 */
+.section {
+  margin: 60px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 32px;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 步骤卡片 */
+.step-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+.step-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 12px;
+  color: #1890ff;
+}
+
+.step-description {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+
+/* 代码块 */
+.code-block {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+
+.code-header {
+  background: #e9ecef;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.code-lang {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.copy-btn {
+  background: #1890ff;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background: #40a9ff;
+  }
+}
+
+.code-content {
+  padding: 20px;
+  margin: 0;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #333;
+  overflow-x: auto;
+  
+  code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+  }
+}
+
+/* 使用示例网格 */
+.usage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin: 32px 0;
+}
+
+.usage-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #1890ff;
+    box-shadow: 0 4px 12px rgba(24, 144, 255, 0.1);
+  }
+  
+  h4 {
+    margin: 0 0 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+  }
+}
+
+.mini-code {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 12px;
+  
+  code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #e83e8c;
+    background: none;
+    padding: 0;
+  }
+}
+
+/* 主题卡片 */
+.theme-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  
+  h3 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  p {
+    color: #666;
+    margin: 0 0 20px;
+  }
+}
+
+/* 下一步卡片 */
+.next-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 32px 0;
+}
+
+.next-card {
+  background: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    border-color: #1890ff;
+    box-shadow: 0 6px 16px rgba(24, 144, 255, 0.15);
+    transform: translateY(-3px);
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.next-icon {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.next-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.next-card p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* 页脚 */
+.footer {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 32px 0;
+  text-align: center;
+  margin: 60px -24px 0;
+  color: #6c757d;
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .start-container {
+    padding: 0 16px;
+  }
+  
+  .welcome-section {
+    padding: 60px 0;
+    margin: 20px 0 40px;
+  }
+  
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .description {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .step-card {
+    padding: 20px;
+  }
+  
+  .usage-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .next-steps {
+    grid-template-columns: 1fr;
+  }
+  
+  .feature-badges {
+    .badge {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .code-content {
+    font-size: 0.8rem;
+    padding: 16px;
+  }
+  
+  .step-card {
+    padding: 16px;
+  }
+}

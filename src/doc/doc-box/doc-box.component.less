@@ -1,166 +1,453 @@
 :host {
   width: 100%;
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.modern-doc-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 24px 0;
   overflow: hidden;
-  display: block;
-}
+  transition: all 0.3s ease;
+  border: 1px solid #e8e8e8;
 
-.doc-box {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin: 16px 0;
-  border: 1px solid #f0f0f0;
-  border-radius: 2px;
-  transition: all 0.2s;
-  
   &:hover {
-    box-shadow: 0 1px 2px -2px rgba(0, 0, 0, 0.16), 
-                0 3px 6px 0 rgba(0, 0, 0, 0.12), 
-                0 5px 12px 4px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
-  
-  .doc-box-demo {
-    padding: 24px;
-    background-color: #fff;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  
-  .doc-box-meta {
-    position: relative;
-    padding: 18px 24px 0px 24px;
-    background-color: #fff;
-    border-radius: 0 0 2px 2px;
-    transition: background-color 0.4s;
-    
-    .doc-box-title {
-      position: relative;
-      color: #000000d9;
-      font-weight: 500;
-      font-size: 16px;
-      margin-bottom: 12px;
-      
-      h4 {
-        margin: 0;
-      }
-    }
-    
-    .doc-box-description {
-      color: #000000a6;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-    
-    .doc-box-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 0;
-      border-top: 1px dashed #f0f0f0;
-      margin-top: 12px;
-      
-      button {
-        margin-left: 8px;
-        border: 1px solid #d9d9d9;
-        border-radius: 2px;
-        background-color: transparent;
-        cursor: pointer;
-        color: rgba(0, 0, 0, 0.65);
-        padding: 4px 8px;
-        font-size: 14px;
-        
-        &:hover {
-          color: #1890ff;
-          border-color: #1890ff;
-        }
-        
-        i {
-          margin-right: 4px;
-        }
-      }
-    }
-  }
-  
-  .doc-box-code {
-    border-top: 1px dashed #f0f0f0;
-    background-color: #f5f5f5;
-    
-    pre {
+}
+
+/* 演示区域 */
+.demo-section {
+  position: relative;
+
+  .demo-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 12px 16px;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .demo-title {
       margin: 0;
-      padding: 12px 20px;
-      overflow: auto;
-      
-      code {
-        font-family: monospace;
-        font-size: 13px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &::before {
+        content: '🎯';
+        font-size: 1rem;
+      }
+    }
+
+    .demo-actions {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  .demo-content {
+    padding: 16px;
+    min-height: 120px;
+  }
+}
+
+/* 描述区域 */
+.description-section {
+  background: #f8f9fa;
+  border-top: 1px solid #e8e8e8;
+
+  .description-content {
+    padding: 12px 16px;
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+
+    ::ng-deep p {
+      margin: 0 0 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ::ng-deep code {
+      background: #e3f2fd;
+      color: #1565c0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    }
+  }
+}
+
+/* 操作按钮 */
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: white;
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #1890ff;
+    color: #1890ff;
+    background: #f0f8ff;
+  }
+
+  &.active {
+    border-color: #1890ff;
+    color: #1890ff;
+    background: #f0f8ff;
+    box-shadow: 0 2px 4px rgba(24, 144, 255, 0.1);
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}
+
+/* 代码区域 */
+.code-section {
+  background: #f8f9fa;
+  border-top: 1px solid #e8e8e8;
+
+  .code-header {
+    padding: 16px 24px;
+    background: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+
+    .code-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #495057;
+      font-size: 0.9rem;
+      font-weight: 600;
+
+      svg {
+        color: #6c757d;
       }
     }
   }
-  
-  &.code-expanded {
-    .doc-box-meta {
-      border-radius: 0;
-    }
-  }
 
-  &.doc-box-expanded {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    margin: 0;
-    border: 0;
-    border-radius: 0;
-    overflow: hidden;
-    
-    .doc-box-demo {
-      height: 40%;
-      overflow: auto;
-    }
-    
-    .doc-box-code {
-      height: 60%;
-      overflow: auto;
+  .code-tabs {
+    background: white;
+
+    ::ng-deep .ant-tabs {
+      .ant-tabs-nav {
+        margin: 0;
+        padding: 0 24px;
+        background: #f8f9fa;
+
+        .ant-tabs-tab {
+          margin: 0;
+          padding: 12px 16px;
+          border: none;
+          color: #666;
+          font-weight: 500;
+
+          &.ant-tabs-tab-active {
+            color: #1890ff;
+            background: white;
+            border-bottom: 2px solid #1890ff;
+          }
+
+          &:hover {
+            color: #1890ff;
+          }
+        }
+      }
+
+      .ant-tabs-content-holder {
+        padding: 0;
+
+        .ant-tabs-content {
+          height: auto;
+        }
+      }
     }
   }
 }
 
-// 确保 tab 居中
-::ng-deep .ant-tabs-nav {
-  .ant-tabs-nav-list {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
+/* 代码容器 */
 .code-container {
   position: relative;
-}
+  background: white;
 
-.tab-copy-button {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  opacity: 0.7;
-  z-index: 1;
-  padding: 5px;
-  border-radius: 4px;
-}
-
-.tab-copy-button:hover {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.copy-icon{
-    height: 18px;
-    width: 18px;
+  .code-toolbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+
+    .code-lang {
+      .lang-badge {
+        background: #e3f2fd;
+        color: #1565c0;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 6px;
+      background: white;
+      color: #666;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: #1890ff;
+        color: #1890ff;
+      }
+
+      &.copied {
+        border-color: #52c41a;
+        color: #52c41a;
+        background: #f6ffed;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.8;
+      }
+
+      svg {
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  .code-content {
+    background: #fafbfc;
+    border-radius: 0 0 8px 8px;
+
+    pre {
+      margin: 0;
+      padding: 20px;
+      overflow-x: auto;
+      background: transparent;
+
+      code {
+        font-family: 'Consolas', 'Monaco', 'SF Mono', 'Roboto Mono', monospace;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #333;
+        background: transparent;
+
+        &.typescript {
+          color: #0066cc;
+        }
+
+        &.html {
+          color: #d73a49;
+        }
+
+        &.css,
+        &.less,
+        &.scss {
+          color: #6f42c1;
+        }
+
+        &.javascript {
+          color: #e83e8c;
+        }
+      }
+    }
+  }
+}
+
+/* 展开状态 */
+.modern-doc-box.doc-box-expanded {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  margin: 0;
+  border-radius: 0;
+
+  .demo-section .demo-content {
+    height: 40vh;
+    overflow: auto;
+  }
+
+  .code-section {
+    height: 60vh;
+    overflow: auto;
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .modern-doc-box {
+    margin: 16px 0;
+    border-radius: 8px;
+  }
+
+  .demo-section {
+    .demo-header {
+      padding: 16px 20px;
+      flex-direction: column;
+      gap: 12px;
+      align-items: flex-start;
+
+      .demo-title {
+        font-size: 1.1rem;
+      }
+
+      .demo-actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    .demo-content {
+      padding: 24px 20px;
+      min-height: 100px;
+    }
+  }
+
+  .description-section .description-content {
+    padding: 16px 20px;
+  }
+
+  .code-section {
+    .code-header {
+      padding: 12px 20px;
+    }
+
+    .code-tabs ::ng-deep .ant-tabs .ant-tabs-nav {
+      padding: 0 20px;
+    }
+  }
+
+  .code-container {
+    .code-toolbar {
+      padding: 10px 16px;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+
+      .copy-btn {
+        align-self: flex-end;
+      }
+    }
+
+    .code-content pre {
+      padding: 16px;
+      font-size: 0.85rem;
+    }
+  }
+
+  .action-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-section {
+    .demo-header {
+      padding: 12px 16px;
+
+      .demo-title {
+        font-size: 1rem;
+      }
+    }
+
+    .demo-content {
+      padding: 20px 16px;
+    }
+  }
+
+  .description-section .description-content {
+    padding: 12px 16px;
+  }
+
+  .code-container .code-content pre {
+    padding: 12px;
+    font-size: 0.8rem;
+  }
+
+  .action-btn {
+    padding: 6px 10px;
+  }
+}
+
+/* 代码高亮增强 */
+.code-content pre code {
+  &.typescript {
+    .keyword {
+      color: #0066cc;
+    }
+
+    .string {
+      color: #032f62;
+    }
+
+    .comment {
+      color: #6a737d;
+    }
+
+    .number {
+      color: #005cc5;
+    }
+  }
+
+  &.html {
+    .tag {
+      color: #22863a;
+    }
+
+    .attr-name {
+      color: #6f42c1;
+    }
+
+    .attr-value {
+      color: #032f62;
+    }
+  }
+
+  &.css,
+  &.less,
+  &.scss {
+    .property {
+      color: #005cc5;
+    }
+
+    .value {
+      color: #032f62;
+    }
+
+    .selector {
+      color: #6f42c1;
+    }
+  }
 }

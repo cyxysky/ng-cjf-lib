@@ -1,43 +1,67 @@
-<div class="doc-box" [class.code-expanded]="codeVisible" [class.doc-box-expanded]="expanded">
-  <div class="doc-box-demo">
-    <ng-content select="[demo]"></ng-content>
-  </div>
-  
-  <div class="doc-box-meta">
-    <div class="doc-box-title">
-      <h4>{{ title }}</h4>
-    </div>
-    <div class="doc-box-description">
-      <ng-content select="[description]"></ng-content>
+<div class="modern-doc-box" [class.code-expanded]="codeVisible" [class.doc-box-expanded]="expanded">
+  <!-- 演示区域 -->
+  <div class="demo-section">
+    <div class="demo-header">
+      <h3 class="demo-title">{{ title }}</h3>
+      <div class="demo-actions">
+        <button 
+          class="action-btn code-btn" 
+          [class.active]="codeVisible"
+          (click)="toggleCode()"
+          title="查看代码">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
+          </svg>
+          <span>{{ codeVisible ? '隐藏代码' : '查看代码' }}</span>
+        </button>
+      </div>
     </div>
     
-    <div class="doc-box-actions">
-        <svg (click)="toggleCode()" *ngIf="!expanded" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-code-slash" viewBox="0 0 16 16">
-            <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/>
-        </svg>
-        <!-- <svg style="margin-left: 8px;" *ngIf="codeVisible && !expanded" (click)="expandCode()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/>
-        </svg>
-        <svg style="margin-left: 8px;" *ngIf="codeVisible && expanded" (click)="expandCode()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-fullscreen-exit" viewBox="0 0 16 16">
-            <path d="M5.5 0a.5.5 0 0 1 .5.5v4A1.5 1.5 0 0 1 4.5 6h-4a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 1 .5-.5zm5 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 10 4.5v-4a.5.5 0 0 1 .5-.5zM0 10.5a.5.5 0 0 1 .5-.5h4A1.5 1.5 0 0 1 6 11.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 0-.5-.5h-4a.5.5 0 0 1-.5-.5zm10 1a1.5 1.5 0 0 1 1.5-1.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0v-4z"/>
-        </svg> -->
+    <div class="demo-content">
+      <ng-content select="[demo]"></ng-content>
     </div>
   </div>
-  
-  <div class="doc-box-code" *ngIf="codeVisible">
-    <lib-tabs>
+
+  <!-- 描述区域 -->
+  <div class="description-section">
+    <div class="description-content">
+      <ng-content select="[description]"></ng-content>
+    </div>
+  </div>
+
+  <!-- 代码区域 -->
+  <div class="code-section" *ngIf="codeVisible" [@slideAnimation]>
+
+    <div class="code-tabs">
+      <lib-tabs [tabsTabAlign]="'center'">
         <lib-tab *ngFor="let tab of tabs" [tabTitle]="tab.title">
-            <div class="code-container">
-                <button class="tab-copy-button" (click)="copyTabCode(tab)">
-                    <span class="copy-icon">{{ tab.copied ? '✓' : '📋' }}</span>
-                </button>
-                <pre>
-                    <code [class]="tab.language">
-                        {{ tab.content }}
-                    </code>
-                </pre>
+          <div class="code-container">
+            <div class="code-toolbar">
+              <div class="code-lang">
+                <span class="lang-badge">{{ tab.language }}</span>
+              </div>
+              <button 
+                class="copy-btn" 
+                [class.copied]="tab.copied"
+                (click)="copyTabCode(tab)"
+                [disabled]="tab.copied">
+                <svg *ngIf="!tab.copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                </svg>
+                <svg *ngIf="tab.copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                <span>{{ tab.copied ? '已复制' : '复制' }}</span>
+              </button>
             </div>
+            
+            <div class="code-content">
+              <pre><code [class]="tab.language">{{ tab.content }}</code></pre>
+            </div>
+          </div>
         </lib-tab>
-    </lib-tabs>
+      </lib-tabs>
+    </div>
   </div>
 </div>
