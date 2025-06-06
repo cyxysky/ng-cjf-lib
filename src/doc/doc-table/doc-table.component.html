@@ -1,247 +1,613 @@
-<h1>Table 表格</h1>
-
-<p>表格组件，用于展示大量结构化数据。</p>
-
-<h2>代码演示</h2>
-<ng-template widget="addressTemplate" let-data let-column="column" let-index="index">
-  自定义内容-{{ data?.[column.field] }}
-</ng-template>
-
-<div class="table-docs-grid">
-  <!-- 基础用法 -->
-  <app-doc-box title="基础用法" [sourceCode]="basicTableSource">
-    <div demo>
-      <lib-table [tableData]="basicData" [tableColumns]="basicColumns" >
-      </lib-table>
-    </div>
-    <div description>
-      最简单的表格用法，展示数据内容。
-    </div>
-  </app-doc-box>
-
-  <!-- 自定义单元格 -->
-  <app-doc-box title="自定义单元格" [sourceCode]="customCellTableSource">
-    <div demo>
-      <div class="custom-cell-demo">
-        <p style="margin-bottom: 10px;">注意：此示例使用代码展示实现方式，因为自定义单元格需要使用template属性指定模板名称</p>
-        <lib-table [tableData]="customData" [tableColumns]="customColumns" >
-        </lib-table>
+<div class="modern-doc-container">
+  <!-- 页面头部 -->
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="component-icon">📊</span>
+          <span class="title-text">Table</span>
+          <span class="title-subtitle">表格</span>
+        </h1>
+        <p class="main-description">
+          功能强大的表格组件，用于展示大量结构化数据。支持排序、筛选、分页、虚拟滚动、树形展示等高级功能，是企业级应用的数据展示利器。
+        </p>
+      </div>
+      
+      <div class="usage-section">
+        <div class="usage-card">
+          <h3 class="usage-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            何时使用
+          </h3>
+          <ul class="usage-list">
+            <li>展示大量结构化数据</li>
+            <li>需要对数据进行排序和筛选</li>
+            <li>后台管理系统的数据列表</li>
+            <li>复杂的数据分析和报表展示</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div description>
-      可以自定义单元格内容，通过在组件中定义模板并使用template属性指定模板名称。模板会通过WidgetSource服务注册并在表格中使用。
-    </div>
-  </app-doc-box>
+  </div>
 
-  <!-- 带边框表格 -->
-  <app-doc-box title="带边框表格" [sourceCode]="borderedTableSource">
-    <div demo>
-      <lib-table [tableData]="borderedData" [tableColumns]="borderedColumns" [tableBordered]="true">
-      </lib-table>
+  <!-- 代码演示区域 -->
+  <div class="demo-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z"/>
+        </svg>
+        <span>代码演示</span>
+      </h2>
     </div>
-    <div description>
-      显示边框的表格，通过设置 bordered 属性启用。
-    </div>
-  </app-doc-box>
 
-  <!-- 排序表格 -->
-  <app-doc-box title="排序表格" [sourceCode]="sortableTableSource">
-    <div demo>
-      <lib-table 
-        [tableData]="sortableData" 
-        [tableColumns]="sortableColumns" 
-        [tableCheckable]="true" 
-        [tableCheckedKey]="'id'" 
-        [(tableCheckedRows)]="checkedRows"
-        [tableCheckedSelections]="checkedSelections"
-        >
-      </lib-table>
-    </div>
-    <div description>
-      支持排序功能的表格，点击表头可以对数据进行排序。通过在列配置中设置 sortable 为 true 启用排序功能。
-      {{ checkedRows | json }}
-    </div>
-  </app-doc-box>
+    <ng-template widget="addressTemplate" let-data let-column="column" let-index="index">
+      自定义内容-{{ data?.[column.field] }}
+    </ng-template>
 
-  <!-- 筛选表格 -->
-  <app-doc-box title="筛选表格" [sourceCode]="filterTableSource">
-    <div demo>
-      <lib-table [tableData]="filterData" [tableColumns]="filterColumns">
-      </lib-table>
-    </div>
-    <div description>
-      支持筛选功能的表格，点击筛选图标可以对数据进行筛选。通过在列配置中设置filterable为true和配置filters对象来启用筛选功能。filters对象支持多种类型，如text、number、select、date等。
-    </div>
-  </app-doc-box>
-
-  <!-- 固定列 -->
-  <app-doc-box title="固定列" [sourceCode]="fixedColumnsTableSource">
-    <div demo>
-      <lib-table [tableData]="fixedColumnsData" [tableColumns]="fixedColumnsColumns" [tableScroll]="fixedColumnsScroll">
-      </lib-table>
-    </div>
-    <div description>
-      对于列数很多的数据，可以使用固定列，固定在左侧或右侧。通过设置列配置的fixed: 'left'或fixed: 'right'来启用固定列。需要同时设置tableScroll.x属性定义表格的总宽度。固定列在滚动时始终可见，适合放置ID、操作按钮等重要信息。
-    </div>
-  </app-doc-box>
-
-  <!-- 不同大小表格 -->
-  <app-doc-box title="不同大小表格" [sourceCode]="sizeTableSource">
-    <div demo>
-      <div style="margin-bottom: 16px;">
-        <p style="margin-bottom: 8px;">默认大小</p>
-        <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'default'">
-        </lib-table>
-      </div>
-      <div style="margin-bottom: 16px;">
-        <p style="margin-bottom: 8px;">中等大小</p>
-        <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'middle'">
-        </lib-table>
-      </div>
-      <div>
-        <p style="margin-bottom: 8px;">小尺寸</p>
-        <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'small'">
-        </lib-table>
-      </div>
-    </div>
-    <div description>
-      表格有三种尺寸：默认（default）、中等（middle）和小（small），通过设置 size 属性来控制。
-    </div>
-  </app-doc-box>
-
-  <!-- 树形表格 -->
-  <app-doc-box title="树形表格" [sourceCode]="treeTableSource">
-    <div demo>
-      <lib-table #treeTable [tableData]="treeData" [tableColumns]="treeColumns" [tableIsTree]="true">
-      </lib-table>
-      <div style="margin-top: 16px;">
-        <button class="action-button" style="margin-right: 8px;" (click)="expandAllTreeNodes()">展开所有</button>
-        <button class="action-button" (click)="collapseAllTreeNodes()">收起所有</button>
-      </div>
-    </div>
-    <div description>
-      树形表格可以展示具有层级关系的数据，通过设置 isTree 属性为 true 启用树形表格功能，同时需要在列配置中设置 treeExpand 属性为 true 来指定哪一列展示树形结构。
-    </div>
-  </app-doc-box>
-
-  <!-- 异步加载数据 -->
-  <app-doc-box title="异步加载数据" [sourceCode]="asyncTableSource">
-    <div demo>
-      <lib-table [tableData]="asyncData" [tableColumns]="asyncColumns" [tableLoading]="asyncLoading">
-      </lib-table>
-      <button style="margin-top: 8px;" (click)="reloadAsyncData()">重新加载</button>
-    </div>
-    <div description>
-      演示异步加载数据的表格，加载过程中显示加载状态，可以通过 loading 属性控制。
-    </div>
-  </app-doc-box>
-
-  <!-- 表头表尾 -->
-  <app-doc-box title="表头表尾" [sourceCode]="headerFooterTableSource">
-    <div demo>
-      <!-- 字符串方式 -->
-      <div style="margin-bottom: 16px;">
-        <p style="margin-bottom: 8px;">字符串方式</p>
-        <lib-table [tableData]="headerFooterData" [tableColumns]="headerFooterColumns" [tableTitle]="tableTitle"
-          [tableFooter]="tableFooter">
-        </lib-table>
-      </div>
-
-      <!-- 模板方式 -->
-      <div>
-        <p style="margin-bottom: 8px;">模板方式</p>
-        <lib-table [tableData]="headerFooterData" [tableTitle]="title" [tableFooter]="footer"
-          [tableColumns]="headerFooterColumns">
-          <ng-template #title>
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span>用户列表</span>
-              <button class="action-button">添加用户</button>
+    <div class="demo-grid">
+      <!-- 基础用法 -->
+      <app-doc-box title="基础用法" [sourceCode]="basicTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="basicData" [tableColumns]="basicColumns">
+          </lib-table>
+        </div>
+        <div description>
+          <p>最简单的表格用法，展示数据内容：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>数据展示</strong> - 清晰展示结构化数据
             </div>
-          </ng-template>
-          <ng-template #footer>
-            <div style="text-align: right;">共{{ headerFooterData.length }}条数据</div>
-          </ng-template>
-        </lib-table>
-      </div>
-    </div>
-    <div description>
-      表格可以设置表头和表尾，可以使用字符串或模板方式。
-    </div>
-  </app-doc-box>
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>自动布局</strong> - 根据内容自动调整列宽
+            </div>
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>响应式</strong> - 适配不同屏幕尺寸
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 分页表格 -->
-  <app-doc-box title="分页表格" [sourceCode]="paginationTableSource">
-    <div demo>
-      <lib-table [tableData]="paginationData" [tableColumns]="paginationColumns" [tableShowPagination]="true"
-        [tablePageIndex]="pageIndex" [tablePageSize]="pageSize" [tableTotal]="total" (pageIndexChange)="onPageIndexChange($event)"
-        (pageSizeChange)="onPageSizeChange($event)">
-      </lib-table>
-    </div>
-    <div description>
-      带分页功能的表格，可以设置当前页码、每页条数和总数据量。
-    </div>
-  </app-doc-box>
+      <!-- 自定义单元格 -->
+      <app-doc-box title="自定义单元格" [sourceCode]="customCellTableSource">
+        <div demo class="demo-container">
+          <div class="custom-cell-demo">
+            <p class="demo-note">
+              <i class="note-icon">💡</i>
+              此示例展示如何通过模板自定义单元格内容
+            </p>
+            <lib-table [tableData]="customData" [tableColumns]="customColumns">
+            </lib-table>
+          </div>
+        </div>
+        <div description>
+          <p>强大的自定义单元格功能：</p>
+          <div class="custom-features">
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"/>
+              </svg>
+              <span>通过模板定制单元格样式和内容</span>
+            </div>
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492z"/>
+              </svg>
+              <span>支持复杂的业务逻辑和交互组件</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 加载状态 -->
-  <app-doc-box title="加载状态" [sourceCode]="loadingTableSource">
-    <div demo>
-      <lib-table [tableData]="loadingData" [tableColumns]="loadingColumns" [tableLoading]="true">
-      </lib-table>
-    </div>
-    <div description>
-      表格的加载中状态，当异步获取数据时显示。
-    </div>
-  </app-doc-box>
+      <!-- 带边框表格 -->
+      <app-doc-box title="边框样式" [sourceCode]="borderedTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="borderedData" [tableColumns]="borderedColumns" [tableBordered]="true">
+          </lib-table>
+        </div>
+        <div description>
+          <p>边框样式提升表格的视觉层次：</p>
+          <div class="border-features">
+            <div class="border-feature">
+              <div class="border-preview bordered">
+                <div class="cell-mock"></div>
+                <div class="cell-mock"></div>
+                <div class="cell-mock"></div>
+              </div>
+              <div class="border-info">
+                <strong>清晰边界</strong>
+                <span>通过边框明确区分数据单元</span>
+              </div>
+            </div>
+            <div class="border-feature">
+              <div class="border-preview">
+                <div class="cell-mock"></div>
+                <div class="cell-mock"></div>
+                <div class="cell-mock"></div>
+              </div>
+              <div class="border-info">
+                <strong>简洁风格</strong>
+                <span>无边框设计更加简洁现代</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 虚拟滚动 -->
-  <app-doc-box title="虚拟滚动" [sourceCode]="virtualScrollTableSource">
-    <div demo>
-      <lib-table 
-        [tableData]="virtualScrollData" 
-        [tableColumns]="virtualScrollColumns" 
-        [tableVirtualScroll]="true"
-        [tableScroll]="{ y: '400px' }"
-        [tableVirtualItemSize]="48"
-        (tableRefresh)="onTableRefresh($event)">
-      </lib-table>
-    </div>
-    <div description>
-      对于大量数据的表格，可以启用虚拟滚动来提高性能。虚拟滚动只渲染可视区域内的数据，滚动时动态加载数据。通过设置tableVirtualScroll为true启用，并配置tableScroll.y、tableVirtualItemSize、tableVirtualMinBufferPx和tableVirtualMaxBufferPx等属性。
-    </div>
-  </app-doc-box>
+      <!-- 排序表格 -->
+      <app-doc-box title="排序与选择" [sourceCode]="sortableTableSource">
+        <div demo class="demo-container">
+          <lib-table 
+            [tableData]="sortableData" 
+            [tableColumns]="sortableColumns" 
+            [tableCheckable]="true" 
+            [tableCheckedKey]="'id'" 
+            [(tableCheckedRows)]="checkedRows"
+            [tableCheckedSelections]="checkedSelections">
+          </lib-table>
+          <div class="selection-info">
+            <i class="info-icon">📋</i>
+            <span>已选择: {{ checkedRows.length || 0 }} 项</span>
+          </div>
+        </div>
+        <div description>
+          <p>支持数据排序和多选功能：</p>
+          <div class="sort-features">
+            <div class="sort-feature">
+              <div class="sort-icon">🔄</div>
+              <div class="sort-info">
+                <strong>智能排序</strong>
+                <span>点击表头进行升序/降序排序</span>
+              </div>
+            </div>
+            <div class="sort-feature">
+              <div class="sort-icon">☑️</div>
+              <div class="sort-info">
+                <strong>批量选择</strong>
+                <span>支持单选、多选和全选操作</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 多层级表头 -->
-  <app-doc-box title="多层级表头" [sourceCode]="multiLevelHeaderTableSource">
-    <div demo>
-      <lib-table [tableData]="multiLevelHeaderData" [tableColumns]="multiLevelHeaderColumns" tableBordered>
-      </lib-table>
-    </div>
-    <div description>
-      表格支持多层级表头，可以通过在列配置中设置children属性来实现。表头可以有多层，数据展示会自动对应最后一层叶子节点的字段。
-    </div>
-  </app-doc-box>
+      <!-- 筛选表格 -->
+      <app-doc-box title="数据筛选" [sourceCode]="filterTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="filterData" [tableColumns]="filterColumns">
+          </lib-table>
+        </div>
+        <div description>
+          <p>强大的数据筛选功能：</p>
+          <div class="filter-features">
+            <div class="filter-feature">
+              <div class="filter-type text">Aa</div>
+              <div class="filter-info">
+                <strong>文本筛选</strong>
+                <span>支持模糊匹配和精确搜索</span>
+              </div>
+            </div>
+            <div class="filter-feature">
+              <div class="filter-type number">123</div>
+              <div class="filter-info">
+                <strong>数值筛选</strong>
+                <span>支持范围筛选和比较操作</span>
+              </div>
+            </div>
+            <div class="filter-feature">
+              <div class="filter-type date">📅</div>
+              <div class="filter-info">
+                <strong>日期筛选</strong>
+                <span>支持日期范围和时间筛选</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 操作列按钮 -->
-  <app-doc-box title="操作列按钮" [sourceCode]="actionButtonsTableSource">
-    <div demo>
-      <lib-table [tableData]="actionButtonsData" [tableColumns]="actionButtonsColumns">
-      </lib-table>
-    </div>
-    <div description>
-      操作列可以配置多个按钮，通过buttons属性定义，每个按钮可以设置文本、图标和点击事件处理函数。还可以通过maxButtons属性限制直接显示的按钮数量，超出部分会显示在"更多"下拉菜单中。
-    </div>
-  </app-doc-box>
+      <!-- 固定列 -->
+      <app-doc-box title="固定列" [sourceCode]="fixedColumnsTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="fixedColumnsData" [tableColumns]="fixedColumnsColumns" [tableScroll]="fixedColumnsScroll">
+          </lib-table>
+        </div>
+        <div description>
+          <p>固定列功能适用于宽表格：</p>
+          <div class="fixed-features">
+            <div class="fixed-feature">
+              <div class="fixed-indicator left">📌</div>
+              <div class="fixed-info">
+                <strong>左侧固定</strong>
+                <span>重要信息始终可见，如ID、名称等</span>
+              </div>
+            </div>
+            <div class="fixed-feature">
+              <div class="fixed-indicator right">📌</div>
+              <div class="fixed-info">
+                <strong>右侧固定</strong>
+                <span>操作按钮固定在右侧，便于访问</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
 
-  <!-- 复杂表格 -->
-  <app-doc-box title="复杂表格" [sourceCode]="complexTableSource">
-    <div demo>
-      <lib-table [tableData]="complexData" [tableColumns]="complexColumns" [tableComplex]="true" tableBordered tableCheckable id="baasicTable">
-      </lib-table>
+      <!-- 不同大小表格 -->
+      <app-doc-box title="表格尺寸" [sourceCode]="sizeTableSource">
+        <div demo class="demo-container">
+          <div class="size-demo">
+            <h4 class="size-title">默认大小</h4>
+            <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'default'">
+            </lib-table>
+          </div>
+          <div class="size-demo">
+            <h4 class="size-title">中等大小</h4>
+            <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'middle'">
+            </lib-table>
+          </div>
+          <div class="size-demo">
+            <h4 class="size-title">小尺寸</h4>
+            <lib-table [tableData]="sizeData" [tableColumns]="sizeColumns" [tableSize]="'small'">
+            </lib-table>
+          </div>
+        </div>
+        <div description>
+          <p>三种表格尺寸适应不同场景：</p>
+          <div class="size-list">
+            <div class="size-item">
+              <span class="size-badge default">D</span>
+              <div class="size-info">
+                <strong>默认尺寸 (default)</strong>
+                <span>标准大小，适用于大多数场景</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge middle">M</span>
+              <div class="size-info">
+                <strong>中等尺寸 (middle)</strong>
+                <span>紧凑布局，节省空间</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge small">S</span>
+              <div class="size-info">
+                <strong>小尺寸 (small)</strong>
+                <span>最紧凑，适用于信息密集场景</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 树形表格 -->
+      <app-doc-box title="树形表格" [sourceCode]="treeTableSource">
+        <div demo class="demo-container">
+          <lib-table #treeTable [tableData]="treeData" [tableColumns]="treeColumns" [tableIsTree]="true">
+          </lib-table>
+          <div class="tree-controls">
+            <button class="control-button expand" (click)="expandAllTreeNodes()">
+              <i class="control-icon">🌳</i>
+              展开所有
+            </button>
+            <button class="control-button collapse" (click)="collapseAllTreeNodes()">
+              <i class="control-icon">🌿</i>
+              收起所有
+            </button>
+          </div>
+        </div>
+        <div description>
+          <p>树形表格展示层级关系数据：</p>
+          <div class="tree-features">
+            <div class="tree-feature">
+              <div class="tree-icon">🌲</div>
+              <div class="tree-info">
+                <strong>层级展示</strong>
+                <span>清晰展示父子关系和层级结构</span>
+              </div>
+            </div>
+            <div class="tree-feature">
+              <div class="tree-icon">🔄</div>
+              <div class="tree-info">
+                <strong>动态展开</strong>
+                <span>支持节点的展开和收起操作</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 异步加载数据 -->
+      <app-doc-box title="异步加载" [sourceCode]="asyncTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="asyncData" [tableColumns]="asyncColumns" [tableLoading]="asyncLoading">
+          </lib-table>
+          <button class="reload-button" (click)="reloadAsyncData()">
+            <i class="reload-icon">🔄</i>
+            重新加载
+          </button>
+        </div>
+        <div description>
+          <p>异步数据加载与状态管理：</p>
+          <div class="async-features">
+            <div class="async-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+              </svg>
+              <span>优雅的加载状态展示</span>
+            </div>
+            <div class="async-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+              </svg>
+              <span>支持数据刷新和重新加载</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 表头表尾 -->
+      <app-doc-box title="表头表尾" [sourceCode]="headerFooterTableSource">
+        <div demo class="demo-container">
+          <!-- 字符串方式 -->
+          <div class="header-demo">
+            <h4 class="demo-subtitle">字符串方式</h4>
+            <lib-table [tableData]="headerFooterData" [tableColumns]="headerFooterColumns" [tableTitle]="tableTitle"
+              [tableFooter]="tableFooter">
+            </lib-table>
+          </div>
+
+          <!-- 模板方式 -->
+          <div class="header-demo">
+            <h4 class="demo-subtitle">模板方式</h4>
+            <lib-table [tableData]="headerFooterData" [tableTitle]="title" [tableFooter]="footer"
+              [tableColumns]="headerFooterColumns">
+              <ng-template #title>
+                <div class="custom-header">
+                  <span class="header-title">用户列表</span>
+                  <button class="header-action">
+                    <i class="action-icon">➕</i>
+                    添加用户
+                  </button>
+                </div>
+              </ng-template>
+              <ng-template #footer>
+                <div class="custom-footer">
+                  共{{ headerFooterData.length }}条数据
+                </div>
+              </ng-template>
+            </lib-table>
+          </div>
+        </div>
+        <div description>
+          <p>灵活的表头表尾配置：</p>
+          <div class="header-features">
+            <div class="header-feature">
+              <span class="header-type simple">ABC</span>
+              <div class="header-info">
+                <strong>字符串方式</strong>
+                <span>简单文本内容，快速配置</span>
+              </div>
+            </div>
+            <div class="header-feature">
+              <span class="header-type template">🎨</span>
+              <div class="header-info">
+                <strong>模板方式</strong>
+                <span>支持复杂布局和交互组件</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 分页表格 -->
+      <app-doc-box title="分页功能" [sourceCode]="paginationTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="paginationData" [tableColumns]="paginationColumns" [tableShowPagination]="true"
+            [tablePageIndex]="pageIndex" [tablePageSize]="pageSize" [tableTotal]="total" (pageIndexChange)="onPageIndexChange($event)"
+            (pageSizeChange)="onPageSizeChange($event)">
+          </lib-table>
+        </div>
+        <div description>
+          <p>完整的分页解决方案：</p>
+          <div class="pagination-features">
+            <div class="pagination-feature">
+              <div class="pagination-icon">📄</div>
+              <div class="pagination-info">
+                <strong>页码控制</strong>
+                <span>支持页码跳转和页面大小设置</span>
+              </div>
+            </div>
+            <div class="pagination-feature">
+              <div class="pagination-icon">📊</div>
+              <div class="pagination-info">
+                <strong>数据统计</strong>
+                <span>显示总数据量和当前页信息</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 加载状态 -->
+      <app-doc-box title="加载状态" [sourceCode]="loadingTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="loadingData" [tableColumns]="loadingColumns" [tableLoading]="true">
+          </lib-table>
+        </div>
+        <div description>
+          <p>优雅的加载状态展示：</p>
+          <div class="loading-features">
+            <div class="loading-feature">
+              <div class="loading-spinner"></div>
+              <div class="loading-info">
+                <strong>加载动画</strong>
+                <span>提供视觉反馈，提升用户体验</span>
+              </div>
+            </div>
+            <div class="loading-feature">
+              <div class="loading-overlay"></div>
+              <div class="loading-info">
+                <strong>遮罩层</strong>
+                <span>防止用户在加载期间进行操作</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 虚拟滚动 -->
+      <app-doc-box title="虚拟滚动" [sourceCode]="virtualScrollTableSource">
+        <div demo class="demo-container">
+          <lib-table 
+            [tableData]="virtualScrollData" 
+            [tableColumns]="virtualScrollColumns" 
+            [tableVirtualScroll]="true"
+            [tableScroll]="{ y: '400px' }"
+            [tableVirtualItemSize]="48"
+            (tableRefresh)="onTableRefresh($event)">
+          </lib-table>
+        </div>
+        <div description>
+          <p>高性能虚拟滚动技术：</p>
+          <div class="virtual-features">
+            <div class="virtual-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+              </svg>
+              <span>支持海量数据渲染，性能卓越</span>
+            </div>
+            <div class="virtual-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+              </svg>
+              <span>只渲染可视区域，优化内存使用</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 多层级表头 -->
+      <app-doc-box title="多层级表头" [sourceCode]="multiLevelHeaderTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="multiLevelHeaderData" [tableColumns]="multiLevelHeaderColumns" tableBordered>
+          </lib-table>
+        </div>
+        <div description>
+          <p>复杂表头结构支持：</p>
+          <div class="multilevel-features">
+            <div class="multilevel-feature">
+              <div class="multilevel-preview">
+                <div class="header-level level-1"></div>
+                <div class="header-level level-2"></div>
+                <div class="header-level level-3"></div>
+              </div>
+              <div class="multilevel-info">
+                <strong>多层嵌套</strong>
+                <span>支持无限层级的表头嵌套</span>
+              </div>
+            </div>
+            <div class="multilevel-feature">
+              <div class="multilevel-preview">
+                <div class="header-span span-2"></div>
+                <div class="header-span span-1"></div>
+              </div>
+              <div class="multilevel-info">
+                <strong>单元格合并</strong>
+                <span>自动处理表头单元格合并</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 操作列按钮 -->
+      <app-doc-box title="操作列" [sourceCode]="actionButtonsTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="actionButtonsData" [tableColumns]="actionButtonsColumns">
+          </lib-table>
+        </div>
+        <div description>
+          <p>灵活的操作列配置：</p>
+          <div class="action-features">
+            <div class="action-feature">
+              <div class="action-buttons">
+                <div class="action-btn primary">编辑</div>
+                <div class="action-btn danger">删除</div>
+              </div>
+              <div class="action-info">
+                <strong>多种按钮</strong>
+                <span>支持不同样式和功能的操作按钮</span>
+              </div>
+            </div>
+            <div class="action-feature">
+              <div class="action-buttons">
+                <div class="action-btn">操作</div>
+                <div class="action-more">⋯</div>
+              </div>
+              <div class="action-info">
+                <strong>更多菜单</strong>
+                <span>超出限制的按钮自动收起到更多菜单</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 复杂表格 -->
+      <app-doc-box title="复杂表格" [sourceCode]="complexTableSource">
+        <div demo class="demo-container">
+          <lib-table [tableData]="complexData" [tableColumns]="complexColumns" [tableComplex]="true" tableBordered tableCheckable id="basicTable">
+          </lib-table>
+        </div>
+        <div description>
+          <p>复杂表格支持单元格合并：</p>
+          <div class="complex-features">
+            <div class="complex-feature">
+              <div class="complex-preview">
+                <div class="merge-cell merged"></div>
+                <div class="merge-cell normal"></div>
+                <div class="merge-cell normal"></div>
+              </div>
+              <div class="complex-info">
+                <strong>智能合并</strong>
+                <span>自动处理相同内容的单元格合并</span>
+              </div>
+            </div>
+            <div class="complex-feature">
+              <div class="complex-preview">
+                <div class="span-cell"></div>
+                <div class="span-cell"></div>
+              </div>
+              <div class="complex-info">
+                <strong>跨列合并</strong>
+                <span>支持复杂的行列合并场景</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
     </div>
-    <div description>
-      复杂表格支持单元格合并，通过设置tableComplex为true启用复杂表格模式。数据结构需要有特定的层级组织，表格会自动处理合并单元格的逻辑。
+  </div>
+
+  <!-- API 文档区域 -->
+  <div class="api-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <span>API 文档</span>
+      </h2>
+      <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-  </app-doc-box>
+    
+    <div class="api-container">
+      <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+    </div>
+  </div>
 </div>
-
-<app-doc-api-table [apiData]="apiSections"></app-doc-api-table>

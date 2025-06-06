@@ -47,27 +47,36 @@
       <!-- 基本用法 -->
       <app-doc-box title="基本用法" [sourceCode]="basicSource">
         <div demo class="demo-container">
-          <lib-date-timer
-            [(ngModel)]="basicValue"
-            (ngModelChange)="onBasicValueChange($event)">
-          </lib-date-timer>
-          <p class="example-value">当前值: {{ getDisplayDate(basicValue) }}</p>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="basicValue"
+              (ngModelChange)="onBasicValueChange($event)">
+            </lib-date-timer>
+          </div>
+          <div class="value-display">
+            <span class="value-label">当前值:</span>
+            <span class="value-content">{{ getDisplayDate(basicValue) }}</span>
+          </div>
         </div>
         <div description>
-          <p>最简单的用法，基础的日期选择器。</p>
+          <p>最简单的用法，基础的日期选择器：</p>
           <div class="feature-list">
             <div class="feature-item">
-              <div class="feature-icon">📅</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+              </svg>
               <div class="feature-info">
                 <strong>简洁易用</strong>
-                <span>一键弹出日期面板</span>
+                <span>一键弹出日期面板，避免手动输入错误</span>
               </div>
             </div>
             <div class="feature-item">
-              <div class="feature-icon">🎯</div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+              </svg>
               <div class="feature-info">
                 <strong>精确选择</strong>
-                <span>避免手动输入错误</span>
+                <span>支持多种日期格式和国际化</span>
               </div>
             </div>
           </div>
@@ -77,33 +86,39 @@
       <!-- 不同选择类型 -->
       <app-doc-box title="不同选择类型" [sourceCode]="selectTypeSource">
         <div demo class="demo-container">
-          <div class="type-demo">
+          <div class="control-section">
+            <label class="control-label">选择类型:</label>
             <lib-segmented
               [segmentedOptions]="selectTypeOptions"
               [(ngModel)]="currentSelectType">
             </lib-segmented>
           </div>
-          <lib-date-timer
-            [(ngModel)]="selectTypeValue"
-            [dateTimerSelectType]="currentSelectType">
-          </lib-date-timer>
-          <p class="example-value">当前值: {{ selectTypeValue }}</p>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="selectTypeValue"
+              [dateTimerSelectType]="currentSelectType">
+            </lib-date-timer>
+          </div>
+          <div class="value-display">
+            <span class="value-label">当前值:</span>
+            <span class="value-content">{{ selectTypeValue }}</span>
+          </div>
         </div>
         <div description>
-          <p>日期时间选择器支持单选和范围选择两种类型。</p>
+          <p>日期时间选择器支持单选和范围选择两种类型：</p>
           <div class="type-list">
             <div class="type-item">
               <div class="type-badge single">单选</div>
               <div class="type-info">
                 <strong>single</strong>
-                <span>选择单个日期或时间</span>
+                <span>选择单个日期或时间，适用于生日、截止日期等场景</span>
               </div>
             </div>
             <div class="type-item">
               <div class="type-badge range">范围</div>
               <div class="type-info">
                 <strong>range</strong>
-                <span>选择开始和结束时间范围</span>
+                <span>选择开始和结束时间范围，适用于统计周期、活动时间等</span>
               </div>
             </div>
           </div>
@@ -113,38 +128,59 @@
       <!-- 选择模式 -->
       <app-doc-box title="不同选择模式" [sourceCode]="modeSource">
         <div demo class="demo-container">
-          <div class="mode-demo">
+          <div class="control-section">
+            <label class="control-label">选择模式:</label>
             <lib-segmented
               [segmentedOptions]="modeOptions"
               [(ngModel)]="currentMode">
             </lib-segmented>
           </div>
-          <lib-date-timer
-            [(ngModel)]="modeValue"
-            [dateTimerSelectType]="'range'"
-            [dateTimerMode]="currentMode">
-          </lib-date-timer>
-          <p class="example-value">当前值: {{ modeValue | json }}</p>
-          <p class="example-value">当前模式: {{ currentMode }}</p>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="modeValue"
+              [dateTimerSelectType]="'range'"
+              [dateTimerMode]="currentMode">
+            </lib-date-timer>
+          </div>
+          <div class="value-display">
+            <span class="value-label">当前值:</span>
+            <span class="value-content">{{ modeValue | json }}</span>
+          </div>
+          <div class="mode-display">
+            <span class="mode-label">当前模式:</span>
+            <span class="mode-value">{{ currentMode }}</span>
+          </div>
         </div>
         <div description>
-          <p>支持年、月份、季度、周、日、时间多种精度的选择。</p>
+          <p>支持年、月份、季度、周、日、时间多种精度的选择：</p>
           <div class="mode-grid">
             <div class="mode-item">
               <div class="mode-icon">📅</div>
-              <span>日期模式</span>
+              <div class="mode-info">
+                <strong>日期</strong>
+                <span>按日选择</span>
+              </div>
             </div>
             <div class="mode-item">
               <div class="mode-icon">📆</div>
-              <span>月份模式</span>
+              <div class="mode-info">
+                <strong>月份</strong>
+                <span>按月选择</span>
+              </div>
             </div>
             <div class="mode-item">
               <div class="mode-icon">🗓️</div>
-              <span>年份模式</span>
+              <div class="mode-info">
+                <strong>年份</strong>
+                <span>按年选择</span>
+              </div>
             </div>
             <div class="mode-item">
               <div class="mode-icon">⏰</div>
-              <span>时间模式</span>
+              <div class="mode-info">
+                <strong>时间</strong>
+                <span>精确到秒</span>
+              </div>
             </div>
           </div>
         </div>
@@ -153,39 +189,42 @@
       <!-- 尺寸 -->
       <app-doc-box title="三种尺寸" [sourceCode]="sizeSource">
         <div demo class="demo-container">
-          <div class="size-demo">
+          <div class="control-section">
+            <label class="control-label">组件尺寸:</label>
             <lib-segmented
               [segmentedOptions]="sizeOptions"
               [(ngModel)]="currentSize">
             </lib-segmented>
           </div>
-          <lib-date-timer
-            [(ngModel)]="sizeValue"
-            [dateTimerSize]="currentSize">
-          </lib-date-timer>
+          <div class="demo-row size-demo">
+            <lib-date-timer
+              [(ngModel)]="sizeValue"
+              [dateTimerSize]="currentSize">
+            </lib-date-timer>
+          </div>
         </div>
         <div description>
-          <p>日期时间选择器有三种尺寸：大、默认、小。</p>
+          <p>日期时间选择器有三种尺寸，适应不同使用场景：</p>
           <div class="size-list">
             <div class="size-item">
               <span class="size-badge small">S</span>
               <div class="size-info">
                 <strong>小尺寸 (small)</strong>
-                <span>适用于紧凑的布局空间</span>
+                <span>适用于紧凑的布局空间，如表格内嵌编辑</span>
               </div>
             </div>
             <div class="size-item">
               <span class="size-badge medium">M</span>
               <div class="size-info">
                 <strong>默认尺寸</strong>
-                <span>标准大小，适用于大多数场景</span>
+                <span>标准大小，适用于表单和大多数业务场景</span>
               </div>
             </div>
             <div class="size-item">
               <span class="size-badge large">L</span>
               <div class="size-info">
                 <strong>大尺寸 (large)</strong>
-                <span>更易点击，适合移动设备</span>
+                <span>更易点击，适合移动设备和重要操作</span>
               </div>
             </div>
           </div>
@@ -195,28 +234,47 @@
       <!-- 范围选择 -->
       <app-doc-box title="范围选择" [sourceCode]="rangeSource">
         <div demo class="demo-container">
-          <lib-date-timer
-            [(ngModel)]="rangeValue"
-            [dateTimerSelectType]="'range'">
-          </lib-date-timer>
-          <p class="example-value" *ngIf="rangeValue && rangeValue.start && rangeValue.end">
-            开始日期: {{ rangeValue.start | date }} / 结束日期: {{ rangeValue.end | date }}
-          </p>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="rangeValue"
+              [dateTimerSelectType]="'range'">
+            </lib-date-timer>
+          </div>
+          <div class="range-display" *ngIf="rangeValue && rangeValue.start && rangeValue.end">
+            <div class="range-item start">
+              <span class="range-label">开始日期:</span>
+              <span class="range-value">{{ rangeValue.start | date }}</span>
+            </div>
+            <div class="range-separator">→</div>
+            <div class="range-item end">
+              <span class="range-label">结束日期:</span>
+              <span class="range-value">{{ rangeValue.end | date }}</span>
+            </div>
+          </div>
         </div>
         <div description>
-          <p>日期时间选择器支持选择一个时间范围。</p>
+          <p>日期时间选择器支持选择一个时间范围，提供完整的区间选择体验：</p>
           <div class="range-features">
             <div class="range-feature">
               <div class="range-icon start">📅</div>
-              <span>开始时间选择</span>
+              <div class="range-info">
+                <strong>开始时间</strong>
+                <span>设置时间范围的起点</span>
+              </div>
             </div>
             <div class="range-feature">
               <div class="range-icon end">📅</div>
-              <span>结束时间选择</span>
+              <div class="range-info">
+                <strong>结束时间</strong>
+                <span>设置时间范围的终点</span>
+              </div>
             </div>
             <div class="range-feature">
               <div class="range-icon validate">✅</div>
-              <span>自动校验时间范围合理性</span>
+              <div class="range-info">
+                <strong>智能校验</strong>
+                <span>自动校验时间范围合理性</span>
+              </div>
             </div>
           </div>
         </div>
@@ -225,19 +283,47 @@
       <!-- 禁用日期和时间 -->
       <app-doc-box title="禁用日期和时间" [sourceCode]="disabledSource">
         <div demo class="demo-container">
-          <lib-date-timer
-            [(ngModel)]="disabledValue"
-            [dateTimerDisabledDate]="disabledDate"
-            [dateTimerSelectType]="'range'"
-            [dateTimerShowTime]="true"
-            [dateTimerDisabledTime]="disabledTime">
-          </lib-date-timer>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="disabledValue"
+              [dateTimerDisabledDate]="disabledDate"
+              [dateTimerSelectType]="'range'"
+              [dateTimerShowTime]="true"
+              [dateTimerDisabledTime]="disabledTime">
+            </lib-date-timer>
+          </div>
         </div>
         <div description>
-          <p>可以通过设置 disabledDate 和 disabledTime 来禁用一些特定的日期和时间。</p>
+          <p>可以通过设置 <code>disabledDate</code> 和 <code>disabledTime</code> 来禁用特定的日期和时间：</p>
+          <div class="disabled-features">
+            <div class="disabled-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+              <span>函数式禁用规则，支持复杂逻辑</span>
+            </div>
+            <div class="disabled-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+              <span>可禁用周末、节假日等特殊日期</span>
+            </div>
+            <div class="disabled-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+              </svg>
+              <span>支持禁用特定时间段，如非工作时间</span>
+            </div>
+          </div>
           <div class="disabled-info">
             <div class="disabled-tip">
-              <strong>提示：</strong>支持函数式禁用规则，可以实现复杂的禁用逻辑，如禁用周末、节假日等。
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+              </svg>
+              <strong>提示：</strong>禁用规则通过回调函数实现，可以根据业务需求自定义复杂的禁用逻辑。
             </div>
           </div>
         </div>
@@ -246,50 +332,60 @@
       <!-- 无边框和状态 -->
       <app-doc-box title="无边框和状态" [sourceCode]="statusSource">
         <div demo class="demo-container">
-          <div class="status-demo">
-            <lib-segmented
-              [segmentedOptions]="statusOptions"
-              [(ngModel)]="currentStatus">
-            </lib-segmented>
+          <div class="control-section">
+            <div class="control-group">
+              <label class="control-label">状态设置:</label>
+              <lib-segmented
+                [segmentedOptions]="statusOptions"
+                [(ngModel)]="currentStatus">
+              </lib-segmented>
+            </div>
+            <div class="control-group">
+              <label class="control-label">边框样式:</label>
+              <lib-switch 
+                [(ngModel)]="borderless" 
+                [switchCheckedChildren]="'无边框'" 
+                [switchUnCheckedChildren]="'有边框'">
+              </lib-switch>
+            </div>
           </div>
-          <div class="status-demo">
-            <lib-switch [(ngModel)]="borderless" [switchCheckedChildren]="'无边框'" [switchUnCheckedChildren]="'有边框'"></lib-switch>
+          <div class="demo-row">
+            <lib-date-timer
+              [(ngModel)]="statusValue"
+              [dateTimerStatus]="currentStatus"
+              [dateTimerBorderless]="borderless">
+            </lib-date-timer>
           </div>
-          <lib-date-timer
-            [(ngModel)]="statusValue"
-            [dateTimerStatus]="currentStatus"
-            [dateTimerBorderless]="borderless">
-          </lib-date-timer>
         </div>
         <div description>
-          <p>可以为日期选择器添加状态（error、warning）以及设置无边框样式。</p>
+          <p>可以为日期选择器添加状态（error、warning）以及设置无边框样式：</p>
           <div class="status-list">
             <div class="status-item">
-              <div class="status-dot normal"></div>
+              <div class="status-indicator normal"></div>
               <div class="status-info">
                 <strong>正常状态</strong>
                 <span>默认样式，无特殊状态指示</span>
               </div>
             </div>
             <div class="status-item">
-              <div class="status-dot error"></div>
+              <div class="status-indicator error"></div>
               <div class="status-info">
                 <strong>错误状态 (error)</strong>
-                <span>表示输入有误或验证失败</span>
+                <span>表示输入有误或验证失败，通常配合表单验证使用</span>
               </div>
             </div>
             <div class="status-item">
-              <div class="status-dot warning"></div>
+              <div class="status-indicator warning"></div>
               <div class="status-info">
                 <strong>警告状态 (warning)</strong>
-                <span>提示用户注意或可能的问题</span>
+                <span>提示用户注意或可能的问题，如即将到期</span>
               </div>
             </div>
             <div class="status-item">
-              <div class="status-dot borderless"></div>
+              <div class="status-indicator borderless"></div>
               <div class="status-info">
                 <strong>无边框样式</strong>
-                <span>去除边框，适合特殊布局需求</span>
+                <span>去除边框，适合特殊布局需求或融入背景</span>
               </div>
             </div>
           </div>

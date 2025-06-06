@@ -1,187 +1,365 @@
-<div class="doc-container">
-  <h1 class="doc-title">树选择 TreeSelect</h1>
-  
-  <p class="doc-description">
-    树型选择控件，可以对树形结构数据进行单选或多选操作。
-  </p>
-  
-  <h2 class="doc-section-title">何时使用</h2>
-  <p class="doc-description">
-    当需要从一个有层级关系的大量数据中进行选择时，例如组织架构、文件夹、分类目录等。
-  </p>
-  
-  <h2 class="doc-section-title">代码演示</h2>
-  
-  <div class="doc-grid">
-    <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <lib-tree-select
-          name="basicTreeSelect"
-          [treeSelectOptions]="basicTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="basicValue"
-          [treeSelectPlaceholder]="'请选择'"
-          (ngModelChange)="con($event)"
-          [treeSelectIsMultiple]="false">
-        </lib-tree-select>
-        <p class="example-value">当前值: {{ basicValue }}</p>
+<div class="modern-doc-container">
+  <!-- 页面头部 -->
+  <div class="doc-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="main-title">
+          <span class="component-icon">🌲</span>
+          <span class="title-text">TreeSelect</span>
+          <span class="title-subtitle">树选择</span>
+        </h1>
+        <p class="main-description">
+          树型选择控件，可以对树形结构数据进行单选或多选操作。支持搜索、虚拟滚动、自定义节点等高级功能，适用于组织架构、文件夹、分类目录等场景。
+        </p>
       </div>
-      <div description>
-        最简单的用法，展示树形选择器的基本功能。单选模式。
-      </div>
-    </app-doc-box>
-    
-    <!-- 多选模式 -->
-    <app-doc-box
-      title="多选模式"
-      [sourceCode]="multipleSource">
-      <div demo>
-        <lib-tree-select
-          name="multipleTreeSelect"
-          [treeSelectOptions]="multipleTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="multipleValue"
-          [treeSelectPlaceholder]="'请选择'"
-          (ngModelChange)="con($event)"
-          [treeSelectIsMultiple]="true"
-          [treeSelectCheckable]="true">
-        </lib-tree-select>
-        <p class="example-value">当前值: {{ multipleValue | json }}</p>
-      </div>
-      <div description>
-        多选模式允许用户同时选择多个树节点，支持复选框操作。
-      </div>
-    </app-doc-box>
-    
-    <!-- 不同尺寸 -->
-    <app-doc-box
-      title="不同尺寸"
-      [sourceCode]="sizeSource">
-      <div demo>
-        <div style="margin-bottom: 16px;">
-          <lib-segmented
-            [segmentedOptions]="sizeOptions"
-            
-            [(ngModel)]="currentSize">
-          </lib-segmented>
+      
+      <div class="usage-section">
+        <div class="usage-card">
+          <h3 class="usage-title">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+            何时使用
+          </h3>
+          <ul class="usage-list">
+            <li>需要从有层级关系的大量数据中进行选择</li>
+            <li>组织架构、部门人员选择</li>
+            <li>文件夹目录、分类目录选择</li>
+            <li>支持搜索的多级数据筛选</li>
+          </ul>
         </div>
-        <lib-tree-select
-          name="sizeTreeSelect"
-          [treeSelectOptions]="basicTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="basicValue"
-          [treeSelectIsMultiple]="true"
-          [treeSelectCheckable]="true"
-          [treeSelectPlaceholder]="'请选择'"
-          [treeSelectSize]="currentSize">
-        </lib-tree-select>
-        <p class="example-value">当前尺寸: {{ currentSize }}</p>
       </div>
-      <div description>
-        树选择器有大、中、小三种尺寸，默认为中。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义节点 -->
-    <app-doc-box
-      title="节点自定义"
-      [sourceCode]="customNodeSource">
-      <div demo>
-        <lib-tree-select
-          name="customNodeTreeSelect"
-          [treeSelectOptions]="stateTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="stateValue"
-          [treeSelectNodeTemplate]="customNodeTemplate"
-          [treeSelectPlaceholder]="'请选择自定义节点'"
-          [treeSelectIsMultiple]="true">
-        </lib-tree-select>
-        <ng-template #customNodeTemplate let-node>
-          <span class="custom-node">
-            自定义节点-
-            <span class="custom-node-title">{{ node.title }}</span>
-          </span>
-        </ng-template>
-        <p class="example-value">当前值: {{ stateValue | json }}</p>
-      </div>
-      <div description>
-        使用自定义模板可以灵活定制节点的展示样式，实现更丰富的视觉效果。
-      </div>
-    </app-doc-box>
-    
-    <!-- 可搜索 -->
-    <app-doc-box
-      title="可搜索"
-      [sourceCode]="searchSource">
-      <div demo>
-        <lib-tree-select
-          name="searchTreeSelect"
-          [treeSelectOptions]="searchTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="searchValue"
-          [treeSelectPlaceholder]="'搜索节点'"
-          [treeSelectShowSearch]="true"
-          [treeSelectIsMultiple]="true">
-        </lib-tree-select>
-        <p class="example-value">当前值: {{ searchValue | json }}</p>
-      </div>
-      <div description>
-        搜索功能使用户能够快速找到所需的节点，尤其在大型树结构中非常有用。
-      </div>
-    </app-doc-box>
-    
-    <!-- 虚拟滚动 -->
-    <app-doc-box
-      title="虚拟滚动"
-      [sourceCode]="virtualSource">
-      <div demo>
-        <lib-tree-select
-          name="virtualTreeSelect"
-          [treeSelectOptions]="virtualTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="virtualValue"
-          [treeSelectPlaceholder]="'大数据量虚拟滚动'"
-          [treeSelectVirtualScroll]="true"
-          [treeSelectDropdownHeight]="300"
-          [treeSelectIsMultiple]="true">
-        </lib-tree-select>
-        <p class="example-value">已选择 {{ virtualValue && virtualValue.length || 0 }} 个节点</p>
-      </div>
-      <div description>
-        对于大量数据，虚拟滚动可以提高性能，只渲染可视区域内的节点。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义标签内容 -->
-    <app-doc-box
-      title="自定义标签"
-      [sourceCode]="customLabelSource">
-      <div demo>
-        <lib-tree-select
-          name="customLabelTreeSelect"
-          [treeSelectOptions]="searchTreeData"
-          [treeSelectCustomFields]="customFieldNames"
-          [(ngModel)]="labelValue"
-          [treeSelectPlaceholder]="'自定义标签显示'"
-          [treeSelectLabelTemplate]="customLabelTemplate"
-          [treeSelectIsMultiple]="true">
-        </lib-tree-select>
-        <ng-template #customLabelTemplate let-node>
-          <span class="custom-label">
-            <i class="bi bi-folder"></i> {{ node.title }}
-          </span>
-        </ng-template>
-        <p class="example-value">当前值: {{ labelValue | json }}</p>
-      </div>
-      <div description>
-        自定义选中后显示的标签内容，可以添加图标或其他样式。
-      </div>
-    </app-doc-box>
+    </div>
   </div>
-  
-  <h2 class="doc-section-title">API</h2>
-  <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+
+  <!-- 代码演示区域 -->
+  <div class="demo-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z"/>
+        </svg>
+        <span>代码演示</span>
+      </h2>
+    </div>
+
+    <div class="demo-grid">
+      <!-- 基本用法 -->
+      <app-doc-box title="基本用法" [sourceCode]="basicSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="basicTreeSelect"
+            [treeSelectOptions]="basicTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="basicValue"
+            [treeSelectPlaceholder]="'请选择'"
+            (ngModelChange)="con($event)"
+            [treeSelectIsMultiple]="false">
+          </lib-tree-select>
+          <p class="example-value">当前值: {{ basicValue }}</p>
+        </div>
+        <div description>
+          <p>最简单的用法，展示树形选择器的基本功能：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>单选模式</strong> - 只能选择一个节点
+            </div>
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>树形结构</strong> - 支持多层级数据展示
+            </div>
+            <div class="feature-item">
+              <span class="feature-dot basic"></span>
+              <strong>下拉展开</strong> - 点击展开树形选择面板
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 多选模式 -->
+      <app-doc-box title="多选模式" [sourceCode]="multipleSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="multipleTreeSelect"
+            [treeSelectOptions]="multipleTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="multipleValue"
+            [treeSelectPlaceholder]="'请选择'"
+            (ngModelChange)="con($event)"
+            [treeSelectIsMultiple]="true"
+            [treeSelectCheckable]="true">
+          </lib-tree-select>
+          <p class="example-value">当前值: {{ multipleValue | json }}</p>
+        </div>
+        <div description>
+          <p>多选模式允许用户同时选择多个树节点：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="feature-dot multiple"></span>
+              <strong>复选框操作</strong> - 支持复选框勾选
+            </div>
+            <div class="feature-item">
+              <span class="feature-dot multiple"></span>
+              <strong>批量选择</strong> - 可同时选择多个节点
+            </div>
+            <div class="feature-item">
+              <span class="feature-dot multiple"></span>
+              <strong>标签显示</strong> - 已选项以标签形式展示
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 不同尺寸 -->
+      <app-doc-box title="不同尺寸" [sourceCode]="sizeSource">
+        <div demo class="demo-container">
+          <div class="size-controller">
+            <lib-segmented
+              [segmentedOptions]="sizeOptions"
+              [(ngModel)]="currentSize">
+            </lib-segmented>
+          </div>
+          <lib-tree-select
+            name="sizeTreeSelect"
+            [treeSelectOptions]="basicTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="basicValue"
+            [treeSelectIsMultiple]="true"
+            [treeSelectCheckable]="true"
+            [treeSelectPlaceholder]="'请选择'"
+            [treeSelectSize]="currentSize">
+          </lib-tree-select>
+          <p class="example-value">当前尺寸: {{ currentSize }}</p>
+        </div>
+        <div description>
+          <p>提供三种不同尺寸的树选择器：</p>
+          <div class="size-list">
+            <div class="size-item">
+              <span class="size-badge small">S</span>
+              <div class="size-info">
+                <strong>小尺寸 (small)</strong>
+                <span>适用于空间有限的区域</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge medium">M</span>
+              <div class="size-info">
+                <strong>默认尺寸</strong>
+                <span>标准大小，适用于大多数场景</span>
+              </div>
+            </div>
+            <div class="size-item">
+              <span class="size-badge large">L</span>
+              <div class="size-info">
+                <strong>大尺寸 (large)</strong>
+                <span>适用于需要强调的场景</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 自定义节点 -->
+      <app-doc-box title="节点自定义" [sourceCode]="customNodeSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="customNodeTreeSelect"
+            [treeSelectOptions]="stateTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="stateValue"
+            [treeSelectNodeTemplate]="customNodeTemplate"
+            [treeSelectPlaceholder]="'请选择自定义节点'"
+            [treeSelectIsMultiple]="true">
+          </lib-tree-select>
+          <ng-template #customNodeTemplate let-node>
+            <span class="custom-node">
+              <i class="custom-node-icon">🎨</i>
+              <span class="custom-node-title">{{ node.title }}</span>
+            </span>
+          </ng-template>
+          <p class="example-value">当前值: {{ stateValue | json }}</p>
+        </div>
+        <div description>
+          <p>使用自定义模板灵活定制节点展示样式：</p>
+          <div class="custom-features">
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"/>
+                <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"/>
+              </svg>
+              <span>自定义节点模板和样式</span>
+            </div>
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
+              </svg>
+              <span>添加图标或其他装饰元素</span>
+            </div>
+            <div class="custom-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+              </svg>
+              <span>实现更丰富的视觉效果</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 可搜索 -->
+      <app-doc-box title="可搜索" [sourceCode]="searchSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="searchTreeSelect"
+            [treeSelectOptions]="searchTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="searchValue"
+            [treeSelectPlaceholder]="'搜索节点'"
+            [treeSelectShowSearch]="true"
+            [treeSelectIsMultiple]="true">
+          </lib-tree-select>
+          <p class="example-value">当前值: {{ searchValue | json }}</p>
+        </div>
+        <div description>
+          <p>内置搜索功能，快速定位目标节点：</p>
+          <div class="search-features">
+            <div class="search-feature">
+              <div class="search-icon">🔍</div>
+              <div class="search-info">
+                <strong>实时搜索</strong>
+                <span>输入关键词实时过滤树节点</span>
+              </div>
+            </div>
+            <div class="search-feature">
+              <div class="search-icon">⚡</div>
+              <div class="search-info">
+                <strong>高亮匹配</strong>
+                <span>搜索结果高亮显示匹配内容</span>
+              </div>
+            </div>
+            <div class="search-feature">
+              <div class="search-icon">🎯</div>
+              <div class="search-info">
+                <strong>精准定位</strong>
+                <span>在大型树结构中快速找到目标</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 虚拟滚动 -->
+      <app-doc-box title="虚拟滚动" [sourceCode]="virtualSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="virtualTreeSelect"
+            [treeSelectOptions]="virtualTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="virtualValue"
+            [treeSelectPlaceholder]="'大数据量虚拟滚动'"
+            [treeSelectVirtualScroll]="true"
+            [treeSelectDropdownHeight]="300"
+            [treeSelectIsMultiple]="true">
+          </lib-tree-select>
+          <p class="example-value">已选择 {{ virtualValue && virtualValue.length || 0 }} 个节点</p>
+        </div>
+        <div description>
+          <p>虚拟滚动技术处理大量数据，提升性能：</p>
+          <div class="virtual-features">
+            <div class="virtual-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+              </svg>
+              <span>高性能渲染，支持海量数据</span>
+            </div>
+            <div class="virtual-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
+              </svg>
+              <span>只渲染可视区域内的节点</span>
+            </div>
+            <div class="virtual-feature">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v4.586a1 1 0 0 0 .293.707l7 7a1 1 0 0 0 1.414 0l4.586-4.586a1 1 0 0 0 0-1.414l-7-7A1 1 0 0 0 6.586 1H2zm4 3.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+              </svg>
+              <span>优化内存占用和滚动体验</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+      
+      <!-- 自定义标签内容 -->
+      <app-doc-box title="自定义标签" [sourceCode]="customLabelSource">
+        <div demo class="demo-container">
+          <lib-tree-select
+            name="customLabelTreeSelect"
+            [treeSelectOptions]="searchTreeData"
+            [treeSelectCustomFields]="customFieldNames"
+            [(ngModel)]="labelValue"
+            [treeSelectPlaceholder]="'自定义标签显示'"
+            [treeSelectLabelTemplate]="customLabelTemplate"
+            [treeSelectIsMultiple]="true">
+          </lib-tree-select>
+          <ng-template #customLabelTemplate let-node>
+            <span class="custom-label">
+              <i class="label-icon">📁</i> {{ node.title }}
+            </span>
+          </ng-template>
+          <p class="example-value">当前值: {{ labelValue | json }}</p>
+        </div>
+        <div description>
+          <p>自定义选中后显示的标签内容：</p>
+          <div class="label-features">
+            <div class="label-feature">
+              <span class="label-preview">
+                <i class="label-icon">📁</i>
+                <span>自定义标签</span>
+              </span>
+              <div class="label-info">
+                <strong>图标标签</strong>
+                <span>为标签添加图标装饰</span>
+              </div>
+            </div>
+            <div class="label-feature">
+              <span class="label-preview colored">
+                <span>彩色标签</span>
+              </span>
+              <div class="label-info">
+                <strong>样式定制</strong>
+                <span>自定义标签颜色和样式</span>
+              </div>
+            </div>
+            <div class="label-feature">
+              <span class="label-preview rich">
+                <span>丰富内容</span>
+                <small>详情</small>
+              </span>
+              <div class="label-info">
+                <strong>复杂内容</strong>
+                <span>显示更多信息和细节</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+    </div>
+  </div>
+
+  <!-- API 文档区域 -->
+  <div class="api-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+        </svg>
+        <span>API 文档</span>
+      </h2>
+      <p class="section-description">详细的属性、事件和方法说明</p>
+    </div>
+    
+    <div class="api-container">
+      <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
+    </div>
+  </div>
 </div>

@@ -54,10 +54,16 @@
     position: absolute;
     transform: translateX(-50%);
 
+    div {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     &::before {
       content: '';
       position: absolute;
-      top: -12px;
+      top: -16px;
       left: 50%;
       z-index: 1;
       width: @slider-mark-dot-size;
@@ -65,7 +71,7 @@
       background-color: @slider-mark-dot-bg;
       border: @slider-mark-dot-border;
       border-radius: @slider-mark-dot-border-radius;
-      transform: translateX(-50%);
+      transform: translate(-50%);
     }
 
     &-text {
