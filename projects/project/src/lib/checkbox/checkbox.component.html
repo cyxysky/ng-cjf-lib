@@ -21,7 +21,19 @@
             [style.backgroundColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
             [style.borderColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
           >
-            <div class="c-lib-checkbox-inner" [style.--before-color]="indeterminateColor ? indeterminateColor : '#1890ff'"></div>
+            <div class="c-lib-checkbox-inner">
+              <!-- 选中状态的勾选图标 -->
+              <div 
+                *ngIf="!option.indeterminate && isChecked[getOptionKey(option.value)]"
+                class="c-lib-checkbox-check-icon"
+              ></div>
+              <!-- 半选状态的方块图标 -->
+              <div 
+                *ngIf="option.indeterminate"
+                class="c-lib-checkbox-indeterminate-icon"
+                [style.backgroundColor]="indeterminateColor"
+              ></div>
+            </div>
           </div>
         </div>
         <div class="c-lib-checkbox-label">{{ option.label }}</div>
@@ -47,7 +59,19 @@
           [style.backgroundColor]="singleValue ? checkboxColor : ''"
           [style.borderColor]="singleValue ? checkboxColor : ''"
         >
-          <div class="c-lib-checkbox-inner" [style.--before-color]="indeterminateColor ? indeterminateColor : '#1890ff'"></div>
+          <div class="c-lib-checkbox-inner">
+            <!-- 选中状态的勾选图标 -->
+            <div 
+              *ngIf="!indeterminate && singleValue"
+              class="c-lib-checkbox-check-icon"
+            ></div>
+            <!-- 半选状态的方块图标 -->
+            <div 
+              *ngIf="indeterminate"
+              class="c-lib-checkbox-indeterminate-icon"
+              [style.backgroundColor]="indeterminateColor ? indeterminateColor : '#1890ff'"
+            ></div>
+          </div>
         </div>
       </div>
       <div *ngIf="!isTemplate(singleLabelContent)" class="c-lib-checkbox-label">{{ singleLabelContent }}</div>
@@ -81,7 +105,19 @@
     [style.backgroundColor]="checked ? checkboxColor : ''"
     [style.borderColor]="checked ? checkboxColor : ''"
   >
-    <div class="c-lib-checkbox-inner" [style.--before-color]="indeterminateColor ? indeterminateColor : '#1890ff'"></div>
+    <div class="c-lib-checkbox-inner">
+      <!-- 选中状态的勾选图标 -->
+      <div 
+        *ngIf="!indeterminate && checked"
+        class="c-lib-checkbox-check-icon"
+      ></div>
+      <!-- 半选状态的方块图标 -->
+      <div 
+        *ngIf="indeterminate"
+        class="c-lib-checkbox-indeterminate-icon"
+        [style.backgroundColor]="indeterminateColor ? indeterminateColor : '#1890ff'"
+      ></div>
+    </div>
   </div>
 </ng-template>
 

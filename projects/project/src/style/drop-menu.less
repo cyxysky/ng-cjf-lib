@@ -16,8 +16,6 @@
         transform: scale(1);
     }
 
-
-
     .c-lib-drop-menu-list {
         margin: 0;
         padding: 0;
@@ -36,8 +34,7 @@
         color: @drop-menu-item-color;
         cursor: pointer;
         position: relative;
-        transition: all 0.2s;
-        border-radius: @drop-menu-item-border-radius;
+        transition: all @transition-duration-base;
         width: 100%;
 
         &:not(.c-lib-drop-menu-item-disabled):hover {

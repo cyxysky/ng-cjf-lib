@@ -86,9 +86,9 @@
         background-color: @checkbox-checked-bg;
         border-color: @checkbox-checked-border-color;
 
-        .c-lib-checkbox-inner {
+        .c-lib-checkbox-check-icon {
             opacity: 1;
-            transform: scale(1);
+            transform: rotate(45deg) translate(-1px, -1px) scale(1);
         }
     }
 
@@ -96,18 +96,9 @@
         background-color: @checkbox-bg;
         border-color: @checkbox-checked-bg;
 
-        .c-lib-checkbox-inner {
+        .c-lib-checkbox-indeterminate-icon {
             opacity: 1;
-            transform: scale(0.8);
-
-            &::after {
-                width: @checkbox-inner-height;
-                height: @checkbox-inner-height;
-                background-color: var(--before-color);
-                border: @checkbox-border-width solid var(--before-color);
-                border-radius: @checkbox-border-radius;
-                transform: translate(-2px, -1px);
-            }
+            transform: scale(1);
         }
     }
 
@@ -116,31 +107,53 @@
         border-color: @checkbox-disabled-border-color;
         cursor: not-allowed;
 
-        .c-lib-checkbox-inner {
-            &::after {
-                border-color: @checkbox-disabled-border-color;
-            }
+        .c-lib-checkbox-check-icon {
+            border-color: @checkbox-disabled-border-color;
         }
     }
 }
 
 .c-lib-checkbox-inner {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: @checkbox-inner-width;
     height: @checkbox-inner-height;
-    opacity: 0;
-    transform: scale(0);
-    transition: opacity @transition-duration-base, transform @transition-duration-base cubic-bezier(0.12, 0.4, 0.29, 1.86);
+}
 
-    &::after {
-        content: '';
-        display: block;
-        width: @checkbox-inner-width;
-        height: @checkbox-inner-height;
-        border: @checkbox-inner-border-width solid @checkbox-inner-border-color;
-        border-left: 0;
-        border-top: 0;
-        transform: rotate(45deg) translate(-2px, -1px);
+// 选中状态的勾选图标
+.c-lib-checkbox-check-icon {
+    display: block;
+    width: 6px; // 勾选图标宽度
+    height: 12px; // 勾选图标高度
+    border: @checkbox-inner-border-width solid @checkbox-inner-border-color;
+    border-left: 0;
+    border-top: 0;
+    animation: icon-checked 0.2s ease-in-out;
+}
+
+// 半选状态的方块图标 - 8px的实心方块
+.c-lib-checkbox-indeterminate-icon {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    background-color: @checkbox-inner-indeterminate-color;
+    opacity: 0;
+    animation: icon-checked 0.2s ease-in-out;
+}
+
+@keyframes icon-checked {
+    0% {
+        transform: rotate(45deg) translate(-1px, -1px) scale(0);
+    }
+
+    50% {
+        transform: rotate(45deg) translate(2px, 1px) scale(1);
+    }
+
+    100% {
+        transform: rotate(45deg) translate(-1px, -1px) scale(1);
     }
 }

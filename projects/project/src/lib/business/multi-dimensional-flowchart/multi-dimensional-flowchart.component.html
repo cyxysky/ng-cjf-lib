@@ -36,6 +36,7 @@
                                         </div>
                                         <!-- 节点内容 -->
                                         <div class="nodes-content"
+                                            style=""
                                             [ngClass]="selectedStage.key === node.key ? 'node-status-selected' : node.statusClass">
                                             <ng-container>
                                                 <ng-container [ngTemplateOutlet]="source.get(node.template) || default"

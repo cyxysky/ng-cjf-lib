@@ -8,7 +8,7 @@
   background-color: @switch-bg;
   border-radius: @switch-border-radius;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all @transition-duration-base;
 
   &-focused {
     box-shadow: @switch-focus-shadow;
@@ -29,7 +29,7 @@
     left: @switch-handle-offset;
     width: @switch-handle-size;
     height: @switch-handle-size;
-    transition: all 0.2s;
+    transition: all @transition-duration-base;
     border-radius: @switch-border-radius;
     background-color: @switch-handle-bg;
     box-shadow: @switch-handle-shadow;

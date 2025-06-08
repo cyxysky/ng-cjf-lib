@@ -26,7 +26,7 @@
     z-index: 99;
     border-bottom: @arrow solid transparent;
     transform: rotate(90deg);
-    transition: all @transition-duration-base ease;
+    transition: all 0.3s ease;
 }
 
 .inner-arrow2 {
@@ -35,7 +35,7 @@
     z-index: 99;
     border-top: @arrow solid transparent;
     transform: rotate(270deg);
-    transition: all @transition-duration-base ease;
+    transition: all 0.3s ease;
 }
 
 .center {
@@ -78,16 +78,17 @@
     display: flex;
     align-items: center;
     flex-grow: 1;
+    overflow: hidden;
     z-index: 99;
     background-color: @finish-color;
     color: white;
     height: 40px;
     cursor: pointer;
-    transition: all @transition-duration-base ease;
+    transition: all 0.3s ease;
 
     &-arrow {
         border-left: @arrow solid @finish-color;
-        transition: all @transition-duration-base ease;
+        transition: all 0.3s ease;
     }
 }
 

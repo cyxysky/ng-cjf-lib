@@ -27,20 +27,20 @@
 @button-round-border-radius: 90px; // 圆角按钮边框圆角
 
 @button-primary-bg: @color-primary; // 主要按钮背景色
-@button-primary-color: @color-white; // 主要按钮文字颜色
+@button-primary-color: @color-text-default; // 主要按钮文字颜色
 @button-secondary-bg: @color-secondary; // 次要按钮背景色
 @button-tertiary-bg: @color-tertiary; // 第三级按钮背景色
 @button-success-bg: @color-success; // 成功按钮背景色
-@button-success-color: @color-white; // 成功按钮文字颜色
-@button-light-bg: @color-bg-light; // 浅色按钮背景色
+@button-success-color: @color-text-default; // 成功按钮文字颜色
+@button-light-bg: @color-button-light-bg; // 浅色按钮背景色
 @button-light-color: @color-text-primary; // 浅色按钮文字颜色
 @button-warning-bg: @color-warning; // 警告按钮背景色
 @button-warning-color: @color-text-primary; // 警告按钮文字颜色
 @button-danger-bg: @color-danger; // 危险按钮背景色
-@button-danger-color: @color-text-primary; // 危险按钮文字颜色
-@button-dark-bg: @color-bg-dark; // 深色按钮背景色
-@button-dark-color: @color-white; // 深色按钮文字颜色
-@button-medium-bg: @color-bg-medium; // 中性按钮背景色
+@button-danger-color: @color-text-default; // 危险按钮文字颜色
+@button-dark-bg: @color-button-dark-bg; // 深色按钮背景色
+@button-dark-color: @color-text-default; // 深色按钮文字颜色
+@button-medium-bg: @color-button-medium-bg; // 中性按钮背景色
 @button-medium-color: @color-text-primary; // 中性按钮文字颜色
 @button-disabled-color: @color-text-disabled; // 禁用按钮文字颜色
 @button-disabled-bg: @color-bg-disabled; // 禁用按钮背景色
@@ -70,13 +70,13 @@
 @input-disabled-bg: @color-bg-disabled; // 输入框禁用背景色
 @input-disabled-color: @color-text-disabled; // 输入框禁用文字颜色
 @input-placeholder-color: @color-text-placeholder; // 输入框占位符颜色
-@input-prefix-suffix-color: @color-icon-darker; // 输入框前缀后缀图标颜色
-@input-clear-icon-color: @color-icon-default; // 输入框清除图标颜色
-@input-clear-icon-hover-color: @color-icon-darker; // 输入框清除图标悬停颜色
+@input-prefix-suffix-color: @color-close-icon-darker; // 输入框前缀后缀图标颜色
+@input-clear-icon-color: @color-close-icon-default; // 输入框清除图标颜色
+@input-clear-icon-hover-color: @color-close-icon-darker; // 输入框清除图标悬停颜色
 @input-borderless-bg: @color-bg-base; // 无边框输入框背景色
 
 // ===== Select 选择器 =====
-@select-box-padding: 1px 0 1px 4px; // 选择器内边距
+@select-box-padding: 1px 0 1px 2px; // 选择器内边距
 @select-box-border-width: 1px; // 选择器边框宽度
 @select-box-border-color: @color-border-base; // 选择器边框颜色
 @select-box-border-radius: 2px; // 选择器边框圆角
@@ -90,8 +90,8 @@
 @select-box-small-min-height: 24px; // 小号选择器最小高度
 @select-box-small-font-size: 12px; // 小号选择器字体大小
 @select-tag-bg: @color-primary-bg; // 选择器标签背景色
-@select-tag-color: @color-primary-selected; // 选择器标签文字颜色
-@select-tag-border: 1px solid @color-primary-border; // 选择器标签边框
+@select-tag-text-color: @color-select-tag-text; // 选择器标签文字颜色
+@select-tag-border: 1px solid @color-select-tag-border; // 选择器标签边框
 @select-tag-border-radius: 2px; // 选择器标签边框圆角
 @select-tag-height: 24px; // 选择器标签高度
 @select-tag-padding: 0 8px; // 选择器标签内边距
@@ -109,18 +109,18 @@
 @select-option-color: @color-text-primary; // 选择器选项文字颜色
 @select-option-hover-bg: @color-hover-bg-light; // 选择器选项悬停背景色
 @select-option-selected-bg: @color-primary-bg; // 选择器选项选中背景色
-@select-option-selected-color: @color-primary-selected; // 选择器选项选中文字颜色
-@select-option-disabled-color: @color-text-disabled; // 选择器选项禁用文字颜色
+@select-option-text-selected-color: @color-select-option-text-active; // 选择器选项选中文字颜色
+@select-option-text-disabled-color: @color-text-disabled; // 选择器选项禁用文字颜色
 @select-dropdown-bg: @color-bg-base; // 选择器下拉框背景色
 @select-dropdown-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 6px 16px 0 rgba(0, 0, 0, 0.1), 0 9px 28px 8px rgba(0, 0, 0, 0.1); // 选择器下拉框阴影
 @select-dropdown-border-radius: 4px; // 选择器下拉框边框圆角
-@select-empty-icon-color: @color-select-empty-icon; // 选择器空状态图标颜色
+@select-empty-color: @color-select-empty; // 选择器空状态颜色
 @select-group-title-bg: @color-select-group-title-bg; // 选择器分组标题背景色
 @select-group-title-color: @color-text-primary; // 选择器分组标题文字颜色
 @select-group-title-font-size: 16px; // 选择器分组标题字体大小
 @select-remote-loading-height: 40px; // 选择器远程加载高度
-@select-clear-icon-color: @color-icon-default;
-@select-clear-icon-hover-color: @color-icon-darker;
+@select-clear-icon-color: @color-close-icon-default;
+@select-clear-icon-hover-color: @color-close-icon-darker;
 
 // 选择器专用变量（替换通用变量）
 @select-text-color: @color-text-primary; // 选择器文字颜色
@@ -130,7 +130,7 @@
 @select-error-shadow: 0 0 0 2px @color-focus-error; // 选择器错误阴影
 @select-warning-border-color: @color-warning; // 选择器警告边框颜色
 @select-warning-shadow: 0 0 0 2px @color-focus-warning; // 选择器警告阴影
-@select-icon-color: @color-icon-darker; // 选择器图标颜色
+@select-icon-color: @color-close-icon-darker; // 选择器图标颜色
 @select-loading-color: @color-primary; // 选择器加载图标颜色
 @select-disabled-bg-color: @color-bg-disabled; // 选择器禁用背景色
 @select-disabled-border-color: @color-border-disabled; // 选择器禁用边框颜色
@@ -143,7 +143,8 @@
 @checkbox-bg: @color-bg-base; // 复选框背景色
 @checkbox-checked-bg: @color-primary; // 复选框选中背景色
 @checkbox-checked-border-color: @color-primary; // 复选框选中边框颜色
-@checkbox-inner-width: 5px; // 复选框勾选图标宽度
+@checkbox-inner-indeterminate-color: @color-primary; // 复选框选中边框颜色
+@checkbox-inner-width: 8px; // 复选框勾选图标宽度
 @checkbox-inner-height: 8px; // 复选框勾选图标高度
 @checkbox-inner-border-width: 2px; // 复选框勾选图标线条宽度
 @checkbox-inner-border-color: @color-white; // 复选框勾选图标颜色
@@ -172,12 +173,12 @@
 @switch-checked-bg: @color-primary; // 开关选中背景色
 @switch-border-radius: 100px; // 开关边框圆角
 @switch-handle-size: 18px; // 开关滑块尺寸
-@switch-handle-bg: @color-white; // 开关滑块背景色
+@switch-handle-bg: @color-bg-base; // 开关滑块背景色
 @switch-handle-shadow: 0 2px 4px 0 @color-switch-handle-shadow; // 开关滑块阴影
 @switch-handle-offset: 2px; // 开关滑块偏移量
 @switch-inner-margin: 0 7px 0 24px; // 开关内部文字边距
 @switch-inner-font-size: 12px; // 开关内部文字字体大小
-@switch-inner-color: @color-white; // 开关内部文字颜色
+@switch-inner-color: @color-text-default; // 开关内部文字颜色
 @switch-small-min-width: 28px; // 小号开关最小宽度
 @switch-small-height: 16px; // 小号开关高度
 @switch-small-handle-size: 12px; // 小号开关滑块尺寸
@@ -197,8 +198,8 @@
 @modal-footer-padding: 8px 16px; // 模态框底部内边距
 @modal-footer-bg: @color-bg-base; // 模态框底部背景色
 @modal-footer-border-top: 1px solid @color-border-light; // 模态框底部顶部边框
-@modal-close-color: @color-icon-default; // 模态框关闭按钮颜色
-@modal-close-hover-color: @color-icon-darker; // 模态框关闭按钮悬停颜色
+@modal-close-color: @color-close-icon-default; // 模态框关闭按钮颜色
+@modal-close-hover-color: @color-close-icon-darker; // 模态框关闭按钮悬停颜色
 @modal-header-text-color: @color-text-primary; // 模态框头部文字颜色
 
 // ===== Drawer 抽屉 =====
@@ -212,8 +213,8 @@
 @drawer-title-font-weight: 500; // 抽屉标题字体粗细
 @drawer-title-color: @color-text-primary; // 抽屉标题颜色
 @drawer-title-line-height: 22px; // 抽屉标题行高
-@drawer-close-color: @color-icon-default; // 抽屉关闭按钮颜色
-@drawer-close-hover-color: @color-icon-darker; // 抽屉关闭按钮悬停颜色
+@drawer-close-color: @color-close-icon-default; // 抽屉关闭按钮颜色
+@drawer-close-hover-color: @color-close-icon-darker; // 抽屉关闭按钮悬停颜色
 @drawer-close-font-size: 18px; // 抽屉关闭按钮字体大小
 
 // ===== Message 消息 =====
@@ -232,7 +233,7 @@
 // ===== Tooltip 提示框 =====
 @tooltip-max-width: 250px; // 提示框最大宽度
 @tooltip-padding: 6px 8px; // 提示框内边距
-@tooltip-color: @color-white; // 提示框文字颜色
+@tooltip-color: @color-text-default; // 提示框文字颜色
 @tooltip-bg: @color-overlay; // 提示框背景色
 @tooltip-border-radius: 6px; // 提示框边框圆角
 @tooltip-shadow: 0 1px 7px -4px rgba(0, 0, 0, 0.5); // 提示框阴影
@@ -265,7 +266,7 @@
 
 // ===== Menu 菜单 =====
 @menu-width: 256px; // 菜单宽度
-@menu-bg: @color-bg-elevated; // 菜单背景色
+@menu-bg: @color-bg-base; // 菜单背景色
 @menu-font-size: 14px; // 菜单字体大小
 @menu-color: @color-text-primary; // 菜单文字颜色
 @menu-item-height: 40px; // 菜单项高度
@@ -284,16 +285,16 @@
 @menu-horizontal-height: 46px; // 水平菜单高度
 @menu-horizontal-border-bottom: 1px solid @color-border-light; // 水平菜单底部边框
 @menu-horizontal-item-border-bottom: 2px solid transparent; // 水平菜单项底部边框
-@menu-dark-bg: @color-bg-dark; // 深色菜单背景色
+@menu-dark-bg: @color-menu-dark-bg; // 深色菜单背景色
 @menu-dark-color: @color-menu-dark-text; // 深色菜单文字颜色
-@menu-dark-hover-color: @color-white; // 深色菜单悬停文字颜色
+@menu-dark-hover-color: @color-text-default; // 深色菜单悬停文字颜色
 @menu-dark-selected-bg: @color-primary; // 深色菜单选中背景色
 @menu-dark-selected-border: 3px solid @color-white; // 深色菜单选中边框
 @menu-horizontal-item-hover-color: @color-primary; // 水平菜单项悬停颜色
 @menu-horizontal-item-selected-color: @color-primary; // 水平菜单项选中颜色
 @menu-submenu-bg: @color-bg-base; // 子菜单背景色
 @menu-submenu-item-hover-bg: @color-primary-light; // 子菜单项悬停背景色
-@menu-light-bg: @color-bg-elevated; // 浅色菜单背景色
+@menu-light-bg: @color-bg-base; // 浅色菜单背景色
 @menu-disabled-color: @color-menu-disabled; // 菜单禁用文字颜色
 @menu-dark-disabled-color: @color-menu-dark-disabled; // 深色菜单禁用文字颜色
 @menu-dark-submenu-hover-bg: @color-menu-dark-submenu-hover; // 深色子菜单悬停背景色
@@ -306,7 +307,7 @@
 @table-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.3), 0 6px 16px 0 rgba(0, 0, 0, 0.1), 0 9px 28px 8px rgba(0, 0, 0, 0.1); // 表格阴影
 @table-font-size: 14px; // 表格字体大小
 @table-cell-padding: 12px 16px; // 表格单元格内边距
-@table-header-bg: @color-bg-container; // 表格头部背景色
+@table-header-bg: @color-bg-gray; // 表格头部背景色
 @table-header-color: @color-text-primary; // 表格头部文字颜色
 @table-header-font-weight: 500; // 表格头部字体粗细
 @table-border-color: @color-border-light; // 表格边框颜色
@@ -316,17 +317,9 @@
 @table-empty-padding: 40px 20px; // 表格空状态内边距
 @table-empty-color: @color-text-disabled; // 表格空状态文字颜色
 @table-empty-font-size: 14px; // 表格空状态字体大小
-@table-toolbar-padding: 16px; // 表格工具栏内边距
 @table-toolbar-title-font-size: 16px; // 表格工具栏标题字体大小
+@table-toolbar-padding: 16px; // 表格工具栏内边距
 @table-toolbar-title-font-weight: 500; // 表格工具栏标题字体粗细
-@table-pagination-margin: 16px 0; // 表格分页边距
-@table-pagination-item-size: 32px; // 表格分页项尺寸
-@table-pagination-border: 1px solid @color-border-light; // 表格分页边框
-@table-pagination-border-radius: 2px; // 表格分页边框圆角
-@table-pagination-item-border-radius: 2px; // 表格分页项边框圆角
-@table-pagination-hover-color: @color-primary; // 表格分页悬停颜色
-@table-pagination-active-bg: @color-primary-light; // 表格分页激活背景色
-@table-pagination-active-color: @color-primary; // 表格分页激活文字颜色
 @table-filter-dropdown-min-width: 200px; // 表格筛选下拉框最小宽度
 @table-filter-dropdown-max-height: 300px; // 表格筛选下拉框最大高度
 @table-filter-popover-link-color: @color-text-primary; // 表格筛选弹框链接颜色
@@ -334,10 +327,10 @@
 @table-filter-popover-link-hover-color: @color-primary; // 表格筛选弹框链接悬停颜色
 @table-sorter-width: 14px; // 表格排序器宽度
 @table-sorter-height: 14px; // 表格排序器高度
-@table-sorter-color: @color-icon-default; // 表格排序icon颜色
+@table-sorter-color: @color-close-icon-default; // 表格排序icon颜色
 @table-sorter-font-size: 10px; // 表格排序器字体大小
 @table-sorter-active-color: @color-primary; // 表格排序器激活颜色
-@table-filter-icon-color: @color-icon-default; // 表格筛选图标颜色
+@table-filter-icon-color: @color-close-icon-default; // 表格筛选图标颜色
 @table-filter-icon-hover-color: @color-text-secondary; // 表格筛选图标悬停颜色
 @table-filter-icon-active-color: @color-primary; // 表格筛选图标激活颜色
 @table-filter-dropdown-item-padding: 5px 12px; // 表格筛选下拉项内边距
@@ -368,7 +361,7 @@
 @table-checkable-width: 48px; // 表格选择列宽度
 @table-checkable-menu-size: 16px; // 表格选择菜单尺寸
 @table-checkable-menu-icon-size: 12px; // 表格选择菜单图标尺寸
-@table-checkable-menu-icon-color: @color-icon-default; // 表格选择菜单图标颜色
+@table-checkable-menu-icon-color: @color-close-icon-default; // 表格选择菜单图标颜色
 @table-checkable-menu-icon-hover-color: @color-primary; // 表格选择菜单图标悬停颜色
 @table-fixed-shadow-inset-left: inset 10px 0 8px -8px @color-table-fixed-shadow; // 表格固定列左侧阴影
 @table-fixed-shadow-inset-right: inset -10px 0 8px -8px @color-table-fixed-shadow; // 表格固定列右侧阴影
@@ -379,6 +372,8 @@
 @table-tree-switcher-height: 16px; // 表格树形切换器高度
 @table-tree-switcher-hover-color: @color-primary; // 表格树形切换器悬停颜色
 @table-tree-switcher-icon-size: 10px; // 表格树形切换器图标尺寸
+@table-pagination-margin: 16px 0; // 表格分页边距
+@table-pagination-item-border-radius: 2px; // 表格分页项边框圆角
 @table-pagination-fixed-bg: @color-bg-base; // 表格固定分页背景色
 @table-pagination-fixed-padding: 16px; // 表格固定分页内边距
 @table-pagination-fixed-border-color: @color-border-light; // 表格固定分页边框颜色
@@ -388,7 +383,7 @@
 @table-pagination-item-min-width: 32px; // 表格分页项最小宽度
 @table-pagination-item-height: 32px; // 表格分页项高度
 @table-pagination-item-margin: 8px; // 表格分页项边距
-@table-pagination-disabled-color: @color-icon-default; // 表格分页禁用颜色
+@table-pagination-disabled-color: @color-close-icon-default; // 表格分页禁用颜色
 @table-pagination-disabled-border-color: @color-border-disabled; // 表格分页禁用边框颜色
 @table-pagination-options-margin: 16px; // 表格分页选项边距
 @table-pagination-select-padding: 4px 8px; // 表格分页选择框内边距
@@ -414,20 +409,20 @@
 @tabs-tab-padding: 12px 0; // 标签页内边距
 @tabs-tab-font-size: 14px; // 标签页字体大小
 @tabs-tab-active-color: @color-primary; // 标签页激活颜色
-@tabs-tab-disabled-color: @color-icon-default; // 标签页禁用颜色
+@tabs-tab-disabled-color: @color-close-icon-default; // 标签页禁用颜色
 @tabs-tab-close-margin-left: 8px; // 标签页关闭按钮左边距
 @tabs-tab-close-font-size: 12px; // 标签页关闭按钮字体大小
 @tabs-tab-icon-margin-right: 8px; // 标签页图标右边距
 @tabs-nav-arrow-size: 32px; // 标签页导航箭头尺寸
-@tabs-nav-arrow-bg: @color-bg-container; // 标签页导航箭头背景色
+@tabs-nav-arrow-bg: @color-bg-gray; // 标签页导航箭头背景色
 @tabs-nav-arrow-color: @color-text-secondary; // 标签页导航箭头颜色
 @tabs-nav-arrow-shadow: 0 1px 3px @color-tabs-arrow-shadow; // 标签页导航箭头阴影
 @tabs-nav-arrow-border-radius: 45px; // 标签页导航箭头边框圆角
 @tabs-ink-bar-height: 2px; // 标签页指示条高度
 @tabs-ink-bar-bg: @color-primary; // 标签页指示条背景色
-@tabs-card-tab-active-bg: @color-bg-container; // 卡片式标签页激活背景色
+@tabs-card-tab-active-bg: @color-bg-gray; // 卡片式标签页激活背景色
 @tabs-card-tab-padding: 8px 16px; // 卡片式标签页内边距
-@tabs-card-tab-bg: @color-bg-container; // 卡片式标签页背景色
+@tabs-card-tab-bg: @color-bg-gray; // 卡片式标签页背景色
 @tabs-card-tab-border: 1px solid @color-border-base; // 卡片式标签页边框
 @tabs-card-tab-border-radius: 2px 2px 0 0; // 卡片式标签页边框圆角
 @tabs-add-shadow: 0 1px 3px @color-tabs-arrow-shadow; // 标签页添加按钮阴影
@@ -437,8 +432,10 @@
 @tabs-large-tab-padding: 16px 0; // 大号标签页内边距
 @tabs-large-tab-font-size: 16px; // 大号标签页字体大小
 @tabs-large-arrow-size: 36px; // 大号标签页箭头尺寸
-@tabs-close-icon-color: @color-icon-default;
-@tabs-close-icon-hover-color: @color-icon-darker;
+@tabs-close-icon-color: @color-close-icon-default;
+@tabs-close-icon-hover-color: @color-close-icon-darker;
+@tabs-add-button-hover-color: @color-primary; // 标签页添加按钮悬停颜色
+@tabs-add-button-hover-border-color: @color-primary; // 标签页添加按钮悬停边框颜色
 
 // ===== Tag 标签 =====
 @tag-padding: 2px 7px; // 标签内边距
@@ -514,8 +511,8 @@
 @date-timer-input-border-radius: 2px; // 日期时间选择器输入框边框圆角
 @date-timer-input-font-size: 14px; // 日期时间选择器输入框字体大小
 @date-timer-input-color: @color-text-primary; // 日期时间选择器输入框文字颜色
-@date-timer-input-hover-border-color: @color-primary-hover; // 日期时间选择器输入框悬停边框颜色
-@date-timer-input-focus-border-color: @color-primary-hover; // 日期时间选择器输入框聚焦边框颜色
+@date-timer-input-hover-border-color: @color-primary; // 日期时间选择器输入框悬停边框颜色
+@date-timer-input-focus-border-color: @color-primary; // 日期时间选择器输入框聚焦边框颜色
 @date-timer-input-focus-shadow: 0 0 0 2px @color-focus-primary; // 日期时间选择器输入框聚焦阴影
 @date-timer-input-error-border-color: @color-error; // 日期时间选择器输入框错误边框颜色
 @date-timer-input-warning-border-color: @color-warning; // 日期时间选择器输入框警告边框颜色
@@ -538,7 +535,7 @@
 @date-timer-header-padding: 0 8px; // 日期时间选择器头部内边距
 @date-timer-header-border-bottom: 1px solid @color-border-light; // 日期时间选择器头部底部边框
 @date-timer-nav-btn-size: 24px; // 日期时间选择器导航按钮尺寸
-@date-timer-nav-btn-color: @color-icon-default; // 日期时间选择器导航按钮颜色
+@date-timer-nav-btn-color: @color-close-icon-default; // 日期时间选择器导航按钮颜色
 @date-timer-nav-btn-hover-color: @color-text-primary; // 日期时间选择器导航按钮悬停颜色
 @date-timer-cell-size: 24px; // 日期时间选择器单元格尺寸
 @date-timer-cell-margin: 2px 0; // 日期时间选择器单元格边距
@@ -546,7 +543,7 @@
 @date-timer-cell-hover-bg: @color-hover-bg-light; // 日期时间选择器单元格悬停背景色
 @date-timer-cell-today-border: 1px solid @color-primary; // 日期时间选择器今日单元格边框
 @date-timer-cell-selected-bg: @color-primary; // 日期时间选择器选中单元格背景色
-@date-timer-cell-selected-color: @color-white; // 日期时间选择器选中单元格文字颜色
+@date-timer-cell-selected-color: @color-text-default; // 日期时间选择器选中单元格文字颜色
 @date-timer-cell-in-range-bg: @color-primary-light; // 日期时间选择器范围内单元格背景色
 @date-timer-cell-disabled-color: @color-text-disabled; // 日期时间选择器禁用单元格文字颜色
 @date-timer-cell-prev-next-color: @color-text-disabled; // 日期时间选择器上下月单元格文字颜色
@@ -557,7 +554,6 @@
 @date-timer-cell-color: @color-text-primary; // 日期时间选择器单元格文字颜色
 @date-timer-time-title-color: @color-text-disabled; // 日期时间选择器时间标题颜色
 @date-timer-footer-text-color: @color-text-secondary; // 日期时间选择器底部文字颜色
-@date-timer-footer-button-hover-color: @color-primary-hover; // 日期时间选择器底部按钮悬停颜色
 @date-timer-cell-border-radius: 4px; // 日期时间选择器单元格边框圆角（重复定义）
 @date-timer-time-column-height: 224px; // 日期时间选择器时间列高度
 @date-timer-time-cell-height: 32px; // 日期时间选择器时间单元格高度
@@ -573,7 +569,7 @@
 @date-timer-btn-border: 1px solid @color-primary; // 日期时间选择器按钮边框
 @date-timer-btn-border-radius: 4px; // 日期时间选择器按钮边框圆角
 @date-timer-ok-btn-bg: @color-primary; // 日期时间选择器确定按钮背景色
-@date-timer-ok-btn-color: @color-white; // 日期时间选择器确定按钮文字颜色
+@date-timer-ok-btn-color: @color-text-default; // 日期时间选择器确定按钮文字颜色
 @date-timer-time-step-active-bg: @color-primary-bg; // 日期时间选择器时间步进激活背景色
 @date-timer-time-step-border-radius: 4px; // 日期时间选择器时间步进边框圆角
 @date-timer-mode-item-hover-bg: @color-primary-bg; // 日期时间选择器模式项悬停背景色
@@ -586,7 +582,7 @@
 @date-timer-placeholder-color: @color-text-placeholder; // 日期时间选择器占位符颜色
 @date-timer-disabled-text-color: @color-text-disabled; // 日期时间选择器禁用文字颜色
 @date-timer-disabled-bg-color: @color-bg-disabled; // 日期时间选择器禁用背景色
-@date-timer-icon-color: @color-icon-darker; // 日期时间选择器图标颜色
+@date-timer-icon-color: @color-close-icon-darker; // 日期时间选择器图标颜色
 @date-timer-primary-color: @color-primary; // 日期时间选择器主色调
 @date-timer-border-color: @color-border-light; // 日期时间选择器边框颜色
 @date-timer-error-border-color: @color-error; // 日期时间选择器错误边框颜色
@@ -594,8 +590,8 @@
 @date-timer-warning-border-color: @color-warning; // 日期时间选择器警告边框颜色
 @date-timer-warning-shadow: 0 0 0 2px @color-focus-warning; // 日期时间选择器警告阴影
 @date-timer-secondary-text-color: @color-text-secondary; // 日期时间选择器次要文字颜色
-@date-timer-clear-icon-color: @color-icon-default; // 日期时间选择器清除图标颜色
-@date-timer-clear-icon-hover-color: @color-icon-darker; // 日期时间选择器清除图标悬停颜色
+@date-timer-clear-icon-color: @color-close-icon-default; // 日期时间选择器清除图标颜色
+@date-timer-clear-icon-hover-color: @color-close-icon-darker; // 日期时间选择器清除图标悬停颜色
 
 // ===== DropMenu 下拉菜单 =====
 @drop-menu-min-width: 160px; // 下拉菜单最小宽度
@@ -607,7 +603,6 @@
 @drop-menu-item-padding: 4px 8px; // 下拉菜单项内边距
 @drop-menu-item-font-size: 14px; // 下拉菜单项字体大小
 @drop-menu-item-color: @color-text-secondary; // 下拉菜单项文字颜色
-@drop-menu-item-border-radius: 6px; // 下拉菜单项边框圆角
 @drop-menu-item-hover-color: @color-text-primary; // 下拉菜单项悬停文字颜色
 @drop-menu-item-hover-bg: @color-hover-bg; // 下拉菜单项悬停背景色
 @drop-menu-item-disabled-color: @color-text-disabled; // 下拉菜单项禁用文字颜色
@@ -639,12 +634,12 @@
 @number-input-handler-border: 1px solid @color-border-base; // 数字输入框操作按钮边框
 @number-input-handler-hover-bg: @color-hover-bg; // 数字输入框操作按钮悬停背景色
 @number-input-handler-arrow-size: 4px; // 数字输入框操作按钮箭头尺寸
-@number-input-handler-arrow-color: @color-icon-default; // 数字输入框操作按钮箭头颜色
+@number-input-handler-arrow-color: @color-close-icon-default; // 数字输入框操作按钮箭头颜色
 @number-input-handler-hover-arrow-color: @color-primary; // 数字输入框操作按钮箭头悬停颜色
 @number-input-prefix-suffix-color: @color-text-secondary; // 数字输入框前缀后缀颜色
 
 // ===== Segmented 分段器 =====
-@segmented-bg: @color-bg-elevated; // 分段器背景色
+@segmented-bg: @color-bg-gray; // 分段器背景色
 @segmented-border-radius: 4px; // 分段器边框圆角
 @segmented-padding: 2px; // 分段器内边距
 @segmented-gap: 2px; // 分段器间距
@@ -653,14 +648,14 @@
 @segmented-item-color: @color-text-secondary; // 分段器项文字颜色
 @segmented-item-selected-color: @color-text-primary; // 分段器项选中文字颜色
 @segmented-item-disabled-color: @color-text-disabled; // 分段器项禁用文字颜色
-@segmented-thumb-bg: @color-white; // 分段器滑块背景色
-@segmented-thumb-border-radius: 2px; // 分段器滑块边框圆角
+@segmented-thumb-bg: @color-bg-base; // 分段器滑块背景色
+@segmented-thumb-border-radius: 4px; // 分段器滑块边框圆角
 @segmented-thumb-shadow: 0 1px 7px -4px rgba(0, 0, 0, 0.5); // 分段器滑块阴影
 @segmented-thumb-height: 24px; // 分段器滑块高度
 @segmented-nav-size: 24px; // 分段器导航尺寸
-@segmented-nav-bg: @color-white; // 分段器导航背景色
+@segmented-nav-bg: @color-bg-base; // 分段器导航背景色
 @segmented-nav-color: @color-text-secondary; // 分段器导航文字颜色
-@segmented-nav-hover-bg: @color-bg-container; // 分段器导航悬停背景色
+@segmented-nav-hover-bg: @color-bg-base; // 分段器导航悬停背景色
 @segmented-nav-hover-color: @color-text-primary; // 分段器导航悬停文字颜色
 @segmented-nav-shadow: 0 2px 5px @color-shadow-medium; // 分段器导航阴影
 @segmented-nav-border-radius: 2px; // 分段器导航边框圆角
@@ -685,7 +680,7 @@
 @slider-track-bg: @color-primary; // 滑块进度条背景色
 @slider-track-border-radius: 2px; // 滑块进度条边框圆角
 @slider-handle-size: 14px; // 滑块控制柄尺寸
-@slider-handle-bg: @color-white; // 滑块控制柄背景色
+@slider-handle-bg: @color-bg-base; // 滑块控制柄背景色
 @slider-handle-border: 2px solid @color-primary; // 滑块控制柄边框
 @slider-handle-border-radius: 90px; // 滑块控制柄边框圆角
 @slider-handle-shadow: 0 2px 6px @color-slider-handle-shadow; // 滑块控制柄阴影
@@ -693,7 +688,7 @@
 @slider-handle-margin-top: -5px; // 滑块控制柄顶部边距
 @slider-mark-top: 18px; // 滑块刻度顶部位置
 @slider-mark-dot-size: 8px; // 滑块刻度圆点尺寸
-@slider-mark-dot-bg: @color-white; // 滑块刻度圆点背景色
+@slider-mark-dot-bg: @color-bg-base; // 滑块刻度圆点背景色
 @slider-mark-dot-border: 1px solid @color-border-base; // 滑块刻度圆点边框
 @slider-mark-dot-border-radius: 90px; // 滑块刻度圆点边框圆角
 @slider-mark-text-font-size: 12px; // 滑块刻度文字字体大小

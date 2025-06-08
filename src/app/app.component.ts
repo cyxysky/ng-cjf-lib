@@ -69,6 +69,11 @@ export class AppComponent {
   constructor(private router: Router) {
     // 初始化菜单数据
     this.initMenuItems();
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.nowComponent.set(event.url.split('/').pop() || 'button');
+      }
+    });
   }
 
   /**

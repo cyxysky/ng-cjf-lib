@@ -2,8 +2,12 @@
 // 白天主题（亮色主题）
 // ============================================================================
 
+//  linear-gradient(135deg, #667eea, #764ba2)
+
 // ===== 主要颜色 =====
-@color-primary: #1890ff;
+@color-white: #ffffff;
+@color-black: #000000;
+@color-primary: #764ba2;
 @color-secondary: #0163aa;
 @color-tertiary: #6030ff;
 @color-success: #2dd55b;
@@ -11,91 +15,90 @@
 @color-danger: #c5000f;
 @color-error: #ff4d4f;
 
-// ===== 中性色 =====
-@color-white: #ffffff;
+// ===== 字体颜色 =====
+@color-text-default: #ffffff;
 @color-text-primary: #000000;
 @color-text-secondary: #434343;
 @color-text-disabled: #d9d9d9;
 @color-text-placeholder: #d9d9d9;
 
-@color-icon-default: #a0a0a0;
-@color-icon-darker: #000000;
+// ===== 关闭按钮颜色 =====
+@color-close-icon-default: #a0a0a0;
+@color-close-icon-darker: #000000;
 
 // ===== 背景色 =====
 @color-bg-base: #ffffff;
-@color-bg-light: #f4f5f8;
-@color-bg-container: #fafafa;
-@color-bg-elevated: #f5f5f5;
-@color-bg-dark: #222428;
-@color-bg-medium: #636469;
+@color-bg-gray: #f5f5f5;
 @color-bg-disabled: #f5f5f5;
 
 // ===== 边框色 =====
 @color-border-base: #d9d9d9;
 @color-border-light: #f0f0f0;
-@color-border-secondary: rgba(0, 0, 0, 0.06);
 @color-border-disabled: #d9d9d9;
 
 // ===== 功能色变体 =====
-@color-primary-bg: rgba(24, 144, 255, 0.06);
-@color-primary-border: rgba(24, 144, 255, 0.12);
-@color-primary-hover: #40a9ff;
-@color-primary-active: #096dd9;
-@color-primary-selected: #40a9ff;
-@color-primary-light: #1890ff0f;
+@color-primary-bg: rgba(@color-primary, 0.06);
+@color-primary-light: rgba(@color-primary, 0.059);
 
 // ===== 透明度变体 =====
-@color-mask: rgba(0, 0, 0, 0.45);
-@color-overlay: rgba(0, 0, 0, 0.75);
-@color-hover-bg: rgba(0, 0, 0, 0.04);
+@color-mask: rgba(@color-black, 0.45);
+@color-overlay: rgba(@color-black, 0.75);
+@color-hover-bg: rgba(@color-black, 0.04);
 @color-hover-bg-light: #f5f5f5;
 
 // ===== 扩展颜色变量 =====
 // Button ripple 效果
-@color-button-ripple: rgba(255, 255, 255, 0.6);
+@color-button-ripple: rgba(@color-white, 0.6);
+@color-button-medium-bg: #f5f5f5;
+@color-button-dark-bg: #222428;
+@color-button-light-bg: #f4f5f8;
 
 // Switch 开关
-@color-switch-bg: rgba(0, 0, 0, 0.25);
-@color-switch-handle-shadow: rgba(0, 0, 0, 0.2);
+@color-switch-bg: rgba(@color-black, 0.25);
+@color-switch-handle-shadow: rgba(@color-black, 0.2);
 
 // Select 组件
-@color-select-empty-icon: rgba(0, 0, 0, 0.15);
-@color-select-group-title-bg: rgba(0, 0, 0, 0.02);
+@color-select-empty: rgba(@color-black, 0.15);
+@color-select-group-title-bg: rgba(@color-black, 0.02);
+@color-select-tag-text: @color-primary;
+@color-select-tag-border: rgba(@color-primary, 0.12);
+@color-select-option-text-active: @color-primary;
 
 // Popover 弹窗
-@color-popover-title-border: rgba(0, 0, 0, 0.1);
-@color-popover-arrow-shadow: rgba(0, 0, 0, 0.15);
+@color-popover-title-border: rgba(@color-black, 0.1);
+@color-popover-arrow-shadow: rgba(@color-black, 0.15);
 
 // Menu 菜单
-@color-menu-dark-text: rgba(255, 255, 255, 0.65);
-@color-menu-dark-disabled: rgba(255, 255, 255, 0.35);
-@color-menu-dark-submenu-hover: rgba(255, 255, 255, 0.1);
-@color-menu-disabled: rgba(0, 0, 0, 0.25);
-@color-menu-collapsed-selected: rgba(24, 144, 255, 0.1);
-@color-menu-overlay-item-hover: rgba(24, 144, 255, 0.1);
+@color-menu-dark-bg: #222428;
+@color-menu-dark-text: rgba(@color-white, 0.65);
+@color-menu-dark-disabled: rgba(@color-white, 0.35);
+@color-menu-dark-submenu-hover: rgba(@color-white, 0.1);
+@color-menu-disabled: rgba(@color-black, 0.25);
+@color-menu-collapsed-selected: rgba(@color-primary, 0.1);
+@color-menu-overlay-item-hover: rgba(@color-primary, 0.1);
 
 // Table 表格
-@color-table-loading-bg: rgba(245, 245, 245, 0.5);
-@color-table-loading-spinner-bg: rgba(245, 245, 245, 0.1);
-@color-table-fixed-shadow: rgba(0, 0, 0, 0.15);
-@color-table-pagination-shadow: rgba(0, 0, 0, 0.12);
+@color-table-loading-bg: rgba(@color-bg-gray, 0.5);
+@color-table-loading-spinner-bg: rgba(@color-bg-gray, 0.1);
+@color-table-fixed-shadow: rgba(@color-black, 0.15);
+@color-table-pagination-shadow: rgba(@color-black, 0.12);
 
 // Tabs 标签页
-@color-tabs-arrow-shadow: rgba(0, 0, 0, 0.05);
+@color-tabs-arrow-shadow: rgba(@color-black, 0.05);
 
 // DateTimer 日期时间
-@color-date-timer-week-selected: rgba(24, 144, 255, 0.1);
+@color-date-timer-week-selected: rgba(@color-primary, 0.1);
 
 // 通用阴影和边框
-@color-shadow-light: rgba(0, 0, 0, 0.05);
-@color-shadow-medium: rgba(0, 0, 0, 0.1);
-@color-border-dropdown: rgba(0, 0, 0, 0.06);
+@color-shadow-light: rgba(@color-black, 0.05);
+@color-shadow-medium: rgba(@color-black, 0.1);
+@color-border-dropdown: rgba(@color-black, 0.06);
 
 // 焦点阴影颜色
-@color-focus-primary: rgba(24, 144, 255, 0.2);
-@color-focus-error: rgba(255, 77, 79, 0.2);
-@color-focus-warning: rgba(255, 196, 9, 0.2);
+@color-focus-primary: rgba(@color-primary, 0.2);
+@color-focus-error: rgba(@color-error, 0.2);
+@color-focus-warning: rgba(@color-warning, 0.2);
 
 // 滑块组件
-@color-slider-handle-shadow: rgba(0, 0, 0, 0.1);
-@color-slider-handle-hover-shadow: rgba(24, 144, 255, 0.12);
+@color-slider-handle-shadow: rgba(@color-black, 0.1);
+@color-slider-handle-hover-shadow: rgba(@color-primary, 0.12);

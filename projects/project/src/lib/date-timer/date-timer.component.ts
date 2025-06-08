@@ -5,15 +5,16 @@ import { DateTimerMode, DateTimerSize, DateTimerStatus, DateTimerSelectType, Ran
 import { OverlayService } from '../core/overlay/overlay.service';
 import { CdkOverlayOrigin, CdkConnectedOverlay, ConnectedPosition } from '@angular/cdk/overlay';
 import { UtilsService } from '../core';
+import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'lib-date-timer',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
     CdkOverlayOrigin,
-    CdkConnectedOverlay
+    CdkConnectedOverlay,
+    ButtonComponent
   ],
   templateUrl: './date-timer.component.html',
   providers: [

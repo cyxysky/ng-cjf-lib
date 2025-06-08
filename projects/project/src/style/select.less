@@ -5,7 +5,7 @@
 
 .c-lib-select-option-selected-base() {
     background-color: @select-option-selected-bg !important;
-    color: @select-option-selected-color;
+    color: @select-option-text-selected-color;
 }
 
 .c-lib-select-dropdown {
@@ -30,7 +30,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: @select-option-disabled-color;
+        color: @select-empty-color;
         font-size: @select-option-font-size;
     }
 
@@ -44,11 +44,11 @@
 
         .c-lib-select-empty-icon {
             margin-bottom: 8px;
-            color: @select-empty-icon-color;
+            color: @select-empty-color;
         }
 
         .c-lib-select-empty-text {
-            color: @select-option-disabled-color;
+            color: @select-empty-color;
             font-size: @select-option-font-size;
         }
     }
@@ -70,7 +70,7 @@
         }
 
         &-disabled {
-            color: @select-option-disabled-color;
+            color: @select-option-text-disabled-color;
             cursor: not-allowed;
             pointer-events: all;
             background-color: transparent;
@@ -144,7 +144,7 @@
         }
 
         &-disabled {
-            color: @select-option-disabled-color;
+            color: @select-option-text-disabled-color;
             cursor: not-allowed;
 
             &:hover {
@@ -169,7 +169,7 @@
     height: @select-remote-loading-height;
 
     .c-lib-select-loading-text {
-        color: @select-option-disabled-color;
+        color: @select-empty-color;
     }
 }
 

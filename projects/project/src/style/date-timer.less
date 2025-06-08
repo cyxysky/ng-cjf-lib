@@ -295,12 +295,12 @@ lib-date-timer {
 .c-lib-date-timer-dropdown-panel {
     &.c-lib-date-timer-dropdown-position-top {
         transform-origin: center bottom;
-        animation: dateTimerDropdownSlideDown 0.2s;
+        animation: dateTimerDropdownSlideDown @transition-duration-base;
     }
 
     &.c-lib-date-timer-dropdown-position-bottom {
         transform-origin: center top;
-        animation: dateTimerDropdownSlideUp 0.2s;
+        animation: dateTimerDropdownSlideUp @transition-duration-base;
     }
 }
 
@@ -764,39 +764,6 @@ lib-date-timer {
     display: flex;
     justify-content: flex-end;
     margin-top: 8px;
-}
-
-.c-lib-date-timer-now-btn,
-.c-lib-date-timer-ok-btn {
-    display: inline-block;
-    height: @date-timer-btn-height;
-    margin-left: 8px;
-    padding: @date-timer-btn-padding;
-    font-size: @date-timer-btn-font-size;
-    line-height: 22px;
-    color: @date-timer-btn-color;
-    background: transparent;
-    border: @date-timer-btn-border;
-    border-radius: @date-timer-btn-border-radius;
-    cursor: pointer;
-    transition: all @transition-duration-fast;
-
-    &:hover {
-        color: @date-timer-footer-button-hover-color;
-        border-color: @date-timer-footer-button-hover-color;
-    }
-}
-
-.c-lib-date-timer-ok-btn {
-    color: @date-timer-ok-btn-color;
-    background: @date-timer-ok-btn-bg;
-    border-color: @date-timer-ok-btn-bg;
-
-    &:hover {
-        color: @date-timer-ok-btn-color;
-        background: @date-timer-footer-button-hover-color;
-        border-color: @date-timer-footer-button-hover-color;
-    }
 }
 
 .c-lib-date-timer-footer-extra {

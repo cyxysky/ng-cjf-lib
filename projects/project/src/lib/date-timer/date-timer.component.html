@@ -323,9 +323,9 @@
         </ng-container>
       </div>
       <div class="c-lib-date-timer-footer-buttons">
-        <button *ngIf="showToday && currentPanelMode !== 'time' && selectType === 'single'" class="c-lib-date-timer-now-btn" (click)="today()">今天</button>
-        <button *ngIf="mode === 'time' && selectType === 'single'" class="c-lib-date-timer-now-btn" (click)="setCurrentTime()">此刻</button>
-        <button class="c-lib-date-timer-ok-btn" (click)="confirm()">确定</button>
+        <lib-button *ngIf="showToday && currentPanelMode !== 'time' && selectType === 'single'" [buttonSize]="'small'" [buttonType]="'link'" (click)="today()">今天</lib-button>
+        <lib-button *ngIf="mode === 'time' && selectType === 'single'" [buttonSize]="'small'" [buttonType]="'link'" (click)="setCurrentTime()">此刻</lib-button>
+        <lib-button [buttonSize]="'small'" [buttonColor]="'primary'" (click)="confirm()">确定</lib-button>
       </div>
     </div>
   </div>

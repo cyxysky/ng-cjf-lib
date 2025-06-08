@@ -35,7 +35,7 @@ lib-select {
     align-items: center;
     max-width: 100%;
     background-color: @select-tag-bg;
-    color: @select-tag-color;
+    color: @select-tag-text-color;
     border-radius: @select-tag-border-radius;
     cursor: default;
     transition: all @transition-duration-base;
@@ -68,7 +68,6 @@ lib-select {
         border-radius: 2px;
         transition: all @transition-duration-base;
         flex: 0 0 auto;
-        opacity: 0;
 
         &:hover {
             background-color: @select-tag-close-hover-bg;
@@ -125,10 +124,6 @@ lib-select {
 
     &:hover {
         border-color: @select-box-hover-border-color;
-
-        .c-lib-select-basic-tag-close-icon {
-            opacity: 1 !important;
-        }
     }
 
     &.c-lib-select-basic-box-active {
