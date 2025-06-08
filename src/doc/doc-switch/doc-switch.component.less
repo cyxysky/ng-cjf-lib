@@ -86,15 +86,15 @@ table {
   }
 }
 
-// 现代化 Switch 文档组件样式 - 绿色主题
+// 现代化 Switch 文档组件样式 - 紫色主题
 .modern-doc-container {
   margin: 0 auto;
   min-height: 100vh;
 }
 
-// 页面头部样式 - 绿色渐变主题
+// 页面头部样式 - 紫色渐变主题
 .modern-header {
-  background: linear-gradient(135deg, #52c41a 0%, #73d13d 100%);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   margin: -24px -24px 0 -24px;
   padding: 48px 24px;
   color: white;
@@ -115,7 +115,6 @@ table {
   .header-content {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 48px;
@@ -142,17 +141,18 @@ table {
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
       }
 
-      .title-text {
-        background: linear-gradient(45deg, #fff, #e8f5e8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+              .title-text {
+          background: linear-gradient(45deg, #fff, #e3f2fd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
 
       .title-subtitle {
         font-size: 1.8rem;
         opacity: 0.9;
         font-weight: 400;
+        color: #fff;
       }
 
       @media (max-width: 768px) {
@@ -176,6 +176,7 @@ table {
       line-height: 1.6;
       opacity: 0.95;
       max-width: 600px;
+      color: #fff;
       margin: 0;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
@@ -253,7 +254,7 @@ table {
       margin: 0 0 16px 0;
 
       svg {
-        color: #52c41a;
+        color: #667eea;
       }
 
       @media (max-width: 768px) {
@@ -279,44 +280,263 @@ table {
       grid-template-columns: 1fr;
     }
   }
-}
 
-// API 文档区域
-.api-section {
-  padding: 48px 0;
+  // 演示容器样式
+  .demo-container {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+  }
 
-  .section-header {
-    text-align: center;
-    margin-bottom: 48px;
+  // 描述区域现代化样式
+  [description] {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
 
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #2c3e50;
+    p {
       margin: 0 0 16px 0;
+      font-weight: 500;
+    }
 
-      svg {
-        color: #52c41a;
-      }
+    code {
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      color: #6366f1;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
 
-      @media (max-width: 768px) {
-        font-size: 1.8rem;
+    // 特性列表样式
+    .feature-list {
+      display: grid;
+      gap: 12px;
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        background: #f8fafc;
+        border-radius: 8px;
+        border-left: 4px solid transparent;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f1f5f9;
+          transform: translateX(4px);
+          border-left-color: #667eea;
+        }
+
+        svg {
+          color: #10b981;
+          flex-shrink: 0;
+        }
+
+        span {
+          color: #374151;
+          line-height: 1.4;
+        }
+
+        strong {
+          color: #1f2937;
+          font-weight: 600;
+        }
       }
     }
 
-    .section-description {
-      font-size: 1.1rem;
-      color: #64748b;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.5;
+    // 状态列表样式
+    .state-list {
+      display: grid;
+      gap: 16px;
+
+      .state-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: #f8fafc;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f1f5f9;
+          transform: translateX(4px);
+        }
+
+        .state-indicator {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          flex-shrink: 0;
+
+          &.active {
+            background: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+          }
+
+          &.disabled {
+            background: #9ca3af;
+            box-shadow: 0 0 0 4px rgba(156, 163, 175, 0.2);
+          }
+        }
+
+        .state-info {
+          strong {
+            display: block;
+            color: #1f2937;
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+
+    // 尺寸列表样式
+    .size-list {
+      display: grid;
+      gap: 16px;
+
+      .size-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        background: #f8fafc;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: #f1f5f9;
+          transform: translateX(4px);
+        }
+
+        .size-badge {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-weight: 700;
+          font-size: 14px;
+          flex-shrink: 0;
+
+          &.small {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+          }
+
+          &.medium {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+          }
+
+          &.large {
+            background: linear-gradient(135deg, #10b981, #059669);
+          }
+        }
+
+        .size-info {
+          strong {
+            display: block;
+            color: #1f2937;
+            font-weight: 600;
+            margin-bottom: 4px;
+          }
+
+          span {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      }
     }
   }
 }
+
+  // API 区域样式
+  .api-section {
+    padding: 48px 0;
+    background: white;
+    margin: 0 -24px;
+    border-radius: 24px 24px 0 0;
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 24px;
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin: 0 0 16px 0;
+
+        svg {
+          color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+          font-size: 1.8rem;
+        }
+      }
+
+      .section-description {
+        font-size: 1.1rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.5;
+      }
+    }
+
+    .api-container {
+      padding: 0 24px;
+    }
+  }
+
+  // 响应式适配
+  @media (max-width: 768px) {
+    padding: 0 16px;
+
+    .modern-header {
+      margin: -16px -16px 0 -16px;
+      padding: 32px 16px;
+    }
+
+    .demo-section .demo-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .api-section {
+      margin: 0 -16px;
+
+      .api-container {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .demo-container {
+      padding: 16px;
+    }
+  }
 
 /* 演示容器样式增强 */
 :host ::ng-deep app-doc-box {
@@ -366,13 +586,14 @@ table {
       }
 
       code {
-        background: #edf2f7;
-        color: #52c41a;
-        padding: 3px 6px;
-        border-radius: 4px;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        color: #6366f1;
+        padding: 4px 8px;
+        border-radius: 6px;
         font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
         font-size: 13px;
         font-weight: 600;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
     }
   }

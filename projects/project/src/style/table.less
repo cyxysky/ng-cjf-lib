@@ -50,7 +50,7 @@
     color: @table-header-color;
     font-weight: @table-header-font-weight;
     background: @table-header-bg;
-    border-bottom: @border-width-base solid @table-border-color;
+    border-bottom: 1px solid @table-border-color;
     padding: @table-cell-padding;
     position: relative;
     transition: background @transition-duration-base ease;
@@ -90,7 +90,7 @@
   .c-lib-table-sorter-down {
     font-size: @table-sorter-font-size;
     opacity: 0.5;
-    color: @input-disabled-color;
+    color: @table-sorter-color;
     transition: color @transition-duration-base, opacity @transition-duration-base;
 
     &:hover {
@@ -134,8 +134,8 @@
     border-radius: @table-border-radius;
     box-shadow: @table-shadow;
     z-index: 10;
-    margin-top: @spacing-xs;
-    padding: @spacing-xs 0;
+    margin-top: 4px;
+    padding: 4px 0;
   }
 
   .c-lib-table-filter-dropdown-list {

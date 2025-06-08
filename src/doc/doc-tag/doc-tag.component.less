@@ -5,7 +5,7 @@
 
   // 页面头部样式
   .doc-header {
-    background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin: -24px -24px 0 -24px;
     padding: 48px 24px;
     color: white;
@@ -54,7 +54,7 @@
         }
 
         .title-text {
-          background: linear-gradient(45deg, #fff, #f8bbd9);
+          background: linear-gradient(45deg, #fff, #e3f2fd);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -64,6 +64,7 @@
           font-size: 1.8rem;
           opacity: 0.9;
           font-weight: 400;
+          color: #fff;
         }
 
         @media (max-width: 768px) {
@@ -88,6 +89,7 @@
         opacity: 0.95;
         max-width: 600px;
         margin: 0;
+        color: #fff;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
         @media (max-width: 768px) {
@@ -133,11 +135,11 @@
             line-height: 1.4;
 
             &::before {
-              content: '🏷️';
+              content: '→';
               position: absolute;
               left: 0;
               color: rgba(255, 255, 255, 0.7);
-              font-size: 12px;
+              font-weight: bold;
             }
           }
         }
@@ -164,7 +166,7 @@
         margin: 0 0 16px 0;
 
         svg {
-          color: #e91e63;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {
@@ -242,7 +244,7 @@
 
     code {
       background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-      color: #e91e63;
+      color: #6366f1;
       padding: 4px 8px;
       border-radius: 6px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -269,7 +271,7 @@
         &:hover {
           background: #f1f5f9;
           transform: translateX(4px);
-          border-left-color: #e91e63;
+          border-left-color: #667eea;
         }
 
         svg {
@@ -332,7 +334,7 @@
           flex-shrink: 0;
 
           &.primary {
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            background: linear-gradient(135deg, #667eea, #764ba2);
           }
 
           &.custom {
@@ -385,12 +387,12 @@
           flex-shrink: 0;
 
           &.with-border {
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
-            border: 1px solid #e91e63;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: 1px solid #667eea;
           }
 
           &.no-border {
-            background: linear-gradient(135deg, #e91e63, #9c27b0);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
           }
         }
@@ -489,7 +491,7 @@
         margin: 0 0 16px 0;
 
         svg {
-          color: #e91e63;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {

@@ -17,7 +17,7 @@
   &-bottom {
     .c-lib-tabs-nav-wrapper {
       order: 1;
-      margin-top: @spacing-md;
+      margin-top: 16px;
       margin-bottom: 0;
     }
 
@@ -98,7 +98,7 @@
     }
 
     &-prev {
-      margin-right: @spacing-sm;
+      margin-right: 8px;
 
       .c-lib-tabs-nav-arrow-icon {
         border-width: 6px 8px 6px 0;
@@ -107,7 +107,7 @@
     }
 
     &-next {
-      margin-left: @spacing-sm;
+      margin-left: 8px;
 
       .c-lib-tabs-nav-arrow-icon {
         border-width: 6px 0 6px 8px;
@@ -135,8 +135,8 @@
     }
 
     &-icon {
-      margin-right: @spacing-sm;
-      font-size: @font-size-base;
+      margin-right: 8px;
+      font-size: 14px;
     }
 
     &-text {
@@ -163,14 +163,15 @@
       outline: none;
       cursor: pointer;
       transition: all @transition-duration-fast;
+      color: @tabs-close-icon-color;
 
       &:hover {
-        color: @input-color;
+        color: @tabs-close-icon-hover-color;
       }
     }
 
     &-add {
-      padding: 0 @spacing-sm;
+      padding: 0 8px;
       background: @table-header-bg;
       z-index: 10;
 
@@ -180,15 +181,15 @@
       }
 
       &-icon {
-        font-size: @font-size-sm;
+        font-size: 12px;
       }
 
       &-fixed {
         position: relative;
-        margin-left: @spacing-sm;
+        margin-left: 8px;
         flex-shrink: 0;
         box-shadow: @tabs-add-shadow;
-        border-radius: @border-radius-sm;
+        border-radius: 2px;
         display: flex;
         align-items: center;
         justify-content: center;

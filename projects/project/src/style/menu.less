@@ -59,7 +59,7 @@
 
         &-arrow {
             position: absolute;
-            right: @spacing-md;
+            right: 16px;
             top: 50%;
             transform: translateY(-50%);
             width: 10px;
@@ -76,7 +76,7 @@
                 background-color: currentColor;
                 width: 6px;
                 height: 1.5px;
-                border-radius: @border-radius-sm;
+                border-radius: 2px;
                 transition: transform @transition-duration-base, background-color @transition-duration-base;
             }
 
@@ -148,13 +148,13 @@
                 position: absolute;
                 left: 100%;
                 top: 0;
-                margin-left: @spacing-xs;
+                margin-left: 4px;
                 min-width: 160px;
                 z-index: 1050;
-                border-radius: @border-radius-base;
+                border-radius: 4px;
                 box-shadow: @menu-submenu-shadow;
                 background-color: @menu-bg;
-                padding: @spacing-sm 0;
+                padding: 8px 0;
             }
 
             // 垂直模式下子菜单项样式
@@ -175,7 +175,7 @@
         .c-lib-menu-submenu-title {
             height: @menu-item-height;
             line-height: @menu-item-height;
-            margin: @spacing-xs 0;
+            margin: 4px 0;
             padding: @menu-item-padding;
         }
 
@@ -247,12 +247,12 @@
                 top: 100%;
                 left: 0;
                 min-width: 180px;
-                margin-top: @spacing-xs;
+                margin-top: 4px;
                 z-index: 1050;
-                border-radius: @border-radius-base;
+                border-radius: 4px;
                 box-shadow: @menu-submenu-shadow;
                 background-color: @menu-submenu-bg;
-                padding: @spacing-sm 0;
+                padding: 8px 0;
 
                 .c-lib-menu-item {
                     height: @menu-item-height;
@@ -260,7 +260,7 @@
                     display: block;
                     border-bottom: none;
                     margin: 0;
-                    padding: 0 @spacing-md;
+                    padding: 0 16px;
                     white-space: nowrap;
 
                     &:hover {
@@ -454,13 +454,13 @@
                 position: absolute;
                 left: 100%;
                 top: 0;
-                margin-left: @spacing-xs;
+                margin-left: 4px;
                 min-width: 160px;
                 z-index: 1050;
-                border-radius: @border-radius-base;
+                border-radius: 4px;
                 box-shadow: @menu-submenu-shadow;
                 background-color: @menu-light-bg;
-                padding: @spacing-sm 0;
+                padding: 8px 0;
 
                 // 子菜单内的所有项都显示文字内容
                 .c-lib-menu-title-content {
@@ -469,7 +469,7 @@
 
                 .c-lib-menu-item,
                 .c-lib-menu-submenu-title {
-                    padding: 0 @spacing-md !important;
+                    padding: 0 16px !important;
                     text-align: left;
                     justify-content: flex-start;
                     margin: 0;
@@ -488,10 +488,10 @@
                 .c-lib-menu-sub {
                     left: 100%;
                     top: 0;
-                    margin-left: @spacing-xs;
+                    margin-left: 4px;
 
                     .c-lib-menu-item {
-                        padding: 0 @spacing-md !important;
+                        padding: 0 16px !important;
                     }
                 }
             }
@@ -559,9 +559,9 @@
 // Overlay子菜单样式
 .c-lib-menu-overlay-container {
     background-color: @menu-submenu-bg;
-    border-radius: @border-radius-base;
+    border-radius: 4px;
     box-shadow: @menu-submenu-shadow;
-    padding: @spacing-xs 0;
+    padding: 4px 0;
     min-width: 160px;
     position: relative;
     max-height: calc(100vh - 60px);

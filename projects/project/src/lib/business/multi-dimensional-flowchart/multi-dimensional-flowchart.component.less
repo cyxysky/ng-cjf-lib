@@ -26,7 +26,7 @@
     z-index: 99;
     border-bottom: @arrow solid transparent;
     transform: rotate(90deg);
-    transition: all 0.3s ease;
+    transition: all @transition-duration-base ease;
 }
 
 .inner-arrow2 {
@@ -35,7 +35,7 @@
     z-index: 99;
     border-top: @arrow solid transparent;
     transform: rotate(270deg);
-    transition: all 0.3s ease;
+    transition: all @transition-duration-base ease;
 }
 
 .center {
@@ -83,11 +83,11 @@
     color: white;
     height: 40px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all @transition-duration-base ease;
 
     &-arrow {
         border-left: @arrow solid @finish-color;
-        transition: all 0.3s ease;
+        transition: all @transition-duration-base ease;
     }
 }
 

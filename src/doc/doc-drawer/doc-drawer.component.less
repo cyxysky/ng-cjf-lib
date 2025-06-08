@@ -129,7 +129,7 @@
 
   /* 页面头部样式 */
   .doc-header {
-    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin: -24px -24px 0 -24px;
     padding: 48px 24px;
     color: white;
@@ -150,7 +150,6 @@
     .header-content {
       position: relative;
       z-index: 1;
-      max-width: 1200px;
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 48px;
@@ -178,7 +177,7 @@
         }
 
         .title-text {
-          background: linear-gradient(45deg, #fff, #dcfce7);
+          background: linear-gradient(45deg, #fff, #e3f2fd);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -284,11 +283,11 @@
         gap: 12px;
         font-size: 2.2rem;
         font-weight: 700;
-        color: #15803d;
+        color: #2c3e50;
         margin: 0 0 16px 0;
 
         svg {
-          color: #22c55e;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {
@@ -321,7 +320,7 @@
     padding: 24px;
     background: #ffffff;
     border-radius: 12px;
-    border: 1px solid #dcfce7;
+    border: 1px solid #e2e8f0;
 
     .placement-demo,
     .size-demo,
@@ -345,8 +344,8 @@
     }
 
     code {
-      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
-      color: #16a34a;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      color: #6366f1;
       padding: 4px 8px;
       border-radius: 6px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -365,13 +364,13 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
-        border-left: 4px solid #22c55e;
+        border-left: 4px solid #667eea;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -383,13 +382,13 @@
         .feature-info {
           strong {
             display: block;
-            color: #15803d;
+            color: #1f2937;
             font-weight: 600;
             margin-bottom: 2px;
           }
 
           span {
-            color: #22c55e;
+            color: #667eea;
             font-size: 13px;
           }
         }
@@ -406,12 +405,12 @@
         align-items: center;
         gap: 16px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -427,16 +426,16 @@
           font-size: 16px;
           flex-shrink: 0;
 
-          &.top { background: linear-gradient(135deg, #22c55e, #16a34a); }
-          &.right { background: linear-gradient(135deg, #16a34a, #15803d); }
-          &.bottom { background: linear-gradient(135deg, #15803d, #166534); }
-          &.left { background: linear-gradient(135deg, #166534, #14532d); }
+          &.top { background: linear-gradient(135deg, #667eea, #764ba2); }
+          &.right { background: linear-gradient(135deg, #764ba2, #8b5cf6); }
+          &.bottom { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+          &.left { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
         }
 
         .direction-info {
           strong {
             display: block;
-            color: #15803d;
+            color: #1f2937;
             font-weight: 600;
             margin-bottom: 4px;
           }
@@ -460,17 +459,17 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
         svg {
-          color: #22c55e;
+          color: #667eea;
           flex-shrink: 0;
         }
 
@@ -492,12 +491,12 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -524,12 +523,12 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -540,8 +539,8 @@
           flex-shrink: 0;
 
           &.enabled {
-            background: #22c55e;
-            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+            background: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
           }
 
           &.disabled {
@@ -556,7 +555,7 @@
           line-height: 1.4;
 
           strong {
-            color: #15803d;
+            color: #1f2937;
           }
         }
       }
@@ -572,20 +571,20 @@
         align-items: center;
         gap: 16px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
         code {
           min-width: 100px;
           text-align: center;
-          background: linear-gradient(135deg, #dcfce7, #bbf7d0);
-          color: #15803d;
+          background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+          color: #6366f1;
         }
 
         span {
@@ -605,17 +604,17 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #f0fdf4;
+        background: #f8fafc;
         border-radius: 8px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #dcfce7;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
         svg {
-          color: #22c55e;
+          color: #667eea;
           flex-shrink: 0;
         }
 
@@ -649,9 +648,9 @@
       transition: all 0.3s ease;
 
       &:focus {
-        border-color: #22c55e;
+        border-color: #667eea;
         outline: none;
-        box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
       }
     }
 
@@ -673,22 +672,22 @@
     margin-top: 16px;
     padding: 16px;
     border-radius: 8px;
-    background: #f0fdf4;
-    border: 1px solid #dcfce7;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
 
     h4 {
       margin: 0 0 12px 0;
-      color: #15803d;
+      color: #1f2937;
       font-size: 14px;
       font-weight: 600;
     }
 
     .log-item {
       padding: 6px 0;
-      border-bottom: 1px dashed #bbf7d0;
+      border-bottom: 1px dashed #cbd5e1;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
       font-size: 13px;
-      color: #166534;
+      color: #475569;
 
       &:last-child {
         border-bottom: none;
@@ -715,11 +714,11 @@
         gap: 12px;
         font-size: 2.2rem;
         font-weight: 700;
-        color: #15803d;
+        color: #2c3e50;
         margin: 0 0 16px 0;
 
         svg {
-          color: #22c55e;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {

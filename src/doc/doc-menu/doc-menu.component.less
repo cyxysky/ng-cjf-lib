@@ -7,7 +7,7 @@
 
   // 页面头部样式
   .doc-header {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     margin: -24px -24px 0 -24px;
     padding: 48px 24px;
     color: white;
@@ -166,7 +166,7 @@
         margin: 0 0 16px 0;
 
         svg {
-          color: #8b5cf6;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {
@@ -217,7 +217,7 @@
       align-items: center;
       gap: 8px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
       border: none;
       border-radius: 8px;
@@ -225,12 +225,11 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 4px rgba(139, 92, 246, 0.2);
+      box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
 
       &:hover {
-        background: linear-gradient(135deg, #7c3aed, #6d28d9);
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
       }
 
       svg {
@@ -241,12 +240,12 @@
     .example-value {
       margin-top: 16px;
       padding: 12px 16px;
-      background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
       border-radius: 8px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
       font-size: 13px;
-      color: #6d28d9;
-      border-left: 4px solid #8b5cf6;
+      color: #6366f1;
+      border-left: 4px solid #667eea;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
   }
@@ -264,7 +263,7 @@
 
     code {
       background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-      color: #7c3aed;
+      color: #6366f1;
       padding: 4px 8px;
       border-radius: 6px;
       font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -283,13 +282,13 @@
         align-items: center;
         gap: 12px;
         padding: 12px;
-        background: #faf5ff;
+        background: #f8fafc;
         border-radius: 8px;
-        border-left: 4px solid #8b5cf6;
+        border-left: 4px solid #667eea;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #f3e8ff;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -304,7 +303,7 @@
           flex: 1;
 
           strong {
-            color: #6d28d9;
+            color: #1f2937;
             display: block;
             margin-bottom: 4px;
             font-weight: 600;
@@ -330,12 +329,12 @@
         align-items: center;
         gap: 12px;
         padding: 16px;
-        background: #faf5ff;
+        background: #f8fafc;
         border-radius: 12px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #f3e8ff;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -346,7 +345,7 @@
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 
           &.dark {
-            color: #4c1d95;
+            color: #1f2937;
           }
         }
 
@@ -355,7 +354,7 @@
 
           strong {
             display: block;
-            color: #6d28d9;
+            color: #1f2937;
             font-weight: 600;
             margin-bottom: 4px;
           }
@@ -379,12 +378,12 @@
         align-items: center;
         gap: 16px;
         padding: 16px;
-        background: #faf5ff;
+        background: #f8fafc;
         border-radius: 12px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #f3e8ff;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
@@ -395,30 +394,30 @@
           flex-shrink: 0;
 
           &.vertical {
+            background: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+          }
+
+          &.horizontal {
+            background: #764ba2;
+            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.2);
+          }
+
+          &.popup {
             background: #8b5cf6;
             box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
           }
 
-          &.horizontal {
+          &.responsive {
             background: #7c3aed;
             box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
-          }
-
-          &.popup {
-            background: #6d28d9;
-            box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.2);
-          }
-
-          &.responsive {
-            background: #a855f7;
-            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.2);
           }
         }
 
         .mode-info {
           strong {
             display: block;
-            color: #6d28d9;
+            color: #1f2937;
             font-weight: 600;
             margin-bottom: 4px;
           }
@@ -443,18 +442,18 @@
         align-items: center;
         gap: 12px;
         padding: 16px;
-        background: #faf5ff;
+        background: #f8fafc;
         border-radius: 12px;
         transition: all 0.3s ease;
 
         &:hover {
-          background: #f3e8ff;
+          background: #f1f5f9;
           transform: translateX(4px);
         }
 
         .collapse-icon {
           font-size: 24px;
-          color: #8b5cf6;
+          color: #667eea;
           width: 32px;
           text-align: center;
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
@@ -465,7 +464,7 @@
 
           strong {
             display: block;
-            color: #6d28d9;
+            color: #1f2937;
             font-weight: 600;
             margin-bottom: 4px;
           }
@@ -485,13 +484,13 @@
 
       .disabled-tip {
         padding: 16px;
-        background: #faf5ff;
+        background: #f8fafc;
         border-radius: 12px;
-        border-left: 4px solid #8b5cf6;
+        border-left: 4px solid #667eea;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 
         strong {
-          color: #6d28d9;
+          color: #1f2937;
           font-weight: 600;
         }
       }
@@ -521,7 +520,7 @@
         margin: 0 0 16px 0;
 
         svg {
-          color: #8b5cf6;
+          color: #667eea;
         }
 
         @media (max-width: 768px) {

@@ -44,7 +44,7 @@ lib-select {
     overflow: hidden;
 
     .c-lib-select-basic-tag-text-box {
-        padding-right: @spacing-xs;
+        padding-right: 4px;
         line-height: normal;
         display: flex;
         align-items: center;
@@ -154,7 +154,7 @@ lib-select {
 
     .c-lib-select-basic-box-singal-data {
         padding-left: 4px;
-        color: @input-color;
+        color: @select-text-color;
         position: absolute;
         max-width: 100%;
         overflow: hidden;
@@ -165,7 +165,7 @@ lib-select {
     }
 
     .c-lib-select-basic-box-singal-data-gray {
-        color: @input-disabled-color;
+        color: @select-disabled-text-color;
     }
 
     .c-lib-select-basic-box-placeholder {
@@ -173,7 +173,7 @@ lib-select {
         align-items: center;
         font-size: @select-tag-font-size;
         padding-left: 4px;
-        color: @input-placeholder-color;
+        color: @select-placeholder-color;
         position: absolute;
         height: 100%;
         line-height: normal;
@@ -223,20 +223,20 @@ lib-select {
     }
 
     &.c-lib-select-basic-box-error {
-        border: @select-box-border-width solid @input-error-border-color;
+        border: @select-box-border-width solid @select-error-border-color;
 
         &.c-lib-select-basic-box-active {
-            border: @select-box-border-width solid @input-error-border-color;
-            box-shadow: @input-error-shadow;
+            border: @select-box-border-width solid @select-error-border-color;
+            box-shadow: @select-error-shadow;
         }
     }
 
     &.c-lib-select-basic-box-warning {
-        border: @select-box-border-width solid @input-warning-border-color;
+        border: @select-box-border-width solid @select-warning-border-color;
 
         &.c-lib-select-basic-box-active {
-            border: @select-box-border-width solid @input-warning-border-color;
-            box-shadow: @input-warning-shadow;
+            border: @select-box-border-width solid @select-warning-border-color;
+            box-shadow: @select-warning-shadow;
         }
     }
 
@@ -254,17 +254,17 @@ lib-select {
 
         .c-lib-select-basic-box-clear-icon {
             display: none;
-            color: @input-disabled-color;
+            color: @select-clear-icon-color;
             transition: all @transition-duration-base;
 
             &:hover {
-                color: @input-prefix-suffix-color;
+                color: @select-clear-icon-hover-color;
             }
         }
 
         .c-lib-select-basic-box-icon {
             transition: all @transition-duration-base;
-            color: @input-prefix-suffix-color;
+            color: @select-icon-color;
         }
 
         .c-lib-select-basic-box-icon-clear {
@@ -278,7 +278,7 @@ lib-select {
 
             .c-lib-select-basic-box-loading-svg {
                 animation: rotate 1.2s linear infinite;
-                color: @button-primary-bg;
+                color: @select-loading-color;
             }
         }
     }
@@ -312,9 +312,9 @@ lib-select {
 
 .c-lib-select-basic-box-disabled {
     cursor: not-allowed;
-    background-color: @input-disabled-bg;
-    color: @input-disabled-color;
-    border-color: @input-disabled-color !important;
+    background-color: @select-disabled-bg-color;
+    color: @select-disabled-text-color;
+    border-color: @select-disabled-border-color !important;
 
     .c-lib-select-basic-box-content,
     .c-lib-select-basic-box-suffix {
