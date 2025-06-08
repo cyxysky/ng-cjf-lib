@@ -50,12 +50,12 @@
   </div>
   
   <!-- 刻度 -->
-  <div *ngIf="marks" class="c-lib-slider-marks">
+  <div *ngIf="marks" class="c-lib-slider-marks" (click)="onMarksClick($event)">
     <span 
       *ngFor="let mark of markList" 
       class="c-lib-slider-mark" 
       [ngStyle]="{'left': mark.value + '%'}"
-    >
+      >
       <ng-container *ngTemplateOutlet="labelTemplate || defaultMarkLabel; context: { $implicit: mark }"></ng-container>
     </span>
   </div>

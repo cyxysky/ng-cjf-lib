@@ -30,7 +30,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   /** 步长 */
   @Input({ alias: 'sliderStep', transform: (value: number) => Math.max(1, Math.round(value)) }) step = 1;
   /** 轨道颜色 */
-  @Input({ alias: 'sliderTrackColor' }) trackColor = '#1890ff';
+  @Input({ alias: 'sliderTrackColor' }) trackColor = '';
   /** 手柄颜色 */
   @Input({ alias: 'sliderHandleColor' }) handleColor = '';
   /** 是否范围 */
@@ -225,7 +225,7 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
   /**
    * 更新轨道宽度和提示
    */
-  updateTrackWidth(): void {
+  public updateTrackWidth(): void {
     let value: string | TemplateRef<any> = '';
     if (this.isRange) {
       // 范围模式下设置轨道宽度为两个值之间的差
@@ -247,17 +247,21 @@ export class SliderComponent implements OnInit, ControlValueAccessor {
     this.cdr.detectChanges();
   }
 
+  public onMarksClick(event: MouseEvent): void {
+    event.stopPropagation();
+  }
+
   /**
    * 将实际值转换为百分比
    */
-  percentOf(value: number): number {
+  private percentOf(value: number): number {
     return ((value - this.min) / (this.max - this.min)) * 100;
   }
 
   /**
    * 将百分比转换为实际值
    */
-  valueFromPercent(percent: number): number {
+  private valueFromPercent(percent: number): number {
     let rawValue = (percent / 100) * (this.max - this.min) + this.min;
     if (this.snapToMarks && this.marks) {
       // 找到最近的刻度值

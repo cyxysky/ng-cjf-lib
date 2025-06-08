@@ -209,7 +209,7 @@
             <lib-button 
               [buttonContent]="controlledVisible ? '隐藏菜单' : '显示菜单'"
               [buttonColor]="'tertiary'"
-              [buttonType]="'text'"
+              [buttonType]="'link'"
               (click)="controlledVisible = !controlledVisible">
             </lib-button>
             <lib-button 
@@ -252,7 +252,7 @@
               [buttonType]="'default'">
             </lib-button>
             
-            <div *ngIf="selectedItem" class="example-value">
+            <div *ngIf="selectedItem">
               已选择: {{ selectedItem.title }}
             </div>
           </div>
