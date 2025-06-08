@@ -40,9 +40,6 @@ function createThemeVariables(themeImport) {
 // 样式变量入口文件
 // ============================================================================
 
-// 导入基础变量（非颜色）
-@import './base.less';
-
 // ===== 主题切换 =====
 // 当前主题: ${themeImport}
 ${themeImport}
