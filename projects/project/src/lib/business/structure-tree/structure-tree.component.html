@@ -1,15 +1,16 @@
 <!-- 组织架构树组件 -->
-<div 
-class="out-box no-copy" 
-(wheel)="wheel($event)"
-(mousedown)="mousedown($event)"
-(mousemove)="mousemove($event)"
-(mouseup)="mouseup($event)"
-(mouseleave)="mouseleave($event)">
-    <div  class="structure-tree-container" [style.transform]="transform" [style.scale]="scaleSize">
+<div
+  class="out-box no-copy"
+  (wheel)="wheel($event)"
+  (mousedown)="mousedown($event)"
+  (mousemove)="mousemove($event)"
+  (mouseup)="mouseup($event)"
+  (mouseleave)="mouseleave($event)">
+    <div class="structure-tree-container" [style.transform]="transform" [style.scale]="scaleSize">
         <ng-container *ngIf="data && data.length; else noData">
             <div class="structure-tree">
-                <ng-container *ngTemplateOutlet="nodeTemplate; context: {nodes: showData, level: showData[0][nodeKey] && nodeLevelMap.get(showData[0][nodeKey]!) || 0}"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="nodeTemplate; context: {nodes: showData, level: showData[0][nodeKey] && nodeLevelMap.get(showData[0][nodeKey]!) || 0}"></ng-container>
             </div>
         </ng-container>
         <ng-template #noData>
@@ -18,31 +19,31 @@ class="out-box no-copy"
         <!-- 节点模板 -->
         <ng-template #nodeTemplate let-nodes="nodes" let-level="level" let-parent="parent">
             <!-- 每个节点元素盒子 -->
-            <div 
-                *ngIf="getShowLevel(level)"
-                [ngClass]="adjustByParent(parent, level) ? 'tree-level-grid' : 'tree-level'"
-                [style.grid-template-columns]="getGridTemplate(parent)">
+            <div
+              *ngIf="getShowLevel(level)"
+              [ngClass]="adjustByParent(parent, level) ? 'tree-level-grid' : 'tree-level'"
+              [style.grid-template-columns]="getGridTemplate(parent)">
                 <!-- 每个节点 -->
                 <ng-container *ngFor="let node of nodes; let i=index; let isLast=last">
                     <div class="tree-node-wrapper" *ngIf="isNodeInShowPath(node, level)">
                         <!-- 节点直线 -->
                         <div class="node-card">
                             <!-- 顶部节点圆点 -->
-                            <div 
-                                [id]="node[nodeKey] + 'top'" 
-                                *ngIf="showTopPoint(parent, level)"
-                                [class.circle-point]="isUserType()"
-                                class="point-top point">
+                            <div
+                              [id]="node[nodeKey] + 'top'"
+                              *ngIf="showTopPoint(parent, level)"
+                              [class.circle-point]="isUserType()"
+                              class="point-top point">
                                 <!-- 连接线 -->
                                 <div *ngIf="lineMap.get(node[nodeKey])?.svg" [innerHTML]="lineMap.get(node[nodeKey])?.svg" class="line-svg"></div>
                             </div>
                             <ng-container *ngTemplateOutlet="nodeTemplates || defaultNodeTemplate; context: { $implicit : node, level: level }"></ng-container>
                             <!-- 底部节点圆点 -->
-                            <div 
-                                *ngIf="showBottomPoint(node, level)"
-                                [id]="node[nodeKey] + 'bottom'"
-                                [class.circle-point]="isUserType()"
-                                class="point-bottom point">
+                            <div
+                              *ngIf="showBottomPoint(node, level)"
+                              [id]="node[nodeKey] + 'bottom'"
+                              [class.circle-point]="isUserType()"
+                              class="point-bottom point">
                             </div>
                         </div>
                         <!-- 连接线和子节点 -->
@@ -51,13 +52,13 @@ class="out-box no-copy"
                                 <ng-container *ngTemplateOutlet="nodeTemplate; context: {nodes: node.children, level: level + 1, parent: node}"></ng-container>
                             </div>
                         </div>
-                        <div 
-                            *ngIf="selectedLevel === level && isLastLevel(node) && node.children && node.children.length"
-                            class="vertical-connector"
-                            [style.background-color]="lineColor"
-                            [style.width]="'2px'"
-                            [style.height]="'80px'"
-                            [style.top]="'55px'">
+                        <div
+                          *ngIf="selectedLevel === level && isLastLevel(node) && node.children && node.children.length"
+                          class="vertical-connector"
+                          [style.background-color]="lineColor"
+                          [style.width]="'2px'"
+                          [style.height]="'80px'"
+                          [style.top]="'55px'">
                         </div>
                     </div>
 

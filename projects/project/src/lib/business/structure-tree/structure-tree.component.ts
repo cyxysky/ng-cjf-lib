@@ -68,9 +68,9 @@ export class StructureTreeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    setInterval(() => {
-      this.initNodeLineWidthMap();
-    }, 10);
+    // setInterval(() => {
+    //   this.initNodeLineWidthMap();
+    // }, 100);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -81,7 +81,7 @@ export class StructureTreeComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-    // this.initNodeLineWidthMap();
+    this.initNodeLineWidthMap();
   }
 
   ngAfterViewInit() {
@@ -201,7 +201,7 @@ export class StructureTreeComponent implements OnInit {
       let width = Math.round(Math.abs(parentBottomPoint.x - topPoint.getBoundingClientRect().x));
       let height = Math.round(Math.abs(parentBottomPoint.y - topPoint.getBoundingClientRect().y));
       if (width !== this.lineMap.get(node[this.nodeKey])?.width && height !== this.lineMap.get(node[this.nodeKey])?.height) {
-        let svg = this.createLine( height / this.scaleSize, width / this.scaleSize, parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R');
+        let svg = this.createLine(height / this.scaleSize, width / this.scaleSize, parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R');
         this.lineMap.set(node[this.nodeKey], {
           direction: parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R',
           width,
@@ -224,14 +224,14 @@ export class StructureTreeComponent implements OnInit {
         [0, 4],
         [0, -height / 2],
         [-width, -height / 2],
-        [-width, -height ],
+        [-width, -height],
       ]
     } else {
       path = [
         [0, 4],
-        [0, -height / 2 ],
-        [width, -height / 2 ],
-        [width, -height ],
+        [0, -height / 2],
+        [width, -height / 2],
+        [width, -height],
       ]
     }
     let svg = this.utilsService.createRoundedLine({
@@ -240,7 +240,7 @@ export class StructureTreeComponent implements OnInit {
       radius: 10,
       direction,
       path,
-      left: 2.5
+      left: 1.5
     })
     return this.sanitizer.bypassSecurityTrustHtml(svg.outerHTML);;
   }
