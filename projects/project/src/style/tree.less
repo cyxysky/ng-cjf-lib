@@ -43,6 +43,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            background-color: @tree-bg;
         }
 
         &-content {
@@ -128,7 +129,7 @@
         }
     }
 
-    &-title {
+    &-text {
         display: flex;
         align-items: center;
         height: 100%;
@@ -136,15 +137,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        padding: @tree-title-padding;
+        padding: @tree-text-padding;
         transition: background-color @transition-duration-base;
 
-        &:not(.c-lib-tree-title-disabled):hover {
+        &:not(.c-lib-tree-text-disabled):hover {
             background-color: @tree-node-hover-bg;
         }
 
         &-selected {
-            background-color: @tree-title-selected-bg !important;
+            background-color: @tree-text-selected-bg !important;
         }
     }
 

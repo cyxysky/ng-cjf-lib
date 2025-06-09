@@ -1,5 +1,4 @@
 lib-select-box {
-    display: inline-block;
     width: 100%;
 }
 
@@ -10,6 +9,8 @@ lib-select {
 .c-lib-select-basic-search-box {
     margin-left: 4px;
     max-width: 100%;
+    display: flex;
+    align-items: center;
     position: relative;
 
     .c-lib-select-basic-search-text {
@@ -93,6 +94,7 @@ lib-select {
     padding: @select-tag-small-padding;
     height: @select-tag-small-height;
     border-radius: @select-tag-border-radius;
+    font-size: @select-tag-small-font-size;
 
     .c-lib-select-basic-tag-close-icon {
         width: 12px;
@@ -103,6 +105,7 @@ lib-select {
 .c-lib-select-basic-tag-lg {
     padding: @select-tag-large-padding;
     height: @select-tag-large-height;
+    font-size: @select-tag-large-font-size;
 
     .c-lib-select-basic-tag-close-icon {
         width: 16px;
@@ -172,7 +175,7 @@ lib-select {
         position: absolute;
         height: 100%;
         line-height: normal;
-        max-width: calc(100% - 32px);
+        max-width: 100%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -186,7 +189,6 @@ lib-select {
 
     &.c-lib-select-basic-box-lg {
         min-height: @select-box-large-min-height;
-        font-size: @select-box-large-font-size;
 
         .c-lib-select-basic-box-placeholder,
         .c-lib-select-basic-box-singal-data {
@@ -200,7 +202,6 @@ lib-select {
 
     &.c-lib-select-basic-box-sm {
         min-height: @select-box-small-min-height;
-        font-size: @select-box-small-font-size;
 
         .c-lib-select-basic-box-placeholder,
         .c-lib-select-basic-box-singal-data {
@@ -208,7 +209,7 @@ lib-select {
         }
 
         .c-lib-select-basic-search-input {
-            height: @select-tag-small-height;
+            height: @select-tag-small-height + 4px;
         }
     }
 

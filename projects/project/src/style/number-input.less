@@ -39,6 +39,7 @@ lib-number-input {
     transition: all @transition-duration-base;
     height: @number-input-height;
     font-size: @number-input-font-size;
+    background-color: @number-input-bg;
 
     &:hover {
         border-color: @number-input-hover-border-color;
@@ -73,9 +74,10 @@ lib-number-input {
     width: 100%;
     border: none;
     outline: none;
+    background: none;
+    color: @number-input-color;
     padding: 0;
     font-size: @number-input-font-size;
-    background: transparent;
     height: 100%;
 
     &::-webkit-inner-spin-button,

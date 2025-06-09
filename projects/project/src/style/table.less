@@ -124,77 +124,12 @@
     }
   }
 
-  // 过滤下拉框
-  .c-lib-table-filter-dropdown {
-    position: absolute;
-    right: 0;
-    top: 100%;
-    min-width: @table-filter-dropdown-min-width;
-    background-color: @table-bg;
-    border-radius: @table-border-radius;
-    box-shadow: @table-shadow;
-    z-index: 10;
-    margin-top: 4px;
-    padding: 4px 0;
-  }
-
-  .c-lib-table-filter-dropdown-list {
-    max-height: 300px;
-    overflow-y: auto;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .c-lib-table-filter-dropdown-item {
-    padding: @table-filter-dropdown-item-padding;
-
-    &:hover {
-      background-color: @table-filter-dropdown-item-hover-bg;
-    }
-  }
-
-  .c-lib-table-filter-dropdown-item-label {
-    display: flex;
-    align-items: center;
-    padding: @table-filter-dropdown-label-padding;
-    width: 100%;
-    cursor: pointer;
-
-    input {
-      margin-right: 8px;
-    }
-  }
-
-  .c-lib-table-filter-dropdown-btns {
-    display: flex;
-    justify-content: space-between;
-    padding: @table-filter-dropdown-btn-padding;
-    border-top: 1px solid @table-filter-dropdown-btn-border-color;
-  }
-
-  .c-lib-table-filter-dropdown-link {
-    color: @table-filter-dropdown-link-color;
-    font-size: @table-filter-dropdown-link-font-size;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
-    padding: @table-filter-dropdown-link-padding;
-
-    &.confirm {
-      color: @table-filter-dropdown-link-confirm-color;
-    }
-
-    &:hover {
-      color: @table-filter-dropdown-link-hover-color;
-    }
-  }
-
   // 表格内容
   .c-lib-table-tbody>tr>td {
     border-bottom: 1px solid @table-tbody-border-color;
     padding: @table-cell-padding;
     background-color: @table-tbody-bg;
+    color: @table-cell-color;
   }
 
   .c-lib-table-tbody>tr:hover>td {
@@ -351,15 +286,6 @@
 
 }
 
-// 表格标题
-.c-lib-table-title {
-  padding: 12px 16px;
-  border-radius: 4px 4px 0 0;
-  border: 1px solid @table-border-color;
-  border-bottom: 0;
-  font-weight: 500;
-}
-
 // 表格底部
 .c-lib-table-footer {
   padding: 16px;
@@ -511,14 +437,6 @@
   cursor: pointer;
   padding: 4px 7px;
   transition: all @transition-duration-base;
-
-  &.confirm {
-    color: @table-filter-popover-link-confirm-color;
-  }
-
-  &:hover {
-    color: @table-filter-popover-link-hover-color;
-  }
 }
 
 // 操作列样式
@@ -556,6 +474,7 @@
 
 .c-lib-table-filter-popover {
   width: 300px;
+  color: @table-filter-popover-color;
 }
 
 .c-lib-table-filter-popover-title {

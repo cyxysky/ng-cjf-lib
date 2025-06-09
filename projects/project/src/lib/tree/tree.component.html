@@ -5,12 +5,11 @@
   </div>
 
   <!-- 树节点容器，使用虚拟滚动或普通滚动 -->
-  <div 
-    #treeContainer 
-    class="c-lib-tree-node-container" 
+  <div
+    #treeContainer
+    class="c-lib-tree-node-container"
     [class.c-lib-tree-with-lines]="showLine"
-    [class.c-lib-tree-hidden]="showEmptyState()"
-    >
+    [class.c-lib-tree-hidden]="showEmptyState()">
     <!-- 非虚拟滚动模式 -->
     <ng-container *ngIf="!isVirtualScroll">
       <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: treeData, level: 0 }"></ng-container>
@@ -22,8 +21,7 @@
       [style.height.px]="virtualHeight"
       [itemSize]="virtualItemSize"
       [maxBufferPx]="virtualMaxBuffer"
-      [minBufferPx]="virtualMinBuffer"
-      >
+      [minBufferPx]="virtualMinBuffer">
       <ng-container *cdkVirtualFor="let node of getVisibleVirtualNodes(); trackBy: trackBy">
         <ng-container *ngTemplateOutlet="nodeTemplate; context: { $implicit: node.node, isLast: node.isLast, level: node.level }"></ng-container>
       </ng-container>
@@ -34,16 +32,15 @@
 <!-- 树节点模板 -->
 <ng-template #renderTreeNodesTemplate let-nodes let-level="level" let-parentNode="parentNode">
   <ul class="c-lib-tree-node-list">
-    <li 
-      *ngFor="let node of nodes; let isLast = last; let index = index" 
-      class="c-lib-tree-node" 
+    <li
+      *ngFor="let node of nodes; let isLast = last; let index = index"
+      class="c-lib-tree-node"
       [class.c-lib-tree-node-last]="isLast">
-      <div 
+      <div
         class="c-lib-tree-node-content"
         [class.c-lib-tree-node-content-selected]="node.selected"
         [class.c-lib-tree-node-content-disabled]="node.disabled"
-        [style.height]="optionHeight + 'px'"
-        >
+        [style.height]="optionHeight + 'px'">
         <!-- 缩进 -->
         <ng-container *ngTemplateOutlet="indentTemplate; context: { $implicit: node, isLast: isLast, level: level, index: index, parentLength: nodes.length }"></ng-container>
         <!-- 展开/折叠图标 -->
@@ -51,20 +48,19 @@
         <!-- 复选框 -->
         <ng-container *ngTemplateOutlet="checkboxTemplate; context: { $implicit: node, level: level }"></ng-container>
         <!-- 自定义图标或默认图标 -->
-        <span 
-          *ngIf="showIcon" 
-          class="c-lib-tree-icon"
-          >
+        <span
+          *ngIf="showIcon"
+          class="c-lib-tree-icon">
           <ng-container *ngTemplateOutlet="iconTemplate || defaultIconTpl; context: { $implicit: node, origin: node }"></ng-container>
           <ng-template #defaultIconTpl>
             <i class="c-lib-tree-icon" [ngClass]="node.icon || (node.isLeaf ? 'file-icon' : (expandedKeys.has(node[valueProperty]) ? 'folder-open-icon' : 'folder-icon'))"></i>
           </ng-template>
         </span>
         <!-- 节点内容 -->
-        <div 
-          class="c-lib-tree-title" 
-          [class.c-lib-tree-title-disabled]="node.disabled" 
-          [class.c-lib-tree-title-selected]="node.selected" 
+        <div
+          class="c-lib-tree-text"
+          [class.c-lib-tree-text-disabled]="node.disabled"
+          [class.c-lib-tree-text-selected]="node.selected"
           (click)="onNodeSelect(node)">
           <ng-container *ngTemplateOutlet="treeTemplate || defaultNodeTpl; context: { $implicit: node, origin: node, node: node }"></ng-container>
           <ng-template #defaultNodeTpl>
@@ -75,13 +71,13 @@
 
       <!-- 子节点递归 - 树节点模板中 -->
       @if (useExpandAnimation) {
-        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])"  @expandCollapse>
-          <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
-        </div>
+      <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])" @expandCollapse>
+        <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
+      </div>
       } @else {
-        <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])" >
-          <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
-        </div>
+      <div *ngIf="node.children && node.children.length && expandedKeys.has(node[valueProperty])">
+        <ng-container *ngTemplateOutlet="renderTreeNodesTemplate; context: { $implicit: node.children, level: level + 1, parentNode: node }"></ng-container>
+      </div>
       }
     </li>
   </ul>
@@ -90,12 +86,11 @@
 <!-- 单个节点模板 -->
 <ng-template #nodeTemplate let-node let-isLast="isLast" let-level="level">
   <li class="c-lib-tree-node-list" [class.c-lib-tree-node-last]="isLast">
-    <div 
+    <div
       class="c-lib-tree-node-content"
       [class.c-lib-tree-node-content-selected]="node.selected"
       [class.c-lib-tree-node-content-disabled]="node.disabled"
-      [style.height.px]="optionHeight"
-      >
+      [style.height.px]="optionHeight">
       <!-- 缩进 -->
       <ng-container *ngTemplateOutlet="indentTemplate; context: { $implicit: node, isLast: isLast, level: level }"></ng-container>
       <!-- 展开/折叠图标 -->
@@ -103,12 +98,11 @@
       <!-- 复选框 -->
       <ng-container *ngTemplateOutlet="checkboxTemplate; context: { $implicit: node, level: level }"></ng-container>
       <!-- 节点内容 -->
-      <div 
-        class="c-lib-tree-title" 
-        [class.c-lib-tree-title-disabled]="node.disabled" 
-        [class.c-lib-tree-title-selected]="node.selected" 
-        (click)="onNodeSelect(node)"
-        >
+      <div
+        class="c-lib-tree-title"
+        [class.c-lib-tree-title-disabled]="node.disabled"
+        [class.c-lib-tree-title-selected]="node.selected"
+        (click)="onNodeSelect(node)">
         <ng-container *ngTemplateOutlet="treeTemplate || defaultNodeTpl; context: { $implicit: node, isLast: isLast, level: level }"></ng-container>
         <ng-template #defaultNodeTpl let-node>
           {{ node[labelProperty] }}
@@ -121,22 +115,21 @@
 <!-- 展开/折叠图标 -->
 <ng-template #switcherTemplate let-node let-level="level">
   <!-- 有子节点的 -->
-  <span 
+  <span
     *ngIf="(node.children && node.children.length) || (asyncData && !node.isLeaf && !node.asyncLoading)"
     class="c-lib-tree-switcher"
     [class.c-lib-tree-flat-line]="showLine && level !== 0"
     [class.c-lib-tree-switcher-expanded]="node.expanded"
     [class.c-lib-tree-switcher-disabled]="node.disabled"
     [style.width.px]="indent"
-    (click)="$event.stopPropagation(); onNodeExpand(node)"
-    >
+    (click)="$event.stopPropagation(); onNodeExpand(node)">
     <!-- 展开/折叠图标模板 -->
     <ng-container *ngTemplateOutlet="expandedIcon || defaultExpandedIconTpl; context: { $implicit: node }"></ng-container>
     <ng-template #defaultExpandedIconTpl>
       @if (useExpandAnimation) {
-        <i class="bi-caret-right-fill c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'c-lib-tree-switcher-icon-open' : 'c-lib-tree-switcher-icon-close'"></i>
+      <i class="bi-caret-right-fill c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'c-lib-tree-switcher-icon-open' : 'c-lib-tree-switcher-icon-close'"></i>
       } @else {
-        <i class="c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'bi-caret-down-fill ' : 'bi-caret-right-fill'"></i>
+      <i class="c-lib-tree-switcher-icon" [ngClass]="node.expanded ? 'bi-caret-down-fill ' : 'bi-caret-right-fill'"></i>
       }
     </ng-template>
   </span>
@@ -149,8 +142,8 @@
     </div>
   </span>
   <!-- 没有子节点的 -->
-  <span 
-    *ngIf="!node.children || (!node.children.length && !asyncData) || node.isLeaf" 
+  <span
+    *ngIf="!node.children || (!node.children.length && !asyncData) || node.isLeaf"
     class="c-lib-tree-switcher"
     [class.c-lib-tree-flat-line]="showLine"
     [style.width.px]="indent">
@@ -160,23 +153,23 @@
 <!-- 缩进 -->
 <ng-template #indentTemplate let-node let-isLast="isLast" let-level="level" let-index="index" let-parentLength="parentLength">
   @for (item of getIndentArray(level); track $index) {
-    @let hasVerticalLines = hasVerticalLine(node, $index);
-    <span 
-      [style.width.px]="indent"
-      [class.c-lib-tree-vertical-line]="showLine && hasVerticalLines"
-      [class.c-lib-tree-vertical-line-default]="showLine && hasVerticalLines && isLast"
-      class="c-lib-tree-indent">
-    </span>
+  @let hasVerticalLines = hasVerticalLine(node, $index);
+  <span
+    [style.width.px]="indent"
+    [class.c-lib-tree-vertical-line]="showLine && hasVerticalLines"
+    [class.c-lib-tree-vertical-line-default]="showLine && hasVerticalLines && isLast"
+    class="c-lib-tree-indent">
+  </span>
   }
 </ng-template>
 
 <!-- 复选框 -->
 <ng-template #checkboxTemplate let-node>
-  <lib-checkbox 
+  <lib-checkbox
     *ngIf="checkable"
     [ngModel]="node.checked"
     [checkboxSingle]="true"
-    [checkboxIndeterminate]="node.indeterminate" 
+    [checkboxIndeterminate]="node.indeterminate"
     [checkboxDisabled]="(node.disabled || node.disableCheckbox)"
     [checkboxSingleLabel]="''"
     (ngModelChange)="onNodeCheck(node, !node.checked)">

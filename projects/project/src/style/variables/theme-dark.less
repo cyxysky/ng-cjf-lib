@@ -5,7 +5,8 @@
 // ===== 主要颜色 =====
 @color-white: #000000;
 @color-black: #ffffff;
-@color-primary: #4096ff;
+@color-primary: #667eea;
+@color-link: #1890ff;
 @color-secondary: #1668dc;
 @color-tertiary: #7c4dff;
 @color-success: #4ac776;
@@ -39,17 +40,22 @@
 @color-primary-light: rgba(@color-primary, 0.15);
 
 // ===== 透明度变体 =====
-@color-mask: rgba(@color-black, 0.65);
-@color-overlay: rgba(@color-black, 0.85);
-@color-hover-bg: rgba(@color-white, 0.08);
-@color-hover-bg-light: #262626;
+@color-hover-bg: #262626;
 
-// ===== 扩展颜色变量 =====
-// Button ripple 效果
-@color-button-ripple: rgba(@color-white, 0.2);
-@color-button-medium-bg: #262626;
-@color-button-dark-bg: #000000;
-@color-button-light-bg: #1f1f1f;
+// 按钮固定颜色变量
+@color-button-ripple: rgba(255, 255, 255, 0.6);
+@color-button-medium-bg: #f5f5f5;
+@color-button-dark-bg: #222428;
+@color-button-light-bg: #f4f5f8;
+@color-button-dark-color: #ffffff;
+@color-button-text-color: #000000;
+@color-button-link-color: #1890ff;
+@color-button-warning-color: #ffffff;
+@color-button-medium-color: #000000;
+@color-button-light-color: #000000;
+@color-button-success-color: #ffffff;
+@color-button-danger-color: #ffffff;
+@color-button-primary-color: #ffffff;
 
 // Switch 开关
 @color-switch-bg: rgba(@color-white, 0.25);
@@ -61,6 +67,11 @@
 @color-select-tag-border: rgba(@color-primary, 0.12);
 @color-select-tag-text: @color-primary;
 @color-select-option-text-active: @color-primary;
+@color-select-option-hover-bg: rgba(@color-white, 0.08);
+@color-select-tag-close-hover-bg: rgba(@color-white, 0.08);
+
+// NumberInput 数字输入框
+@color-number-input-handler-hover-bg: rgba(@color-white, 0.08);
 
 // Popover 弹窗
 @color-popover-title-border: rgba(@color-white, 0.1);
@@ -84,8 +95,15 @@
 // Tabs 标签页
 @color-tabs-arrow-shadow: rgba(@color-black, 0.15);
 
+// Modal 模态框
+@color-modal-mask-bg: rgba(@color-white, 0.45);
+
 // DateTimer 日期时间
 @color-date-timer-week-selected: rgba(@color-primary, 0.1);
+
+// Tooltip 提示框
+@color-tooltip-bg: @color-black;
+@color-tooltip-color: @color-white;
 
 // 通用阴影和边框
 @color-shadow-light: rgba(@color-black, 0.15);

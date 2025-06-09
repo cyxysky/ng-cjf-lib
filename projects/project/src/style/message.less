@@ -1,11 +1,3 @@
-.c-lib-message {
-    color: @message-color;
-    font-size: @message-font-size;
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
 .c-lib-message-item {
     padding: @message-item-padding;
     border-radius: @message-item-border-radius;
@@ -35,6 +27,7 @@
     font-size: @message-text-font-size;
     display: flex;
     align-items: center;
+    color: @message-color;
 }
 
 .c-lib-message-close-container {
@@ -43,6 +36,8 @@
 
     .c-lib-message-close {
         cursor: pointer;
+        color: @message-close-icon-color;
+
     }
 }
 
