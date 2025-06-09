@@ -1,136 +1,133 @@
-<lib-select-box 
-    #searchInput
-    cdkOverlayOrigin
-    #overlayOrigin="cdkOverlayOrigin"
-    [selectMode]="isMultiple ? 'multiple' : 'single'"
-    [loading]="loading"
-    [size]="size"
-    [borderless]="borderless"
-    [disabled]="disabled"
-    [placeholder]="placeholder"
-    [allowSearch]="showSearch"
-    [allowClear]="allowClear"
-    [status]="status"
-    [isActive]="isDropdownOpen"
-    [optionLabelTemplate]="optionLabelTemplate"
-    [getLabel]="getLabel"
-    [(searchValue)]="searchValue"
-    (click)="openDropdown()" 
-    [data]="getDisplayOptions()"
-    (clear)="clear()"
-    (remove)="removeItem($event)"
-    (search)="onSearch($event)"
-    (inputWidthChange)="updateOverlayPosition()"
-    >
+<lib-select-box
+  #searchInput
+  #overlayOrigin="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  [selectMode]="isMultiple ? 'multiple' : 'single'"
+  [loading]="loading"
+  [size]="size"
+  [borderless]="borderless"
+  [disabled]="disabled"
+  [placeholder]="placeholder"
+  [allowSearch]="showSearch"
+  [allowClear]="allowClear"
+  [status]="status"
+  [isActive]="isDropdownOpen"
+  [optionLabelTemplate]="optionLabelTemplate"
+  [getLabel]="getLabel"
+  [(searchValue)]="searchValue"
+  (click)="openDropdown()"
+  [data]="getDisplayOptions()"
+  (clear)="clear()"
+  (remove)="removeItem($event)"
+  (search)="onSearch($event)"
+  (inputWidthChange)="updateOverlayPosition()">
 </lib-select-box>
 <!-- 下拉菜单 -->
-<ng-template 
-    cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="overlayOrigin"
-    [cdkConnectedOverlayPush]="true"
-    [cdkConnectedOverlayPositions]="selectOverlayPosition"
-    [cdkConnectedOverlayGrowAfterOpen]="true"
-    [cdkConnectedOverlayHasBackdrop]="false"
-    [cdkConnectedOverlayWidth]="columns.length && menuWidth ? columns.length * menuWidth : menuWidth"
-    [cdkConnectedOverlayOpen]="isOverlayOpen"
-    (overlayOutsideClick)="closeDropdown()">
-    <div 
-        class="c-lib-cascader-dropdown"
-        [class.c-lib-cascader-dropdown-visible]="isDropdownOpen"
-        >
-        <!-- 搜索结果列表 -->
-        <div *ngIf="showSearch && searchValue" class="c-lib-cascader-search-result-list">
-            <div *ngIf="loading" class="c-lib-cascader-search-loading">
-                <div class="c-lib-cascader-loading-text">搜索中...</div>
-            </div>
-            <div *ngIf="!loading && filteredOptions.length === 0" class="c-lib-cascader-empty-options">
-                <div class="c-lib-cascader-empty-container">
-                    <div>
-                        <i class="bi-archive"></i>
-                    </div>
-                    <div class="c-lib-cascader-empty-text">暂无匹配数据</div>
-                </div>
-            </div>
-            <div *ngIf="!loading && filteredOptions.length > 0" class="c-lib-cascader-search-options">
-                <ng-container *ngFor="let option of filteredOptions; index as i" >
-                    <div 
-                        *ngIf="!isMultiple ? isLeaf(option) : true"
-                        class="c-lib-cascader-search-option"
-                        [class.c-lib-cascader-disabled]="option.disabled"
-                        [class.c-lib-cascader-selected]="option.checked"
-                        (click)="onSearchOptionClick(option)">
-                        <div class="c-lib-cascader-option-path">
-                            <ng-container *ngIf="optionLabelTemplate">
-                                <ng-container *ngTemplateOutlet="optionLabelTemplate; context: {$implicit: option, index: i, path: option.path}"></ng-container>
-                            </ng-container>
-                            <ng-container *ngIf="!optionLabelTemplate">
-                                {{ getOptionPath(option) }}
-                            </ng-container>
-                        </div>
-                    </div>
-                </ng-container>
-            </div>
-        </div>
-        <!-- 级联菜单 -->
-        <div *ngIf="!searchValue" class="c-lib-cascader-menus">
-            <!-- 级别菜单 -->
-            <ul 
-                *ngFor="let column of columns; index as i" 
-                class="c-lib-cascader-menu"
-                [style.min-width]="menuWidth + 'px'"
-                >
-                <ng-container *ngIf="column && column.length > 0; else emptyMenu">
-                    <!-- 当前级别菜单的选项 -->
-                    <li *ngFor="let option of column; index as j" 
-                        class="c-lib-cascader-menu-item" 
-                        [class.c-lib-cascader-menu-item-active]="isOptionActivated(option, i)"
-                        [class.c-lib-cascader-menu-item-disabled]="option.disabled"
-                        [class.c-lib-cascader-menu-item-selected]="isOptionTempSelected(option, i)"
-                        [class.c-lib-cascader-menu-item-loading]="option.loading"
-                        (click)="onOptionClick(option, i, $event)"
-                        (mouseenter)="onOptionMouseEnter(option, i)">
-                        <div class="c-lib-cascader-menu-item-content">
-                            <!-- 复选框 -->
-                            <ng-container *ngIf="isMultiple && checkable">
-                                <lib-checkbox 
-                                    *ngIf="checkable"
-                                    [ngModel]="option.checked"
-                                    [checkboxSingle]="true"
-                                    [checkboxIndeterminate]="option.halfChecked" 
-                                    [checkboxDisabled]="option.disabled || option.disableCheckbox"
-                                    [checkboxSingleLabel]="''"
-                                    (ngModelChange)="onCheckboxChange(option, i, $event)"
-                                    >
-                                </lib-checkbox>
-                            </ng-container>
-                            <!-- 标签 -->
-                            <span class="c-lib-cascader-menu-item-label">
-                                <ng-container *ngIf="optionTemplate">
-                                    <ng-container *ngTemplateOutlet="optionTemplate; context: {$implicit: option, index: j, level: i}"></ng-container>
-                                </ng-container>
-                                <ng-container *ngIf="!optionTemplate">
-                                    {{ option[labelProperty] }}
-                                </ng-container>
-                            </span>
-                            <!-- 加载图标 -->
-                            <span *ngIf="option.loading" class="c-lib-cascader-menu-item-loading-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16" class="c-lib-cascader-loading-svg">
-                                    <path d="M8 0a8 8 0 0 1 8 8h-2A6 6 0 0 0 8 2V0z" />
-                                </svg>
-                            </span>
-                            <!-- 子项指示器 -->
-                            <span *ngIf="hasChildren(option)" class="c-lib-cascader-menu-item-expand-icon">
-                                <i class="bi bi-chevron-right"></i>
-                            </span>
-                        </div>
-                    </li>
-                </ng-container>
-                <ng-template #emptyMenu>
-                    <li class="c-lib-cascader-menu-item-empty">
-                        <span>暂无数据</span>
-                    </li>
-                </ng-template>
-            </ul>
-        </div>
-    </div>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayPush]="true"
+  [cdkConnectedOverlayPositions]="selectOverlayPosition"
+  [cdkConnectedOverlayGrowAfterOpen]="true"
+  [cdkConnectedOverlayHasBackdrop]="false"
+  [cdkConnectedOverlayDisposeOnNavigation]="true"
+  [cdkConnectedOverlayWidth]="columns.length && menuWidth ? columns.length * menuWidth : menuWidth"
+  [cdkConnectedOverlayOpen]="isOverlayOpen"
+  (overlayOutsideClick)="closeDropdown($event)">
+	<div class="c-lib-cascader-dropdown" [class.c-lib-cascader-dropdown-visible]="isDropdownOpen">
+		<!-- 搜索结果列表 -->
+		<div *ngIf="showSearch && searchValue" class="c-lib-cascader-search-result-list">
+			<div *ngIf="loading" class="c-lib-cascader-search-loading">
+				<div class="c-lib-cascader-loading-text">搜索中...</div>
+			</div>
+			<div *ngIf="!loading && filteredOptions.length === 0" class="c-lib-cascader-empty-options">
+				<div class="c-lib-cascader-empty-container">
+					<div>
+						<i class="bi-archive"></i>
+					</div>
+					<div class="c-lib-cascader-empty-text">暂无匹配数据</div>
+				</div>
+			</div>
+			<div *ngIf="!loading && filteredOptions.length > 0" class="c-lib-cascader-search-options">
+				<ng-container *ngFor="let option of filteredOptions; index as i">
+					<div
+					  *ngIf="!isMultiple ? isLeaf(option) : true"
+					  class="c-lib-cascader-search-option"
+					  [class.c-lib-cascader-disabled]="option.disabled"
+					  [class.c-lib-cascader-selected]="option.checked"
+					  (click)="onSearchOptionClick(option)">
+						<div class="c-lib-cascader-option-path">
+							<ng-container *ngIf="optionLabelTemplate">
+								<ng-container *ngTemplateOutlet="optionLabelTemplate; context: {$implicit: option, index: i, path: option.path}"></ng-container>
+							</ng-container>
+							<ng-container *ngIf="!optionLabelTemplate">
+								{{ getOptionPath(option) }}
+							</ng-container>
+						</div>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+		<!-- 级联菜单 -->
+		<div *ngIf="!searchValue" class="c-lib-cascader-menus">
+			<!-- 级别菜单 -->
+			<ul
+			  *ngFor="let column of columns; index as i"
+			  class="c-lib-cascader-menu"
+			  [style.min-width]="menuWidth + 'px'">
+				<ng-container *ngIf="column && column.length > 0; else emptyMenu">
+					<!-- 当前级别菜单的选项 -->
+					<li
+					  *ngFor="let option of column; index as j"
+					  class="c-lib-cascader-menu-item"
+					  [class.c-lib-cascader-menu-item-active]="isOptionActivated(option, i)"
+					  [class.c-lib-cascader-menu-item-disabled]="option.disabled"
+					  [class.c-lib-cascader-menu-item-selected]="isOptionTempSelected(option, i)"
+					  [class.c-lib-cascader-menu-item-loading]="option.loading"
+					  (click)="onOptionClick(option, i, $event)"
+					  (mouseenter)="onOptionMouseEnter(option, i)">
+						<div class="c-lib-cascader-menu-item-content">
+							<!-- 复选框 -->
+							<ng-container *ngIf="isMultiple && checkable">
+								<lib-checkbox
+								  *ngIf="checkable"
+								  [ngModel]="option.checked"
+								  [checkboxSingle]="true"
+								  [checkboxIndeterminate]="option.halfChecked"
+								  [checkboxDisabled]="option.disabled || option.disableCheckbox"
+								  [checkboxSingleLabel]="''"
+								  (ngModelChange)="onCheckboxChange(option, i, $event)">
+								</lib-checkbox>
+							</ng-container>
+							<!-- 标签 -->
+							<span class="c-lib-cascader-menu-item-label">
+								<ng-container *ngIf="optionTemplate">
+									<ng-container *ngTemplateOutlet="optionTemplate; context: {$implicit: option, index: j, level: i}"></ng-container>
+								</ng-container>
+								<ng-container *ngIf="!optionTemplate">
+									{{ option[labelProperty] }}
+								</ng-container>
+							</span>
+							<!-- 加载图标 -->
+							<span *ngIf="option.loading" class="c-lib-cascader-menu-item-loading-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 16 16" class="c-lib-cascader-loading-svg">
+									<path d="M8 0a8 8 0 0 1 8 8h-2A6 6 0 0 0 8 2V0z" />
+								</svg>
+							</span>
+							<!-- 子项指示器 -->
+							<span *ngIf="hasChildren(option)"
+							  class="c-lib-cascader-menu-item-expand-icon">
+								<i class="bi bi-chevron-right"></i>
+							</span>
+						</div>
+					</li>
+				</ng-container>
+				<ng-template #emptyMenu>
+					<li class="c-lib-cascader-menu-item-empty">
+						<span>暂无数据</span>
+					</li>
+				</ng-template>
+			</ul>
+		</div>
+	</div>
 </ng-template>

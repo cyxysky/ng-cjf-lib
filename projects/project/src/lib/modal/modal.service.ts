@@ -44,6 +44,8 @@ export class ModalService {
       scrollStrategy: this.overlay.scrollStrategies.block(),
       hasBackdrop: false,
     });
+    const overlayElement = overlayRef.overlayElement;
+    overlayElement.style.zIndex = OverlayService.ModalZIndex;
     // 创建并附加模态框组件
     const modalPortal = new ComponentPortal(ModalComponent, null);
     const componentRef = overlayRef.attach(modalPortal);

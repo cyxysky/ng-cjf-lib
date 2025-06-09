@@ -30,7 +30,7 @@ export class InputComponent implements ControlValueAccessor {
   /** 后缀图标 */
   @Input({ alias: 'inputSuffixIcon' }) suffixIcon: string = '';
   /** 输入框提示 */
-  @Input({ alias: 'inputPlaceholder' }) placeholder: string = '';
+  @Input({ alias: 'inputPlaceholder' }) placeholder: string = '请输入';
   /** 输入框禁用 */
   @Input({ alias: 'inputDisabled', transform: booleanAttribute }) disabled: boolean = false;
   /** 输入框只读 */

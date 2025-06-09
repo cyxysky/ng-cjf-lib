@@ -34,6 +34,8 @@ export class DrawerService {
     });
     // 创建Overlay
     const overlayRef = this.overlay.create(overlayConfig);
+    const overlayElement = overlayRef.overlayElement;
+    overlayElement.style.zIndex = OverlayService.DrawerZIndex;
     // 创建Portal
     const portal = new ComponentPortal(DrawerComponent, null, this.injector, this.environmentInjector);
     // 附着Portal到Overlay

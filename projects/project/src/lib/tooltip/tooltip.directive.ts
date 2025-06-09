@@ -130,13 +130,16 @@ export class TooltipDirective implements OnInit, OnDestroy, OverlayBasicDirectiv
       },
       this.elementRef,
       positions,
-      (ref) => {
+      (ref, event) => {
+        event && event.stopPropagation();
         if (this.strictVisiable) return;
         this.utilsService.delayExecution(() => {
           this.hide();
         }, 10);
       }
     );
+    const overlayElement = this.overlayRef.overlayElement;
+    overlayElement.style.zIndex = OverlayService.TooltipZIndex;
     const componentRef = this.overlayRef.attach(new ComponentPortal(TooltipComponent));
     // 设置tooltip内容和位置
     componentRef.setInput('content', this.tooltipContent);

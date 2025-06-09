@@ -211,7 +211,10 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
    * 打开弹窗
    */
   public openDropdown(): void {
-    if (this.disabled || this.isDropdownOpen) return;
+    if (this.disabled || this.isDropdownOpen) {
+      this.focusSearch();
+      return;
+    }
     this.resetOptionList();
     this.initOptionsGroups();
     // 添加键盘事件监听
@@ -226,7 +229,8 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
   /**
    * 关闭弹窗
    */
-  public closeDropdown(): void {
+  public closeDropdown(event?: MouseEvent): void {
+    event && event.stopPropagation();
     this.changeDropdownVisiable(false);
     this.activeOptionIndex = -1;
     document.removeEventListener('keydown', this.onKeyboardNavigate);

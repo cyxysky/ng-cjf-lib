@@ -1,75 +1,73 @@
-<lib-select-box 
-    #searchInput
-    #overlayOrigin="cdkOverlayOrigin"
-    cdkOverlayOrigin
-    [selectMode]="multiple ? 'multiple' : 'single'"
-    [loading]="loading"
-    [size]="size"
-    [borderless]="borderless"
-    [disabled]="disabled"
-    [placeholder]="placeholder"
-    [status]="status"
-    [isActive]="isDropdownOpen"
-    [allowSearch]="showSearch"
-    [allowClear]="allowClear"
-    [optionLabelTemplate]="labelTemplate"
-    [getLabel]="getLabel"
-    [(searchValue)]="searchValue"
-    [data]="getDisplayOptions()"
-    (click)="openDropdown()" 
-    (clear)="clear()"
-    (remove)="removeItem($event[valueProperty])"
-    (search)="onSearch($event)"
-    (inputWidthChange)="updateOverlayPosition()"
-    >
+<lib-select-box
+  #searchInput
+  #overlayOrigin="cdkOverlayOrigin"
+  cdkOverlayOrigin
+  [selectMode]="multiple ? 'multiple' : 'single'"
+  [loading]="loading"
+  [size]="size"
+  [borderless]="borderless"
+  [disabled]="disabled"
+  [placeholder]="placeholder"
+  [status]="status"
+  [isActive]="isDropdownOpen"
+  [allowSearch]="showSearch"
+  [allowClear]="allowClear"
+  [optionLabelTemplate]="labelTemplate"
+  [getLabel]="getLabel"
+  [(searchValue)]="searchValue"
+  [data]="getDisplayOptions()"
+  (click)="openDropdown()"
+  (clear)="clear()"
+  (remove)="removeItem($event[valueProperty])"
+  (search)="onSearch($event)"
+  (inputWidthChange)="updateOverlayPosition()">
 </lib-select-box>
 <!-- 下拉菜单 -->
-<ng-template 
-    cdkConnectedOverlay
-    [cdkConnectedOverlayOrigin]="overlayOrigin"
-    [cdkConnectedOverlayPositions]="selectOverlayPosition"
-    [cdkConnectedOverlayPush]="true"
-    [cdkConnectedOverlayGrowAfterOpen]="true"
-    [cdkConnectedOverlayHasBackdrop]="false"
-    [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.getBoundingClientRect().width"
-    [cdkConnectedOverlayOpen]="isOverlayOpen"
-    (overlayOutsideClick)="closeDropdown()"
-    >
-    <div 
-        class="c-lib-tree-select-dropdown"
-        [class.c-lib-tree-select-dropdown-visible]="isDropdownOpen"
-        [style.min-width]="dropdownWidth"
-        >
-        <div class="c-lib-tree-select-container" [style.max-height.px]="dropdownHeight">
-            <!-- 树组件 -->
-            <lib-tree
-                [treeData]="treeData"
-                [treeSearchValue]="searchValue"
-                [treeOptionHeight]="treeOptionHeight"
-                [treeIndent]="treeIndent"
-                [treeCheckable]="treeCheckable"
-                [treeMultiple]="multiple"
-                [treeShowLine]="treeShowLine"
-                [treeShowIcon]="treeShowIcon"
-                [treeCustomFields]="customFields"
-                [treeAsyncData]="treeAsyncData"
-                [treeVirtualHeight]="dropdownHeight"
-                [treeIsVirtualScroll]="treeVirtualScroll"
-                [treeExpandedIcon]="expandedIcon"
-                [treeVirtualHeight]="dropdownHeight"
-                [treeVirtualItemSize]="treeVirtualItemSize"
-                [treeVirtualMinBuffer]="treeVirtualMinBuffer"
-                [treeVirtualMaxBuffer]="treeVirtualMaxBuffer"
-                [treeUseExpandAnimation]="treeUseExpandAnimation"
-                [treeDefaultExpandedKeys]="defaultExpandedKeys"
-                [treeDefaultSelectedKeys]="defaultSelectedKeys"
-                [treeDefaultCheckedKeys]="defaultCheckedKeys"
-                [treeTemplate]="treeNodeTemplate"
-                (treeSearchChange)="focusSearch()"
-                (treeSelectedChange)="onNodeSelect($event.node)"
-                (treeCheckBoxChange)="onCheckBoxChange($event)"
-                (treeLoadData)="onLoadData($event)">
-            </lib-tree>
-        </div>
-    </div>
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayPositions]="selectOverlayPosition"
+  [cdkConnectedOverlayPush]="true"
+  [cdkConnectedOverlayGrowAfterOpen]="true"
+  [cdkConnectedOverlayDisposeOnNavigation]="true"
+  [cdkConnectedOverlayHasBackdrop]="false"
+  [cdkConnectedOverlayWidth]="overlayOrigin.elementRef.nativeElement.getBoundingClientRect().width"
+  [cdkConnectedOverlayOpen]="isOverlayOpen"
+  (overlayOutsideClick)="closeDropdown($event)">
+	<div
+	  class="c-lib-tree-select-dropdown"
+	  [class.c-lib-tree-select-dropdown-visible]="isDropdownOpen"
+	  [style.min-width]="dropdownWidth">
+		<div class="c-lib-tree-select-container" [style.max-height.px]="dropdownHeight">
+			<!-- 树组件 -->
+			<lib-tree
+			  [treeData]="treeData"
+			  [treeSearchValue]="searchValue"
+			  [treeOptionHeight]="treeOptionHeight"
+			  [treeIndent]="treeIndent"
+			  [treeCheckable]="treeCheckable"
+			  [treeMultiple]="multiple"
+			  [treeShowLine]="treeShowLine"
+			  [treeShowIcon]="treeShowIcon"
+			  [treeCustomFields]="customFields"
+			  [treeAsyncData]="treeAsyncData"
+			  [treeVirtualHeight]="dropdownHeight"
+			  [treeIsVirtualScroll]="treeVirtualScroll"
+			  [treeExpandedIcon]="expandedIcon"
+			  [treeVirtualHeight]="dropdownHeight"
+			  [treeVirtualItemSize]="treeVirtualItemSize"
+			  [treeVirtualMinBuffer]="treeVirtualMinBuffer"
+			  [treeVirtualMaxBuffer]="treeVirtualMaxBuffer"
+			  [treeUseExpandAnimation]="treeUseExpandAnimation"
+			  [treeDefaultExpandedKeys]="defaultExpandedKeys"
+			  [treeDefaultSelectedKeys]="defaultSelectedKeys"
+			  [treeDefaultCheckedKeys]="defaultCheckedKeys"
+			  [treeTemplate]="treeNodeTemplate"
+			  (treeSearchChange)="focusSearch()"
+			  (treeSelectedChange)="onNodeSelect($event.node)"
+			  (treeCheckBoxChange)="onCheckBoxChange($event)"
+			  (treeLoadData)="onLoadData($event)">
+			</lib-tree>
+		</div>
+	</div>
 </ng-template>

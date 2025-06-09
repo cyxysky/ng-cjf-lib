@@ -3,6 +3,7 @@ import { ApplicationRef, ComponentRef, Injectable, Injector, NgZone, OnDestroy, 
 import { MessageComponent } from './message.component';
 import { Subject } from 'rxjs';
 import { UtilsService } from '../core/utils/utils.service';
+import { OverlayService } from '../core/overlay/overlay.service';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,6 @@ export class MessageService implements OnDestroy {
       this.messageContainerElement.style.flexDirection = 'column';
       this.messageContainerElement.style.alignItems = 'center';
       this.messageContainerElement.style.pointerEvents = 'none';
-      this.messageContainerElement.style.zIndex = '1010';
 
       // 使用OverlayService创建全局模态
       if (!this.overlayRef) {
@@ -80,6 +80,7 @@ export class MessageService implements OnDestroy {
         this.overlayRef = this.overlay.create(overlayConfig);
         const overlayElement = this.overlayRef.overlayElement;
         overlayElement.style.pointerEvents = 'none';
+        overlayElement.style.zIndex = OverlayService.MessageZIndex;
         overlayElement.style.backgroundColor = 'transparent';
         overlayElement.appendChild(this.messageContainerElement);
       }

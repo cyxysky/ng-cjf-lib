@@ -132,7 +132,9 @@ export class PopoverDirective implements OverlayBasicDirective {
       },
       this.elementRef,
       positions,
-      (ref) => {
+      (ref, event) => {
+        // 阻止事件冒泡
+        event && event.stopPropagation();
         if (this.strictVisiable) return;
         this.utilsService.delayExecution(() => {
           this.hide();
@@ -151,6 +153,8 @@ export class PopoverDirective implements OverlayBasicDirective {
         }
       }
     );
+    const overlayElement = this.overlayRef.overlayElement;
+    overlayElement.style.zIndex = OverlayService.PopoverZIndex;
     // 创建并附加组件
     const componentRef = this.overlayRef.attach(new ComponentPortal(PopoverComponent));
     componentRef.setInput('title', this.popoverTitle);

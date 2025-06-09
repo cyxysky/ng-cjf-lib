@@ -214,7 +214,10 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * 打开下拉菜单
    */
   public openDropdown(): void {
-    if (this.disabled || this.isDropdownOpen) return;
+    if (this.disabled || this.isDropdownOpen) {
+      this.focusSearch();
+      return;
+    }
     document.addEventListener('keydown', this.enhancedKeyboardHandler);
     // 重置临时选中路径为当前实际选中路径
     this.tempSelectedOptions = [...this.selectedOptions];
@@ -231,7 +234,8 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
   /**
    * 关闭下拉菜单
    */
-  public closeDropdown(): void {
+  public closeDropdown(event?: MouseEvent): void {
+    event && event.stopPropagation();
     if (!this.isDropdownOpen) return;
     this.changeDropdownVisiable(false);
     this.utilsService.delayExecution(() => {

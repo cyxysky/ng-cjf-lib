@@ -12,6 +12,14 @@ export class OverlayService {
     public overlay: Overlay,
   ) { }
 
+  /** index层级 */
+  public static ModalZIndex = '1000';
+  public static PopoverZIndex = '1010';
+  public static TooltipZIndex = '1020';
+  public static DropdownZIndex = '1030';
+  public static DrawerZIndex = '1040';
+  public static MessageZIndex = '1100';
+
   /** 浮层显示动画时间 */
   public static overlayVisiableDuration = 150;
   public static selectOverlayPosition: ConnectedPosition[] = [{

@@ -2,23 +2,56 @@ import { Component, ViewChild, TemplateRef, AfterViewInit, Input, EventEmitter, 
 import { CommonModule } from '@angular/common';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { ButtonComponent, ModalComponent, ModalService, InputComponent } from '@project';
+import { ButtonComponent, ModalComponent, ModalService, InputComponent, MessageService, SelectComponent } from '@project';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-modal-demo',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputComponent],
+  imports: [CommonModule, FormsModule, InputComponent, SelectComponent],
   template: `<div>
-    这是一个测试的内容
-    <lib-input [(ngModel)]="name" (ngModelChange)="nameChangeHandler($event)"></lib-input>
+    <div style="padding-bottom: 8px;">
+      检测触发情况
+    </div>
+    <div style="padding-bottom: 8px;">
+      <lib-input [(ngModel)]="name" (ngModelChange)="nameChangeHandler($event)"></lib-input>
+    </div>
+    <div style="padding-bottom: 8px;">
+      <lib-select [selectOption]="options" selectOptionKey="label" selectOptionValue="value" selectPlaceHolder="请选择"></lib-select>
+    </div>
   </div>`
 })
 export class ModalDemoComponent {
   @Input() name: string = '';
   @Output() nameChange = new EventEmitter<any>();
 
+  constructor(private msg: MessageService) { }
+
+  options = [
+    { label: '选项2', value: 2 },
+    { label: '选项3', value: 3 },
+    { label: '选项4', value: 4 },
+    { label: '选项5', value: 5 },
+    { label: '选项6', value: 6 }
+  ];
+
   nameChangeHandler(value: string): void {
+    this.msg.success('value change : ' + value);
     this.nameChange.emit({ value, type: 'nameChange' });
+  }
+
+  ngOnInit(): void {
+    this.msg.success('ModalDemoComponent ngOnInit');
+    console.log('ModalDemoComponent ngOnInit');
+  }
+
+  ngOnDestroy(): void {
+    this.msg.warning('ModalDemoComponent ngOnDestroy');
+    console.log('ModalDemoComponent ngOnDestroy');
+  }
+
+  ngOnChanges(changes: any): void {
+    this.msg.info('ModalDemoComponent ngOnChanges', changes);
+    console.log('ModalDemoComponent ngOnChanges', changes);
   }
 }
 
@@ -40,9 +73,9 @@ export class ModalDemoComponent {
 export class DocModalComponent implements AfterViewInit {
   // 视图模板引用 - 服务模式
   @ViewChild('serviceModalHeader') serviceModalHeader!: TemplateRef<any>;
-  @ViewChild('serviceModalBody') serviceModalBody!: TemplateRef<any>;  
+  @ViewChild('serviceModalBody') serviceModalBody!: TemplateRef<any>;
   @ViewChild('serviceModalFooter') serviceModalFooter!: TemplateRef<any>;
-  
+
   // 模态框可见性状态
   isBasicVisible: boolean = false;
   isSmallVisible: boolean = false;
@@ -50,19 +83,19 @@ export class DocModalComponent implements AfterViewInit {
   isCenteredVisible: boolean = false;
   isCustomFooterVisible: boolean = false;
   isAsyncVisible: boolean = false;
-  
+
   // 用于异步关闭的状态
   isLoading: boolean = false;
-  
+
   // 服务创建的模态框ID
   private serviceModalId: string = '';
-  
-  constructor(private modalService: ModalService) {}
-  
+
+  constructor(private modalService: ModalService) { }
+
   ngAfterViewInit(): void {
     // 视图初始化完成后模板引用才可用
   }
-  
+
   // 打开服务创建的模态框
   openServiceModal(): void {
     // 如果模板引用还未初始化，延迟执行
@@ -70,7 +103,7 @@ export class DocModalComponent implements AfterViewInit {
       setTimeout(() => this.openServiceModal(), 100);
       return;
     }
-    
+
     // 使用全局Overlay服务创建模态框
     this.serviceModalId = this.modalService.create({
       width: '500px',
@@ -107,29 +140,29 @@ export class DocModalComponent implements AfterViewInit {
       afterClose: () => console.log('Service modal closed')
     });
   }
-  
+
   // 关闭服务创建的模态框
   closeServiceModal(): void {
     if (this.serviceModalId) {
       this.modalService.closeModal(this.serviceModalId);
     }
   }
-  
+
   // 显示异步关闭模态框
   showAsyncModal(): void {
     this.isAsyncVisible = true;
   }
-  
+
   // 异步关闭的处理方法
   handleAsyncOk(): void {
     this.isLoading = true;
-    
+
     setTimeout(() => {
       this.isLoading = false;
       this.isAsyncVisible = false;
     }, 2000);
   }
-  
+
   // 异步取消方法
   handleAsyncCancel(): void {
     this.isAsyncVisible = false;
@@ -140,9 +173,9 @@ export class DocModalComponent implements AfterViewInit {
     {
       title: 'ModalComponent属性',
       items: [
-        { name: 'modalVisible', description: '对话框是否可见', type: 'boolean', default: 'false'},
-        { name: 'modalWidth', description: '对话框宽度', type: 'string | number', default: "'520px'"},
-        { name: 'modalHeight', description: '对话框高度', type: 'string | number', default: "'auto'"},
+        { name: 'modalVisible', description: '对话框是否可见', type: 'boolean', default: 'false' },
+        { name: 'modalWidth', description: '对话框宽度', type: 'string | number', default: "'520px'" },
+        { name: 'modalHeight', description: '对话框高度', type: 'string | number', default: "'auto'" },
         { name: 'modalZIndex', description: '设置对话框的 z-index', type: 'number', default: '1000' },
         { name: 'modalClosable', description: '是否显示右上角的关闭按钮', type: 'boolean', default: 'true' },
         { name: 'modalTop', description: '设置对话框距离顶部的距离', type: 'string', default: "'100px'" },

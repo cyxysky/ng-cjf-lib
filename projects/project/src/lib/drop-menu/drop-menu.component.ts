@@ -256,6 +256,8 @@ export class DropMenuComponent implements OnInit, OnChanges, OnDestroy, AfterVie
         }
       }
     );
+    const overlayElement = this.subMenuOverlayRef.overlayElement;
+    overlayElement.style.zIndex = OverlayService.DropdownZIndex;
     // 创建子菜单组件
     const componentRef = this.subMenuOverlayRef.attach(new ComponentPortal(DropMenuComponent));
     // 设置子菜单属性

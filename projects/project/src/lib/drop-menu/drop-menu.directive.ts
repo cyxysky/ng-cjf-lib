@@ -229,6 +229,8 @@ export class DropMenuDirective implements OverlayBasicDirective {
       positions,
       // 外部点击处理
       (ref, event) => {
+        // 阻止事件冒泡
+        event && event.stopPropagation();
         if (this.strictVisible) return;
         // 延迟关闭，给其他事件处理器有机会执行
         this.utilsService.delayExecution(() => {

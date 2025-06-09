@@ -224,8 +224,9 @@
             <h4 class="demo-subtitle">限制最大宽度</h4>
             <div class="width-control">
               <span class="control-label">最大宽度:</span>
-              <lib-number-input [(ngModel)]="maxWidth" class="width-input"></lib-number-input>
-              <span class="control-unit">px</span>
+              <lib-number-input [(ngModel)]="maxWidth" class="width-input">
+                <span suffix>px</span>
+              </lib-number-input>
             </div>
             <lib-segmented 
               [segmentedOptions]="basicOptions" 

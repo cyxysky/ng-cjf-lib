@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Overlay } from '@angular/cdk/overlay';
 import { TooltipDirective } from './tooltip.directive';
-import { OverlayService } from '../service/overlay.service';
+import { OverlayService } from '../core/overlay/overlay.service';
 
 // 测试宿主组件
 @Component({

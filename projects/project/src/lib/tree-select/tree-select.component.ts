@@ -182,7 +182,10 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
    * 打开下拉菜单
    */
   public openDropdown(): void {
-    if (this.disabled || this.isDropdownOpen) return;
+    if (this.disabled || this.isDropdownOpen) {
+      this.focusSearch();
+      return;
+    }
     this.initTreeKeys();
     this.isOverlayOpen = true;
     this.treeUseExpandAnimation = true;
@@ -195,7 +198,8 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
   /**
    * 关闭下拉菜单
    */
-  public closeDropdown(): void {
+  public closeDropdown(event?: MouseEvent): void {
+    event && event.stopPropagation();
     this.changeDropdownVisiable(false);
     this.utilsService.delayExecution(() => {
       this.resetSearch();
