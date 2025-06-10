@@ -1,6 +1,8 @@
 {
   "name": "ng-cjf-lib",
   "version": "0.0.4",
+  "publisher": "cjf",
+  "homepage": "https://14.103.149.7",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
