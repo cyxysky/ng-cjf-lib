@@ -185,4 +185,4 @@ exports.default = gulp.series(clean, buildCSS);
 
 // 构建并监听
 exports['build-css'] = gulp.series(clean, buildCSS);
-exports['build-css-watch'] = gulp.series(clean, buildCSS, watchFiles); 
+exports['build-css-watch'] = gulp.series(clean, buildCSS, watchFiles);

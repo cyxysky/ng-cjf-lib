@@ -7,7 +7,5 @@
       "src/style"
     ]
   },
-  "assets": [
-    "src/styles.less"
-  ]
+  "assets": []
 }
