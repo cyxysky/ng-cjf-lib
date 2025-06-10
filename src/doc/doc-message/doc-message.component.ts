@@ -43,17 +43,6 @@ export class DocMessageComponent {
         { name: 'data', description: '传递给模板的数据', type: 'any', default: 'null' },
         { name: 'closeable', description: '是否显示关闭按钮', type: 'boolean', default: 'true' }
       ]
-    },
-    {
-      title: '样式',
-      items: [
-        { name: 'lib-message', description: '消息根容器', type: 'class', default: '-' },
-        { name: 'lib-message-item', description: '消息项容器', type: 'class', default: '-' },
-        { name: 'lib-message-content', description: '消息内容区域', type: 'class', default: '-' },
-        { name: 'lib-message-icon', description: '消息图标', type: 'class', default: '-' },
-        { name: 'lib-message-text', description: '消息文本', type: 'class', default: '-' },
-        { name: 'lib-message-close', description: '关闭按钮', type: 'class', default: '-' }
-      ]
     }
   ];
 

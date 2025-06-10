@@ -218,21 +218,7 @@
       border-left: 4px solid #667eea;
     }
 
-    // 自定义节点样式
-    .custom-node {
-      display: flex;
-      align-items: center;
-      gap: 8px;
 
-      .custom-node-icon {
-        font-size: 16px;
-      }
-
-      .custom-node-title {
-        font-weight: 500;
-        color: #374151;
-      }
-    }
 
     // 自定义标签样式
     .custom-label {
@@ -294,8 +280,13 @@
           border-radius: 50%;
           flex-shrink: 0;
 
-          &.basic { background: #667eea; }
-          &.multiple { background: #3b82f6; }
+          &.basic {
+            background: #667eea;
+          }
+
+          &.multiple {
+            background: #3b82f6;
+          }
         }
 
         strong {
@@ -621,6 +612,7 @@
 
   @media (max-width: 480px) {
     [description] {
+
       .search-features .search-feature,
       .label-features .label-feature,
       .size-list .size-item {
@@ -629,5 +621,22 @@
         gap: 12px;
       }
     }
+  }
+}
+
+
+// 自定义节点样式
+.custom-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .custom-node-icon {
+    font-size: 16px;
+  }
+
+  .custom-node-title {
+    font-weight: 500;
+    color: #374151;
   }
 }

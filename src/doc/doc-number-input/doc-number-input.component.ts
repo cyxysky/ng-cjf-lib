@@ -124,9 +124,12 @@ export class NumberInputComponent {
   value: number | null = 100;
 }`;
 
+  prefixSuffixExample =
+    `[numberInputPrefix]="'¥'" [numberInputSuffix]="'元'"`
+
   // 精度
-  precisionSource = `
-import { Component } from '@angular/core';
+  precisionSource =
+    `import { Component } from '@angular/core';
 import { NumberInputComponent } from 'your-lib';
 
 @Component({
