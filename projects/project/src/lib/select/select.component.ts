@@ -230,7 +230,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
    * 关闭弹窗
    */
   public closeDropdown(event?: MouseEvent): void {
-    event && event.stopPropagation();
+    // event && event.stopPropagation();
     this.changeDropdownVisiable(false);
     this.activeOptionIndex = -1;
     document.removeEventListener('keydown', this.onKeyboardNavigate);

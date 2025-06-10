@@ -235,7 +235,7 @@ export class CascaderComponent implements OnInit, OnDestroy, ControlValueAccesso
    * 关闭下拉菜单
    */
   public closeDropdown(event?: MouseEvent): void {
-    event && event.stopPropagation();
+    // event && event.stopPropagation();
     if (!this.isDropdownOpen) return;
     this.changeDropdownVisiable(false);
     this.utilsService.delayExecution(() => {

@@ -131,7 +131,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OverlayBasicDirectiv
       this.elementRef,
       positions,
       (ref, event) => {
-        event && event.stopPropagation();
+        // event && event.stopPropagation();
         if (this.strictVisiable) return;
         this.utilsService.delayExecution(() => {
           this.hide();

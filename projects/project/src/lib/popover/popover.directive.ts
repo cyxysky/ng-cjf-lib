@@ -134,7 +134,7 @@ export class PopoverDirective implements OverlayBasicDirective {
       positions,
       (ref, event) => {
         // 阻止事件冒泡
-        event && event.stopPropagation();
+        // event && event.stopPropagation();
         if (this.strictVisiable) return;
         this.utilsService.delayExecution(() => {
           this.hide();

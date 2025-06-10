@@ -8,7 +8,7 @@ import { DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
 
 @Component({
   selector: 'app-doc-structure-tree',
-  imports: [StructureTreeComponent, CommonModule, FormsModule, SegmentedComponent, DocBoxComponent, DocApiTableComponent],
+  imports: [StructureTreeComponent, CommonModule, FormsModule, SegmentedComponent, DocBoxComponent],
   templateUrl: './doc-structure-tree.component.html',
   styleUrl: './doc-structure-tree.component.less'
 })

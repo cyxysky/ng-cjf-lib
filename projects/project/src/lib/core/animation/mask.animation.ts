@@ -7,6 +7,6 @@ export const maskAnimation = trigger('maskAnimation', [
     state('visible', style({
         opacity: 1,
     })),
-    transition('void => visible', animate('150ms cubic-bezier(0, 0, 0.2, 1)')),
-    transition('visible => void', animate('150ms cubic-bezier(0.4, 0, 0.2, 1)'))
+    transition('void => visible', animate('150ms')),
+    transition('visible => void', animate('150ms'))
 ])

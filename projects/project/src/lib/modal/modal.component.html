@@ -1,10 +1,10 @@
 <div class="c-lib-modal-container" *ngIf="isVisible" (click)="maskClick()">
   <div class="c-lib-modal-mask" [@maskAnimation]="this.visible ? 'visible' : 'void'"></div>
-  <div 
+  <div
     #modalContent
     class="c-lib-modal-content"
-    [style.width]="getString(width)"
-    [style.height]="getString(height)"
+    [style.width]="width | toPx"
+    [style.height]="height | toPx"
     [style.zIndex]="zIndex"
     [style.marginTop]="centered ? 'auto' : top"
     [style.marginBottom]="centered ? 'auto' : ''"
@@ -14,7 +14,7 @@
     (@modalAnimation.done)="animationDone($event)"
     (click)="$event.stopPropagation()">
 
-    
+
     <div #modalHeader class="c-lib-modal-header" [class.c-lib-modal-draggable]="drag" (mousedown)="onDragStart($event)">
       <!-- 优先使用headerContent，其次使用投影内容 -->
       <!-- 模板内容 -->
@@ -27,7 +27,7 @@
         <i class="bi-x-lg"></i>
       </div>
     </div>
-    
+
     <div #modalBody class="c-lib-modal-body">
       <!-- 优先使用bodyContent，其次使用投影内容 -->
       <!-- 模板内容 -->
@@ -41,7 +41,7 @@
       <!-- 投影内容 -->
       <ng-content *ngIf="!bodyContent" select="[modalBody], modalBody"></ng-content>
     </div>
-    
+
     <div class="c-lib-modal-footer">
       <!-- 优先使用footerContent，其次使用投影内容 -->
       <!-- 模板内容 -->

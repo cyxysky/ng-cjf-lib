@@ -199,7 +199,7 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
    * 关闭下拉菜单
    */
   public closeDropdown(event?: MouseEvent): void {
-    event && event.stopPropagation();
+    // event && event.stopPropagation();
     this.changeDropdownVisiable(false);
     this.utilsService.delayExecution(() => {
       this.resetSearch();

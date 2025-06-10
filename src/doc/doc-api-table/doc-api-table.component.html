@@ -4,7 +4,8 @@
     <div class="search-header">
       <h2 class="section-title">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          <path
+            d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
         </svg>
         <span>API 文档</span>
       </h2>
@@ -17,31 +18,31 @@
   <!-- API 表格区域 -->
   <div class="api-sections">
     @for (section of filteredApiData; track section.title) {
-      <div class="api-section-card" [@fadeInAnimation]>
-        <!-- 区域头部 -->
-        <div class="section-header">
-          <div class="section-info">
-            <h3 class="section-title">
-              <span class="section-icon" [class]="getSectionIcon(section.type)">
-                {{ getSectionEmoji(section.type) }}
-              </span>
-              {{ section.title }}
-              <span class="section-type" *ngIf="section.type">{{ section.type }}</span>
-            </h3>
-            <p class="section-description" *ngIf="section.description">
-              {{ section.description }}
-            </p>
-          </div>
-          <div class="section-meta">
-            <span class="item-count">{{ section.items.length || 0 }} 项</span>
-          </div>
+    <div class="api-section-card" [@fadeInAnimation]>
+      <!-- 区域头部 -->
+      <div class="section-header">
+        <div class="section-info">
+          <h3 class="section-title">
+            <span class="section-icon" [class]="getSectionIcon(section.type)">
+              {{ getSectionEmoji(section.type) }}
+            </span>
+            {{ section.title }}
+            <span class="section-type" *ngIf="section.type">{{ section.type }}</span>
+          </h3>
+          <p class="section-description" *ngIf="section.description">
+            {{ section.description }}
+          </p>
         </div>
+        <div class="section-meta">
+          <span class="item-count">{{ section.items.length || 0 }} 项</span>
+        </div>
+      </div>
 
-        <!-- 表格内容 -->
-        <div class="table-container" *ngIf="section.items?.length">
-          <div class="table-wrapper">
-            <table class="modern-api-table">
-              <!-- <thead>
+      <!-- 表格内容 -->
+      <div class="table-container" *ngIf="section.items?.length">
+        <div class="table-wrapper">
+          <table class="modern-api-table">
+            <!-- <thead>
                 <tr>
                   <th class="col-name">
                     <div class="th-content">
@@ -68,54 +69,55 @@
                   </th>
                 </tr>
               </thead> -->
-              <tbody>
-                @for (item of section.items; track item.name; let i = $index) {
-                  <tr class="table-row" [class.highlighted]="isHighlighted(item)">
-                    <td class="col-name">
-                      <div class="name-cell">
-                        <code class="api-name">{{ item.name }}</code>
-                        <span class="required-badge" *ngIf="item.required">必需</span>
-                      </div>
-                    </td>
-                    <td class="col-description">
-                      <div class="description-cell">
-                        <p [innerHTML]="item.description"></p>
-                      </div>
-                    </td>
-                    <td class="col-type">
-                      <div class="type-cell">
-                        <code class="type-badge" [class]="getTypeClass(item.type)">
+            <tbody>
+              @for (item of section.items; track item.name; let i = $index) {
+              <tr class="table-row" [class.highlighted]="isHighlighted(item)">
+                <td class="col-name" [width]="'25%'">
+                  <div class="name-cell">
+                    <code class="api-name">{{ item.name }}</code>
+                    <span class="required-badge" *ngIf="item.required">必需</span>
+                  </div>
+                </td>
+                <td class="col-description" [width]="'25%'">
+                  <div class="description-cell">
+                    <p [innerHTML]="item.description"></p>
+                  </div>
+                </td>
+                <td class="col-type" [width]="'25%'">
+                  <div class="type-cell">
+                    <code class="type-badge" [class]="getTypeClass(item.type)">
                           {{ item.type }}
                         </code>
-                      </div>
-                    </td>
-                    <td class="col-default">
-                      <div class="default-cell">
-                        <code class="default-value" *ngIf="item.default; else emptyDefault">
+                  </div>
+                </td>
+                <td class="col-default" [width]="'25%'">
+                  <div class="default-cell">
+                    <code class="default-value" *ngIf="item.default; else emptyDefault">
                           {{ item.default }}
                         </code>
-                        <ng-template #emptyDefault>
-                          <span class="empty-value">-</span>
-                        </ng-template>
-                      </div>
-                    </td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 空状态 -->
-        <div class="empty-state" *ngIf="!section.items?.length">
-          <div class="empty-content">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 0 .624l-3.7 4.625A1.5 1.5 0 0 1 11.02 14H4.98a1.5 1.5 0 0 1-1.17-.563L.11 8.812a.5.5 0 0 1 0-.624l3.7-4.625z"/>
-            </svg>
-            <p>暂无 API 数据</p>
-          </div>
+                    <ng-template #emptyDefault>
+                      <span class="empty-value">-</span>
+                    </ng-template>
+                  </div>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" *ngIf="!section.items?.length">
+        <div class="empty-content">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
+            <path
+              d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4H4.98zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 0 .624l-3.7 4.625A1.5 1.5 0 0 1 11.02 14H4.98a1.5 1.5 0 0 1-1.17-.563L.11 8.812a.5.5 0 0 1 0-.624l3.7-4.625z" />
+          </svg>
+          <p>暂无 API 数据</p>
+        </div>
+      </div>
+    </div>
     }
   </div>
 
@@ -123,7 +125,8 @@
   <div class="no-results" *ngIf="searchTerm && !filteredApiData.length">
     <div class="no-results-content">
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        <path
+          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
       </svg>
       <h3>未找到相关 API</h3>
       <p>尝试调整搜索关键词或清除筛选条件</p>

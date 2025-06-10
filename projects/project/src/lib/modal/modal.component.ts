@@ -3,11 +3,11 @@ import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { maskAnimation, modalAnimation } from '../core/animation';
 import { UtilsService } from '../core/utils/utils.service';
 import { OverlayService } from '../core/overlay/overlay.service';
-
+import { ToPxPipe } from '../core/pipe/toPx.pipe';
 @Component({
   selector: 'lib-modal',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ToPxPipe],
   templateUrl: './modal.component.html',
   animations: [
     modalAnimation, maskAnimation
@@ -169,15 +169,6 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
       this.afterOpen.emit();
     }
     this.cdr.detectChanges();
-  }
-
-  /**
-   * 获取字符串
-   * @param value 值
-   * @returns 字符串
-   */
-  getString(value: any): string {
-    return this.utilsService.getString(value);
   }
 
   /**
