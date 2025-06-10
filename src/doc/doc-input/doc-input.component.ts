@@ -69,7 +69,7 @@ export class DocInputComponent {
         { name: 'inputMaxlength', description: '最大字符数', type: 'number | null', default: 'null' },
         { name: 'inputMinlength', description: '最小字符数', type: 'number | null', default: 'null' },
         { name: 'inputType', description: '输入框类型', type: 'string', default: "'text'" },
-        { name: 'inputStatus', description: '输入框状态', type: "'error' | 'warning' | ''", default: "''" },
+        { name: 'inputStatus', description: '输入框状态', type: "'error' | 'warning' | 'default'", default: "'default'" },
         { name: 'inputBordered', description: '是否有边框', type: 'boolean', default: 'true' },
         { name: 'inputShowCount', description: '是否显示字数统计', type: 'boolean', default: 'false' },
         { name: 'inputAutofocus', description: '是否自动获取焦点', type: 'boolean', default: 'false' },

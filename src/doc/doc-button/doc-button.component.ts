@@ -20,7 +20,7 @@ export class DocButtonComponent {
         {
           name: 'buttonColor',
           description: '按钮颜色主题，支持多种语义化颜色',
-          type: "'primary' | 'success' | 'warning' | 'danger' | 'tertiary' | 'light' | 'dark' | 'medium' | 'ghost'",
+          type: "'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'tertiary' | 'light' | 'dark' | 'medium' | 'ghost'",
           default: "'primary'"
         },
         {
