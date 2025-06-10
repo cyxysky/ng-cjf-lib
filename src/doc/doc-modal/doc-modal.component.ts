@@ -187,7 +187,7 @@ export class DocModalComponent implements AfterViewInit {
         { name: 'modalComponentContent', description: '对话框组件内容', type: 'Type<any>', default: 'null' },
         { name: 'modalComponentInputs', description: '对话框组件输入属性', type: 'any', default: 'null' },
         { name: 'modalComponentOutputs', description: '对话框组件输出事件', type: 'any', default: 'null' },
-        { name: 'modalContentContext', description: '对话框内容上下文', type: 'any', default: 'null' },
+        { name: 'modalContentContext', description: '对话框内容上下文, 使用于headerContent、bodyContent、footerContent模板中', type: 'any', default: 'null' },
         { name: 'modalDrag', description: '是否允许拖拽对话框', type: 'boolean', default: 'false' }
       ]
     },

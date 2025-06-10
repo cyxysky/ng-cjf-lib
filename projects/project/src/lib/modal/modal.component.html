@@ -19,7 +19,7 @@
       <!-- 优先使用headerContent，其次使用投影内容 -->
       <!-- 模板内容 -->
       <ng-container *ngIf="headerContent">
-        <ng-container *ngTemplateOutlet="headerContent; context: contentContext || {}"></ng-container>
+        <ng-container *ngTemplateOutlet="headerContent; context: { $implicit: contentContext || {} }"></ng-container>
       </ng-container>
       <!-- 投影内容 -->
       <ng-content *ngIf="!headerContent" select="[modalHeader], modalHeader"></ng-content>
@@ -32,7 +32,7 @@
       <!-- 优先使用bodyContent，其次使用投影内容 -->
       <!-- 模板内容 -->
       <ng-container *ngIf="bodyContent">
-        <ng-container *ngTemplateOutlet="bodyContent; context: contentContext || {}"></ng-container>
+        <ng-container *ngTemplateOutlet="bodyContent; context: { $implicit: contentContext || {} }"></ng-container>
       </ng-container>
       <!-- 组件内容 -->
       <ng-container *ngIf="componentContent">
@@ -42,11 +42,11 @@
       <ng-content *ngIf="!bodyContent" select="[modalBody], modalBody"></ng-content>
     </div>
 
-    <div class="c-lib-modal-footer">
+    <div #modalFooter class="c-lib-modal-footer">
       <!-- 优先使用footerContent，其次使用投影内容 -->
       <!-- 模板内容 -->
       <ng-container *ngIf="footerContent">
-        <ng-container *ngTemplateOutlet="footerContent; context: contentContext || {}"></ng-container>
+        <ng-container *ngTemplateOutlet="footerContent; context: { $implicit: contentContext || {} }"></ng-container>
       </ng-container>
       <!-- 投影内容 -->
       <ng-content *ngIf="!footerContent" select="[modalFooter], modalFooter"></ng-content>
