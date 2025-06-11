@@ -33,6 +33,8 @@ import { DocMenuComponent } from '../doc/doc-menu/doc-menu.component';
 import { DocTableComponent } from '../doc/doc-table/doc-table.component';
 import { DocChartComponent } from '../doc/doc-chart/doc-chart.component';
 import { DocStartComponent } from '../doc/doc-start/doc-start.component';
+import { UnlockComponent } from './unlock/unlock.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -41,143 +43,182 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'unlock',
+        component: UnlockComponent
+    },
+    {
         path: 'start',
-        component: DocStartComponent
+        component: DocStartComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'popconfirm',
-        component: DocPopconfirmComponent
+        component: DocPopconfirmComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'popover',
-        component: DocPopoverComponent
+        component: DocPopoverComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'button',
-        component: DocButtonComponent
+        component: DocButtonComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'switch',
-        component: DocSwitchComponent
+        component: DocSwitchComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'tag',
-        component: DocTagComponent
+        component: DocTagComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'number-input',
-        component: DocNumberInputComponent
+        component: DocNumberInputComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'segmented',
-        component: DocSegmentedComponent
+        component: DocSegmentedComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'water-mark',
-        component: DocWaterMarkComponent
+        component: DocWaterMarkComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'flowchart',
-        component: DocFlowchartComponent
+        component: DocFlowchartComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'input',
-        component: DocInputComponent
+        component: DocInputComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'tooltip',
-        component: DocTooltipComponent
+        component: DocTooltipComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'checkbox',
-        component: DocCheckboxComponent
+        component: DocCheckboxComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'radio',
-        component: DocRadioComponent
+        component: DocRadioComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'slider',
-        component: DocSliderComponent
+        component: DocSliderComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'modal',
-        component: DocModalComponent
+        component: DocModalComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'tabs',
-        component: DocTabsComponent
+        component: DocTabsComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'date-timer',
-        component: DocDateTimerComponent
+        component: DocDateTimerComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'message',
-        component: DocMessageComponent
+        component: DocMessageComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'drawer',
-        component: DocDrawerComponent
+        component: DocDrawerComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'drop-menu',
-        component: DocDropMenuComponent
+        component: DocDropMenuComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'tree',
-        component: DocTreeComponent
+        component: DocTreeComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'tree-select',
-        component: DocTreeSelectComponent
+        component: DocTreeSelectComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'cascader',
-        component: DocCascaderComponent
+        component: DocCascaderComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'structure-tree',
-        component: DocStructureTreeComponent
+        component: DocStructureTreeComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'select',
-        component: DocSelectComponent
+        component: DocSelectComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'multi-dimensional-flowchart',
-        component: DocFlowchartComponent
+        component: DocFlowchartComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'customer-form',
-        component: CustomerFormComponent
+        component: CustomerFormComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'process-tree',
-        component: ProcessTreeComponent
+        component: ProcessTreeComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'generate-png',
-        component: GeneratePngComponent
+        component: GeneratePngComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'dynamic-table',
-        component: DynamicTableComponent
+        component: DynamicTableComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'user-select',
-        component: UserSelectComponent
+        component: UserSelectComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'menu',
-        component: DocMenuComponent
+        component: DocMenuComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'table',
-        component: DocTableComponent
+        component: DocTableComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'chart',
-        component: DocChartComponent
+        component: DocChartComponent,
+        canActivate: [authGuard]
     }
 ];

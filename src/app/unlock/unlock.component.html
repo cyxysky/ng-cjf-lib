@@ -1,0 +1,61 @@
+<div class="unlock-container">
+  <div class="unlock-backdrop">
+    <!-- 背景动画粒子 -->
+    <div class="particles">
+      <div class="particle" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+    </div>
+  </div>
+  
+  <div class="unlock-content">
+    <!-- Logo区域 -->
+    <div class="unlock-header">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <i class="fas fa-lock"></i>
+        </div>
+        <h1 class="logo-text">ng-cjf-lib</h1>
+      </div>
+      <p class="unlock-subtitle">现代化组件库需要验证访问权限</p>
+    </div>
+
+    <!-- 解锁表单 -->
+    <div class="unlock-form" [class.shake]="isShaking()">
+      <div class="form-group">
+        <div class="input-container">
+          <input 
+            [type]="showPassword() ? 'text' : 'password'"
+            [(ngModel)]="password"
+            (keypress)="onKeyPress($event)"
+            placeholder="请输入访问密码"
+            class="password-input"
+            autocomplete="off">
+          <button 
+            type="button" 
+            class="toggle-password-btn"
+            (click)="togglePasswordVisibility()">
+            <i class="fas" 
+               [class.fa-eye]="!showPassword()" 
+               [class.fa-eye-slash]="showPassword()"></i>
+          </button>
+        </div>
+      </div>
+      
+      <button 
+        type="button" 
+        class="unlock-btn"
+        (click)="unlock()"
+        [disabled]="!password()">
+        <span class="btn-text">解锁访问</span>
+        <i class="fas fa-arrow-right btn-icon"></i>
+      </button>
+    </div>
+
+    <!-- 提示信息 -->
+    <div class="unlock-footer">
+      <p class="hint-text">
+        <i class="fas fa-info-circle"></i>
+        请联系管理员获取访问密码
+      </p>
+    </div>
+  </div>
+</div> 

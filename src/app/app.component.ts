@@ -67,6 +67,9 @@ export class AppComponent {
   ]
 
   constructor(private router: Router) {
+    // 检查解锁状态，如果未解锁直接跳转到解锁页面
+    this.checkUnlockStatus();
+    
     // 初始化菜单数据
     this.initMenuItems();
     this.router.events.subscribe(event => {
@@ -74,6 +77,18 @@ export class AppComponent {
         this.nowComponent.set(event.url.split('/').pop() || 'button');
       }
     });
+  }
+
+  /**
+   * 检查解锁状态
+   */
+  private checkUnlockStatus(): void {
+    const UNLOCK_KEY = 'app_unlocked';
+    const isUnlocked = sessionStorage.getItem(UNLOCK_KEY) === 'true';
+    
+    if (!isUnlocked) {
+      this.router.navigate(['/unlock']);
+    }
   }
 
   /**
