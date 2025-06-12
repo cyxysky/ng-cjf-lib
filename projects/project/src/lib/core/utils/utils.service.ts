@@ -211,12 +211,11 @@ export class UtilsService {
     } = options;
     // 创建SVG元素
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('width', '100%');
-    svg.setAttribute('height', '100%');
     svg.style.position = 'absolute';
     svg.style.top = `${top}px`;
     svg.style.left = `${left}px`;
     svg.style.overflow = 'visible';
+    svg.style.pointerEvents = 'none';
     // 创建路径
     const svgPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     svgPath.setAttribute('fill', 'none');

@@ -80,10 +80,6 @@ export class StructureTreeComponent implements OnInit {
     this.asyncUpdateLineWidthMap();
   }
 
-  ngAfterViewChecked() {
-    this.initNodeLineWidthMap();
-  }
-
   ngAfterViewInit() {
     this.asyncUpdateLineWidthMap();
   }
@@ -201,7 +197,11 @@ export class StructureTreeComponent implements OnInit {
       let width = Math.round(Math.abs(parentBottomPoint.x - topPoint.getBoundingClientRect().x));
       let height = Math.round(Math.abs(parentBottomPoint.y - topPoint.getBoundingClientRect().y));
       if (width !== this.lineMap.get(node[this.nodeKey])?.width && height !== this.lineMap.get(node[this.nodeKey])?.height) {
-        let svg = this.createLine(height / this.scaleSize, width / this.scaleSize, parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R');
+        let svg = this.createLine(
+          height / this.scaleSize,  // 高度
+          width / this.scaleSize,  // 宽度
+          parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R' // 方向
+        );
         this.lineMap.set(node[this.nodeKey], {
           direction: parentBottomPoint.x - topPoint.getBoundingClientRect().x < 0 ? 'L' : 'R',
           width,
@@ -238,9 +238,8 @@ export class StructureTreeComponent implements OnInit {
       color: this.lineColor,
       width: 2,
       radius: 10,
-      direction,
       path,
-      left: 1.5
+      left: 3,
     })
     return this.sanitizer.bypassSecurityTrustHtml(svg.outerHTML);;
   }

@@ -1,9 +1,9 @@
 .c-lib-tag {
     display: inline-block;
-    padding: 2px 7px;
-    font-size: 12px;
+    padding: @tag-padding;
+    font-size: @tag-font-size;
     white-space: nowrap;
-    border-radius: 2px;
+    border-radius: @tag-border-radius;
     border: 1px solid transparent;
     cursor: default;
     transition: all @transition-duration-fast;
@@ -22,9 +22,9 @@
 
     .c-lib-tag-close-icon {
         display: inline-block;
-        margin-left: 3px;
+        margin-left: @tag-close-icon-margin-left;
         color: inherit;
-        font-size: 10px;
+        font-size: @tag-close-icon-font-size;
         cursor: pointer;
     }
 }
