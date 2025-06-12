@@ -17,7 +17,7 @@ export class AppComponent {
   title = 'ng-cjf-lib';
 
   /** 当前组件 */
-  nowComponent = signal('button');
+  nowComponent = signal('');
 
   /** 菜单折叠状态 */
   menuCollapsed = signal(false);
@@ -68,13 +68,13 @@ export class AppComponent {
 
   constructor(private router: Router) {
     // 检查解锁状态，如果未解锁直接跳转到解锁页面
-    this.checkUnlockStatus();
+    // this.checkUnlockStatus();
     
     // 初始化菜单数据
     this.initMenuItems();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.nowComponent.set(event.url.split('/').pop() || 'button');
+        this.nowComponent.set(event.url.split('/').pop() || '');
       }
     });
   }

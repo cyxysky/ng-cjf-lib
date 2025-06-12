@@ -34,7 +34,6 @@ import { DocTableComponent } from '../doc/doc-table/doc-table.component';
 import { DocChartComponent } from '../doc/doc-chart/doc-chart.component';
 import { DocStartComponent } from '../doc/doc-start/doc-start.component';
 import { UnlockComponent } from './unlock/unlock.component';
-import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -49,176 +48,141 @@ export const routes: Routes = [
     {
         path: 'start',
         component: DocStartComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'popconfirm',
         component: DocPopconfirmComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'popover',
         component: DocPopoverComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'button',
         component: DocButtonComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'switch',
         component: DocSwitchComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'tag',
         component: DocTagComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'number-input',
         component: DocNumberInputComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'segmented',
         component: DocSegmentedComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'water-mark',
         component: DocWaterMarkComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'flowchart',
         component: DocFlowchartComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'input',
         component: DocInputComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'tooltip',
         component: DocTooltipComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'checkbox',
         component: DocCheckboxComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'radio',
         component: DocRadioComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'slider',
         component: DocSliderComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'modal',
         component: DocModalComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'tabs',
         component: DocTabsComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'date-timer',
         component: DocDateTimerComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'message',
         component: DocMessageComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'drawer',
         component: DocDrawerComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'drop-menu',
         component: DocDropMenuComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'tree',
         component: DocTreeComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'tree-select',
         component: DocTreeSelectComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'cascader',
         component: DocCascaderComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'structure-tree',
         component: DocStructureTreeComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'select',
         component: DocSelectComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'multi-dimensional-flowchart',
         component: DocFlowchartComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'customer-form',
         component: CustomerFormComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'process-tree',
         component: ProcessTreeComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'generate-png',
         component: GeneratePngComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'dynamic-table',
         component: DynamicTableComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'user-select',
         component: UserSelectComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'menu',
         component: DocMenuComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'table',
         component: DocTableComponent,
-        canActivate: [authGuard]
     },
     {
         path: 'chart',
         component: DocChartComponent,
-        canActivate: [authGuard]
     }
 ];
