@@ -1,0 +1,137 @@
+<div class="modern-doc-container">
+	<!-- 页面头部 -->
+	<div class="doc-header">
+		<div class="header-content">
+			<div class="title-section">
+				<h1 class="main-title">
+					<span class="component-icon">📜</span>
+					<span class="title-text">Virtual Scroll</span>
+					<span class="title-subtitle">可变高度的虚拟滚动（尚未组件化）</span>
+				</h1>
+				<p class="main-description">
+					只渲染可视区域内的元素，大幅提升大数据列表的渲染性能和用户体验。通过动态计算和精确定位，实现流畅的滚动体验。
+				</p>
+			</div>
+
+			<div class="usage-section">
+				<div class="usage-card">
+					<h3 class="usage-title">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+							<path
+								d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+						</svg>
+						适用场景
+					</h3>
+					<ul class="usage-list">
+						<li>大数据量列表展示（1000+项目）</li>
+						<li>高频数据更新的实时列表</li>
+						<li>移动端长列表优化</li>
+						<li>需要保持滚动性能的复杂列表</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 演示区域 -->
+	<div class="demo-section">
+		<div class="section-header">
+			<h2 class="section-title">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+					<path
+						d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .264 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.812 8l2.923-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874z" />
+				</svg>
+				<span>虚拟滚动演示</span>
+			</h2>
+			<p class="section-description">体验流畅的大数据滚动效果，支持 1000+ 项目的高性能渲染</p>
+		</div>
+
+		<!-- 虚拟滚动演示容器 -->
+		<div class="virtual-scroll-demo">
+			<div class="demo-header">
+				<div class="demo-info">
+					<div class="info-item">
+						<span class="info-label">总项目数:</span>
+						<span class="info-value">{{ totalSize }}</span>
+					</div>
+					<div class="info-item">
+						<span class="info-label">当前渲染:</span>
+						<span class="info-value">{{ startIndex }} - {{ endIndex }}</span>
+					</div>
+					<div class="info-item">
+						<span class="info-label">渲染数量:</span>
+						<span class="info-value">{{ endIndex - startIndex }}</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="virtual-scroll-container"
+				#scrollContainer
+				(scroll)="onScroll($event)"
+				[style.height.px]="500">
+
+				<!-- 总高度占位元素，用于生成正确的滚动条 -->
+				<div class="virtual-scroll-spacer" [style.height.px]="totalHeight"></div>
+
+				<!-- 内容容器，使用transform定位 -->
+				<div class="virtual-scroll-content" [style.transform]="'translateY(' + offsetY + 'px)'">
+
+					<div *ngFor="let item of getVisibleItems(); trackBy: trackByIndex"
+						class="virtual-item"
+						[ngStyle]="getItemStyle(item.index)"
+						virtual
+						[subject]="$height"
+						[virtualIndex]="item.index">
+						<div class="item-content">
+							<div class="item-avatar">
+								<span class="avatar-text">{{ item.data }}</span>
+							</div>
+							<div class="item-details">
+								<div class="item-title">项目 {{ item.data }}</div>
+								<div class="item-meta">
+									索引: <span class="highlight">{{ item.index }}</span> •
+									高度: <span class="highlight">{{ getItemHeight(item.data) }}px</span>
+								</div>
+							</div>
+							<div class="item-actions">
+								<button class="action-btn">
+									<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+										<path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- 特性说明 -->
+		<div class="features-section">
+			<h3 class="features-title">✨ 核心特性</h3>
+			<div class="features-grid">
+				<div class="feature-card">
+					<div class="feature-icon">⚡</div>
+					<h4>高性能渲染</h4>
+					<p>只渲染可视区域，大幅提升性能</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">📏</div>
+					<h4>动态高度支持</h4>
+					<p>支持每个项目的不同高度</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🎯</div>
+					<h4>精确定位</h4>
+					<p>基于累积高度的精确定位算法</p>
+				</div>
+				<div class="feature-card">
+					<div class="feature-icon">🔄</div>
+					<h4>智能缓冲</h4>
+					<p>缓冲区机制提升滚动体验</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

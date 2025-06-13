@@ -34,12 +34,17 @@ import { DocTableComponent } from '../doc/doc-table/doc-table.component';
 import { DocChartComponent } from '../doc/doc-chart/doc-chart.component';
 import { DocStartComponent } from '../doc/doc-start/doc-start.component';
 import { UnlockComponent } from './unlock/unlock.component';
+import { VirtualScrollComponent } from '../doc/virtual-scroll/virtual-scroll.component';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'start',
+        redirectTo: 'virtual-scroll',
         pathMatch: 'full'
+    },
+    {
+        path: 'virtual-scroll',
+        component: VirtualScrollComponent,
     },
     {
         path: 'unlock',

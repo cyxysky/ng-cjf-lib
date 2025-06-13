@@ -28,6 +28,7 @@ import { DocDropMenuComponent } from './doc-drop-menu/doc-drop-menu.component';
 import { DocMenuComponent } from './doc-menu/doc-menu.component';
 import { DocTableComponent } from './doc-table/doc-table.component';
 import { DocChartComponent } from './doc-chart/doc-chart.component';
+import { VirtualScrollComponent } from './virtual-scroll/virtual-scroll.component';
 
 @NgModule({
   declarations: [],
@@ -60,7 +61,8 @@ import { DocChartComponent } from './doc-chart/doc-chart.component';
     DocDropMenuComponent,
     DocMenuComponent,
     DocTableComponent,
-    DocChartComponent
+    DocChartComponent,
+    VirtualScrollComponent
   ],
   exports: [
     DocButtonComponent,
@@ -90,7 +92,8 @@ import { DocChartComponent } from './doc-chart/doc-chart.component';
     DocDropMenuComponent,
     DocMenuComponent,
     DocTableComponent,
-    DocChartComponent
+    DocChartComponent,
+    VirtualScrollComponent
   ]
 })
 export class DocModule { }

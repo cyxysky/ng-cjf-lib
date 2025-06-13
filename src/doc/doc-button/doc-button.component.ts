@@ -7,6 +7,7 @@ import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.co
   selector: 'app-doc-button',
   imports: [DocBoxComponent, ProjectModule, DocApiTableComponent],
   templateUrl: './doc-button.component.html',
+  standalone: true,
   styleUrl: './doc-button.component.less'
 })
 export class DocButtonComponent {

@@ -10,7 +10,8 @@ import * as _ from 'lodash'
   selector: 'app-root',
   imports: [FormsModule, ProjectModule, ScrollingModule, DocModule, RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
+  styleUrl: './app.component.less',
+  standalone: true
 })
 export class AppComponent {
   /** 标题 */
@@ -63,6 +64,7 @@ export class AppComponent {
     { name: '结构树', path: 'structure-tree' },
     { name: '动态表格', path: 'dynamic-table' },
     { name: '用户选择', path: 'user-select' },
+    { name: '虚拟滚动', path: 'virtual-scroll' },
     { name: '图表', path: 'chart' },
   ]
 

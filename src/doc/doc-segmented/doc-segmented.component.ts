@@ -9,6 +9,7 @@ import { NumberInputComponent } from "../../../projects/project/src/lib/number-i
 
 @Component({
   selector: 'app-doc-segmented',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
