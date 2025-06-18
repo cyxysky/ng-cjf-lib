@@ -1,7 +1,8 @@
 import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[libWaterMarkDirective]'
+  selector: '[libWaterMarkDirective]',
+  standalone: true,
 })
 export class WaterMarkDirectiveDirective {
   /** 水印文字 */
@@ -34,6 +35,8 @@ export class WaterMarkDirectiveDirective {
   private observer?: MutationObserver;
   private resizeObserver?: ResizeObserver;
   private timer?: any;
+  private isRestoring = false;
+  private currentImageLoad?: HTMLImageElement; // 当前正在加载的图片
 
   constructor(
     private el: ElementRef,
@@ -50,15 +53,28 @@ export class WaterMarkDirectiveDirective {
     this.removeTamperingProtection();
   }
 
+  ngOnChanges(changes: any): void {
+    this.createWatermark();
+  }
+
   private createWatermark(): void {
-    if (this.watermarkElement) {
-      this.renderer.removeChild(this.el.nativeElement, this.watermarkElement);
+    // 设置标志，表明这是内部操作
+    this.isRestoring = true;
+
+    // 中断之前的图片加载
+    if (this.currentImageLoad) {
+      this.currentImageLoad.onload = null;
+      this.currentImageLoad.onerror = null;
+      this.currentImageLoad = undefined;
     }
 
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d', { alpha: true });
 
-    if (!ctx) return;
+    if (!ctx) {
+      this.isRestoring = false;
+      return;
+    }
 
     // 获取设备像素比
     const ratio = window.devicePixelRatio || 1;
@@ -106,6 +122,7 @@ export class WaterMarkDirectiveDirective {
 
     if (this.imageBase64) {
       const img = new Image();
+      this.currentImageLoad = img; // 记录当前加载的图片
 
       // 检查是否为Base64图像（内部资源，无需跨域设置）
       const isBase64 = this.imageBase64.startsWith('data:image');
@@ -118,6 +135,9 @@ export class WaterMarkDirectiveDirective {
 
       // 文字水印备选方案
       const fallbackToTextOnly = () => {
+        // 检查是否还是当前的加载请求
+        if (this.currentImageLoad !== img) return;
+
         console.warn('Water mark image failed to load, falling back to text only');
         // 重置canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -134,9 +154,15 @@ export class WaterMarkDirectiveDirective {
 
         // 更新水印
         this.updateWatermarkDiv(canvas.toDataURL('image/png', 1.0), markWidth);
+        // 重置标志
+        this.isRestoring = false;
+        this.currentImageLoad = undefined;
       };
 
       img.onload = () => {
+        // 检查是否还是当前的加载请求
+        if (this.currentImageLoad !== img) return;
+
         const imgWidth = img.width * 0.6;
         const imgHeight = img.height * 0.6;
 
@@ -169,6 +195,9 @@ export class WaterMarkDirectiveDirective {
 
           // 更新水印
           this.updateWatermarkDiv(canvas.toDataURL('image/png', 1.0), markWidth);
+          // 重置标志
+          this.isRestoring = false;
+          this.currentImageLoad = undefined;
         } catch (error) {
           console.warn('Water mark image processing error:', error);
           fallbackToTextOnly();
@@ -191,6 +220,8 @@ export class WaterMarkDirectiveDirective {
 
       // 更新水印
       this.updateWatermarkDiv(canvas.toDataURL('image/png', 1.0), markWidth);
+      // 重置标志
+      this.isRestoring = false;
     }
   }
 
@@ -215,6 +246,11 @@ export class WaterMarkDirectiveDirective {
   }
 
   private updateWatermarkDiv(url: string, markWidth: number): void {
+    // 删除旧水印（如果存在）
+    if (this.watermarkElement) {
+      this.renderer.removeChild(this.el.nativeElement, this.watermarkElement);
+    }
+
     const parentElement = this.el.nativeElement;
     const parentPosition = getComputedStyle(parentElement).position;
 
@@ -278,10 +314,13 @@ export class WaterMarkDirectiveDirective {
   }
 
   private setupAntiTamperingMeasures(): void {
-    if (!this.watermarkElement) return;
-
     // 创建MutationObserver来监视DOM变化
     this.observer = new MutationObserver((mutations) => {
+      // 如果正在内部操作，忽略变化
+      if (this.isRestoring) {
+        return;
+      }
+
       let needRestore = false;
 
       mutations.forEach((mutation) => {

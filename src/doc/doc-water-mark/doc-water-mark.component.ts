@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { WaterMarkComponent, WaterMarkDirectiveDirective, InputComponent, NumberInputComponent, ButtonComponent } from '@project';
+import { WaterMarkComponent, WaterMarkDirectiveDirective, InputComponent, NumberInputComponent } from '@project';
 
 @Component({
   selector: 'app-doc-water-mark',
@@ -17,7 +17,6 @@ import { WaterMarkComponent, WaterMarkDirectiveDirective, InputComponent, Number
     WaterMarkDirectiveDirective,
     InputComponent,
     NumberInputComponent,
-    ButtonComponent
   ],
   templateUrl: './doc-water-mark.component.html',
   styleUrl: './doc-water-mark.component.less'
@@ -32,6 +31,8 @@ export class DocWaterMarkComponent {
   customColor: string = 'rgba(0, 0, 0, 0.15)';
   fontSize: number = 16;
   rotation: number = -22;
+
+  directiveText: string = '水印指令应用';
 
   // 图片水印示例
   logoUrl: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAB6FJREFUWEe1l3lUVNcdx5/ROhswbLLoMMDgDNsAwyDpkp7m5PQkJ+bEmBixTavGtOlo5FhjY4yJGhqXxrqhRhPcguKKuFRwQWOKoiguQdxARREodUCYDWZ/b+63F7yn/jGiptTPOfcw9/f7vfv9/u6b++bBPS3u5Bo1n3lzflfaD79iIT9qU9p/eTOtff65pFYNC/Ufz4g6rS+zYQnJvt8s6BuvkOy6MJby40zKtdCmDFONUeduqUkxLzmf1K1lqR8P0V39hU/fVED0jR3IvgdkGyFk1E9i6T65rjWPb85woT7NgepkU2dVkr3gSILp5yz9eJCyezDR3RhJMm+XEH1LF0ZQ4axbwIg78OnrapF2KoSV9slFlVl+KbWjpjbVhlOJnahKdON4gt12UGUr2RdrH7mOu/gTVvoQq/JgCHTXc0hWUznRN3kwwgjobwO6q/BlXqYmbtPuL89g5U/kQkrntEspdhxXG3EwwYhSlQVHVF7sVdo9xTGew4VR1px8+d3g3mKir4sm+tZDGPFv2intOLOBjrpecaKroeJ1EHS1Dd3a45G9FzwFlcPvDTmdaLpZmdhFxdtQEncfO5Qd2KawYJeCx7ZoHpujPGVrhtijOJJeq6Hb3YasVipc3ytOdFd6xUnmBWrgBoS0c3PZ2k/NSY11dlWiB/vj21Ec24EihQmbhppQENWJjRFeFIR7jSvDbWrOmbA/xpd5px5ZzbTr61T4MhX+gY7z9DZcovMLra6EA8PZuk/NUaUx/ju1reWQqhvbYzrwLRVfF2XG2ggLvgn3YnWw92qelO4AMi4FE/3d88i6Sw3UUuGLveJEV0W7rwWfUbmSrelHfeLpwFvDDwexqR+HVF1Ly1U8tlIDG6NNWDPEgvwwC74KFbAi2HPukxCznCOKYgnJrK9EVsMDcV01fLrT9FacoX8rLST9aJ9nuTW5amZL8ulZbOrHPnVX8p7Y7s7tMd20exNWhluwNMSK/GCCxUHOilUcEXHgcgb6dJfKkVVPBXtET9FRQbvv2YUT69laftDORR2pZy4aU6trej6zsB97lc6vS2II1kaasJx2/2WQDUsCgQUyTxk4DOgtIukXipF1hR61SvgyqDg1QMVtJO3wz3oLHkFH4sGXrMmV3vsp1fzt5Mpfs7AfuxTW7O3DPJaCCDvt3oIFATYskgHzRI6drITjeG3FZmTVUPHvqYlj9MtHjaQd3gOOe+DwEbgTj6x1pZyAJaUaLZqzBSz8SDZFO3ZujCT4e7AZf5XZ8IUY+HSQcx1Lc5wv4+QyZFbT41YOkn4EvvQjXl574GWW9sOlKY7vUu81WjRluKc5hkZ1Rfut4d8nsLQfBZGul9aG291L5F34XNqFeYOA2QP4xSzNcYLu5DzoKuHVlgJ0BwTtP8rBGfwfmQy3esdHgmYf2hN2oSVhH9rUJ9GQUDGTpf3Ie7Fi0JowV1m+nGCuxIrPBgKfPCd8xtLUQHr5TOi+o9u+n45SH6/d8yZL+UESNwby6i1nBfVO3I8vQmv8ThgTjuGO6p9nqx9zJFcEO0YtCfIIc8V2zB7oowbINJaiBtIOve9LLyNIK6Xd767qoCIs5Ydb8/VIYfhG3qZaj/txG9Cq3Iy7sbvRGFvOXx92dCQr82MpZ5QtlrlPzhcTzB7kIbOeI++xFP3NT9z5O29qCSHaPRCStr7Pwn6AyxssqFYfgLoIJH49+Lhv4VAWwaQsRnfsCTQoyksPc6v6PJJ/k3reXSjhMWewyzdnsJDDwrSrpE2vQ7sbnqQt9VbF8lAW9oPQnC92+Uo+Ln+bO25VYbdybaFZsa6wTbGpsFlRUnRzaOnKa4ryPq/Pk1uCF0gc174Q+TBHZH+FhTnOmVr4gi9lG7yaDX0+1Xr474PjMTypZoHM/ZeFYi+9Dc6HLylOzYYXvJpNV6zKFSoWembkiYxxi2SumsUS8jwLcZwjfvXz7vg1T/3C0V8WyRy5C6UWPZs+OFpW5ZdPfN36f9HzK5g3pD2ATZ+Me9jHatfQ6R94o6ZOFqJzDUJEz/jA4A3JNTjkfzaYAj4ytElnG5qleYYGaf6frgVtnXw2cLuaXd5/3NHTCjBsJoSoXDqmQoiYAiFsCnj5ZHiDcmEPmAGzZBbaxHlokixDS+AOXAza8fBZ3x+sEe+p+Mgp/xIiDXCGT4Ir/F24QifAGTyeCo9Hl3QiOkR/hFE0FS3imWgQf44b0q9wJbCo9ZR8T7+/1APc4ZPmYogBtrDxxB72ezhC3oEr+DdwysfBLhuHbtE4mAePR7vIgFbxh2gUf4rrkkXkdsAWXA7a1fMu+cSj+zgGuEInLhNCJ/gEKmyTj0V30Bg4A9+CI2A07JLR1MAYWEW/RafoD9RALprFH+OeZBEaZd+Qq8Hblves8WCp/5G73Itit3zc286gsWd9gWPg7RGWvganZCQ1MAp28VvoEo2FWTQBNnobbOJZuCfKq24KWDG2gssTs2X6jzkkR+6WvTGdl7x2C1Sc7zFAjXRL3oCHGoBoIpxiQ4NFMuNDi3z6g386ngVO8SsxHsmry6kRE6SjAOkY8OIcMy96Z4VTPEHJyp49Dsmr2YLs9QOCbHSZTfL2T1n4R8Jx/wFWG2TkQqGKxQAAAABJRU5ErkJggg==';

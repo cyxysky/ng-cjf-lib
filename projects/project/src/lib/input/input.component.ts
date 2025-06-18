@@ -7,6 +7,7 @@ import { InputSize, InputStatus } from './input.interface';
 @Component({
   selector: 'lib-input',
   imports: [FormsModule, CommonModule],
+  standalone: true,
   templateUrl: './input.component.html',
   providers: [
     {
