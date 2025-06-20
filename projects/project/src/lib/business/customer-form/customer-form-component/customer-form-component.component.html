@@ -1,19 +1,11 @@
 <div class="customer-form-component" [class.disabled]="disabled">
-    <!-- 使用 ngComponentOutlet 动态渲染组件 -->
-    <ng-container *ngComponentOutlet="getComponentType();">
-    </ng-container>
+    <!-- 动态组件渲染容器 -->
+    <ng-container #dynamicContainer></ng-container>
 
     <!-- 验证错误信息 -->
     @if (errorMessage) {
     <div class="error-message">
         {{ errorMessage }}
-    </div>
-    }
-
-    <!-- 帮助文本 -->
-    @if (config.helpText) {
-    <div class="help-text">
-        {{ config.helpText }}
     </div>
     }
 </div>

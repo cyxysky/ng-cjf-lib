@@ -11,6 +11,7 @@ import { SelectBoxComponent } from '../select-basic/select-box/select-box.compon
 
 @Component({
   selector: 'lib-select',
+  standalone: true,
   imports: [CommonModule, FormsModule, ScrollingModule, CdkVirtualScrollViewport, CdkOverlayOrigin, SelectBoxComponent, CdkConnectedOverlay],
   templateUrl: './select.component.html',
   providers: [
@@ -125,6 +126,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
     if (changes) {
       if (changes['optionList']) {
         this.initializeOptions();

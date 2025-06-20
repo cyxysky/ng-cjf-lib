@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
 
 @Component({
   selector: 'lib-select-tag',
+  standalone: true,
   imports: [],
   templateUrl: './select-tag.component.html',
   encapsulation: ViewEncapsulation.None

@@ -6,6 +6,7 @@ import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'lib-popover',
+  standalone: true,
   imports: [CommonModule, ButtonComponent],
   templateUrl: './popover.component.html',
   host: {

@@ -2,149 +2,598 @@
 @action-panel-max-width: 320px;
 @modal-panel-min-width: 724px;
 
+// 主题色彩
+@primary-color: #1890ff;
+@primary-light: #e6f7ff;
+@success-color: #52c41a;
+@warning-color: #faad14;
+@error-color: #ff4d4f;
+
+// 中性色
+@text-primary: #262626;
+@text-secondary: #595959;
+@text-disabled: #bfbfbf;
+@border-color: #e8e8e8;
+@bg-color: #fafafa;
+@white: #ffffff;
+
+// 阴影
+@shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+@shadow-base: 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+@shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
 .content-box {
 	flex-grow: 1;
 	display: flex;
 	align-items: stretch;
 	height: 100%;
+	background: @bg-color;
 
-	.left-side {
+	.left-side, .right-side {
 		min-width: @action-panel-min-width;
 		max-width: @action-panel-max-width;
 		flex-grow: 1;
 		overflow: auto;
+		background: @white;
+		border-right: 1px solid @border-color;
+		
+		.panel-header {
+			position: sticky;
+			top: 0;
+			z-index: 10;
+			background: @white;
+			padding: 20px 24px 16px 24px;
+			border-bottom: 1px solid @border-color;
+			
+			.panel-title {
+				font-weight: 600;
+				font-size: 16px;
+				color: @text-primary;
+				margin-bottom: 4px;
+			}
+			
+			.panel-subtitle {
+				font-size: 12px;
+				color: @text-secondary;
+			}
+		}
+	}
 
+	.left-side {
 		.component-group {
-			padding: 24px 24px 0 24px;
+			padding: 0 24px 24px 24px;
 
 			.group-header {
 				display: flex;
 				align-items: center;
-				padding-bottom: 8px;
+				padding: 16px 0 12px 0;
+				cursor: pointer;
+				user-select: none;
+				transition: all 0.2s ease;
+				
+				&:hover {
+					color: @primary-color;
+				}
 
 				.group-expand-icon {
-					display: 0;
+					width: 16px;
+					height: 16px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: @text-disabled;
+					transition: all 0.3s ease;
+					
+					&.expanded {
+						transform: rotate(90deg);
+						color: @primary-color;
+					}
 				}
 
 				.group-title {
 					padding-left: 8px;
-					display: 1;
-					font-weight: 600;
+					font-weight: 500;
 					font-size: 14px;
-					color: #131C28;
+					color: @text-primary;
 				}
 			}
 
 			.group-body {
 				display: grid;
-				gap: 8px;
+				gap: 12px;
 				grid-template-columns: 1fr 1fr;
 				overflow: hidden;
-
+				animation: slideDown 0.3s ease;
 				
+				&.group-templates {
+					grid-template-columns: 1fr; // 组模板占满宽度
+				}
 			}
 		}
 	}
 
 	.right-side {
-		min-width: @action-panel-min-width;
-		max-width: @action-panel-max-width;
-		flex-grow: 1;
-		overflow: auto;
+		border-right: none;
+		border-left: 1px solid @border-color;
+		
+		.property-panel {
+			padding: 0 24px 24px 24px;
+		}
+		
+		.property-section {
+			margin-bottom: 24px;
+			
+			.section-title {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-weight: 500;
+				font-size: 14px;
+				color: @text-primary;
+				margin-bottom: 12px;
+				padding-bottom: 8px;
+				border-bottom: 1px solid @border-color;
+			}
+			
+			.property-group {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+			
+			.property-item {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+				
+				.property-label {
+					font-size: 12px;
+					color: @text-secondary;
+					font-weight: 500;
+				}
+				
+				.property-input, .property-select {
+					padding: 8px 12px;
+					border: 1px solid @border-color;
+					border-radius: 6px;
+					font-size: 14px;
+					transition: all 0.2s ease;
+					background: @white;
+					
+					&:focus {
+						outline: none;
+						border-color: @primary-color;
+						box-shadow: 0 0 0 2px fade(@primary-color, 20%);
+					}
+					
+					&::placeholder {
+						color: @text-disabled;
+					}
+				}
+				
+				.property-checkbox {
+					display: flex;
+					align-items: center;
+					gap: 8px;
+					cursor: pointer;
+					font-size: 14px;
+					
+					input[type="checkbox"] {
+						width: 16px;
+						height: 16px;
+						accent-color: @primary-color;
+					}
+					
+					.checkbox-text {
+						color: @text-primary;
+					}
+				}
+			}
+		}
+		
+		.add-option-btn {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			padding: 4px 8px;
+			font-size: 12px;
+			color: @primary-color;
+			background: transparent;
+			border: 1px solid @primary-color;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.2s ease;
+			
+			&:hover {
+				background: @primary-light;
+			}
+		}
+		
+		.options-list {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			
+			.option-item {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				
+				.option-inputs {
+					flex: 1;
+					display: flex;
+					gap: 8px;
+					
+					.option-input {
+						flex: 1;
+						padding: 6px 8px;
+						border: 1px solid @border-color;
+						border-radius: 4px;
+						font-size: 12px;
+						
+						&:focus {
+							outline: none;
+							border-color: @primary-color;
+						}
+					}
+				}
+				
+				.remove-option-btn {
+					width: 24px;
+					height: 24px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: @error-color;
+					background: transparent;
+					border: none;
+					border-radius: 4px;
+					cursor: pointer;
+					transition: all 0.2s ease;
+					
+					&:hover {
+						background: fade(@error-color, 10%);
+					}
+				}
+			}
+		}
+		
+		.empty-state {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 60px 24px;
+			text-align: center;
+			
+			.empty-icon {
+				font-size: 48px;
+				margin-bottom: 16px;
+				opacity: 0.6;
+			}
+			
+			.empty-title {
+				font-size: 16px;
+				font-weight: 500;
+				color: @text-primary;
+				margin-bottom: 8px;
+			}
+			
+			.empty-text {
+				font-size: 14px;
+				color: @text-secondary;
+				line-height: 1.5;
+			}
+		}
 	}
 
 	.center {
 		min-width: @modal-panel-min-width;
 		flex-grow: 1;
 		overflow: auto;
-		background: #F8FAFC;
+		background: @bg-color;
+		padding: 20px;
 
 		.model-preview-content {
-			flex-grow: 1;
-			margin: 20px;
-			background: white;
-			height: max-content;
+			background: @white;
+			border-radius: 8px;
+			box-shadow: @shadow-base;
+			overflow: hidden;
+			margin-bottom: 20px;
 
 			.model-preview-header-bar {
 				width: 100%;
 				height: 4px;
-				background: linear-gradient(225deg, #18D2E4 0%, #33D6CE 100%);
+				background: linear-gradient(135deg, @primary-color 0%, #36cfc9 100%);
 			}
 
 			.model-preview-header {
 				display: flex;
 				align-items: center;
-				height: 48px;
+				justify-content: space-between;
+				height: 60px;
 				padding: 0 24px;
-				border-bottom: 1px solid #E7EAED;
+				border-bottom: 1px solid @border-color;
+				background: @white;
 
 				.model-preview-title {
 					font-weight: 600;
-					font-size: 16px;
-					color: #131C28;
-					flex-grow: 1;
+					font-size: 18px;
+					color: @text-primary;
 				}
 
-				.model-preview-icon {}
+				.model-preview-actions {
+					display: flex;
+					gap: 12px;
+					
+					.action-btn {
+						padding: 8px 16px;
+						border-radius: 6px;
+						font-size: 14px;
+						font-weight: 500;
+						cursor: pointer;
+						transition: all 0.2s ease;
+						border: 1px solid transparent;
+						display: flex;
+						align-items: center;
+						gap: 6px;
+						
+						&.preview-btn {
+							color: @primary-color;
+							background: @white;
+							border-color: @primary-color;
+							
+							&:hover {
+								background: @primary-light;
+							}
+						}
+						
+						&.save-btn {
+							color: @white;
+							background: @primary-color;
+							
+							&:hover {
+								background: darken(@primary-color, 10%);
+							}
+						}
+					}
+				}
+			}
+			
+			.model-preview-body {
+				min-height: 400px;
+				background: @white;
+				padding: 20px;
+				
+				.form-groups-container {
+					display: flex;
+					flex-direction: column;
+					gap: 24px;
+					
+					.form-group-wrapper {
+						position: relative;
+						border: 2px solid transparent;
+						border-radius: 12px;
+						transition: all 0.3s ease;
+						background: @white;
+						
+						&:hover {
+							border-color: fade(@primary-color, 30%);
+							box-shadow: @shadow-base;
+						}
+						
+						&.cdk-drag-animating {
+							transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+						}
+						
+						&.cdk-drag-placeholder {
+							opacity: 0.4;
+							background: fade(@primary-color, 10%);
+							border: 2px dashed @primary-color;
+						}
+						
+						.drag-handle {
+							position: absolute;
+							top: 12px;
+							right: 12px;
+							width: 24px;
+							height: 24px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							color: @text-disabled;
+							cursor: grab;
+							border-radius: 4px;
+							transition: all 0.2s ease;
+							z-index: 10;
+							
+							&:hover {
+								background: fade(@primary-color, 10%);
+								color: @primary-color;
+							}
+							
+							&:active {
+								cursor: grabbing;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		.tip-text {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 8px;
+			font-size: 14px;
+			color: @text-secondary;
+			text-align: center;
+			padding: 16px;
+			background: @white;
+			border-radius: 8px;
+			border: 2px dashed @border-color;
+			
+			.tip-icon {
+				font-size: 16px;
 			}
 		}
 	}
 }
 
-.tip-text {
-	font-weight: 400;
-	font-size: 14px;
-	color: #9BACBB;
-	text-align: center;
-}
-
-
-.no-copy {
-	user-select: none;
-	/* 标准语法 */
-	-webkit-user-select: none;
-	/* Safari */
-	-moz-user-select: none;
-	/* Firefox */
-	-ms-user-select: none;
-	/* IE/Edge */
-}
-
+// 组件项样式
 .component-item {
 	display: flex;
 	align-items: center;
-	width: 120px;
-	height: 36px;
-	background: #F4F6F7;
-	border-radius: 2px;
-	cursor: move;
+	height: 44px;
+	background: @bg-color;
+	border-radius: 8px;
+	cursor: grab;
 	border: 1px solid transparent;
+	transition: all 0.2s ease;
+	overflow: hidden;
+	position: relative;
 
 	&:hover {
-		background: #F0FCFD;
-		border-radius: 2px 0px 2px 2px;
-		border: 1px solid #01CFE2;
+		background: @primary-light;
+		border-color: @primary-color;
+		box-shadow: @shadow-sm;
+		transform: translateY(-1px);
+	}
+
+	&:active {
+		cursor: grabbing;
+		transform: translateY(0);
+	}
+
+	&.group-template-item {
+		background: linear-gradient(135deg, fade(@success-color, 10%) 0%, fade(@primary-color, 8%) 100%);
+		border: 1px solid fade(@success-color, 30%);
+		height: 56px;
+		
+		&:hover {
+			background: linear-gradient(135deg, fade(@success-color, 20%) 0%, fade(@primary-color, 15%) 100%);
+			border-color: @success-color;
+			transform: translateY(-2px);
+			box-shadow: @shadow-base;
+		}
+		
+		.component-item-content {
+			.component-item-icon {
+				font-size: 20px;
+				width: 28px;
+				height: 28px;
+			}
+			
+			.component-item-title {
+				font-weight: 500;
+				font-size: 14px;
+			}
+		}
 	}
 
 	.component-item-content {
 		flex-grow: 1;
 		display: flex;
 		align-items: center;
+		padding: 0 12px;
+		position: relative;
 
 		.component-item-icon {
-			padding: 0 8px 0 12px;
+			width: 24px;
+			height: 24px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 16px;
+			margin-right: 8px;
 		}
 
 		.component-item-title {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			max-width: 80px;
 			font-weight: 400;
-			font-size: 14px;
-			color: #6B798C;
+			font-size: 13px;
+			color: @text-primary;
+			flex: 1;
 		}
-
+		
+		.group-badge {
+			position: absolute;
+			top: -2px;
+			right: 4px;
+			background: @success-color;
+			color: @white;
+			font-size: 10px;
+			font-weight: 600;
+			padding: 2px 6px;
+			border-radius: 8px;
+			line-height: 1;
+			box-shadow: @shadow-sm;
+		}
 	}
+}
 
+// 工具类
+.no-copy {
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+// 动画
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+// 响应式设计
+@media (max-width: 1200px) {
+	.content-box {
+		.left-side, .right-side {
+			min-width: 280px;
+			max-width: 300px;
+		}
+		
+		.center {
+			min-width: 600px;
+		}
+	}
+}
+
+// 滚动条样式
+.left-side, .right-side {
+	&::-webkit-scrollbar {
+		width: 6px;
+	}
+	
+	&::-webkit-scrollbar-track {
+		background: @bg-color;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		background: @border-color;
+		border-radius: 3px;
+		
+		&:hover {
+			background: @text-disabled;
+		}
+	}
 }

@@ -6,6 +6,7 @@ import { SelectSearchComponent } from '../select-search/select-search.component'
 
 @Component({
   selector: 'lib-select-box',
+  standalone: true,
   imports: [FormsModule, CommonModule, SelectTagComponent, SelectSearchComponent],
   templateUrl: './select-box.component.html',
   encapsulation: ViewEncapsulation.None,

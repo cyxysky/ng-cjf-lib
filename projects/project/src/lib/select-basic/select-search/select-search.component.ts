@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'lib-select-search',
+  standalone: true,
   imports: [FormsModule],
   templateUrl: './select-search.component.html',
   encapsulation: ViewEncapsulation.None

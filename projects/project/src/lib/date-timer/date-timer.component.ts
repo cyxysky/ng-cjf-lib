@@ -9,6 +9,7 @@ import { ButtonComponent } from "../button/button.component";
 
 @Component({
   selector: 'lib-date-timer',
+  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

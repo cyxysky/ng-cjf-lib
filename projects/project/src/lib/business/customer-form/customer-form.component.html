@@ -1,61 +1,220 @@
 <div class="content-box">
   <div class="left-side">
+    <div class="panel-header">
+      <div class="panel-title">组件库</div>
+      <div class="panel-subtitle">拖拽组件或组模板到中间区域</div>
+    </div>
+
     @for (group of groups; track group; let i = $index) {
-      <div class="component-group">
-        <div class="group-header">
-          <div class="group-expand-icon">
-            <div></div>
-          </div>
-          <div class="group-title">
-            {{ group.title }}
+    <div class="component-group">
+      <div class="group-header" (click)="toggleGroup(group)">
+        <div class="group-expand-icon" [class.expanded]="group.expand">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="group-title">
+          {{ group.title }}
+        </div>
+      </div>
+
+      @if (group.expand) {
+      <div class="group-body" [class.group-templates]="group.title === '组模板'">
+        @for (component of group.components; track component; let k = $index) {
+        <div
+          #componentItem
+          class="component-item no-copy"
+          [class.group-template-item]="component.isGroup"
+          (mousedown)="component.isGroup ? addNewGroup(component, componentItem) : addNewComponent(component, componentItem)">
+          <div class="component-item-content">
+            <div class="component-item-icon">
+              {{ component.icon }}
+            </div>
+            <div class="component-item-title">
+              {{ component.title }}
+            </div>
+            @if (component.isGroup) {
+            <div class="group-badge">组</div>
+            }
           </div>
         </div>
-        <div class="group-body">
-          @for (component of group.components; track component; let k = $index) {
-            <div
-              #componentItem
-              class="component-item no-copy"
-              (mousedown)="addNewComponent(component, componentItem)">
-              <div class="component-item-content">
-                <div class="component-item-icon">
-                  <div>图标</div>
-                </div>
-                <div class="component-item-title">
-                  {{ component.title }}
-                </div>
-              </div>
+        }
+      </div>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="center">
+    <div class="model-preview-content">
+      <div class="model-preview-header-bar"></div>
+      <div class="model-preview-header">
+        <div class="model-preview-title">
+          客户信息表单
+        </div>
+        <div class="model-preview-actions">
+          <button class="action-btn preview-btn">预览</button>
+          <button class="action-btn save-btn">保存</button>
+        </div>
+      </div>
+
+      <div class="model-preview-body">
+        <!-- 简单显示组，不包含拖拽逻辑 -->
+        @for (group of customForm?.cards; track group; let groupIndex = $index) {
+        <div class="form-group-wrapper">
+          <lib-customer-form-modal
+            [subject]="subject"
+            [data]="[group]"
+            [mode]="mode"
+            [columns]="columns"
+            [componentKey]="componentKey"
+            [dragConfig]="dragConfig"
+            [isAddingComponent]="isAddingComponent"
+            [isAddingGroup]="isAddingGroup"
+            [newComponentData]="newComponentData"
+            [newGroupData]="newGroupData"
+            (selectComponent)="selectComponent($event)"
+            (selectGroup)="selectGroup($event)"
+            (dataChange)="customForm.cards[groupIndex] = $event[0]; onDataChange()">
+          </lib-customer-form-modal>
+        </div>
+        }
+
+        <!-- 空状态提示 -->
+        @if (customForm?.cards?.length === 0) {
+        <div class="empty-form-state">
+          <div class="empty-icon">📝</div>
+          <div class="empty-title">开始创建表单</div>
+          <div class="empty-text">从左侧拖拽组件或组模板到此处</div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="tip-text">
+      <div class="tip-icon">💡</div>
+      <div>拖拽左侧控件或组模板，完成表单配置</div>
+    </div>
+  </div>
+
+  <div class="right-side">
+    <div class="panel-header">
+      <div class="panel-title">属性配置</div>
+      <div class="panel-subtitle">{{ selectedComponent ? '编辑组件属性' : '请选择组件' }}</div>
+    </div>
+
+    @if (selectedComponent) {
+    <div class="property-panel">
+      <div class="property-section">
+        <div class="section-title">基础设置</div>
+        <div class="property-group">
+          <div class="property-item">
+            <label class="property-label">标签文本</label>
+            <input
+              type="text"
+              class="property-input"
+              [(ngModel)]="componentConfig.label"
+              (ngModelChange)="updateComponentConfig()"
+              placeholder="请输入标签文本">
+          </div>
+
+          <div class="property-item">
+            <label class="property-label">占位符</label>
+            <input
+              type="text"
+              class="property-input"
+              [(ngModel)]="componentConfig.placeholder"
+              (ngModelChange)="updateComponentConfig()"
+              placeholder="请输入占位符">
+          </div>
+
+          <div class="property-item">
+            <label class="property-label">宽度</label>
+            <select
+              class="property-select"
+              [(ngModel)]="componentConfig.width"
+              (ngModelChange)="updateComponentConfig()">
+              <option value="1">1/4 宽度</option>
+              <option value="2">1/2 宽度</option>
+              <option value="3">3/4 宽度</option>
+              <option value="4">全宽度</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="property-section">
+        <div class="section-title">验证设置</div>
+        <div class="property-group">
+          <div class="property-item">
+            <label class="property-checkbox">
+              <input
+                type="checkbox"
+                [(ngModel)]="componentConfig.required"
+                (ngModelChange)="updateComponentConfig()">
+              <span class="checkbox-text">必填项</span>
+            </label>
+          </div>
+
+          <div class="property-item">
+            <label class="property-checkbox">
+              <input
+                type="checkbox"
+                [(ngModel)]="componentConfig.disabled"
+                (ngModelChange)="updateComponentConfig()">
+              <span class="checkbox-text">禁用状态</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      @if (shouldShowOptions()) {
+      <div class="property-section">
+        <div class="section-title">
+          选项设置
+          <button class="add-option-btn" (click)="addOption()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            添加选项
+          </button>
+        </div>
+        <div class="options-list">
+          @for (option of componentConfig.options; track option; let optionIndex = $index) {
+          <div class="option-item">
+            <div class="option-inputs">
+              <input
+                type="text"
+                class="option-input"
+                [(ngModel)]="option.label"
+                (ngModelChange)="updateComponentConfig()"
+                placeholder="选项文本">
+              <input
+                type="text"
+                class="option-input"
+                [(ngModel)]="option.value"
+                (ngModelChange)="updateComponentConfig()"
+                placeholder="选项值">
             </div>
+            @if (componentConfig.options.length > 1) {
+            <button class="remove-option-btn" (click)="removeOption(optionIndex)">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M9 3L3 9M3 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+            </button>
+            }
+          </div>
           }
         </div>
       </div>
+      }
+    </div>
+    } @else {
+    <div class="empty-state">
+      <div class="empty-icon">🎯</div>
+      <div class="empty-title">选择组件进行配置</div>
+      <div class="empty-text">点击中间区域的组件来编辑其属性</div>
+    </div>
     }
   </div>
-  <div class="center">
-    <!-- <ng-container
-    [ngTemplateOutlet]="source.get('default')"
-    [ngTemplateOutletContext]="{ $implicit: '123' }">
-  </ng-container> -->
-  <div class="model-preview-content">
-    <div class="model-preview-header-bar"></div>
-    <div class="model-preview-header">
-      <div class="model-preview-title">
-        流程名称
-      </div>
-      <div class="model-preview-icon">
-        <div>图标</div>
-      </div>
-    </div>
-    <div class="model-preview-body">
-      <lib-customer-form-modal [subject]="subject" [data]="group1" (selectComponent)="selectComponent($event)">
-
-      </lib-customer-form-modal>
-    </div>
-  </div>
-  <div class="tip-text">
-    拖拽或点击左侧控件，完成表单配置
-  </div>
-</div>
-<div class="right-side">
-
-</div>
 </div>

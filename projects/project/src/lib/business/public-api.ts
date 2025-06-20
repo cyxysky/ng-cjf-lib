@@ -2,6 +2,7 @@ export * from './generate-png/generate-png.component';
 export * from './customer-form/customer-form.component';
 export * from './customer-form/customer-form-component/customer-form-component.component';
 export * from './customer-form/customer-form-modal/customer-form-modal.component';
+export * from './customer-form/customer-form.interface';
 export * from './dynamic-table/dynamic-table.component';
 export * from './multi-dimensional-flowchart/multi-dimensional-flowchart.component';
 export * from './process-tree/process-tree.component';
