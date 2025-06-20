@@ -1,0 +1,16 @@
+<div class="customer-form-component" [class.disabled]="disabled">
+    <!-- 使用 ngComponentOutlet 动态渲染组件 -->
+    <ng-container
+      *ngComponentOutlet="getComponentType(); injector: getInjector()">
+    </ng-container>
+
+    <!-- 验证错误信息 -->
+    <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+
+    <!-- 帮助文本 -->
+    <div class="help-text" *ngIf="config?.helpText">
+        {{ config.helpText }}
+    </div>
+</div>

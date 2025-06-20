@@ -1,0 +1,81 @@
+.customer-form-component {
+  width: 100%;
+  
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  .form-field {
+    margin-bottom: 16px;
+    
+    &.full { width: 100%; }
+    &.half { width: 50%; }
+    &.third { width: 33.333%; }
+    &.quarter { width: 25%; }
+    &.inline { display: inline-block; margin-right: 16px; }
+    &.third-inline { display: inline-block; width: 33.333%; margin-right: 16px; }
+    
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-weight: 500;
+      color: #333;
+      
+      &.required::after {
+        content: ' *';
+        color: #ff4d4f;
+      }
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #fff;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      
+      &:focus {
+        border-color: #1890ff;
+        box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+        outline: none;
+      }
+      
+      &:disabled {
+        background-color: #f5f5f5;
+        cursor: not-allowed;
+      }
+      
+      &::placeholder {
+        color: #bfbfbf;
+      }
+    }
+    
+    select.form-control {
+      cursor: pointer;
+    }
+    
+    textarea.form-control {
+      resize: vertical;
+      min-height: 80px;
+    }
+  }
+  
+  .error-message {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  
+  .help-text {
+    color: #8c8c8c;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+}
