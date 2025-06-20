@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
 import { PopoverDirective, ButtonComponent } from '@project';
@@ -8,12 +8,11 @@ import { PopoverDirective, ButtonComponent } from '@project';
   selector: 'app-doc-popover',
   standalone: true,
   imports: [
-    CommonModule,
     DocBoxComponent,
     DocApiTableComponent,
     PopoverDirective,
     ButtonComponent
-  ],
+],
   templateUrl: './doc-popover.component.html',
   styleUrl: './doc-popover.component.less'
 })

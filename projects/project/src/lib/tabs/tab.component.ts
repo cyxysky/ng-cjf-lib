@@ -11,10 +11,14 @@ import { Subject } from 'rxjs';
       <ng-content></ng-content>
     </ng-template>
     <ng-template #customTemplate>
-      <ng-container *ngIf="titleTemplate; else defaultTitleTemplate" [ngTemplateOutlet]="titleTemplate"></ng-container>
+      @if (titleTemplate) {
+        <ng-container [ngTemplateOutlet]="titleTemplate"></ng-container>
+      } @else {
+        {{ title }}
+      }
       <ng-template #defaultTitleTemplate>{{ title }}</ng-template>
     </ng-template>
-  `
+    `
 })
 export class TabComponent implements OnInit, AfterContentInit, OnDestroy {
   /** 标题 */

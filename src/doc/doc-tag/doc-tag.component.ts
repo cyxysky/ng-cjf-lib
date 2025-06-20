@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ProjectModule } from '@project';
@@ -16,12 +16,11 @@ interface ColorType {
   selector: 'app-doc-tag',
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    ProjectModule, 
+    FormsModule,
+    ProjectModule,
     DocBoxComponent,
     DocApiTableComponent
-  ],
+],
   templateUrl: './doc-tag.component.html',
   styleUrl: './doc-tag.component.less'
 })

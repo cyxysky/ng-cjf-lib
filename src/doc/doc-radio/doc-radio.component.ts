@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -9,12 +9,11 @@ import { RadioComponent } from '@project';
   selector: 'app-doc-radio',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     DocBoxComponent,
     DocApiTableComponent,
-    RadioComponent,
-  ],
+    RadioComponent
+],
   templateUrl: './doc-radio.component.html',
   styleUrl: './doc-radio.component.less'
 })

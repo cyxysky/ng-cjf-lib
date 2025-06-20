@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
 import { TooltipDirective } from '@project';
@@ -9,12 +9,11 @@ import { ButtonComponent } from '@project';
   selector: 'app-doc-tooltip',
   standalone: true,
   imports: [
-    CommonModule,
     DocBoxComponent,
     DocApiTableComponent,
     TooltipDirective,
     ButtonComponent
-  ],
+],
   templateUrl: './doc-tooltip.component.html',
   styleUrl: './doc-tooltip.component.less'
 })

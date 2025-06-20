@@ -1,4 +1,4 @@
-<div 
+<div
   class="c-lib-message-item"
   [class.c-lib-message-success]="type === 'success'"
   [class.c-lib-message-warning]="type === 'warning'"
@@ -10,13 +10,16 @@
       <i [style.color]="getIconColor()" [class]="getIconType()"></i>
     </div>
     <div class="c-lib-message-text">
-      <ng-container *ngIf="isTemplateRef(content); else textTemplate">
+      @if (isTemplateRef(content)) {
         <ng-container *ngTemplateOutlet="content; context: { $implicit: data }"></ng-container>
-      </ng-container>
-      <ng-template #textTemplate>{{ content }}</ng-template>
+      } @else {
+        {{ content }}
+      }
     </div>
     <div class="c-lib-message-close-container">
-      <i class="bi-x-lg c-lib-message-close" (click)="close()" *ngIf="closeable"></i>
+      @if (closeable) {
+        <i class="bi-x-lg c-lib-message-close" (click)="close()"></i>
+      }
     </div>
   </div>
 </div>

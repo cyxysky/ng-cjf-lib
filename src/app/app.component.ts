@@ -4,11 +4,11 @@ import { MenuItem, ProjectModule } from '../../projects/project/src/public-api';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { DocModule } from '../doc/doc.module';
-import { CommonModule } from '@angular/common';
+
 import * as _ from 'lodash'
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, ProjectModule, ScrollingModule, DocModule, RouterOutlet, CommonModule],
+  imports: [FormsModule, ProjectModule, ScrollingModule, DocModule, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
   standalone: true

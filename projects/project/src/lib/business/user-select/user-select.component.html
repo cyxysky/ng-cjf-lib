@@ -1,82 +1,99 @@
 <div class="select-box" (click)="openModal()" cdkOverlayOrigin>
-    <div class="select-content">
-        <div class="placeHolder" *ngIf="(!_data || (_data && _data.length === 0)) && !searchOnCompositionValue">
-            {{ placeHolder }}
+  <div class="select-content">
+    @if ((!_data || (_data && _data.length === 0)) && !searchOnCompositionValue) {
+      <div class="placeHolder">
+        {{ placeHolder }}
+      </div>
+    }
+    @if (selectMode === 'single' && searchOnCompositionValue === '') {
+      <div class="singal-data" [ngClass]="{'singal-data-gray': modalState === 'open'}">
+        {{ _data }}
+      </div>
+    }
+    @if (selectMode === 'multiple') {
+      @for (tag of _data; track tag; let i = $index) {
+        <div class="select-tag">
+          <div class="select-tag-text">
+            {{ tag }}
+          </div>
+          <div class="select-tag-close-icon" (click)="removeUser($event, tag)">
+            <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
         </div>
-        <div class="singal-data" *ngIf="selectMode === 'single' && searchOnCompositionValue === ''" [ngClass]="{'singal-data-gray': modalState === 'open'}">
-            {{ _data }}
-        </div>
-        <ng-container *ngIf="selectMode === 'multiple'">
-            <div class="select-tag" *ngFor="let tag of _data;index as i">
-                <div class="select-tag-text">
-                    {{ tag }}
-                </div>
-                <div class="select-tag-close-icon" (click)="removeUser($event, tag)">
-                    <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                    </svg>
-                </div>
-            </div>
-        </ng-container> 
-        <div #searchBox class="search-box" *ngIf="search">
-            <input class="search-input" #searchInput [(ngModel)]="searchValue" (ngModelChange)="onSearch($event)" (compositionupdate)="compositionchange($event)"  class="search-input" />
-            <span class="search-text" #searchText> {{ searchOnCompositionValue }}</span>
-        </div>
-    </div>
+      }
+    }
+    @if (search) {
+      <div #searchBox class="search-box">
+        <input class="search-input" #searchInput [(ngModel)]="searchValue" (ngModelChange)="onSearch($event)" (compositionupdate)="compositionchange($event)"  class="search-input" />
+        <span class="search-text" #searchText> {{ searchOnCompositionValue }}</span>
+      </div>
+    }
+  </div>
 
-    <div class="suffix-box">
-        <svg class="select-icon" [ngClass]="{'select-icon-clear': allowClear}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
-        </svg>
-        <svg *ngIf="allowClear" (click)="clear($event)" class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
-            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-        </svg>
-    </div>
+  <div class="suffix-box">
+    <svg class="select-icon" [ngClass]="{'select-icon-clear': allowClear}" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+    </svg>
+    @if (allowClear) {
+      <svg (click)="clear($event)" class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+      </svg>
+    }
+  </div>
 </div>
 
 
 <ng-template #overlay>
-    <div class="overlay-select-option-box" [@openClose]="modalState">
-        <!-- <div class="tabs" *ngIf="type && type.length >= 2">
-            <div class="order-type" [ngClass]="{'selected-order': selectedOrder === ORDER_TYPE.LETTER}" (click)="selectOrderType(ORDER_TYPE.LETTER)">按照首字母排序</div>
-            <div class="order-type" [ngClass]="{'selected-order': selectedOrder === ORDER_TYPE.ORGA}" (click)="selectOrderType(ORDER_TYPE.ORGA)">按组织架构排序</div>
-        </div> -->
-        <div [style.height]="optionAreaHeight">
-            <div class="order-by-name-area" *ngIf="selectedOrder === ORDER_TYPE.LETTER">
-                <!-- 首字母排序展示 -->
-                <div class="option-list" style="overflow: auto;" (scroll)="onLetterScroll($event)" #scrollBox>
-                    <div class="user-option">
-                        <div *ngFor="let userGroup of users;index as i">
-                            <div class="user-group-letter">
-                                {{ userGroup.letter}}
-                            </div>
-                            <!-- 用户选项 -->
-                            <div 
-                                *ngFor="let user of userGroup.array;index as k"
-                                (click)="selectUser(user.id)"
-                                class="user"
-                                [ngClass]="{'select-user' : _data.includes(user.id)}"
-                                [style]="{'height': optionHeight + 'px'}">
-                                <div>{{ user.name }}</div>
-                                <div class="padding-left-8">{{ user.userId }}</div>
-                                <div class="padding-left-8">{{ user.jobType }}</div>
-                            </div>
-                        </div>
-                    </div>
+  <div class="overlay-select-option-box" [@openClose]="modalState">
+    <!-- <div class="tabs" *ngIf="type && type.length >= 2">
+    <div class="order-type" [ngClass]="{'selected-order': selectedOrder === ORDER_TYPE.LETTER}" (click)="selectOrderType(ORDER_TYPE.LETTER)">按照首字母排序</div>
+    <div class="order-type" [ngClass]="{'selected-order': selectedOrder === ORDER_TYPE.ORGA}" (click)="selectOrderType(ORDER_TYPE.ORGA)">按组织架构排序</div>
+  </div> -->
+  <div [style.height]="optionAreaHeight">
+    @if (selectedOrder === ORDER_TYPE.LETTER) {
+      <div class="order-by-name-area">
+        <!-- 首字母排序展示 -->
+        <div class="option-list" style="overflow: auto;" (scroll)="onLetterScroll($event)" #scrollBox>
+          <div class="user-option">
+            @for (userGroup of users; track userGroup; let i = $index) {
+              <div>
+                <div class="user-group-letter">
+                  {{ userGroup.letter}}
                 </div>
-                <div class="letter-list">
-                    <div 
-                        *ngFor="let letter of letters;index as i"
-                        class="letter"
-                        [ngClass]="{'scroll-letter': selectedLetter === letter }"
-                        (click)="selectLetter(letter)">
-                        {{ letter }}
-                    </div>
-                </div>
-            </div>
-            <div class="order-by-organizational-structure" *ngIf="selectedOrder === ORDER_TYPE.ORGA">
-
-            </div>
+                <!-- 用户选项 -->
+                @for (user of userGroup.array; track user; let k = $index) {
+                  <div
+                    (click)="selectUser(user.id)"
+                    class="user"
+                    [ngClass]="{'select-user' : _data.includes(user.id)}"
+                    [style]="{'height': optionHeight + 'px'}">
+                    <div>{{ user.name }}</div>
+                    <div class="padding-left-8">{{ user.userId }}</div>
+                    <div class="padding-left-8">{{ user.jobType }}</div>
+                  </div>
+                }
+              </div>
+            }
+          </div>
         </div>
-    </div>
+        <div class="letter-list">
+          @for (letter of letters; track letter; let i = $index) {
+            <div
+              class="letter"
+              [ngClass]="{'scroll-letter': selectedLetter === letter }"
+              (click)="selectLetter(letter)">
+              {{ letter }}
+            </div>
+          }
+        </div>
+      </div>
+    }
+    @if (selectedOrder === ORDER_TYPE.ORGA) {
+      <div class="order-by-organizational-structure">
+      </div>
+    }
+  </div>
+</div>
 </ng-template>

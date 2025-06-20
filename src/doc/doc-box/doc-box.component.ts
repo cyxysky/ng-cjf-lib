@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { take, timer } from 'rxjs';
 import { TabsComponent, TabComponent, MessageService } from '@project';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -14,7 +14,7 @@ interface CodeTab {
 @Component({
   selector: 'app-doc-box',
   standalone: true,
-  imports: [CommonModule, TabsComponent, TabComponent],
+  imports: [TabsComponent, TabComponent],
   templateUrl: './doc-box.component.html',
   styleUrl: './doc-box.component.less',
   animations: [

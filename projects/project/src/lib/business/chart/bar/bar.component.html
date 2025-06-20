@@ -1,14 +1,18 @@
 <div class="bar-chart-container">
   <!-- 图例容器 -->
-  <div class="chart-legend" *ngIf="showLegend()" [class]="'legend-position-' + getLegendPosition()">
-    <div class="legend-item" *ngFor="let series of getSeriesNames(); let i = index" (click)="toggleSeriesVisibility(i)"
-      [class.active]="hoveredSeriesIndex === i">
-      <div class="legend-color" [style.background-color]="getSeriesColor(i)"></div>
-      <div class="legend-name" [class.legend-disabled]="!isSeriesVisible(i)">
-        {{series}}
-      </div>
+  @if (showLegend()) {
+    <div class="chart-legend" [class]="'legend-position-' + getLegendPosition()">
+      @for (series of getSeriesNames(); track series; let i = $index) {
+        <div class="legend-item" (click)="toggleSeriesVisibility(i)"
+          [class.active]="hoveredSeriesIndex === i">
+          <div class="legend-color" [style.background-color]="getSeriesColor(i)"></div>
+          <div class="legend-name" [class.legend-disabled]="!isSeriesVisible(i)">
+            {{series}}
+          </div>
+        </div>
+      }
     </div>
-  </div>
+  }
 
 
   <div class="canvas-container">

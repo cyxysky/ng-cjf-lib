@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -9,13 +9,12 @@ import { ProjectModule } from '@project';
   selector: 'app-doc-number-input',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DocBoxComponent,
     DocApiTableComponent,
     ProjectModule
-  ],
+],
   templateUrl: './doc-number-input.component.html',
   styleUrl: './doc-number-input.component.less'
 })

@@ -1,64 +1,70 @@
-<div 
+<div
   #sliderContainer
-  class="c-lib-slider-container" 
+  class="c-lib-slider-container"
   [class.c-lib-slider-with-marks]="marks"
   >
   <div class="c-lib-slider-rail"></div>
-  <div 
-    class="c-lib-slider-track" 
+  <div
+    class="c-lib-slider-track"
     [ngStyle]="{'background-color': trackColor, 'width': trackWidth, 'left': isRange ? rangeValues[0] + '%' : '0'}"
   ></div>
-  
+
   <!-- 单滑块 -->
-  <div 
-    *ngIf="!isRange"
-    class="c-lib-slider-handle" 
-    [ngStyle]="{'left': value + '%', 'border-color': handleColor}"
-    libTooltip
-    #singalSliderTooltip="libTooltip"
-    [tooltipStrictVisiable]="singalSliderHandleStrictVisible"
-    [tooltip]="toString(tipFormatter ? tipFormatter(value) : value)"
-    [tooltipVisible]="singalSliderHandleVisible"
-    (mousedown)="onHandleMouseDown($event, 0, 'single', singalSliderTooltip)"
-    >
-  </div>
-  
-  <!-- 范围滑块 -->
-  <div 
-    *ngIf="isRange"
-    class="c-lib-slider-handle" 
-    [ngStyle]="{'left': rangeValues[0] + '%', 'border-color': handleColor}"
-    libTooltip
-    [tooltipStrictVisiable]="rangeLeftSliderHandleStrictVisible"
-    #rangeLeftSliderTooltip="libTooltip"
-    [tooltip]="toString(tipFormatter ? tipFormatter(rangeValues[0]) : rangeValues[0])"
-    [tooltipVisible]="rangeLeftSliderHandleVisible"
-    (mousedown)="onHandleMouseDown($event, 0, 'left', rangeLeftSliderTooltip)"
-    >
-  </div>
-  <div 
-    *ngIf="isRange"
-    class="c-lib-slider-handle" 
-    [ngStyle]="{'left': rangeValues[1] + '%', 'border-color': handleColor}"
-    libTooltip
-    [tooltipStrictVisiable]="rangeRightSliderHandleStrictVisible"
-    #rangeRightSliderTooltip="libTooltip"
-    [tooltip]="toString(tipFormatter ? tipFormatter(rangeValues[1]) : rangeValues[1])"
-    [tooltipVisible]="rangeRightSliderHandleVisible"
-    (mousedown)="onHandleMouseDown($event, 1, 'right', rangeRightSliderTooltip)"
-    >
-  </div>
-  
-  <!-- 刻度 -->
-  <div *ngIf="marks" class="c-lib-slider-marks" (click)="onMarksClick($event)">
-    <span 
-      *ngFor="let mark of markList" 
-      class="c-lib-slider-mark" 
-      [ngStyle]="{'left': mark.value + '%'}"
+  @if (!isRange) {
+    <div
+      class="c-lib-slider-handle"
+      [ngStyle]="{'left': value + '%', 'border-color': handleColor}"
+      libTooltip
+      #singalSliderTooltip="libTooltip"
+      [tooltipStrictVisiable]="singalSliderHandleStrictVisible"
+      [tooltip]="toString(tipFormatter ? tipFormatter(value) : value)"
+      [tooltipVisible]="singalSliderHandleVisible"
+      (mousedown)="onHandleMouseDown($event, 0, 'single', singalSliderTooltip)"
       >
-      <ng-container *ngTemplateOutlet="labelTemplate || defaultMarkLabel; context: { $implicit: mark }"></ng-container>
-    </span>
-  </div>
+    </div>
+  }
+
+  <!-- 范围滑块 -->
+  @if (isRange) {
+    <div
+      class="c-lib-slider-handle"
+      [ngStyle]="{'left': rangeValues[0] + '%', 'border-color': handleColor}"
+      libTooltip
+      [tooltipStrictVisiable]="rangeLeftSliderHandleStrictVisible"
+      #rangeLeftSliderTooltip="libTooltip"
+      [tooltip]="toString(tipFormatter ? tipFormatter(rangeValues[0]) : rangeValues[0])"
+      [tooltipVisible]="rangeLeftSliderHandleVisible"
+      (mousedown)="onHandleMouseDown($event, 0, 'left', rangeLeftSliderTooltip)"
+      >
+    </div>
+  }
+  @if (isRange) {
+    <div
+      class="c-lib-slider-handle"
+      [ngStyle]="{'left': rangeValues[1] + '%', 'border-color': handleColor}"
+      libTooltip
+      [tooltipStrictVisiable]="rangeRightSliderHandleStrictVisible"
+      #rangeRightSliderTooltip="libTooltip"
+      [tooltip]="toString(tipFormatter ? tipFormatter(rangeValues[1]) : rangeValues[1])"
+      [tooltipVisible]="rangeRightSliderHandleVisible"
+      (mousedown)="onHandleMouseDown($event, 1, 'right', rangeRightSliderTooltip)"
+      >
+    </div>
+  }
+
+  <!-- 刻度 -->
+  @if (marks) {
+    <div class="c-lib-slider-marks" (click)="onMarksClick($event)">
+      @for (mark of markList; track mark) {
+        <span
+          class="c-lib-slider-mark"
+          [ngStyle]="{'left': mark.value + '%'}"
+          >
+          <ng-container *ngTemplateOutlet="labelTemplate || defaultMarkLabel; context: { $implicit: mark }"></ng-container>
+        </span>
+      }
+    </div>
+  }
 </div>
 
 <ng-template #defaultMarkLabel let-mark>

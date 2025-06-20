@@ -1,58 +1,61 @@
 <div class="content-box">
-	<div class="left-side">
-		<div *ngFor="let group of groups,index as i" class="component-group">
-			<div class="group-header">
-				<div class="group-expand-icon">
-					<div></div>
-				</div>
-				<div class="group-title">
-					{{ group.title }}
-				</div>
-			</div>
-			<div class="group-body">
-				<div 
-					#componentItem
-					class="component-item no-copy"
-					*ngFor="let component of group.components;index as k"
-					(mousedown)="addNewComponent(component, componentItem)">
-					<div class="component-item-content">
-						<div class="component-item-icon">
-							<div>图标</div>
-						</div>
-						<div class="component-item-title">
-							{{ component.title }}
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="center">
-		<!-- <ng-container
-			[ngTemplateOutlet]="source.get('default')"
-			[ngTemplateOutletContext]="{ $implicit: '123' }">
-		</ng-container> -->
-		<div class="model-preview-content">
-			<div class="model-preview-header-bar"></div>
-			<div class="model-preview-header">
-				<div class="model-preview-title">
-					流程名称
-				</div>
-				<div class="model-preview-icon">
-					<div>图标</div>
-				</div>
-			</div>
-			<div class="model-preview-body">
-				<lib-customer-form-modal [subject]="subject" [data]="group1" (selectComponent)="selectComponent($event)">
+  <div class="left-side">
+    @for (group of groups; track group; let i = $index) {
+      <div class="component-group">
+        <div class="group-header">
+          <div class="group-expand-icon">
+            <div></div>
+          </div>
+          <div class="group-title">
+            {{ group.title }}
+          </div>
+        </div>
+        <div class="group-body">
+          @for (component of group.components; track component; let k = $index) {
+            <div
+              #componentItem
+              class="component-item no-copy"
+              (mousedown)="addNewComponent(component, componentItem)">
+              <div class="component-item-content">
+                <div class="component-item-icon">
+                  <div>图标</div>
+                </div>
+                <div class="component-item-title">
+                  {{ component.title }}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+  </div>
+  <div class="center">
+    <!-- <ng-container
+    [ngTemplateOutlet]="source.get('default')"
+    [ngTemplateOutletContext]="{ $implicit: '123' }">
+  </ng-container> -->
+  <div class="model-preview-content">
+    <div class="model-preview-header-bar"></div>
+    <div class="model-preview-header">
+      <div class="model-preview-title">
+        流程名称
+      </div>
+      <div class="model-preview-icon">
+        <div>图标</div>
+      </div>
+    </div>
+    <div class="model-preview-body">
+      <lib-customer-form-modal [subject]="subject" [data]="group1" (selectComponent)="selectComponent($event)">
 
-				</lib-customer-form-modal>
-			</div>
-		</div>
-		<div class="tip-text">
-			拖拽或点击左侧控件，完成表单配置
-		</div>
-	</div>
-	<div class="right-side">
+      </lib-customer-form-modal>
+    </div>
+  </div>
+  <div class="tip-text">
+    拖拽或点击左侧控件，完成表单配置
+  </div>
+</div>
+<div class="right-side">
 
-	</div>
+</div>
 </div>

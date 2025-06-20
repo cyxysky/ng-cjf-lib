@@ -12,7 +12,7 @@
           为页面和功能提供导航的菜单列表。导航菜单是一个网站的灵魂，用户依赖导航在各个页面中进行跳转。一般分为顶部导航和侧边导航，顶部导航提供全局性的类目和功能，侧边导航提供多级结构来收纳和排列网站架构。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -51,7 +51,9 @@
             [items]="basicMenuItems"
             (menuItemClick)="onMenuItemClick($event)">
           </lib-menu>
-          <p class="example-value" *ngIf="selectedItem">当前选中: {{ selectedItem.title }}</p>
+          @if (selectedItem) {
+            <p class="example-value">当前选中: {{ selectedItem.title }}</p>
+          }
         </div>
         <div description>
           <p>基本的菜单布局，内联模式，子菜单内嵌在菜单区域。</p>
@@ -73,7 +75,7 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 深色主题 -->
       <app-doc-box title="深色主题" [sourceCode]="darkThemeSource">
         <div demo class="demo-container">
@@ -103,7 +105,7 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 垂直模式 -->
       <app-doc-box title="垂直模式" [sourceCode]="verticalSource">
         <div demo class="demo-container">
@@ -133,7 +135,7 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 水平模式 -->
       <app-doc-box title="水平模式" [sourceCode]="horizontalSource">
         <div demo class="demo-container">
@@ -163,7 +165,7 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 折叠菜单 -->
       <app-doc-box title="可折叠菜单" [sourceCode]="collapsedSource">
         <div demo class="demo-container">
@@ -203,7 +205,7 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 禁用菜单项 -->
       <app-doc-box title="禁用菜单项" [sourceCode]="disabledSource">
         <div demo class="demo-container">
@@ -223,7 +225,7 @@
       </app-doc-box>
     </div>
   </div>
-  
+
   <!-- API 文档区域 -->
   <div class="api-section">
     <div class="section-header">
@@ -235,7 +237,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>

@@ -12,7 +12,7 @@
           多层次的结构列表组件，专为展示具有层级关系的数据而设计。支持丰富的交互功能，包括选择、勾选、搜索、异步加载等，让复杂的树形数据展示变得简单高效。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -44,242 +44,250 @@
     </div>
 
     <div class="demo-grid">
-  
-      <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <lib-tree #tree
-          [treeData]="basicTreeData"
-          [treeCheckable]="true"
-          [treeShowIcon]="true"
-          [treeDefaultExpandAll]="false"
-          [treeDefaultSelectedKeys]="[]"
-          [treeDefaultCheckedKeys]="['0']"
-          [treeDefaultExpandedKeys]="['0-0-0']"
-          (treeSelectedChange)="onNodeSelected($event)"
-          (treeCheckBoxChange)="onNodeChecked($event)"
-          (treeExpandChange)="onNodeExpanded($event)"
-        ></lib-tree>
-        <lib-input [(ngModel)]="ExpendNodeKey" [inputPlaceholder]="'请输入节点key,多个节点用逗号隔开'" style="margin-top: 10px;"></lib-input>
-        <div class="mt-3">
-          <lib-button class="mr-2" (click)="getTreeState()">获取树状态</lib-button>
-          <lib-button class="mr-2" (click)="expandNodes()">展开指定节点</lib-button>
-          <lib-button (click)="resetExpanded()">重置展开状态</lib-button>
-        </div>
-      </div>
-      <div description>
-        <p>基础树形组件功能展示：</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="color-dot success"></span>
-            <strong>完整功能</strong> - 支持勾选、选中、展开控制
-          </div>
-          <div class="feature-item">
-            <span class="color-dot primary"></span>
-            <strong>状态管理</strong> - 提供丰富的状态获取和控制方法
-          </div>
-          <div class="feature-item">
-            <span class="color-dot info"></span>
-            <strong>初始化设置</strong> - 支持默认选中、勾选、展开状态
-          </div>
-        </div>
-        <div class="api-methods">
-          <h4>主要方法：</h4>
-          <div class="method-list">
-            <code>getExpandedKeys</code>
-            <code>getSelectedKeys</code>
-            <code>getCheckedKeys</code>
-            <code>expendNodeByKeys</code>
-          </div>
-        </div>
-      </div>
-    </app-doc-box>
-    
-    <!-- 带连接线的树 -->
-    <app-doc-box
-      title="带连接线的树"
-      [sourceCode]="lineSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="basicTreeData1" 
-          [treeShowLine]="true"
-          [treeDefaultExpandAll]="true"
-        ></lib-tree>
-      </div>
-      <div description>
-        <p>层级关系可视化：</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="color-dot primary"></span>
-            <strong>连接线显示</strong> - 清晰展示父子节点关系
-          </div>
-          <div class="feature-item">
-            <span class="color-dot success"></span>
-            <strong>视觉增强</strong> - 适用于复杂层级结构展示
-          </div>
-        </div>
-      </div>
-    </app-doc-box>
-    
-    <!-- 使用TreeTemplate自定义目录结构 -->
-    <app-doc-box
-      title="自定义节点内容"
-      [sourceCode]="customSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="customTreeData" 
-          [treeDefaultExpandAll]="true"
-          [treeTemplate]="treeTemplate"
-        >
-          <ng-template #treeTemplate let-node let-origin="origin">
-            <div class="custom-node">
-              <span>{{ node.title }}</span>
-              <span *ngIf="origin.type" class="node-type">{{ origin.type }}</span>
-              <span *ngIf="origin.description" class="node-desc">{{ origin.description }}</span>
-            </div>
-          </ng-template>
-        </lib-tree>
-      </div>
-      <div description>
-        <p>灵活的内容定制：</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="color-dot warning"></span>
-            <strong>自定义模板</strong> - 完全控制节点显示内容
-          </div>
-          <div class="feature-item">
-            <span class="color-dot info"></span>
-            <strong>数据绑定</strong> - 访问原始数据和节点状态
-          </div>
-        </div>
-      </div>
-    </app-doc-box>
-    
-    <!-- 虚拟滚动 -->
-    <app-doc-box
-      title="虚拟滚动"
-      [sourceCode]="virtualSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="largeTreeData" 
-          [treeIsVirtualScroll]="true"
-          [treeShowLine]="true"
-          [treeCheckable]="true"
-          [treeShowIcon]="true"
-          [treeDefaultExpandAll]="false"
-          [treeDefaultSelectedKeys]="['0']"
-          [treeDefaultCheckedKeys]="['0']"
-          [treeDefaultExpandedKeys]="['0']"
-          (treeSelectedChange)="onNodeSelected($event)"
-          (treeCheckBoxChange)="onNodeChecked($event)"
-          (treeExpandChange)="onNodeExpanded($event)"
-          [treeVirtualHeight]="300"
-          [treeVirtualItemSize]="24"
-          [treeVirtualMinBuffer]="300"
-          [treeVirtualMaxBuffer]="600"
-        ></lib-tree>
-      </div>
-      <div description>
-        <p>高性能大数据处理：</p>
-        <div class="feature-list">
-          <div class="feature-item">
-            <span class="color-dot success"></span>
-            <strong>虚拟滚动</strong> - 处理大量节点数据
-          </div>
-          <div class="feature-item">
-            <span class="color-dot primary"></span>
-            <strong>性能优化</strong> - 可配置缓冲区和项目大小
-          </div>
-        </div>
-        <div class="config-list">
-          <h4>配置参数：</h4>
-          <div class="config-items">
-            <span class="config-item">height: 300px</span>
-            <span class="config-item">itemSize: 24px</span>
-            <span class="config-item">buffer: 300-600</span>
-          </div>
-        </div>
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义图标 -->
-    <app-doc-box
-      title="自定义图标和展开图标"
-      [sourceCode]="iconSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="iconTreeData"
-          [treeExpandedIcon]="expandIconTemplate"
-          [treeShowIcon]="true"
-          [treeDefaultExpandAll]="true"
-        >
-          <ng-template #expandIconTemplate let-node>
-            <i class="bi-folder2-open" *ngIf="node.expanded"></i>
-            <i class="bi-folder" *ngIf="!node.expanded"></i>
-          </ng-template>
-          <ng-template #iconTemplate let-node>
-            <i class="tree-icon" [ngClass]="node.icon"></i>
-          </ng-template>
-        </lib-tree>
-      </div>
-      <div description>
-        可以通过treeExpandedIcon模板自定义展开/折叠图标，通过iconTemplate模板自定义节点图标。
-      </div>
-    </app-doc-box>
-    
-    <!-- 可搜索的树 -->
-    <app-doc-box
-      title="可搜索的树"
-      [sourceCode]="searchSource">
-      <div demo>
-        <lib-input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange($event)"></lib-input>
-        <lib-tree 
-          [treeData]="basicTreeData2" 
-          [treeSearchValue]="searchValue"
-          (treeSearchChange)="onSearchChange($event)"
-        ></lib-tree>
-      </div>
-      <div description>
-        设置treeSearchValue属性可对树节点进行搜索，搜索结果会自动展开父节点，并高亮匹配内容。
-      </div>
-    </app-doc-box>
-    
-    <!-- 异步加载 -->
-    <app-doc-box
-      title="异步加载数据"
-      [sourceCode]="asyncSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="asyncTreeData" 
-          [treeAsyncData]="true"
-          (treeLoadData)="onLoadData($event)"
-        ></lib-tree>
-      </div>
-      <div description>
-        设置treeAsyncData为true可启用异步加载，通过loadData事件获取子节点数据。使用节点的changeChildren方法更新子节点数据，确保视图自动更新。适用于子节点数据量大或需要从服务器动态加载的场景。
-      </div>
-    </app-doc-box>
 
-    <!-- 多选与单选 -->
-    <app-doc-box
-      title="多选与单选模式"
-      [sourceCode]="multipleSource">
-      <div demo>
-        <lib-tree 
-          [treeData]="multipleTreeData" 
-          [treeMultiple]="isMultiple"
-          [treeDefaultExpandAll]="true"
-        ></lib-tree>
-        <div class="mt-2">
-          <lib-switch [(ngModel)]="isMultiple" [switchCheckedChildren]="'多选'" [switchUnCheckedChildren]="'单选'"></lib-switch>
+      <!-- 基本用法 -->
+      <app-doc-box
+        title="基本用法"
+        [sourceCode]="basicSource">
+        <div demo>
+          <lib-tree #tree
+            [treeData]="basicTreeData"
+            [treeCheckable]="true"
+            [treeShowIcon]="true"
+            [treeDefaultExpandAll]="false"
+            [treeDefaultSelectedKeys]="[]"
+            [treeDefaultCheckedKeys]="['0']"
+            [treeDefaultExpandedKeys]="['0-0-0']"
+            (treeSelectedChange)="onNodeSelected($event)"
+            (treeCheckBoxChange)="onNodeChecked($event)"
+            (treeExpandChange)="onNodeExpanded($event)"
+          ></lib-tree>
+          <lib-input [(ngModel)]="ExpendNodeKey" [inputPlaceholder]="'请输入节点key,多个节点用逗号隔开'" style="margin-top: 10px;"></lib-input>
+          <div class="mt-3">
+            <lib-button class="mr-2" (click)="getTreeState()">获取树状态</lib-button>
+            <lib-button class="mr-2" (click)="expandNodes()">展开指定节点</lib-button>
+            <lib-button (click)="resetExpanded()">重置展开状态</lib-button>
+          </div>
         </div>
-      </div>
-      <div description>
-        设置treeMultiple属性可切换单选/多选模式。单选模式下只能选中一个节点，多选模式下可同时选中多个节点。
-      </div>
-    </app-doc-box>
+        <div description>
+          <p>基础树形组件功能展示：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="color-dot success"></span>
+              <strong>完整功能</strong> - 支持勾选、选中、展开控制
+            </div>
+            <div class="feature-item">
+              <span class="color-dot primary"></span>
+              <strong>状态管理</strong> - 提供丰富的状态获取和控制方法
+            </div>
+            <div class="feature-item">
+              <span class="color-dot info"></span>
+              <strong>初始化设置</strong> - 支持默认选中、勾选、展开状态
+            </div>
+          </div>
+          <div class="api-methods">
+            <h4>主要方法：</h4>
+            <div class="method-list">
+              <code>getExpandedKeys</code>
+              <code>getSelectedKeys</code>
+              <code>getCheckedKeys</code>
+              <code>expendNodeByKeys</code>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 带连接线的树 -->
+      <app-doc-box
+        title="带连接线的树"
+        [sourceCode]="lineSource">
+        <div demo>
+          <lib-tree
+            [treeData]="basicTreeData1"
+            [treeShowLine]="true"
+            [treeDefaultExpandAll]="true"
+          ></lib-tree>
+        </div>
+        <div description>
+          <p>层级关系可视化：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="color-dot primary"></span>
+              <strong>连接线显示</strong> - 清晰展示父子节点关系
+            </div>
+            <div class="feature-item">
+              <span class="color-dot success"></span>
+              <strong>视觉增强</strong> - 适用于复杂层级结构展示
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 使用TreeTemplate自定义目录结构 -->
+      <app-doc-box
+        title="自定义节点内容"
+        [sourceCode]="customSource">
+        <div demo>
+          <lib-tree
+            [treeData]="customTreeData"
+            [treeDefaultExpandAll]="true"
+            [treeTemplate]="treeTemplate"
+            >
+            <ng-template #treeTemplate let-node let-origin="origin">
+              <div class="custom-node">
+                <span>{{ node.title }}</span>
+                @if (origin.type) {
+                  <span class="node-type">{{ origin.type }}</span>
+                }
+                @if (origin.description) {
+                  <span class="node-desc">{{ origin.description }}</span>
+                }
+              </div>
+            </ng-template>
+          </lib-tree>
+        </div>
+        <div description>
+          <p>灵活的内容定制：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="color-dot warning"></span>
+              <strong>自定义模板</strong> - 完全控制节点显示内容
+            </div>
+            <div class="feature-item">
+              <span class="color-dot info"></span>
+              <strong>数据绑定</strong> - 访问原始数据和节点状态
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 虚拟滚动 -->
+      <app-doc-box
+        title="虚拟滚动"
+        [sourceCode]="virtualSource">
+        <div demo>
+          <lib-tree
+            [treeData]="largeTreeData"
+            [treeIsVirtualScroll]="true"
+            [treeShowLine]="true"
+            [treeCheckable]="true"
+            [treeShowIcon]="true"
+            [treeDefaultExpandAll]="false"
+            [treeDefaultSelectedKeys]="['0']"
+            [treeDefaultCheckedKeys]="['0']"
+            [treeDefaultExpandedKeys]="['0']"
+            (treeSelectedChange)="onNodeSelected($event)"
+            (treeCheckBoxChange)="onNodeChecked($event)"
+            (treeExpandChange)="onNodeExpanded($event)"
+            [treeVirtualHeight]="300"
+            [treeVirtualItemSize]="24"
+            [treeVirtualMinBuffer]="300"
+            [treeVirtualMaxBuffer]="600"
+          ></lib-tree>
+        </div>
+        <div description>
+          <p>高性能大数据处理：</p>
+          <div class="feature-list">
+            <div class="feature-item">
+              <span class="color-dot success"></span>
+              <strong>虚拟滚动</strong> - 处理大量节点数据
+            </div>
+            <div class="feature-item">
+              <span class="color-dot primary"></span>
+              <strong>性能优化</strong> - 可配置缓冲区和项目大小
+            </div>
+          </div>
+          <div class="config-list">
+            <h4>配置参数：</h4>
+            <div class="config-items">
+              <span class="config-item">height: 300px</span>
+              <span class="config-item">itemSize: 24px</span>
+              <span class="config-item">buffer: 300-600</span>
+            </div>
+          </div>
+        </div>
+      </app-doc-box>
+
+      <!-- 自定义图标 -->
+      <app-doc-box
+        title="自定义图标和展开图标"
+        [sourceCode]="iconSource">
+        <div demo>
+          <lib-tree
+            [treeData]="iconTreeData"
+            [treeExpandedIcon]="expandIconTemplate"
+            [treeShowIcon]="true"
+            [treeDefaultExpandAll]="true"
+            >
+            <ng-template #expandIconTemplate let-node>
+              @if (node.expanded) {
+                <i class="bi-folder2-open"></i>
+              }
+              @if (!node.expanded) {
+                <i class="bi-folder"></i>
+              }
+            </ng-template>
+            <ng-template #iconTemplate let-node>
+              <i class="tree-icon" [ngClass]="node.icon"></i>
+            </ng-template>
+          </lib-tree>
+        </div>
+        <div description>
+          可以通过treeExpandedIcon模板自定义展开/折叠图标，通过iconTemplate模板自定义节点图标。
+        </div>
+      </app-doc-box>
+
+      <!-- 可搜索的树 -->
+      <app-doc-box
+        title="可搜索的树"
+        [sourceCode]="searchSource">
+        <div demo>
+          <lib-input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange($event)"></lib-input>
+          <lib-tree
+            [treeData]="basicTreeData2"
+            [treeSearchValue]="searchValue"
+            (treeSearchChange)="onSearchChange($event)"
+          ></lib-tree>
+        </div>
+        <div description>
+          设置treeSearchValue属性可对树节点进行搜索，搜索结果会自动展开父节点，并高亮匹配内容。
+        </div>
+      </app-doc-box>
+
+      <!-- 异步加载 -->
+      <app-doc-box
+        title="异步加载数据"
+        [sourceCode]="asyncSource">
+        <div demo>
+          <lib-tree
+            [treeData]="asyncTreeData"
+            [treeAsyncData]="true"
+            (treeLoadData)="onLoadData($event)"
+          ></lib-tree>
+        </div>
+        <div description>
+          设置treeAsyncData为true可启用异步加载，通过loadData事件获取子节点数据。使用节点的changeChildren方法更新子节点数据，确保视图自动更新。适用于子节点数据量大或需要从服务器动态加载的场景。
+        </div>
+      </app-doc-box>
+
+      <!-- 多选与单选 -->
+      <app-doc-box
+        title="多选与单选模式"
+        [sourceCode]="multipleSource">
+        <div demo>
+          <lib-tree
+            [treeData]="multipleTreeData"
+            [treeMultiple]="isMultiple"
+            [treeDefaultExpandAll]="true"
+          ></lib-tree>
+          <div class="mt-2">
+            <lib-switch [(ngModel)]="isMultiple" [switchCheckedChildren]="'多选'" [switchUnCheckedChildren]="'单选'"></lib-switch>
+          </div>
+        </div>
+        <div description>
+          设置treeMultiple属性可切换单选/多选模式。单选模式下只能选中一个节点，多选模式下可同时选中多个节点。
+        </div>
+      </app-doc-box>
     </div>
   </div>
 
@@ -294,7 +302,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>

@@ -1,49 +1,57 @@
-<div *ngIf="isVisible">
-  <div 
-    *ngIf="mask && maskVisible" 
-    class="c-lib-drawer-mask" 
-    [@maskMotion]="visible ? 'enter' : 'void'"
-    [style.zIndex]="zIndex - 1"
-    (click)="maskClosable && close()">
-  </div>
-  <div 
-    class="c-lib-drawer"
-    [class.c-lib-drawer-no-mask]="!mask"
-    [class.c-lib-drawer-open]="visible"
-    [class.c-lib-drawer-left]="placement === 'left'"
-    [class.c-lib-drawer-right]="placement === 'right'"
-    [class.c-lib-drawer-top]="placement === 'top'"
-    [class.c-lib-drawer-bottom]="placement === 'bottom'"
-    [style.zIndex]="zIndex"
-    [style.width]="placement === 'left' || placement === 'right' ? width : height"
-    [style.height]="placement === 'top' || placement === 'bottom' ? width : '100%'"
-    [style.top]="placement === 'top' ? top : null"
-    [style.left]="placement === 'left' ? left : null"
-
-    [@drawerMotion]="animationState"
-    (@drawerMotion.done)="animationDone($event)"
-    >
-    <div class="c-lib-drawer-content-wrapper">
-      <div class="c-lib-drawer-header" *ngIf="title">
-        <div class="c-lib-drawer-title">
-          <ng-container *ngIf="isTemplateRef(title); else stringTitle">
-            <ng-container *ngTemplateOutlet="title; context: { $implicit: contentContext }"></ng-container>
-          </ng-container>
-          <ng-template #stringTitle>{{ title }}</ng-template>
-        </div>
-        <button *ngIf="closable" class="c-lib-drawer-close" (click)="close()">
-          <span class="c-lib-drawer-close-x">
-            <i class="bi-x-lg"></i>
-          </span>
-        </button>
+@if (isVisible) {
+  <div>
+    @if (mask && maskVisible) {
+      <div
+        class="c-lib-drawer-mask"
+        [@maskMotion]="visible ? 'enter' : 'void'"
+        [style.zIndex]="zIndex - 1"
+        (click)="maskClosable && close()">
       </div>
-      <div class="c-lib-drawer-body">
-        <ng-container *ngIf="isTemplateRef(content); else stringContent">
-          <ng-container *ngTemplateOutlet="content; context: { $implicit: contentContext }"></ng-container>
-        </ng-container>
-        <ng-template #stringContent>{{ content }}</ng-template>
-        <ng-content></ng-content>
+    }
+    <div
+      class="c-lib-drawer"
+      [class.c-lib-drawer-no-mask]="!mask"
+      [class.c-lib-drawer-open]="visible"
+      [class.c-lib-drawer-left]="placement === 'left'"
+      [class.c-lib-drawer-right]="placement === 'right'"
+      [class.c-lib-drawer-top]="placement === 'top'"
+      [class.c-lib-drawer-bottom]="placement === 'bottom'"
+      [style.zIndex]="zIndex"
+      [style.width]="placement === 'left' || placement === 'right' ? width : height"
+      [style.height]="placement === 'top' || placement === 'bottom' ? width : '100%'"
+      [style.top]="placement === 'top' ? top : null"
+      [style.left]="placement === 'left' ? left : null"
+      [@drawerMotion]="animationState"
+      (@drawerMotion.done)="animationDone($event)"
+      >
+      <div class="c-lib-drawer-content-wrapper">
+        @if (title) {
+          <div class="c-lib-drawer-header">
+            <div class="c-lib-drawer-title">
+              @if (isTemplateRef(title)) {
+                <ng-container *ngTemplateOutlet="title; context: { $implicit: contentContext }"></ng-container>
+              } @else {
+                {{ title }}
+              }
+            </div>
+            @if (closable) {
+              <button class="c-lib-drawer-close" (click)="close()">
+                <span class="c-lib-drawer-close-x">
+                  <i class="bi-x-lg"></i>
+                </span>
+              </button>
+            }
+          </div>
+        }
+        <div class="c-lib-drawer-body">
+          @if (isTemplateRef(content)) {
+            <ng-container *ngTemplateOutlet="content; context: { $implicit: contentContext }"></ng-container>
+          } @else {
+            {{ content }}
+          }
+          <ng-content></ng-content>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

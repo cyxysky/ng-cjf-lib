@@ -4,8 +4,8 @@
     <div class="demo-header">
       <h3 class="demo-title">{{ title }}</h3>
       <div class="demo-actions">
-        <button 
-          class="action-btn code-btn" 
+        <button
+          class="action-btn code-btn"
           [class.active]="codeVisible"
           (click)="toggleCode()"
           title="查看代码">
@@ -16,7 +16,7 @@
         </button>
       </div>
     </div>
-    
+
     <div class="demo-content">
       <ng-content select="[demo]"></ng-content>
     </div>
@@ -30,38 +30,44 @@
   </div>
 
   <!-- 代码区域 -->
-  <div class="code-section" *ngIf="codeVisible" [@slideAnimation]>
-
-    <div class="code-tabs">
-      <lib-tabs [tabsTabAlign]="'center'">
-        <lib-tab *ngFor="let tab of tabs" [tabTitle]="tab.title">
-          <div class="code-container">
-            <div class="code-toolbar">
-              <div class="code-lang">
-                <span class="lang-badge">{{ tab.language }}</span>
+  @if (codeVisible) {
+    <div class="code-section" [@slideAnimation]>
+      <div class="code-tabs">
+        <lib-tabs [tabsTabAlign]="'center'">
+          @for (tab of tabs; track tab) {
+            <lib-tab [tabTitle]="tab.title">
+              <div class="code-container">
+                <div class="code-toolbar">
+                  <div class="code-lang">
+                    <span class="lang-badge">{{ tab.language }}</span>
+                  </div>
+                  <button
+                    class="copy-btn"
+                    [class.copied]="tab.copied"
+                    (click)="copyTabCode(tab)"
+                    [disabled]="tab.copied">
+                    @if (!tab.copied) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                    }
+                    @if (tab.copied) {
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                      </svg>
+                    }
+                    <span>{{ tab.copied ? '已复制' : '复制' }}</span>
+                  </button>
+                </div>
+                <div class="code-content">
+                  <pre><code [class]="tab.language">{{ tab.content }}</code></pre>
+                </div>
               </div>
-              <button 
-                class="copy-btn" 
-                [class.copied]="tab.copied"
-                (click)="copyTabCode(tab)"
-                [disabled]="tab.copied">
-                <svg *ngIf="!tab.copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                </svg>
-                <svg *ngIf="tab.copied" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-                </svg>
-                <span>{{ tab.copied ? '已复制' : '复制' }}</span>
-              </button>
-            </div>
-            
-            <div class="code-content">
-              <pre><code [class]="tab.language">{{ tab.content }}</code></pre>
-            </div>
-          </div>
-        </lib-tab>
-      </lib-tabs>
+            </lib-tab>
+          }
+        </lib-tabs>
+      </div>
     </div>
-  </div>
+  }
 </div>

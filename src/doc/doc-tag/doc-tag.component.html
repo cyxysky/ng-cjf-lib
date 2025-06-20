@@ -12,7 +12,7 @@
           进行标记和分类的小标签。用于标记事物的属性和维度，帮助用户快速识别和分类内容。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -74,13 +74,14 @@
       <app-doc-box title="可关闭标签" [sourceCode]="closableTagSource">
         <div demo class="demo-container">
           <div class="demo-row">
-            <lib-tag 
-              *ngFor="let tag of closableTags; let i = index"
-              [tagContent]="tag"
-              [tagClosable]="true"
-              (close)="handleClose(i)"
-              style="margin-right: 8px;">
-            </lib-tag>
+            @for (tag of closableTags; track tag; let i = $index) {
+              <lib-tag
+                [tagContent]="tag"
+                [tagClosable]="true"
+                (close)="handleClose(i)"
+                style="margin-right: 8px;">
+              </lib-tag>
+            }
           </div>
         </div>
         <div description>
@@ -106,13 +107,14 @@
       <app-doc-box title="可选择标签" [sourceCode]="checkableTagSource">
         <div demo class="demo-container">
           <div class="demo-row">
-            <lib-tag 
-              *ngFor="let tag of checkableTags"
-              [tagContent]="tag.content"
-              [tagCheckable]="true"
-              [(checked)]="tag.checked"
-              style="margin-right: 8px;">
-            </lib-tag>
+            @for (tag of checkableTags; track tag) {
+              <lib-tag
+                [tagContent]="tag.content"
+                [tagCheckable]="true"
+                [(checked)]="tag.checked"
+                style="margin-right: 8px;">
+              </lib-tag>
+            }
           </div>
         </div>
         <div description>
@@ -136,23 +138,25 @@
           <div class="color-demo-section">
             <h4>预设颜色</h4>
             <div class="demo-row">
-              <lib-tag 
-                *ngFor="let color of presetColors"
-                [tagContent]="color"
-                [tagColor]="color"
-                style="margin-right: 8px; margin-bottom: 8px;">
-              </lib-tag>
+              @for (color of presetColors; track color) {
+                <lib-tag
+                  [tagContent]="color"
+                  [tagColor]="color"
+                  style="margin-right: 8px; margin-bottom: 8px;">
+                </lib-tag>
+              }
             </div>
           </div>
           <div class="color-demo-section">
             <h4>自定义颜色</h4>
             <div class="demo-row">
-              <lib-tag 
-                *ngFor="let color of customColors; let i = index"
-                [tagContent]="'自定义颜色' + (i+1)"
-                [tagColor]="color"
-                style="margin-right: 8px; margin-bottom: 8px;">
-              </lib-tag>
+              @for (color of customColors; track color; let i = $index) {
+                <lib-tag
+                  [tagContent]="'自定义颜色' + (i+1)"
+                  [tagColor]="color"
+                  style="margin-right: 8px; margin-bottom: 8px;">
+                </lib-tag>
+              }
             </div>
           </div>
         </div>
@@ -181,18 +185,18 @@
       <app-doc-box title="无边框标签" [sourceCode]="noBorderTagSource">
         <div demo class="demo-container">
           <div class="demo-row">
-            <lib-tag 
+            <lib-tag
               [tagContent]="'无边框标签'"
               [tagBorder]="false"
               style="margin-right: 8px;">
             </lib-tag>
-            <lib-tag 
+            <lib-tag
               [tagContent]="'无边框彩色标签'"
               [tagBorder]="false"
               [tagColor]="'blue'"
               style="margin-right: 8px;">
             </lib-tag>
-            <lib-tag 
+            <lib-tag
               [tagContent]="'无边框可选择标签'"
               [tagBorder]="false"
               [tagCheckable]="true"
@@ -226,12 +230,12 @@
       <app-doc-box title="禁用状态" [sourceCode]="disabledTagSource">
         <div demo class="demo-container">
           <div class="demo-row">
-            <lib-tag 
+            <lib-tag
               [tagContent]="'禁用标签'"
               [tagDisabled]="true"
               [tagClosable]="true">
             </lib-tag>
-            <lib-tag 
+            <lib-tag
               [tagContent]="'禁用可选择标签'"
               [tagDisabled]="true"
               [tagCheckable]="true"
@@ -274,7 +278,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>

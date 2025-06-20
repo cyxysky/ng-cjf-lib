@@ -13,28 +13,42 @@
   (blur)="onBlur()"
   >
   <div class="c-lib-switch-handle">
-    <div *ngIf="loading" class="c-lib-switch-loading-box">
-      <svg viewBox="0 0 1024 1024" class="c-lib-switch-loading-icon" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-        <path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path>
-      </svg>
-    </div>
+    @if (loading) {
+      <div class="c-lib-switch-loading-box">
+        <svg viewBox="0 0 1024 1024" class="c-lib-switch-loading-icon" data-icon="loading" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+          <path d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"></path>
+        </svg>
+      </div>
+    }
   </div>
   <!-- 选中 -->
-  <span *ngIf="checked()" class="c-lib-switch-inner c-lib-switch-inner-checked">
-    <!-- 字符串 -->
-    <ng-container *ngIf="isString(checkedChildren)">{{ checkedChildren }}</ng-container>
-    <!-- 模板 -->
-    <ng-container *ngIf="isTemplate(checkedChildren)" [ngTemplateOutlet]="checkedChildren"></ng-container>
-    <!-- 内容 -->
-    <ng-content select="[checkedChildren]"></ng-content>
-  </span>
+  @if (checked()) {
+    <span class="c-lib-switch-inner c-lib-switch-inner-checked">
+      <!-- 字符串 -->
+      @if (isString(checkedChildren)) {
+        {{ checkedChildren }}
+      }
+      <!-- 模板 -->
+      @if (isTemplate(checkedChildren)) {
+        <ng-container [ngTemplateOutlet]="checkedChildren"></ng-container>
+      }
+      <!-- 内容 -->
+      <ng-content select="[checkedChildren]"></ng-content>
+    </span>
+  }
   <!-- 未选中 -->
-  <span *ngIf="!checked()" class="c-lib-switch-inner c-lib-switch-inner-unchecked">
-    <!-- 字符串 -->
-    <ng-container *ngIf="isString(unCheckedChildren)">{{ unCheckedChildren }}</ng-container>
-    <!-- 模板 -->
-    <ng-container *ngIf="isTemplate(unCheckedChildren)" [ngTemplateOutlet]="unCheckedChildren"></ng-container>
-    <!-- 内容 -->
-    <ng-content select="[unCheckedChildren]"></ng-content>
-  </span>
+  @if (!checked()) {
+    <span class="c-lib-switch-inner c-lib-switch-inner-unchecked">
+      <!-- 字符串 -->
+      @if (isString(unCheckedChildren)) {
+        {{ unCheckedChildren }}
+      }
+      <!-- 模板 -->
+      @if (isTemplate(unCheckedChildren)) {
+        <ng-container [ngTemplateOutlet]="unCheckedChildren"></ng-container>
+      }
+      <!-- 内容 -->
+      <ng-content select="[unCheckedChildren]"></ng-content>
+    </span>
+  }
 </div>

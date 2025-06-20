@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild, SimpleChanges, NgZone, Renderer2, TemplateRef, HostListener, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ChartService } from '../chart.service';
 
 export interface BarChartOptions {
@@ -60,7 +60,7 @@ export interface BarChartData {
 @Component({
   selector: 'lib-bar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './bar.component.html',
   styleUrl: './bar.component.less'
 })

@@ -1,66 +1,72 @@
-<div *ngFor="let group of data;index as groupIndex" class="form-box">
-	<div class="group-title">
-		{{ group.title }}
-	</div>
-	<!-- <div class="group-space-line" [style.grid-template-columns]="columnsGridStyle">
-		<div *ngFor="let row of range(columns);index as colIndex" (mouseenter)="enterDrag(groupIndex, 0, colIndex + 1, 1)"></div>
-	</div> -->
-	<!-- 组 -->
-	<div 
-		class="group-grid-box" 
-		[style.grid-template-rows]="'repeat(' + groupRowCountMap.get(group.id) + ', 1fr)'"
-		[style.grid-template-columns]="columnsGridStyle">
-		<ng-container *ngFor="let row of range(groupRowCountMap.get(group.id));index as rowIndex">
-			<ng-container *ngFor="let row of range(columns);index as colIndex">
-				<div 
-					[style.grid-column-start]="colIndex + 1" 
-					[style.grid-row-start]="rowIndex + 1"
-					(mouseenter)="enterDrag(groupIndex, -1, colIndex + 1, rowIndex + 1)" 
-					[ngClass]="{'backGrid': isDragging}">
-				</div>
-			</ng-container>
-		</ng-container>
-		<!-- 组件 -->
-		<div 
-			*ngFor="let component of group.components;index as componentIndex"
-			#COMPONENTS 
-			class="components no-copy" 
-			[style.grid-column-end]="'span ' + component.width" 
-			[style.pointer-events]="isDragging ? 'none' : 'auto'"
-			[style.grid-column-start]="component.x" 
-			[style.grid-row-start]="component.y"
-			[ngClass]="{'components-select' : (selectId === component.id && !isDragging), 'drop-placeholder' : selectId === component.id}"
-			(mousedown)="startDragging(groupIndex, componentIndex, component, COMPONENTS)" 
-			(mouseleave)="leave()"
-			(mouseenter)="enterDrag(groupIndex, componentIndex, component.x, component.y)">
-			<div class="operater-buttons" *ngIf="selectId === component.id && !isDragging">
-				<div class="operater-buttons-icon">
-					<svg (click)="copyComponents(groupIndex, componentIndex)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-						<path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-						<path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-					</svg>
-				</div>
-				<div>|</div>
-				<div class="operater-buttons-icon">
-					<svg (click)="deleteComponents(groupIndex, componentIndex)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-						<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-					</svg>
-				</div>
-			</div>
-			<div class="column-flex">
-				<div class="form-label">
-					{{ component.title }}
-				</div>
-				<div class="none-pointer">
-					<lib-customer-form-component [(ngModel)]="values"></lib-customer-form-component>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="group-space-line" [style.grid-template-columns]="columnsGridStyle">
-		<div 
-			*ngFor="let row of range(columns);index as colIndex"
-			(mouseenter)="enterDrag(groupIndex, group.components.length , colIndex + 1, groupRowCountMap.get(group.id) + 1)">
-		</div>
-	</div>
+@for (group of data; track group; let groupIndex = $index) {
+  <div class="form-box">
+    <div class="group-title">
+      {{ group.title }}
+    </div>
+    <!-- <div class="group-space-line" [style.grid-template-columns]="columnsGridStyle">
+    <div *ngFor="let row of range(columns);index as colIndex" (mouseenter)="enterDrag(groupIndex, 0, colIndex + 1, 1)"></div>
+  </div> -->
+  <!-- 组 -->
+  <div
+    class="group-grid-box"
+    [style.grid-template-rows]="'repeat(' + groupRowCountMap.get(group.id) + ', 1fr)'"
+    [style.grid-template-columns]="columnsGridStyle">
+    @for (row of range(groupRowCountMap.get(group.id)); track row; let rowIndex = $index) {
+      @for (row of range(columns); track row; let colIndex = $index) {
+        <div
+          [style.grid-column-start]="colIndex + 1"
+          [style.grid-row-start]="rowIndex + 1"
+          (mouseenter)="enterDrag(groupIndex, -1, colIndex + 1, rowIndex + 1)"
+          [ngClass]="{'backGrid': isDragging}">
+        </div>
+      }
+    }
+    <!-- 组件 -->
+    @for (component of group.components; track component; let componentIndex = $index) {
+      <div
+        #COMPONENTS
+        class="components no-copy"
+        [style.grid-column-end]="'span ' + component.width"
+        [style.pointer-events]="isDragging ? 'none' : 'auto'"
+        [style.grid-column-start]="component.x"
+        [style.grid-row-start]="component.y"
+        [ngClass]="{'components-select' : (selectId === component.id && !isDragging), 'drop-placeholder' : selectId === component.id}"
+        (mousedown)="startDragging(groupIndex, componentIndex, component, COMPONENTS)"
+        (mouseleave)="leave()"
+        (mouseenter)="enterDrag(groupIndex, componentIndex, component.x, component.y)">
+        @if (selectId === component.id && !isDragging) {
+          <div class="operater-buttons">
+            <div class="operater-buttons-icon">
+              <svg (click)="copyComponents(groupIndex, componentIndex)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+              </svg>
+            </div>
+            <div>|</div>
+            <div class="operater-buttons-icon">
+              <svg (click)="deleteComponents(groupIndex, componentIndex)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+              </svg>
+            </div>
+          </div>
+        }
+        <div class="column-flex">
+          <div class="form-label">
+            {{ component.title }}
+          </div>
+          <div class="none-pointer">
+            <lib-customer-form-component [(ngModel)]="values"></lib-customer-form-component>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="group-space-line" [style.grid-template-columns]="columnsGridStyle">
+    @for (row of range(columns); track row; let colIndex = $index) {
+      <div
+        (mouseenter)="enterDrag(groupIndex, group.components.length , colIndex + 1, groupRowCountMap.get(group.id) + 1)">
+      </div>
+    }
+  </div>
 </div>
+}

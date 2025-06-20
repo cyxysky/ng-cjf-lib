@@ -1,6 +1,7 @@
 <div class="modern-api-container">
   <!-- 搜索和筛选区域 -->
-  <div class="search-section" *ngIf="showSearch">
+  @if (showSearch) {
+  <div class="search-section">
     <div class="search-header">
       <h2 class="section-title">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -14,6 +15,7 @@
       </div>
     </div>
   </div>
+  }
 
   <!-- API 表格区域 -->
   <div class="api-sections">
@@ -27,11 +29,15 @@
               {{ getSectionEmoji(section.type) }}
             </span>
             {{ section.title }}
-            <span class="section-type" *ngIf="section.type">{{ section.type }}</span>
+            @if (section.type) {
+            <span class="section-type">{{ section.type }}</span>
+            }
           </h3>
-          <p class="section-description" *ngIf="section.description">
+          @if (section.description) {
+          <p class="section-description">
             {{ section.description }}
           </p>
+          }
         </div>
         <div class="section-meta">
           <span class="item-count">{{ section.items.length || 0 }} 项</span>
@@ -39,43 +45,46 @@
       </div>
 
       <!-- 表格内容 -->
-      <div class="table-container" *ngIf="section.items?.length">
+      @if (section.items.length) {
+      <div class="table-container">
         <div class="table-wrapper">
           <table class="modern-api-table">
             <!-- <thead>
-                <tr>
-                  <th class="col-name">
-                    <div class="th-content">
-                      <span>名称</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
-                      </svg>
-                    </div>
-                  </th>
-                  <th class="col-description">
-                    <div class="th-content">
-                      <span>描述</span>
-                    </div>
-                  </th>
-                  <th class="col-type">
-                    <div class="th-content">
-                      <span>类型</span>
-                    </div>
-                  </th>
-                  <th class="col-default">
-                    <div class="th-content">
-                      <span>默认值</span>
-                    </div>
-                  </th>
-                </tr>
-              </thead> -->
+                  <tr>
+                    <th class="col-name">
+                      <div class="th-content">
+                        <span>名称</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                          <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                        </svg>
+                      </div>
+                    </th>
+                    <th class="col-description">
+                      <div class="th-content">
+                        <span>描述</span>
+                      </div>
+                    </th>
+                    <th class="col-type">
+                      <div class="th-content">
+                        <span>类型</span>
+                      </div>
+                    </th>
+                    <th class="col-default">
+                      <div class="th-content">
+                        <span>默认值</span>
+                      </div>
+                    </th>
+                  </tr>
+                </thead> -->
             <tbody>
               @for (item of section.items; track item.name; let i = $index) {
               <tr class="table-row" [class.highlighted]="isHighlighted(item)">
                 <td class="col-name" [width]="'25%'">
                   <div class="name-cell">
                     <code class="api-name">{{ item.name }}</code>
-                    <span class="required-badge" *ngIf="item.required">必需</span>
+                    @if (item.required) {
+                    <span class="required-badge">必需</span>
+                    }
                   </div>
                 </td>
                 <td class="col-description" [width]="'25%'">
@@ -86,18 +95,19 @@
                 <td class="col-type" [width]="'25%'">
                   <div class="type-cell">
                     <code class="type-badge" [class]="getTypeClass(item.type)">
-                          {{ item.type }}
-                        </code>
+                            {{ item.type }}
+                          </code>
                   </div>
                 </td>
                 <td class="col-default" [width]="'25%'">
                   <div class="default-cell">
-                    <code class="default-value" *ngIf="item.default; else emptyDefault">
-                          {{ item.default }}
-                        </code>
-                    <ng-template #emptyDefault>
-                      <span class="empty-value">-</span>
-                    </ng-template>
+                    @if (item.default) {
+                    <code class="default-value">
+                              {{ item.default }}
+                            </code>
+                    } @else {
+                    <span class="empty-value">-</span>
+                    }
                   </div>
                 </td>
               </tr>
@@ -106,9 +116,11 @@
           </table>
         </div>
       </div>
+      }
 
       <!-- 空状态 -->
-      <div class="empty-state" *ngIf="!section.items?.length">
+      @if (!section.items.length) {
+      <div class="empty-state">
         <div class="empty-content">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" viewBox="0 0 16 16">
             <path
@@ -117,12 +129,14 @@
           <p>暂无 API 数据</p>
         </div>
       </div>
+      }
     </div>
     }
   </div>
 
   <!-- 无搜索结果状态 -->
-  <div class="no-results" *ngIf="searchTerm && !filteredApiData.length">
+  @if (searchTerm && !filteredApiData.length) {
+  <div class="no-results">
     <div class="no-results-content">
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" viewBox="0 0 16 16">
         <path
@@ -135,4 +149,5 @@
       </button>
     </div>
   </div>
+  }
 </div>

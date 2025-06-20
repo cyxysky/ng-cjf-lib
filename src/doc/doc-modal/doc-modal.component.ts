@@ -1,5 +1,5 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit, Input, EventEmitter, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
 import { ButtonComponent, ModalComponent, ModalService, InputComponent, MessageService, SelectComponent } from '@project';
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-modal-demo',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputComponent, SelectComponent],
+  imports: [FormsModule, InputComponent, SelectComponent],
   template: `<div>
     <div style="padding-bottom: 8px;">
       检测触发情况
@@ -60,13 +60,12 @@ export class ModalDemoComponent {
   selector: 'app-doc-modal',
   standalone: true,
   imports: [
-    CommonModule,
     DocBoxComponent,
     DocApiTableComponent,
     ButtonComponent,
     ModalComponent,
     FormsModule
-  ],
+],
   templateUrl: './doc-modal.component.html',
   styleUrl: './doc-modal.component.less'
 })

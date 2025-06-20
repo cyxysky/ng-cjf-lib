@@ -1,30 +1,41 @@
 <div class="pie-chart-container" #pieContainer>
   <!-- 图例容器 - 针对 top 和 left 位置 -->
-  <div class="chart-legend" *ngIf="showLegend() && (getLegendPosition() === 'top' || getLegendPosition() === 'left')"
-    [class]="'legend-position-' + getLegendPosition()">
-    <div class="legend-item" *ngFor="let item of processedData; let i = index" (click)="toggleSliceSelection(i)"
-      [class.active]="hoveredIndex === i">
-      <div class="legend-color" [style.background-color]="item.color"></div>
-      <div class="legend-name" [class.legend-disabled]="!isSliceVisible(i)">
-        {{item.name}}
-        <small *ngIf="mergedOptions.showPercentage && isSliceVisible(i)">({{formatPercentage(item.percentage)}}%)</small>
-      </div>
+  @if (showLegend() && (getLegendPosition() === 'top' || getLegendPosition() === 'left')) {
+    <div class="chart-legend"
+      [class]="'legend-position-' + getLegendPosition()">
+      @for (item of processedData; track item; let i = $index) {
+        <div class="legend-item" (click)="toggleSliceSelection(i)"
+          [class.active]="hoveredIndex === i">
+          <div class="legend-color" [style.background-color]="item.color"></div>
+          <div class="legend-name" [class.legend-disabled]="!isSliceVisible(i)">
+            {{item.name}}
+            @if (mergedOptions.showPercentage && isSliceVisible(i)) {
+              <small>({{formatPercentage(item.percentage)}}%)</small>
+            }
+          </div>
+        </div>
+      }
     </div>
-  </div>
+  }
 
   <!-- 图例容器 - 针对 bottom 和 right 位置 -->
-  <div class="chart-legend"
-    *ngIf="showLegend() && (getLegendPosition() === 'bottom' || getLegendPosition() === 'right')"
-    [class]="'legend-position-' + getLegendPosition()">
-    <div class="legend-item" *ngFor="let item of processedData; let i = index" (click)="toggleSliceSelection(i)"
-      [class.active]="hoveredIndex === i">
-      <div class="legend-color" [style.background-color]="item.color"></div>
-      <div class="legend-name" [class.legend-disabled]="!isSliceVisible(i)">
-        {{item.name}}
-        <small *ngIf="mergedOptions.showPercentage && isSliceVisible(i)">({{formatPercentage(item.percentage)}}%)</small>
-      </div>
+  @if (showLegend() && (getLegendPosition() === 'bottom' || getLegendPosition() === 'right')) {
+    <div class="chart-legend"
+      [class]="'legend-position-' + getLegendPosition()">
+      @for (item of processedData; track item; let i = $index) {
+        <div class="legend-item" (click)="toggleSliceSelection(i)"
+          [class.active]="hoveredIndex === i">
+          <div class="legend-color" [style.background-color]="item.color"></div>
+          <div class="legend-name" [class.legend-disabled]="!isSliceVisible(i)">
+            {{item.name}}
+            @if (mergedOptions.showPercentage && isSliceVisible(i)) {
+              <small>({{formatPercentage(item.percentage)}}%)</small>
+            }
+          </div>
+        </div>
+      }
     </div>
-  </div>
+  }
 
   <div class="canvas-container">
     <canvas #pieCanvas (mouseleave)="handleCanvasMouseLeave($event)"></canvas>

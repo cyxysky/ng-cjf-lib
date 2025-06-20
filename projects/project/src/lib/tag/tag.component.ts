@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, input, output, booleanAttribute, model, computed, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ColorType, presetColors, TagColor } from './tag.interface';
 
 @Component({
   selector: 'lib-tag',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './tag.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

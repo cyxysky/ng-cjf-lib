@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -11,14 +11,13 @@ import { NumberInputComponent } from "../../../projects/project/src/lib/number-i
   selector: 'app-doc-segmented',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     DocBoxComponent,
     DocApiTableComponent,
     SegmentedComponent,
     ProjectModule,
     NumberInputComponent
-  ],
+],
   templateUrl: './doc-segmented.component.html',
   styleUrl: './doc-segmented.component.less'
 })

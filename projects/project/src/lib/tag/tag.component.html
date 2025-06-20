@@ -1,23 +1,24 @@
-<div 
-  class="c-lib-tag" 
-  [class.c-lib-tag-checkable]="checkable()" 
+<div
+  class="c-lib-tag"
+  [class.c-lib-tag-checkable]="checkable()"
   [class.c-lib-tag-checked]="checked()"
-  [class.c-lib-tag-unchecked]="!checked()" 
+  [class.c-lib-tag-unchecked]="!checked()"
   [class.c-lib-tag-disabled]="disabled()"
-  [style.border]="border() ? '' : 'none'" 
-  [style.color]="tagStyle().color" 
+  [style.border]="border() ? '' : 'none'"
+  [style.color]="tagStyle().color"
   [style.background]="tagStyle().background"
-  [style.border-color]="tagStyle().borderColor" 
+  [style.border-color]="tagStyle().borderColor"
   (click)="handleClick()"
   >
   <span>
     {{ content() }}
     <ng-content></ng-content>
   </span>
-  <span 
-    *ngIf="closable()" 
-    class="c-lib-tag-close-icon" 
-    (click)="closeTag($event)">
-    <i class="bi-x-lg"></i>
-  </span>
+  @if (closable()) {
+    <span
+      class="c-lib-tag-close-icon"
+      (click)="closeTag($event)">
+      <i class="bi-x-lg"></i>
+    </span>
+  }
 </div>

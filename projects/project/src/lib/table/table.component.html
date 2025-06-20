@@ -1,342 +1,334 @@
 <div class="c-lib-table-wrapper">
   <!-- 表格操作区（顶部工具栏） -->
-  <div *ngIf="title || showToolbar" class="c-lib-table-toolbar">
+  @if (title || showToolbar) {
+  <div class="c-lib-table-toolbar">
     <div class="c-lib-table-toolbar-default">
       <div class="c-lib-table-toolbar-title">
-        <ng-container *ngIf="!isTemplateRef(title)">{{ title }}</ng-container>
-        <ng-container *ngIf="isTemplateRef(title)">
-          <ng-container *ngTemplateOutlet="title"></ng-container>
-        </ng-container>
+        @if (!isTemplateRef(title)) {
+        {{ title }}
+        }
+        @if (isTemplateRef(title)) {
+        <ng-container *ngTemplateOutlet="title"></ng-container>
+        }
       </div>
     </div>
   </div>
+  }
   <!-- 表格主体 -->
-  <div 
+  <div
     #tableContainer
-    class="c-lib-table" 
-    [class.c-lib-table-bordered]="bordered" 
+    class="c-lib-table"
+    [class.c-lib-table-bordered]="bordered"
     [class.c-lib-table-small]="size === 'small'"
-    [class.c-lib-table-middle]="size === 'middle'" 
+    [class.c-lib-table-middle]="size === 'middle'"
     [class.c-lib-table-fixed-header]="scroll.y"
-    [class.c-lib-table-fixed-left]="hasFixedLeft" 
+    [class.c-lib-table-fixed-left]="hasFixedLeft"
     [class.c-lib-table-fixed-right]="hasFixedRight"
-    [class.c-lib-table-loading]="loading" 
-    [class.c-lib-table-scrollable]="scroll.x || scroll.y"
-    >
+    [class.c-lib-table-loading]="loading"
+    [class.c-lib-table-scrollable]="scroll.x || scroll.y">
     <!-- 正中心加载动画 -->
-    <ng-container *ngIf="loading">
-      <ng-container *ngTemplateOutlet="centerLoadingTpl"></ng-container>
-    </ng-container>
-    <div 
+    @if (loading) {
+    <ng-container *ngTemplateOutlet="centerLoadingTpl"></ng-container>
+    }
+    <div
       #tableContainerBox
       class="c-lib-table-container"
       [class.virtual-scroll-mode]="virtualScroll"
       [style.overflow-y]="scroll.y ? 'auto' : null"
-      [style.overflow-x]="'hidden'"
-      >
+      [style.overflow-x]="'hidden'">
       <!-- 虚拟滚动模式 -->
-      <ng-container *ngIf="virtualScroll">
-        <!-- 表头 -->
-        <div style="overflow: auto;overflow-x: hidden;" #virtualScrollHeader>
-          <table>
-            <ng-container *ngTemplateOutlet="theader"></ng-container>
-          </table>
-        </div>
-        <!-- 虚拟滚动视图 -->
-        <cdk-virtual-scroll-viewport
-          [style.height.px]="getVirtualScrollConfig().height"
-          [itemSize]="getVirtualScrollConfig().itemSize"
-          [minBufferPx]="getVirtualScrollConfig().minBufferPx || 800"
-          [maxBufferPx]="getVirtualScrollConfig().maxBufferPx || 1600"
-          [style.overflow-x]="'hidden'"
-          >
-          <table>
-            <!-- 表格内容 -->
-            <tbody class="c-lib-table-tbody">
-              <ng-container *ngIf="currentPageData.length > 0; else emptyTpl">
-                <tr *cdkVirtualFor="let data of currentPageData; let rowIndex = index; trackBy: trackByFn">
-                  <!-- 复杂表格 -->
-                  <ng-container *ngIf="isComplex">
-                    <ng-container *ngTemplateOutlet="complexTd; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
-                  </ng-container>
-                  <!-- 普通表格 -->
-                  <ng-container *ngIf="!isComplex">
-                    <ng-container *ngTemplateOutlet="td; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
-                  </ng-container>
-                </tr>
-              </ng-container>
-            </tbody>
-          </table>
-        </cdk-virtual-scroll-viewport>
-      </ng-container>
+      @if (virtualScroll) {
+      <!-- 表头 -->
+      <div style="overflow: auto;overflow-x: hidden;" #virtualScrollHeader>
+        <table>
+          <ng-container *ngTemplateOutlet="theader"></ng-container>
+        </table>
+      </div>
+      <!-- 虚拟滚动视图 -->
+      <cdk-virtual-scroll-viewport
+        [style.height.px]="getVirtualScrollConfig().height"
+        [itemSize]="getVirtualScrollConfig().itemSize"
+        [minBufferPx]="getVirtualScrollConfig().minBufferPx || 800"
+        [maxBufferPx]="getVirtualScrollConfig().maxBufferPx || 1600"
+        [style.overflow-x]="'hidden'">
+        <table>
+          <!-- 表格内容 -->
+          <tbody class="c-lib-table-tbody">
+            @if (currentPageData.length > 0) {
+            <tr *cdkVirtualFor="let data of currentPageData; let rowIndex = index; trackBy: trackByFn">
+              <!-- 复杂表格 -->
+              @if (isComplex) {
+              <ng-container *ngTemplateOutlet="complexTd; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
+              }
+              <!-- 普通表格 -->
+              @if (!isComplex) {
+              <ng-container *ngTemplateOutlet="td; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
+              }
+            </tr>
+            } @else {
+            <tr>
+              <td [attr.colspan]="leafColumns.length + (checkable ? 1 : 0)" class="c-lib-table-empty">
+                @if (emptyTemplate) {
+                <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
+                }
+                @if (!emptyTemplate) {
+                暂无数据
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </cdk-virtual-scroll-viewport>
+      }
       <!-- 普通模式 -->
-      <ng-container *ngIf="!virtualScroll">
-        <div class="table-scroll-container" [style.overflow-x]="'hidden'" #tableScrollContainer>
-          <table>
-            <!-- 表头 -->
-            <ng-container *ngTemplateOutlet="theader"></ng-container>
-            <!-- 表格内容 -->
-            <tbody class="c-lib-table-tbody">
-              <ng-container *ngIf="currentPageData.length > 0; else emptyTpl">
-                <tr *ngFor="let data of currentPageData; let rowIndex = index">
-                  <!-- 复杂表格 -->
-                  <ng-container *ngIf="isComplex">
-                    <ng-container *ngTemplateOutlet="complexTd; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
-                  </ng-container>
-                  <!-- 普通表格 -->
-                  <ng-container *ngIf="!isComplex">
-                    <ng-container *ngTemplateOutlet="td; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
-                  </ng-container>
-                </tr>  
-              </ng-container>
-            </tbody>
-          </table>
-        </div>
-      </ng-container>
+      @if (!virtualScroll) {
+      <div class="table-scroll-container" [style.overflow-x]="'hidden'" #tableScrollContainer>
+        <table>
+          <!-- 表头 -->
+          <ng-container *ngTemplateOutlet="theader"></ng-container>
+          <!-- 表格内容 -->
+          <tbody class="c-lib-table-tbody">
+            @if (currentPageData.length > 0) {
+            @for (data of currentPageData; track data; let rowIndex = $index) {
+            <tr>
+              <!-- 复杂表格 -->
+              @if (isComplex) {
+              <ng-container *ngTemplateOutlet="complexTd; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
+              }
+              <!-- 普通表格 -->
+              @if (!isComplex) {
+              <ng-container *ngTemplateOutlet="td; context: { $implicit: data, rowIndex: rowIndex }"></ng-container>
+              }
+            </tr>
+            }
+            } @else {
+            <tr>
+              <td [attr.colspan]="leafColumns.length + (checkable ? 1 : 0)" class="c-lib-table-empty">
+                @if (emptyTemplate) {
+                <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
+                }
+                @if (!emptyTemplate) {
+                暂无数据
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
       <!-- 自定义横向滚动条 -->
-      <div #scrollTrack class="scrollbar-track" (scroll)="onTrackScroll($event)" style="width: 100%; overflow-x: auto; overflow-y: hidden; height: 8px; position: relative; z-index: 10;">
+      <div #scrollTrack class="scrollbar-track" (scroll)="onTrackScroll($event)"
+        style="width: 100%; overflow-x: auto; overflow-y: hidden; height: 8px; position: relative; z-index: 10;">
         <div class="scrollbar-content" [ngStyle]="{'width': tableWidth + 'px', 'height': '1px'}"></div>
       </div>
     </div>
     <!-- 分页 -->
     <ng-container *ngTemplateOutlet="paginationTpl"></ng-container>
     <!-- 表格底部 -->
-    <div class="c-lib-table-footer" *ngIf="footer">
-      <ng-container *ngIf="!isTemplateRef(footer)">{{ footer }}</ng-container>
-      <ng-container *ngIf="isTemplateRef(footer)">
-        <ng-container *ngTemplateOutlet="footer"></ng-container>
-      </ng-container>
+    @if (footer) {
+    <div class="c-lib-table-footer">
+      @if (!isTemplateRef(footer)) {
+      {{ footer }}
+      }
+      @if (isTemplateRef(footer)) {
+      <ng-container *ngTemplateOutlet="footer"></ng-container>
+      }
     </div>
+    }
   </div>
 </div>
 
 <!-- 表头 -->
 <ng-template #theader>
   <thead class="c-lib-table-thead" #tableHeader>
-    <ng-container *ngFor="let headerRow of headerRows; let rowIndex = index">
-      <tr>
-        <!-- 选择框列，只在第一行显示，并且需要跨越所有行 -->
-        <th 
-          *ngIf="checkable && rowIndex === 0" 
-          [attr.rowspan]="maxHeaderDepth"
-          class="c-lib-table-checkable-cell"
-          >
-          <div class="c-lib-table-checkable-cell-menu">
-            <div>
-              {{ checkedKey }}
-            </div>
-            <div 
-              *ngIf="checkedSelections.length > 0"
-              class="c-lib-table-checkable-cell-menu-icon"             
-              libDropMenu
-              [dropMenuTrigger]="'hover'"
-              [dropMenuItems]="checkedSelections"
-              [dropMenuAllowSelected]="false"
-              (dropMenuItemClick)="selectCheckedSelection($event)"
-              >
-              <i class="bi-chevron-down"></i>
-            </div>
+    @for (headerRow of headerRows; track headerRow; let rowIndex = $index) {
+    <tr>
+      <!-- 选择框列，只在第一行显示，并且需要跨越所有行 -->
+      @if (checkable && rowIndex === 0) {
+      <th
+        [attr.rowspan]="maxHeaderDepth"
+        class="c-lib-table-checkable-cell">
+        <div class="c-lib-table-checkable-cell-menu">
+          <div>
+            {{ checkedKey }}
           </div>
-        </th>
-        <!-- 表头单元格 -->
-        <th 
-          *ngFor="let column of headerRow; let colIndex = index"
-          [attr.colspan]="column.colspan"
-          [attr.rowspan]="column.rowspan"
-          [class.c-lib-table-column-scroll]="column.fixed !== 'left' && column.fixed !== true && column.fixed !== 'right'"
-          [class.c-lib-table-column-last-left-fixed]="column.isLastLeftFixed && hasLeftShadow"
-          [class.c-lib-table-column-first-right-fixed]="column.isFirstRightFixed && hasRightShadow"
-          [style.textAlign]="column.align || 'left'"
-          [style.width]="column.width || null"
-          [style.position]="column.fixed || scroll.y ? 'sticky' : null" 
-          [style.top]="scroll.y ? '0' : null"
-          [style.left]="(column.fixed === 'left' || column.fixed === true) ? getHeaderLeftPosition(rowIndex, colIndex) : null"
-          [style.right]="column.fixed === 'right' ? getHeaderRightPosition(rowIndex, colIndex) : null"
-          [style.z-index]="getZIndex(column)"
-          >
-          <div class="c-lib-table-column-title">
-            <!-- 自定义列头模板 -->
-            <ng-container *ngTemplateOutlet="column.headTemplate && widgetSource.get(column.headTemplate) || defaultHeadTpl; context: { $implicit: column }"></ng-container>
-            <!-- 默认列头模板 -->
-            <ng-template #defaultHeadTpl>{{ column.title }}</ng-template>
-            <!-- 排序按钮 -->
-            <div 
-              *ngIf="column.sortable"
-              class="c-lib-table-sorter" 
-              (click)="onSortClick(column.field, column.sortOrder || null)"
-              >
-              <div class="c-lib-table-sorter-inner">
-                <span class="c-lib-table-sorter-up" [class.active]="column.sortOrder === 'ascend'">
-                  <i class="bi bi-caret-up-fill"></i>
-                </span>
-                <span class="c-lib-table-sorter-down" [class.active]="column.sortOrder === 'descend'">
-                  <i class="bi bi-caret-down-fill"></i>
-                </span>
-              </div>
-            </div>
-            <!-- 过滤按钮 -->
-            <div class="c-lib-table-filter" *ngIf="column.filterable">
-              <span 
-                class="c-lib-table-filter-icon"
-                libDropMenu 
-                [dropMenuPlacement]="'bottom-left'"
-                [dropMenuTrigger]="'click'"
-                [(dropMenuVisible)]="filterVisibleMap[column.field]"
-                [dropMenuTemplate]="column.filterTemplate && widgetSource.get(column.filterTemplate) || defaultFilterTpl"
-                (click)="openFilter(column)"
-                >
-                <i class="bi bi-funnel-fill" [style.color]="filterValueMap[column.field] !== undefined ? '#1890ff' : '#bfbfbf'"></i>
+          @if (checkedSelections.length > 0) {
+          <div
+            class="c-lib-table-checkable-cell-menu-icon"
+            libDropMenu
+            [dropMenuTrigger]="'hover'"
+            [dropMenuItems]="checkedSelections"
+            [dropMenuAllowSelected]="false"
+            (dropMenuItemClick)="selectCheckedSelection($event)">
+            <i class="bi-chevron-down"></i>
+          </div>
+          }
+        </div>
+      </th>
+      }
+      <!-- 表头单元格 -->
+      @for (column of headerRow; track column; let colIndex = $index) {
+      <th
+        [attr.colspan]="column.colspan"
+        [attr.rowspan]="column.rowspan"
+        [class.c-lib-table-column-scroll]="column.fixed !== 'left' && column.fixed !== true && column.fixed !== 'right'"
+        [class.c-lib-table-column-last-left-fixed]="column.isLastLeftFixed && hasLeftShadow"
+        [class.c-lib-table-column-first-right-fixed]="column.isFirstRightFixed && hasRightShadow"
+        [style.textAlign]="column.align || 'left'"
+        [style.width]="column.width || null"
+        [style.position]="column.fixed || scroll.y ? 'sticky' : null"
+        [style.top]="scroll.y ? '0' : null"
+        [style.left]="(column.fixed === 'left' || column.fixed === true) ? getHeaderLeftPosition(rowIndex, colIndex) : null"
+        [style.right]="column.fixed === 'right' ? getHeaderRightPosition(rowIndex, colIndex) : null"
+        [style.z-index]="getZIndex(column)">
+        <div class="c-lib-table-column-title">
+          <!-- 自定义列头模板 -->
+          <ng-container *ngTemplateOutlet="column.headTemplate && widgetSource.get(column.headTemplate) || defaultHeadTpl; context: { $implicit: column }"></ng-container>
+          <!-- 默认列头模板 -->
+          <ng-template #defaultHeadTpl>{{ column.title }}</ng-template>
+          <!-- 排序按钮 -->
+          @if (column.sortable) {
+          <div
+            class="c-lib-table-sorter"
+            (click)="onSortClick(column.field, column.sortOrder || null)">
+            <div class="c-lib-table-sorter-inner">
+              <span class="c-lib-table-sorter-up" [class.active]="column.sortOrder === 'ascend'">
+                <i class="bi bi-caret-up-fill"></i>
               </span>
-              <!-- 默认筛选模板 -->
-              <ng-template #defaultFilterTpl>
-                <div class="c-lib-table-filter-popover">
-                  <!-- 筛选模板 -->
-                  <ng-container>
-                    <div style="padding: 16px;">
-                      <div class="c-lib-table-filter-popover-title-field">字段</div>
-                      <div>
-                        <lib-input [ngModel]="column.filters?.title || column.title" [inputDisabled]="true"></lib-input>
-                      </div>
-                      <!-- 筛选条件 -->
-                      <div class="c-lib-table-filter-popover-condition">
-                        <div class="c-lib-table-filter-popover-title">筛选条件</div>
-                        <lib-select 
-                          [(ngModel)]="displayFilterConditionMap[column.field]"
-                          [selectOption]="filterConditions" 
-                          [selectShowSearch]="true" 
-                          [selectAllowClear]="true">
-                        </lib-select>
-                      </div>
-                      <!-- 筛选值 -->
-                      <div class="c-lib-table-filter-popover-title">值</div>
-                      <div class="c-lib-table-filter-popover-value">
-                        <ng-container [ngSwitch]="column.filters?.type">
-                          <ng-container *ngSwitchCase="'text'">
-                            <lib-input [(ngModel)]="displayFilterValueMap[column.field]" [inputAllowClear]="true"></lib-input>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="'number'">
-                            <lib-number-input [(ngModel)]="displayFilterValueMap[column.field]"></lib-number-input>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="getFilterType(column, 'date')">
-                            <lib-date-timer 
-                              [(ngModel)]="displayFilterValueMap[column.field]" 
-                              [dateTimerAllowClear]="true"
-                              [dateTimerSelectType]="column.filters?.type === 'date-range' ? 'range' : 'single'"
-                              >
-                            </lib-date-timer>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="'radio'">
-                            <lib-radio 
-                              [(ngModel)]="displayFilterValueMap[column.field]" 
-                              [radioOptions]="column.filters?.options || []" 
-                              [radioDirection]="'vertical'"
-                              >
-                            </lib-radio>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="'checkbox'">
-                            <lib-checkbox 
-                              [(ngModel)]="displayFilterValueMap[column.field]" 
-                              [checkboxOptions]="column.filters?.options || []" 
-                              [checkboxDirection]="'vertical'"
-                              >
-                            </lib-checkbox>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="getFilterType(column, 'select')">
-                            <lib-select 
-                              [(ngModel)]="displayFilterValueMap[column.field]"
-                              [selectOption]="column.filters?.options || []"
-                              [selectMode]="column.filters?.type === 'select-multiple' ? 'multiple' : 'single'"
-                              [selectShowSearch]="true"
-                              [selectAllowClear]="true"
-                              >
-                            </lib-select>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="getFilterType(column, 'cascader')">
-                            <lib-cascader 
-                              [(ngModel)]="displayFilterValueMap[column.field]"
-                              [cascaderOptions]="column.filters?.options || []"
-                              [cascaderIsMultiple]="column.filters?.type === 'cascader-multiple'"
-                              [cascaderShowSearch]="true"
-                              [cascaderAllowClear]="true"
-                              >
-                            </lib-cascader>
-                          </ng-container>
-                          <ng-container *ngSwitchCase="getFilterType(column, 'tree-select')">
-                            <lib-tree-select
-                              [(ngModel)]="displayFilterValueMap[column.field]"
-                              [treeSelectOptions]="column.filters?.options || []"
-                              [treeSelectIsMultiple]="column.filters?.type === 'tree-select-multiple'"
-                              [treeSelectCheckable]="column.filters?.type === 'tree-select-checkable'"
-                              [treeSelectShowSearch]="true"
-                              [treeSelectAllowClear]="true"
-                              >
-                            </lib-tree-select>
-                          </ng-container>
-                        </ng-container>
-                      </div>
-                    </div>
-                  </ng-container>
-                  <!-- 底部按钮 -->
-                  <div class="c-lib-table-filter-popover-btns">
-                    <button class="c-lib-table-filter-popover-link confirm" (click)="confirmFilter(column)">确定</button>
-                    <button class="c-lib-table-filter-popover-link clear" (click)="resetFilter(column)">重置</button>
-                  </div>
-                </div>
-              </ng-template>
+              <span class="c-lib-table-sorter-down" [class.active]="column.sortOrder === 'descend'">
+                <i class="bi bi-caret-down-fill"></i>
+              </span>
             </div>
           </div>
-        </th>
-      </tr>
-    </ng-container>
+          }
+          <!-- 过滤按钮 -->
+          @if (column.filterable) {
+          <div class="c-lib-table-filter">
+            <span
+              class="c-lib-table-filter-icon"
+              libDropMenu
+              [dropMenuPlacement]="'bottom-left'"
+              [dropMenuTrigger]="'click'"
+              [(dropMenuVisible)]="filterVisibleMap[column.field]"
+              [dropMenuTemplate]="column.filterTemplate && widgetSource.get(column.filterTemplate) || defaultFilterTpl"
+              (click)="openFilter(column)">
+              <i class="bi bi-funnel-fill" [style.color]="filterValueMap[column.field] !== undefined ? '#1890ff' : '#bfbfbf'"></i>
+            </span>
+            <!-- 默认筛选模板 -->
+            <ng-template #defaultFilterTpl>
+              <div class="c-lib-table-filter-popover">
+                <!-- 筛选模板 -->
+                <ng-container>
+                  <div style="padding: 16px;">
+                    <div class="c-lib-table-filter-popover-title-field">字段</div>
+                    <div>
+                      <lib-input [ngModel]="column.filters?.title || column.title" [inputDisabled]="true"></lib-input>
+                    </div>
+                    <!-- 筛选条件 -->
+                    <div class="c-lib-table-filter-popover-condition">
+                      <div class="c-lib-table-filter-popover-title">筛选条件</div>
+                      <lib-select
+                        [(ngModel)]="displayFilterConditionMap[column.field]"
+                        [selectOption]="filterConditions"
+                        [selectShowSearch]="true"
+                        [selectAllowClear]="true">
+                      </lib-select>
+                    </div>
+                    <!-- 筛选值 -->
+                    <div class="c-lib-table-filter-popover-title">值</div>
+                    <div class="c-lib-table-filter-popover-value">
+                      @switch (column.filters?.type) {
+                      @case ('text') {
+                      <lib-input [(ngModel)]="displayFilterValueMap[column.field]" [inputAllowClear]="true"></lib-input>
+                      }
+                      @case ('number') {
+                      <lib-number-input [(ngModel)]="displayFilterValueMap[column.field]"></lib-number-input>
+                      }
+                      @case (getFilterType(column, 'date')) {
+                      <lib-date-timer
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [dateTimerAllowClear]="true"
+                        [dateTimerSelectType]="column.filters?.type === 'date-range' ? 'range' : 'single'">
+                      </lib-date-timer>
+                      }
+                      @case ('radio') {
+                      <lib-radio
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [radioOptions]="column.filters?.options || []"
+                        [radioDirection]="'vertical'">
+                      </lib-radio>
+                      }
+                      @case ('checkbox') {
+                      <lib-checkbox
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [checkboxOptions]="column.filters?.options || []"
+                        [checkboxDirection]="'vertical'">
+                      </lib-checkbox>
+                      }
+                      @case (getFilterType(column, 'select')) {
+                      <lib-select
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [selectOption]="column.filters?.options || []"
+                        [selectMode]="column.filters?.type === 'select-multiple' ? 'multiple' : 'single'"
+                        [selectShowSearch]="true"
+                        [selectAllowClear]="true">
+                      </lib-select>
+                      }
+                      @case (getFilterType(column, 'cascader')) {
+                      <lib-cascader
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [cascaderOptions]="column.filters?.options || []"
+                        [cascaderIsMultiple]="column.filters?.type === 'cascader-multiple'"
+                        [cascaderShowSearch]="true"
+                        [cascaderAllowClear]="true">
+                      </lib-cascader>
+                      }
+                      @case (getFilterType(column, 'tree-select')) {
+                      <lib-tree-select
+                        [(ngModel)]="displayFilterValueMap[column.field]"
+                        [treeSelectOptions]="column.filters?.options || []"
+                        [treeSelectIsMultiple]="column.filters?.type === 'tree-select-multiple'"
+                        [treeSelectCheckable]="column.filters?.type === 'tree-select-checkable'"
+                        [treeSelectShowSearch]="true"
+                        [treeSelectAllowClear]="true">
+                      </lib-tree-select>
+                      }
+                      }
+                    </div>
+                  </div>
+                </ng-container>
+                <!-- 底部按钮 -->
+                <div class="c-lib-table-filter-popover-btns">
+                  <button class="c-lib-table-filter-popover-link confirm" (click)="confirmFilter(column)">确定</button>
+                  <button class="c-lib-table-filter-popover-link clear" (click)="resetFilter(column)">重置</button>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+          }
+        </div>
+      </th>
+      }
+    </tr>
+    }
   </thead>
 </ng-template>
 
 <!-- 复杂表格单元格 -->
 <ng-template #complexTd let-data let-rowIndex="rowIndex">
-  <td 
-    *ngIf="checkable && complexTableObj.data?.get(leafColumns[0]?.field)?.get(rowIndex)"
+  @if (checkable && complexTableObj.data?.get(leafColumns[0].field)?.get(rowIndex)) {
+  <td
     [attr.rowspan]="complexTableObj.data?.get(leafColumns[0].field)?.get(rowIndex).length"
-    class="c-lib-table-checkable-cell"
-    >
-    <lib-checkbox  [ngModel]="getCheckedStatus(data)" checkboxSingle (ngModelChange)="checkedChange($event, data)"></lib-checkbox>
+    class="c-lib-table-checkable-cell">
+    <lib-checkbox [ngModel]="getCheckedStatus(data)" checkboxSingle (ngModelChange)="checkedChange($event, data)"></lib-checkbox>
   </td>
-  <ng-container *ngFor="let column of leafColumns; let colIndex = index">
-    <td 
-      *ngIf="complexTableObj.data?.get(column.field)?.get(rowIndex)"
-      [attr.rowspan]="complexTableObj.data?.get(column.field)?.get(rowIndex).length"
-      class="c-lib-table-td"
-      [class.c-lib-table-column-scroll]="column.fixed !== 'left' && column.fixed !== true && column.fixed !== 'right'"
-      [class.c-lib-table-column-last-left-fixed]="column.isLastLeftFixed && hasLeftShadow"
-      [class.c-lib-table-column-first-right-fixed]="column.isFirstRightFixed && hasRightShadow"
-      [style.textAlign]="column.align || 'left'"
-      [style.position]="column.fixed ? 'sticky' : null"
-      [style.width]="column.width || null"
-      [style.left]="(column.fixed === 'left' || column.fixed === true) ? getBodyLeftPosition(column) : null"
-      [style.right]="column.fixed === 'right' ? getBodyRightPosition(column) : null" 
-      [style.z-index]="getZIndex(column)"
-      >
-      <div class="c-lib-table-td-wrapper">
-        <!-- 自定义渲染 -->
-        <ng-container
-          *ngIf="!column.buttons"
-          [ngTemplateOutlet]="column.template && widgetSource.get(column.template) || defaultCell"
-          [ngTemplateOutletContext]="{ $implicit: data , column: column, index: rowIndex }"
-          >
-        </ng-container>
-        <!-- 按钮 -->
-        <ng-container *ngTemplateOutlet="buttonTpl; context: { $implicit: column, data: data, rowIndex: rowIndex, isTree: false  }"></ng-container>
-      </div>
-    </td>
-  </ng-container>
-</ng-template>
-
-<!-- td单元格 -->
-<ng-template #td let-data let-rowIndex="rowIndex">
-  <td *ngIf="checkable" class="c-lib-table-checkable-cell">
-    <lib-checkbox  [ngModel]="getCheckedStatus(data)" checkboxSingle (ngModelChange)="checkedChange($event, data)"></lib-checkbox>
-  </td>
-  <td 
-    *ngFor="let column of leafColumns; let colIndex = index"
+  }
+  @for (column of leafColumns; track column; let colIndex = $index) {
+  @if (complexTableObj.data?.get(column.field)?.get(rowIndex)) {
+  <td
+    [attr.rowspan]="complexTableObj.data?.get(column.field)?.get(rowIndex).length"
     class="c-lib-table-td"
     [class.c-lib-table-column-scroll]="column.fixed !== 'left' && column.fixed !== true && column.fixed !== 'right'"
     [class.c-lib-table-column-last-left-fixed]="column.isLastLeftFixed && hasLeftShadow"
@@ -345,32 +337,74 @@
     [style.position]="column.fixed ? 'sticky' : null"
     [style.width]="column.width || null"
     [style.left]="(column.fixed === 'left' || column.fixed === true) ? getBodyLeftPosition(column) : null"
-    [style.right]="column.fixed === 'right' ? getBodyRightPosition(column) : null" 
-    [style.z-index]="getZIndex(column)"
-    >
+    [style.right]="column.fixed === 'right' ? getBodyRightPosition(column) : null"
+    [style.z-index]="getZIndex(column)">
+    <div class="c-lib-table-td-wrapper">
+      <!-- 自定义渲染 -->
+      @if (!column.buttons) {
+      <ng-container
+        [ngTemplateOutlet]="column.template && widgetSource.get(column.template) || defaultCell"
+        [ngTemplateOutletContext]="{ $implicit: data , column: column, index: rowIndex }">
+      </ng-container>
+      }
+      <!-- 按钮 -->
+      <ng-container *ngTemplateOutlet="buttonTpl; context: { $implicit: column, data: data, rowIndex: rowIndex, isTree: false  }"></ng-container>
+    </div>
+  </td>
+  }
+  }
+</ng-template>
+
+<!-- td单元格 -->
+<ng-template #td let-data let-rowIndex="rowIndex">
+  @if (checkable) {
+  <td class="c-lib-table-checkable-cell">
+    <lib-checkbox [ngModel]="getCheckedStatus(data)" checkboxSingle (ngModelChange)="checkedChange($event, data)"></lib-checkbox>
+  </td>
+  }
+  @for (column of leafColumns; track column; let colIndex = $index) {
+  <td
+    class="c-lib-table-td"
+    [class.c-lib-table-column-scroll]="column.fixed !== 'left' && column.fixed !== true && column.fixed !== 'right'"
+    [class.c-lib-table-column-last-left-fixed]="column.isLastLeftFixed && hasLeftShadow"
+    [class.c-lib-table-column-first-right-fixed]="column.isFirstRightFixed && hasRightShadow"
+    [style.textAlign]="column.align || 'left'"
+    [style.position]="column.fixed ? 'sticky' : null"
+    [style.width]="column.width || null"
+    [style.left]="(column.fixed === 'left' || column.fixed === true) ? getBodyLeftPosition(column) : null"
+    [style.right]="column.fixed === 'right' ? getBodyRightPosition(column) : null"
+    [style.z-index]="getZIndex(column)">
     <div class="c-lib-table-td-wrapper">
       <!-- 树形展开区域 -->
-      <div *ngIf="column.treeExpand && isTree" class="c-lib-table-tree-expand">
-        <span *ngFor="let item of getIndentArray(isTree && data.nowLevel || 0); let i = index" class="c-lib-table-tree-expand-indent"></span>
-        <span 
-          *ngIf="isTree && data.node?.children && data.node?.children?.length" 
-          class="c-lib-table-tree-switcher" 
+      @if (column.treeExpand && isTree) {
+      <div class="c-lib-table-tree-expand">
+        @for (item of getIndentArray(isTree && data.nowLevel || 0); track item; let i = $index) {
+        <span class="c-lib-table-tree-expand-indent"></span>
+        }
+        @if (isTree && data.node?.children && data.node?.children?.length) {
+        <span
+          class="c-lib-table-tree-switcher"
           (click)="$event.stopPropagation(); toggleTreeNode(data.node)">
           <i class="bi" [ngClass]="data.node.expanded ? 'bi-caret-down-fill' : 'bi-caret-right-fill'"></i>
         </span>
-        <span *ngIf="isTree && (!data.node?.children || !data.node?.children?.length)" class="c-lib-table-tree-switcher-noop"></span>
+        }
+        @if (isTree && (!data.node?.children || !data.node?.children?.length)) {
+        <span class="c-lib-table-tree-switcher-noop"></span>
+        }
       </div>
+      }
       <!-- 自定义渲染 -->
+      @if (!column.buttons) {
       <ng-container
-        *ngIf="!column.buttons"
         [ngTemplateOutlet]="column.template && widgetSource.get(column.template) || defaultCell"
-        [ngTemplateOutletContext]="{ $implicit: isTree ? data.node : data, column: column, index: rowIndex }"
-        >
+        [ngTemplateOutletContext]="{ $implicit: isTree ? data.node : data, column: column, index: rowIndex }">
       </ng-container>
+      }
       <!-- 按钮 -->
       <ng-container *ngTemplateOutlet="buttonTpl; context: { $implicit: column, data: data, rowIndex: rowIndex, isTree: isTree  }"></ng-container>
     </div>
   </td>
+  }
 </ng-template>
 
 <!-- 默认单元格模板 -->
@@ -379,16 +413,6 @@
 </ng-template>
 
 <!-- 空数据模板 -->
-<ng-template #emptyTpl>
-  <tr>
-    <td [attr.colspan]="leafColumns.length + (checkable ? 1 : 0)" class="c-lib-table-empty">
-      <ng-container *ngIf="emptyTemplate">
-        <ng-container *ngTemplateOutlet="emptyTemplate"></ng-container>
-      </ng-container>
-      <ng-container *ngIf="!emptyTemplate">暂无数据</ng-container>
-    </td>
-  </tr>
-</ng-template>
 
 <!-- 正中心加载动画 -->
 <ng-template #centerLoadingTpl>
@@ -399,21 +423,23 @@
 
 <!-- 底部翻页器 -->
 <ng-template #paginationTpl>
-  <div 
-    *ngIf="showPagination && total > 0"
-    class="c-lib-table-pagination" 
+  @if (showPagination && total > 0) {
+  <div
+    class="c-lib-table-pagination"
     [class.c-lib-table-pagination-fixed]="fixedPagination">
-    <ng-container *ngIf="paginationTemplate">
-      <ng-container
-        *ngTemplateOutlet="paginationTemplate; context: { $implicit: { pageIndex: pageIndex, pageSize: pageSize, total: total, onPageChange: onPageIndexChange.bind(this), onPageSizeChange: onPageSizeChange.bind(this) } }"></ng-container>
-    </ng-container>
-    <div class="c-lib-table-pagination-container" *ngIf="!paginationTemplate">
+    @if (paginationTemplate) {
+    <ng-container
+      *ngTemplateOutlet="paginationTemplate; context: { $implicit: { pageIndex: pageIndex, pageSize: pageSize, total: total, onPageChange: onPageIndexChange.bind(this), onPageSizeChange: onPageSizeChange.bind(this) } }"></ng-container>
+    }
+    @if (!paginationTemplate) {
+    <div class="c-lib-table-pagination-container">
       <ul class="c-lib-table-pagination-list">
         <!-- 总计 -->
-        <li class="c-lib-table-pagination-total" *ngIf="showTotal">
+        @if (showTotal) {
+        <li class="c-lib-table-pagination-total">
           共 {{ total }} 条
         </li>
-
+        }
         <!-- 上一页 -->
         <li class="c-lib-table-pagination-prev" [class.c-lib-table-pagination-disabled]="pageIndex === 1"
           (click)="pageIndex > 1 && onPageIndexChange(pageIndex - 1)">
@@ -427,12 +453,12 @@
           </span>
         </li>
         <!-- 页码 -->
-        <ng-container *ngFor="let page of getPageNumbers()">
-          <li class="c-lib-table-pagination-item" [class.c-lib-table-pagination-item-active]="page === pageIndex"
-            (click)="onPageIndexChange(page)">
-            {{ page }}
-          </li>
-        </ng-container>
+        @for (page of getPageNumbers(); track page) {
+        <li class="c-lib-table-pagination-item" [class.c-lib-table-pagination-item-active]="page === pageIndex"
+          (click)="onPageIndexChange(page)">
+          {{ page }}
+        </li>
+        }
         <!-- 下一页 -->
         <li class="c-lib-table-pagination-next" [class.c-lib-table-pagination-disabled]="pageIndex === getLastPage()"
           (click)="pageIndex < getLastPage() && onPageIndexChange(pageIndex + 1)">
@@ -455,7 +481,8 @@
           </div>
         </li>
         <!-- 跳转至 -->
-        <li class="c-lib-table-pagination-jumper" *ngIf="showQuickJumper">
+        @if (showQuickJumper) {
+        <li class="c-lib-table-pagination-jumper">
           <div class="c-lib-table-pagination-options-quick-jumper">
             <lib-number-input [numberInputMin]="1" [numberInputMax]="getLastPage()" [numberInputStep]="1"
               [numberInputPrecision]="0" [(ngModel)]="pageIndex" (ngModelChange)="onPageIndexChange($event)"
@@ -469,35 +496,39 @@
             </lib-number-input>
           </div>
         </li>
+        }
       </ul>
     </div>
+    }
   </div>
+  }
 </ng-template>
 
 <!-- 按钮模板区域 -->
 <ng-template #buttonTpl let-column let-data="data" let-rowIndex="rowIndex" let-isTree="isTree">
   <div class="c-lib-table-operation-cell">
-    <ng-container *ngFor="let button of getVisibleButtons(column, isTree ? data.node : data, rowIndex)">
-      <span
-        class="c-lib-table-operation-cell-button"
-        (click)="button.click(isTree ? data.node : data, rowIndex)">
-        <i *ngIf="button.icon" [ngClass]="button.icon"></i>
-        {{ button.text }}
-      </span>
-    </ng-container>
+    @for (button of getVisibleButtons(column, isTree ? data.node : data, rowIndex); track button) {
+    <span
+      class="c-lib-table-operation-cell-button"
+      (click)="button.click(isTree ? data.node : data, rowIndex)">
+      @if (button.icon) {
+      <i [ngClass]="button.icon"></i>
+      }
+      {{ button.text }}
+    </span>
+    }
     <!-- 更多按钮下拉菜单 -->
-    <ng-container *ngIf="getMoreButtons(column, isTree ? data.node : data, rowIndex).length > 0">
-      <span 
-        class="c-lib-table-operation-cell-button c-lib-table-operation-cell-more-button"
-        libDropMenu
-        [dropMenuTrigger]="'hover'"
-        [dropMenuPlacement]="'bottom-left'"
-        [dropMenuItems]="convertButtonsToMenuItems(getMoreButtons(column, isTree ? data.node : data, rowIndex), isTree ? data.node : data, rowIndex)"
-        (dropMenuItemClick)="onMenuItemClick($event)"
-        >
-        <i class="bi bi-three-dots"></i>
-        更多
-      </span>
-    </ng-container>
+    @if (getMoreButtons(column, isTree ? data.node : data, rowIndex).length > 0) {
+    <span
+      class="c-lib-table-operation-cell-button c-lib-table-operation-cell-more-button"
+      libDropMenu
+      [dropMenuTrigger]="'hover'"
+      [dropMenuPlacement]="'bottom-left'"
+      [dropMenuItems]="convertButtonsToMenuItems(getMoreButtons(column, isTree ? data.node : data, rowIndex), isTree ? data.node : data, rowIndex)"
+      (dropMenuItemClick)="onMenuItemClick($event)">
+      <i class="bi bi-three-dots"></i>
+      更多
+    </span>
+    }
   </div>
 </ng-template>

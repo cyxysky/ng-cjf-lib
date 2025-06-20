@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges, OnDestroy, ChangeDetectorRef, ElementRef, ViewContainerRef, TemplateRef, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import * as _ from 'lodash';
 import { DropMenuDirective } from '../drop-menu/drop-menu.directive';
 import { DropMenu } from '../drop-menu/drop-menu.interface';
@@ -9,7 +9,7 @@ import { MenuItem } from './menu.interface';
 @Component({
   selector: 'lib-menu',
   standalone: true,
-  imports: [CommonModule, DropMenuDirective],
+  imports: [DropMenuDirective],
   templateUrl: './menu.component.html',
   animations: [
     CustomerExpandCollapse(300)

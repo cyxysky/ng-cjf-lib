@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -9,15 +9,14 @@ import { WaterMarkComponent, WaterMarkDirectiveDirective, InputComponent, Number
   selector: 'app-doc-water-mark',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     DocBoxComponent,
     DocApiTableComponent,
     WaterMarkComponent,
     WaterMarkDirectiveDirective,
     InputComponent,
-    NumberInputComponent,
-  ],
+    NumberInputComponent
+],
   templateUrl: './doc-water-mark.component.html',
   styleUrl: './doc-water-mark.component.less'
 })

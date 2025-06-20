@@ -12,7 +12,7 @@
           功能丰富的数据可视化组件，支持柱状图、折线图和饼图。提供丰富的自定义配置选项，完全响应式设计，支持点击和悬停交互。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -267,26 +267,28 @@
           <div class="chart-wrapper">
             <lib-chart [data]="salesData" [options]="clickOptions"></lib-chart>
           </div>
-          <div *ngIf="clickedItem" class="result-display">
-            <div class="result-header">
-              <span class="result-icon">🎯</span>
-              <span class="result-title">点击结果</span>
+          @if (clickedItem) {
+            <div class="result-display">
+              <div class="result-header">
+                <span class="result-icon">🎯</span>
+                <span class="result-title">点击结果</span>
+              </div>
+              <div class="result-content">
+                <div class="result-item">
+                  <span class="result-label">名称</span>
+                  <span class="result-value">{{ clickedItem.item.name }}</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">数值</span>
+                  <span class="result-value">{{ clickedItem.item.data }}</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-label">索引</span>
+                  <span class="result-value">{{ clickedItem.index }}</span>
+                </div>
+              </div>
             </div>
-            <div class="result-content">
-              <div class="result-item">
-                <span class="result-label">名称</span>
-                <span class="result-value">{{ clickedItem.item.name }}</span>
-              </div>
-              <div class="result-item">
-                <span class="result-label">数值</span>
-                <span class="result-value">{{ clickedItem.item.data }}</span>
-              </div>
-              <div class="result-item">
-                <span class="result-label">索引</span>
-                <span class="result-value">{{ clickedItem.index }}</span>
-              </div>
-            </div>
-          </div>
+          }
         </div>
         <div description>
           <p>通过设置 <code>onClick</code> 回调函数响应图表元素的点击事件：</p>
@@ -307,7 +309,7 @@
           <div class="chart-wrapper">
             <lib-chart [data]="salesData" [options]="customTooltipOptions" [tooltipTemplate]="customTooltip"></lib-chart>
           </div>
-          
+
           <ng-template #customTooltip let-item>
             <div style="display: flex; width: 100%; flex-direction: column;">
               <div style="padding: 12px;">
@@ -355,10 +357,10 @@
               切换到{{ isBarChart ? '饼图' : '柱状图' }}
             </lib-button>
           </div>
-          
+
           <div class="chart-wrapper">
-            <lib-chart 
-              [data]="isBarChart ? toggleChartData : togglePieData" 
+            <lib-chart
+              [data]="isBarChart ? toggleChartData : togglePieData"
               [options]="isBarChart ? barChartOptions : pieChartOptions">
             </lib-chart>
           </div>
@@ -397,7 +399,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>

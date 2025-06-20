@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'lib-select-tag',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './select-tag.component.html',
   encapsulation: ViewEncapsulation.None
 })

@@ -1,10 +1,10 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'lib-water-mark',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './water-mark.component.html',
   encapsulation: ViewEncapsulation.None
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { ProjectModule } from '@project';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
@@ -9,12 +9,11 @@ import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.co
   selector: 'app-doc-switch',
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    ProjectModule, 
+    FormsModule,
+    ProjectModule,
     DocBoxComponent,
     DocApiTableComponent
-  ],
+],
   templateUrl: './doc-switch.component.html',
   styleUrl: './doc-switch.component.less'
 })

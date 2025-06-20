@@ -1,55 +1,61 @@
-<div 
-  class="c-lib-number-input-container" 
+<div
+  class="c-lib-number-input-container"
   [class.c-lib-number-input-focused]="focused()"
-  [class.c-lib-number-input-disabled]="disabled" 
+  [class.c-lib-number-input-disabled]="disabled"
   [class.c-lib-number-input-readonly]="readonly"
-  [class.c-lib-number-input-error]="status === 'error'" 
+  [class.c-lib-number-input-error]="status === 'error'"
   [class.c-lib-number-input-warning]="status === 'warning'"
   >
   <div class="c-lib-number-input-prefix">
     <ng-content select="[prefix], prefix"></ng-content>
-    <ng-container *ngIf="prefix">{{ prefix }}</ng-container>
-    <ng-container *ngIf="prefixIcon">
+    @if (prefix) {
+      {{ prefix }}
+    }
+    @if (prefixIcon) {
       <i [class]="prefixIcon"></i>
-    </ng-container>
+    }
   </div>
   <div class="c-lib-number-input-content">
-    <input 
-      type="number" 
-      [style.color]="color" 
-      class="c-lib-number-input" 
+    <input
+      type="number"
+      [style.color]="color"
+      class="c-lib-number-input"
       [(ngModel)]="value"
       (ngModelChange)="onInputChange($event)"
-      [placeholder]="placeholder" 
-      [disabled]="disabled" 
+      [placeholder]="placeholder"
+      [disabled]="disabled"
       [readonly]="readonly"
-      (focus)="onFocus()" 
+      (focus)="onFocus()"
       (blur)="onBlur()"
       >
+    </div>
+    <div class="c-lib-number-input-suffix">
+      <ng-content select="[suffix], suffix"></ng-content>
+      @if (suffix) {
+        {{ suffix }}
+      }
+      @if (suffixIcon) {
+        <i [class]="suffixIcon"></i>
+      }
+    </div>
+    @if (!readonly) {
+      <div class="c-lib-number-input-handler-wrap">
+        <button
+          type="button"
+          class="c-lib-number-input-handler c-lib-number-input-handler-up"
+          [disabled]="disabled || (max !== null && value() !== null && value()! >= max!)"
+          (click)="increase()"
+          >
+          <span class="c-lib-number-input-handler-up-inner"></span>
+        </button>
+        <button
+          type="button"
+          class="c-lib-number-input-handler c-lib-number-input-handler-down"
+          [disabled]="disabled || (min !== null && value() !== null && value()! <= min!)"
+          (click)="decrease()"
+          >
+          <span class="c-lib-number-input-handler-down-inner"></span>
+        </button>
+      </div>
+    }
   </div>
-  <div class="c-lib-number-input-suffix">
-    <ng-content select="[suffix], suffix"></ng-content>
-    <ng-container *ngIf="suffix">{{ suffix }}</ng-container>
-    <ng-container *ngIf="suffixIcon">
-      <i [class]="suffixIcon"></i>
-    </ng-container>
-  </div>
-  <div class="c-lib-number-input-handler-wrap" *ngIf="!readonly">
-    <button 
-      type="button" 
-      class="c-lib-number-input-handler c-lib-number-input-handler-up"
-      [disabled]="disabled || (max !== null && value() !== null && value()! >= max!)" 
-      (click)="increase()"
-      >
-      <span class="c-lib-number-input-handler-up-inner"></span>
-    </button>
-    <button 
-      type="button" 
-      class="c-lib-number-input-handler c-lib-number-input-handler-down"
-      [disabled]="disabled || (min !== null && value() !== null && value()! <= min!)" 
-      (click)="decrease()"
-      >
-      <span class="c-lib-number-input-handler-down-inner"></span>
-    </button>
-  </div>
-</div>

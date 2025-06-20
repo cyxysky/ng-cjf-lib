@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ProjectModule } from '@project';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { CommonModule } from '@angular/common';
+
 import { BarChartData, BarChartOptions, BarComponent, ButtonComponent, PieChartData, PieChartOptions, PieComponent, ChartComponent, ChartOptions, ChartData } from '@project';
 import { ChartService } from '@project';
 
 @Component({
   selector: 'app-doc-chart',
   standalone: true,
-  imports: [DocBoxComponent, ProjectModule, DocApiTableComponent, CommonModule, ButtonComponent, ChartComponent],
+  imports: [DocBoxComponent, ProjectModule, DocApiTableComponent, ButtonComponent, ChartComponent],
   templateUrl: './doc-chart.component.html',
   styleUrl: './doc-chart.component.less'
 })

@@ -1,65 +1,76 @@
-<div class="c-lib-select-basic-box" 
-    [class.c-lib-select-basic-box-sm]="size === 'small'" 
-    [class.c-lib-select-basic-box-lg]="size === 'large'"
-    [class.c-lib-select-basic-box-borderless]="borderless" 
-    [class.c-lib-select-basic-box-error]="status === 'error'"
-    [class.c-lib-select-basic-box-active]="isActive"
-    [class.c-lib-select-basic-box-warning]="status === 'warning'" 
-    [class.c-lib-select-basic-box-disabled]="disabled">
-    <div class="c-lib-select-basic-box-content">
-        <div 
-            *ngIf="showPlaceholder()" 
-            class="c-lib-select-basic-box-placeholder"
-            >
-            <div class="c-lib-select-basic-box-placeholder-text">{{ placeholder }}</div>
-        </div>
-        <div 
-            *ngIf="showSingalData()" 
-            class="c-lib-select-basic-box-singal-data" 
-            [ngClass]="{'c-lib-select-basic-box-singal-data-gray': isActive}"
-            >
-            <ng-container *ngTemplateOutlet="optionLabelTemplate || defaultSingalLabelTemplate; context: { $implicit: data, label: getDisplayTags(data[0]) }"></ng-container>
-            <ng-template #defaultSingalLabelTemplate let-data let-label="label">{{ label }}</ng-template>
-        </div>
-        <ng-container *ngIf="showMultipleData()">
-            <lib-select-tag 
-                *ngFor="let tag of data;index as i" 
-                [size]="size" 
-                [closable]="true" 
-                (remove)="removeTag($event, tag)" 
-                class="c-lib-select-basic-box-tag-component"
-                >
-                <ng-container *ngTemplateOutlet="optionLabelTemplate || defaultMultipleLabelTemplate; context: { $implicit: tag, label: getDisplayTags(tag) }"></ng-container>
-                <ng-template #defaultMultipleLabelTemplate let-tag let-label="label">{{ label }}</ng-template>
-            </lib-select-tag>
-        </ng-container>
-        <lib-select-search
-            class="c-lib-select-basic-box-search-component"
-            #searchInput
-            *ngIf="search"
-            [fontSize]="size === 'small' ? '12px' : size === 'large' ? '18px' : '14px'"
-            [disabled]="disabled"
-            (inputWidthChange)="handleInputWidthChange()"
-            (compositionChange)="handleCompositionChange($event)"
-            (paste)="handlePaste($event)"
-            (search)="handleSearch($event)">
-        </lib-select-search>
-    </div>
-    <div class="c-lib-select-basic-box-suffix">
-        <div 
-            *ngIf="loading && !disabled" 
-            class="c-lib-select-basic-box-loading-icon"
-            >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="c-lib-select-basic-box-loading-svg">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.25-14.75A6.75 6.75 0 1 1 1.5 8c0 3.693 3.007 6.75 6.75 6.75S15 11.693 15 8A6.75 6.75 0 0 0 8.25 1.25z" fill-opacity="0" />
-                <path d="M8 0a8 8 0 0 1 8 8h-2A6 6 0 0 0 8 2V0z" />
-            </svg>
-        </div>
-        <!-- 搜索 -->
-        <i *ngIf="!loading && allowSearch && isActive && !disabled" class="bi bi-search"></i>
-        <!-- 下拉 -->
-        <i *ngIf="!loading && !search && data && !disabled" class="bi bi-caret-down-fill c-lib-select-basic-box-icon"  [ngClass]="{'c-lib-select-basic-box-icon-clear': allowClear}" [style.transform]="isActive ? 'rotate(180deg)' : 'rotate(0deg)'"></i>
-        <!-- 清空 -->
-        <i *ngIf="!loading && allowClear && !isActive && !disabled && data && data.length > 0" class="bi-x-circle-fill c-lib-select-basic-box-clear-icon" (click)="clearValue($event)"></i>
-    </div>
+<div class="c-lib-select-basic-box"
+  [class.c-lib-select-basic-box-sm]="size === 'small'"
+  [class.c-lib-select-basic-box-lg]="size === 'large'"
+  [class.c-lib-select-basic-box-borderless]="borderless"
+  [class.c-lib-select-basic-box-error]="status === 'error'"
+  [class.c-lib-select-basic-box-active]="isActive"
+  [class.c-lib-select-basic-box-warning]="status === 'warning'"
+  [class.c-lib-select-basic-box-disabled]="disabled">
+  <div class="c-lib-select-basic-box-content">
+    @if (showPlaceholder()) {
+      <div
+        class="c-lib-select-basic-box-placeholder"
+        >
+        <div class="c-lib-select-basic-box-placeholder-text">{{ placeholder }}</div>
+      </div>
+    }
+    @if (showSingalData()) {
+      <div
+        class="c-lib-select-basic-box-singal-data"
+        [ngClass]="{'c-lib-select-basic-box-singal-data-gray': isActive}"
+        >
+        <ng-container *ngTemplateOutlet="optionLabelTemplate || defaultSingalLabelTemplate; context: { $implicit: data, label: getDisplayTags(data[0]) }"></ng-container>
+        <ng-template #defaultSingalLabelTemplate let-data let-label="label">{{ label }}</ng-template>
+      </div>
+    }
+    @if (showMultipleData()) {
+      @for (tag of data; track tag; let i = $index) {
+        <lib-select-tag
+          [size]="size"
+          [closable]="true"
+          (remove)="removeTag($event, tag)"
+          class="c-lib-select-basic-box-tag-component"
+          >
+          <ng-container *ngTemplateOutlet="optionLabelTemplate || defaultMultipleLabelTemplate; context: { $implicit: tag, label: getDisplayTags(tag) }"></ng-container>
+          <ng-template #defaultMultipleLabelTemplate let-tag let-label="label">{{ label }}</ng-template>
+        </lib-select-tag>
+      }
+    }
+    @if (search) {
+      <lib-select-search
+        class="c-lib-select-basic-box-search-component"
+        #searchInput
+        [fontSize]="size === 'small' ? '12px' : size === 'large' ? '18px' : '14px'"
+        [disabled]="disabled"
+        (inputWidthChange)="handleInputWidthChange()"
+        (compositionChange)="handleCompositionChange($event)"
+        (paste)="handlePaste($event)"
+        (search)="handleSearch($event)">
+      </lib-select-search>
+    }
+  </div>
+  <div class="c-lib-select-basic-box-suffix">
+    @if (loading && !disabled) {
+      <div
+        class="c-lib-select-basic-box-loading-icon"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="c-lib-select-basic-box-loading-svg">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.25-14.75A6.75 6.75 0 1 1 1.5 8c0 3.693 3.007 6.75 6.75 6.75S15 11.693 15 8A6.75 6.75 0 0 0 8.25 1.25z" fill-opacity="0" />
+          <path d="M8 0a8 8 0 0 1 8 8h-2A6 6 0 0 0 8 2V0z" />
+        </svg>
+      </div>
+    }
+    <!-- 搜索 -->
+    @if (!loading && allowSearch && isActive && !disabled) {
+      <i class="bi bi-search"></i>
+    }
+    <!-- 下拉 -->
+    @if (!loading && !search && data && !disabled) {
+      <i class="bi bi-caret-down-fill c-lib-select-basic-box-icon"  [ngClass]="{'c-lib-select-basic-box-icon-clear': allowClear}" [style.transform]="isActive ? 'rotate(180deg)' : 'rotate(0deg)'"></i>
+    }
+    <!-- 清空 -->
+    @if (!loading && allowClear && !isActive && !disabled && data && data.length > 0) {
+      <i class="bi-x-circle-fill c-lib-select-basic-box-clear-icon" (click)="clearValue($event)"></i>
+    }
+  </div>
 </div>

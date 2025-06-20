@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { CascaderComponent } from '@project';
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
@@ -9,12 +9,11 @@ import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.co
   selector: 'app-doc-cascader',
   standalone: true,
   imports: [
-    CommonModule, 
-    CascaderComponent, 
+    CascaderComponent,
     FormsModule,
     DocBoxComponent,
     DocApiTableComponent
-  ],
+],
   templateUrl: './doc-cascader.component.html',
   styleUrl: './doc-cascader.component.less'
 })

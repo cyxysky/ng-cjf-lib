@@ -1,143 +1,163 @@
-<div class="c-lib-checkbox-group" [class.c-lib-checkbox-vertical]="direction === 'vertical'" [class.c-lib-checkbox-horizontal]="direction === 'horizontal'">  
+<div class="c-lib-checkbox-group" [class.c-lib-checkbox-vertical]="direction === 'vertical'" [class.c-lib-checkbox-horizontal]="direction === 'horizontal'">
   <div class="c-lib-checkbox-options">
-    <ng-container *ngIf="!single">
-      <label 
-        *ngFor="let option of options" 
-        class="c-lib-checkbox-wrapper" 
-        [class.c-lib-checkbox-disabled]="disabled || option.disabled">
-        <div class="c-lib-checkbox-input">
-          <input 
-            type="checkbox" 
-            [checked]="isChecked[getOptionKey(option.value)]" 
-            [indeterminate]="option.indeterminate"
-            [disabled]="disabled || option.disabled"
-            (change)="toggleOption(option)"
-          />
-          <div 
-            class="c-lib-checkbox-box" 
-            [class.c-lib-checkbox-checked]="!option.indeterminate && isChecked[getOptionKey(option.value)]"
-            [class.c-lib-checkbox-indeterminate]="option.indeterminate"
-            [class.c-lib-checkbox-disabled]="disabled || option.disabled"
-            [style.backgroundColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
-            [style.borderColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
-          >
-            <div class="c-lib-checkbox-inner">
-              <!-- 选中状态的勾选图标 -->
-              <div 
-                *ngIf="!option.indeterminate && isChecked[getOptionKey(option.value)]"
-                class="c-lib-checkbox-check-icon"
-              ></div>
-              <!-- 半选状态的方块图标 -->
-              <div 
-                *ngIf="option.indeterminate"
-                class="c-lib-checkbox-indeterminate-icon"
-                [style.backgroundColor]="indeterminateColor"
-              ></div>
+    @if (!single) {
+      @for (option of options; track option) {
+        <label
+          class="c-lib-checkbox-wrapper"
+          [class.c-lib-checkbox-disabled]="disabled || option.disabled">
+          <div class="c-lib-checkbox-input">
+            <input
+              type="checkbox"
+              [checked]="isChecked[getOptionKey(option.value)]"
+              [indeterminate]="option.indeterminate"
+              [disabled]="disabled || option.disabled"
+              (change)="toggleOption(option)"
+              />
+              <div
+                class="c-lib-checkbox-box"
+                [class.c-lib-checkbox-checked]="!option.indeterminate && isChecked[getOptionKey(option.value)]"
+                [class.c-lib-checkbox-indeterminate]="option.indeterminate"
+                [class.c-lib-checkbox-disabled]="disabled || option.disabled"
+                [style.backgroundColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
+                [style.borderColor]="isChecked[getOptionKey(option.value)] ? checkboxColor : ''"
+                >
+                <div class="c-lib-checkbox-inner">
+                  <!-- 选中状态的勾选图标 -->
+                  @if (!option.indeterminate && isChecked[getOptionKey(option.value)]) {
+                    <div
+                      class="c-lib-checkbox-check-icon"
+                    ></div>
+                  }
+                  <!-- 半选状态的方块图标 -->
+                  @if (option.indeterminate) {
+                    <div
+                      class="c-lib-checkbox-indeterminate-icon"
+                      [style.backgroundColor]="indeterminateColor"
+                    ></div>
+                  }
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="c-lib-checkbox-label">{{ option.label }}</div>
-      </label>
-    </ng-container>
-    <label 
-      *ngIf="single" 
-      class="c-lib-checkbox-wrapper" 
-      [class.c-lib-checkbox-disabled]="disabled">
+            <div class="c-lib-checkbox-label">{{ option.label }}</div>
+          </label>
+        }
+      }
+      @if (single) {
+        <label
+          class="c-lib-checkbox-wrapper"
+          [class.c-lib-checkbox-disabled]="disabled">
+          <div class="c-lib-checkbox-input">
+            <input
+              type="checkbox"
+              [checked]="singleValue"
+              [indeterminate]="indeterminate"
+              [disabled]="disabled"
+              (change)="checkSingle()"
+              />
+              <div
+                class="c-lib-checkbox-box"
+                [class.c-lib-checkbox-checked]="!indeterminate && singleValue"
+                [class.c-lib-checkbox-indeterminate]="indeterminate"
+                [class.c-lib-checkbox-disabled]="disabled"
+                [style.backgroundColor]="singleValue ? checkboxColor : ''"
+                [style.borderColor]="singleValue ? checkboxColor : ''"
+                >
+                <div class="c-lib-checkbox-inner">
+                  <!-- 选中状态的勾选图标 -->
+                  @if (!indeterminate && singleValue) {
+                    <div
+                      class="c-lib-checkbox-check-icon"
+                    ></div>
+                  }
+                  <!-- 半选状态的方块图标 -->
+                  @if (indeterminate) {
+                    <div
+                      class="c-lib-checkbox-indeterminate-icon"
+                      [style.backgroundColor]="indeterminateColor ? indeterminateColor : ''"
+                    ></div>
+                  }
+                </div>
+              </div>
+            </div>
+            @if (!isTemplate(singleLabelContent)) {
+              <div class="c-lib-checkbox-label">{{ singleLabelContent }}</div>
+            }
+            @if (isTemplate(singleLabelContent)) {
+              <ng-container [ngTemplateOutlet]="singleLabelContent"></ng-container>
+            }
+          </label>
+        }
+      </div>
+    </div>
+
+    <!-- 单选模式 -->
+    <ng-template #singleLabel let-option>
       <div class="c-lib-checkbox-input">
-        <input 
-          type="checkbox" 
-          [checked]="singleValue" 
+        <input
+          type="checkbox"
+          [checked]="singleValue"
           [indeterminate]="indeterminate"
           [disabled]="disabled"
           (change)="checkSingle()"
-        />
-        <div 
-          class="c-lib-checkbox-box" 
-          [class.c-lib-checkbox-checked]="!indeterminate && singleValue"
+          />
+          <ng-container *ngTemplateOutlet="checkboxInner; context: { $implicit:  singleValue, indeterminate: indeterminate, disabled: disabled }"></ng-container>
+        </div>
+        @if (isTemplate(singleLabelContent)) {
+          <ng-container [ngTemplateOutlet]="singleLabelContent"></ng-container>
+        }
+        @if (!isTemplate(singleLabelContent)) {
+          <ng-container [ngTemplateOutlet]="defaultLabel"></ng-container>
+        }
+      </ng-template>
+
+      <ng-template #checkboxInner let-checked let-indeterminate="indeterminate" let-disabled="disabled">
+        <div
+          class="c-lib-checkbox-box"
+          [class.c-lib-checkbox-checked]="!indeterminate && checked"
           [class.c-lib-checkbox-indeterminate]="indeterminate"
           [class.c-lib-checkbox-disabled]="disabled"
-          [style.backgroundColor]="singleValue ? checkboxColor : ''"
-          [style.borderColor]="singleValue ? checkboxColor : ''"
-        >
+          [style.backgroundColor]="checked ? checkboxColor : ''"
+          [style.borderColor]="checked ? checkboxColor : ''"
+          >
           <div class="c-lib-checkbox-inner">
             <!-- 选中状态的勾选图标 -->
-            <div 
-              *ngIf="!indeterminate && singleValue"
-              class="c-lib-checkbox-check-icon"
-            ></div>
+            @if (!indeterminate && checked) {
+              <div
+                class="c-lib-checkbox-check-icon"
+              ></div>
+            }
             <!-- 半选状态的方块图标 -->
-            <div 
-              *ngIf="indeterminate"
-              class="c-lib-checkbox-indeterminate-icon"
-              [style.backgroundColor]="indeterminateColor ? indeterminateColor : ''"
-            ></div>
+            @if (indeterminate) {
+              <div
+                class="c-lib-checkbox-indeterminate-icon"
+                [style.backgroundColor]="indeterminateColor ? indeterminateColor : ''"
+              ></div>
+            }
           </div>
         </div>
-      </div>
-      <div *ngIf="!isTemplate(singleLabelContent)" class="c-lib-checkbox-label">{{ singleLabelContent }}</div>
-      <ng-container *ngIf="isTemplate(singleLabelContent)" [ngTemplateOutlet]="singleLabelContent"></ng-container>
-    </label>
-  </div>
-</div>
+      </ng-template>
 
-<!-- 单选模式 -->
-<ng-template #singleLabel let-option>
-  <div class="c-lib-checkbox-input">
-    <input 
-      type="checkbox" 
-      [checked]="singleValue" 
-      [indeterminate]="indeterminate"
-      [disabled]="disabled"
-      (change)="checkSingle()"
-    />
-    <ng-container *ngTemplateOutlet="checkboxInner; context: { $implicit:  singleValue, indeterminate: indeterminate, disabled: disabled }"></ng-container>
-  </div>
-  <ng-container *ngIf="isTemplate(singleLabelContent)" [ngTemplateOutlet]="singleLabelContent"></ng-container>
-  <ng-container *ngIf="!isTemplate(singleLabelContent)" [ngTemplateOutlet]="defaultLabel"></ng-container>
-</ng-template>
+      <!-- 多选模式 -->
+      <ng-template #checkboxOption let-option>
+        <div class="c-lib-checkbox-input">
+          <input
+            type="checkbox"
+            [checked]="isChecked[getOptionKey(option.value)]"
+            [indeterminate]="option.indeterminate"
+            [disabled]="disabled || option.disabled"
+            (change)="toggleOption(option)"
+            />
+            <ng-container *ngTemplateOutlet="checkboxInner; context: { $implicit:  isChecked[getOptionKey(option.value)], indeterminate: option.indeterminate, disabled: disabled || option.disabled }"></ng-container>
+          </div>
+          <ng-container *ngTemplateOutlet="labelTemplate || defaultLabel; context: { $implicit: option }"></ng-container>
+        </ng-template>
 
-<ng-template #checkboxInner let-checked let-indeterminate="indeterminate" let-disabled="disabled">
-  <div 
-    class="c-lib-checkbox-box" 
-    [class.c-lib-checkbox-checked]="!indeterminate && checked"
-    [class.c-lib-checkbox-indeterminate]="indeterminate"
-    [class.c-lib-checkbox-disabled]="disabled"
-    [style.backgroundColor]="checked ? checkboxColor : ''"
-    [style.borderColor]="checked ? checkboxColor : ''"
-  >
-    <div class="c-lib-checkbox-inner">
-      <!-- 选中状态的勾选图标 -->
-      <div 
-        *ngIf="!indeterminate && checked"
-        class="c-lib-checkbox-check-icon"
-      ></div>
-      <!-- 半选状态的方块图标 -->
-      <div 
-        *ngIf="indeterminate"
-        class="c-lib-checkbox-indeterminate-icon"
-        [style.backgroundColor]="indeterminateColor ? indeterminateColor : ''"
-      ></div>
-    </div>
-  </div>
-</ng-template>
-
-<!-- 多选模式 -->
-<ng-template #checkboxOption let-option>
-  <div class="c-lib-checkbox-input">
-    <input 
-      type="checkbox" 
-      [checked]="isChecked[getOptionKey(option.value)]" 
-      [indeterminate]="option.indeterminate"
-      [disabled]="disabled || option.disabled"
-      (change)="toggleOption(option)"
-    />
-    <ng-container *ngTemplateOutlet="checkboxInner; context: { $implicit:  isChecked[getOptionKey(option.value)], indeterminate: option.indeterminate, disabled: disabled || option.disabled }"></ng-container>
-  </div>
-  <ng-container *ngTemplateOutlet="labelTemplate || defaultLabel; context: { $implicit: option }"></ng-container>
-</ng-template>
-
-<!-- 默认标签 -->
-<ng-template #defaultLabel let-option>
-  <div class="c-lib-checkbox-label" *ngIf="!single">{{ option.label }}</div>
-  <div class="c-lib-checkbox-label" *ngIf="single">{{ singleLabelContent }}</div>
-</ng-template>
+        <!-- 默认标签 -->
+        <ng-template #defaultLabel let-option>
+          @if (!single) {
+            <div class="c-lib-checkbox-label">{{ option.label }}</div>
+          }
+          @if (single) {
+            <div class="c-lib-checkbox-label">{{ singleLabelContent }}</div>
+          }
+        </ng-template>

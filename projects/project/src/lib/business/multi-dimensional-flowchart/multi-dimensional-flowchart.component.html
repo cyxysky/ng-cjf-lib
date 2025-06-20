@@ -1,102 +1,114 @@
 <div class="flex">
-    <div class="flex-grow1 none-display">
-        <div *ngIf="state !== 'active' " class="stateLine" [ngClass]="state === 'hold' ? 'hold' : 'close'">
-            {{ stateText}}
-        </div>
-        <div class="flex column" [ngClass]="state === 'active' ? '' : 'colse-flow'">
-            <div *ngFor="let items of data.steps;index as rowIndex" class="grid flex-grow-1" [style.grid-template-columns]="getTotalStageGridColumns()">
-                <div [style.background]="items.background" class="title">
-                    {{items.name}}
-                </div>
-                <!-- 列 -->
-                <div 
-                    *ngFor="let eachStage of stageArray;index as rootStage" 
-                    class="grid flex-grow1 center"
-                    [style.grid-template-columns]="getGridColumns(eachStage.length)"
-                    [style.background]="items.background">
-                    <!-- 行 -->
-                    <div 
-                        *ngFor="let colIndex of eachStage;index as groupStageIndex" 
-                        class="flex flex-grow1 column">
-                        <ng-container
-                            *ngIf="nodeCoordinatesMap && nodeCoordinatesMap!.get(rowIndex+1) && nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex)">
-                            <ng-container
-                                *ngFor="let node of nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex);index as nodeIndex">
-                                <div class="flex flex-grow1 nodes relative"
-                                    [style.padding-left]="rootStage !==0 && groupStageIndex === 0 ? '16px' : '16px'">
-                                    <div class="flex flex-grow1 nodes-contents" (click)="selectStage(node)">
-                                        <!-- 节点左侧的箭头 -->
-                                        <div class="aheadArrow" *ngIf="colIndex!==1">
-                                            <div class="inner-arrow1 nodes-content-arrow"
-                                                [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' ">
-                                            </div>
-                                            <div class="inner-arrow2 nodes-content-arrow"
-                                                [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' ">
-                                            </div>
-                                        </div>
-                                        <!-- 节点内容 -->
-                                        <div class="nodes-content"
-                                            style=""
-                                            [ngClass]="selectedStage.key === node.key ? 'node-status-selected' : node.statusClass">
-                                            <ng-container>
-                                                <ng-container [ngTemplateOutlet]="source.get(node.template) || default"
-                                                    [ngTemplateOutletContext]="{$implicit : node , rowIndex:rowIndex+1 , colIndex:colIndex}">
-                                                </ng-container>
-                                            </ng-container>
-                                        </div>
-                                        <!-- 节点右侧的箭头 -->
-                                        <div class="arrow nodes-content-arrow" style="z-index: 99;"
-                                            [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' "
-                                            *ngIf="!(rootStage === stageArray.length -1 && groupStageIndex === eachStage.length-1)">
-                                        </div>
-                                    </div>
-                                    <!-- 线条 -->
-                                    <ng-container *ngFor="let line of showLine(node);index as lineIndex">
-                                        <div *ngIf="line.direction === 'up'" class="up-line">
-                                            <div class="line">
-                                                <div class="left"
-                                                    [style]="{'height': line.yLength  + 'px' ,   'width': 100 + 200 * (line.xLength - 1) + '%' }">
-                                                </div>
-                                                <div class="right"
-                                                    [style]="{'height': line.yLength   + 'px' ,  'left':200 * (line.xLength-1) + '%' }">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div *ngIf="line.direction === 'down'" class="down-line">
-                                            <div class="line">
-                                                <div class="left"
-                                                    [style]="{'height':  line.yLength  + 'px', 'width': 100 + 200 * (line.xLength - 1) + '%' }">
-                                                </div>
-                                                <div class="right"
-                                                    [style]="{'height':  line.yLength  + 'px' , 'left':200 * (line.xLength-1) + '%'  }">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div *ngIf="line.direction === 'flat'" class="flat" [style.width]="100 + 100 * (line.xLength - 1) + '%'"></div>
-                                    </ng-container>
-                                </div>
-                            </ng-container>
-                        </ng-container>
-                        <ng-container
-                            *ngIf="!(nodeCoordinatesMap && nodeCoordinatesMap!.get(rowIndex+1) && nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex))">
-                            <div class="flex flex-grow1 nodes"
-                                [style.padding-left]="rootStage !== 0 && groupStageIndex === 0 ? '16px' : '16px' ">
+  <div class="flex-grow1 none-display">
+    @if (state !== 'active' ) {
+      <div class="stateLine" [ngClass]="state === 'hold' ? 'hold' : 'close'">
+        {{ stateText}}
+      </div>
+    }
+    <div class="flex column" [ngClass]="state === 'active' ? '' : 'colse-flow'">
+      @for (items of data.steps; track items; let rowIndex = $index) {
+        <div class="grid flex-grow-1" [style.grid-template-columns]="getTotalStageGridColumns()">
+          <div [style.background]="items.background" class="title">
+            {{items.name}}
+          </div>
+          <!-- 列 -->
+          @for (eachStage of stageArray; track eachStage; let rootStage = $index) {
+            <div
+              class="grid flex-grow1 center"
+              [style.grid-template-columns]="getGridColumns(eachStage.length)"
+              [style.background]="items.background">
+              <!-- 行 -->
+              @for (colIndex of eachStage; track colIndex; let groupStageIndex = $index) {
+                <div
+                  class="flex flex-grow1 column">
+                  @if (nodeCoordinatesMap && nodeCoordinatesMap!.get(rowIndex+1) && nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex)) {
+                    @for (node of nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex); track node; let nodeIndex = $index) {
+                      <div class="flex flex-grow1 nodes relative"
+                        [style.padding-left]="rootStage !==0 && groupStageIndex === 0 ? '16px' : '16px'">
+                        <div class="flex flex-grow1 nodes-contents" (click)="selectStage(node)">
+                          <!-- 节点左侧的箭头 -->
+                          @if (colIndex!==1) {
+                            <div class="aheadArrow">
+                              <div class="inner-arrow1 nodes-content-arrow"
+                                [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' ">
+                              </div>
+                              <div class="inner-arrow2 nodes-content-arrow"
+                                [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' ">
+                              </div>
                             </div>
-                        </ng-container>
+                          }
+                          <!-- 节点内容 -->
+                          <div class="nodes-content"
+                            style=""
+                            [ngClass]="selectedStage.key === node.key ? 'node-status-selected' : node.statusClass">
+                            <ng-container>
+                              <ng-container [ngTemplateOutlet]="source.get(node.template) || default"
+                                [ngTemplateOutletContext]="{$implicit : node , rowIndex:rowIndex+1 , colIndex:colIndex}">
+                              </ng-container>
+                            </ng-container>
+                          </div>
+                          <!-- 节点右侧的箭头 -->
+                          @if (!(rootStage === stageArray.length -1 && groupStageIndex === eachStage.length-1)) {
+                            <div class="arrow nodes-content-arrow" style="z-index: 99;"
+                              [ngClass]="selectedStage.key === node.key ? 'node-status-selected-arrow' : node.statusClass + '-arrow' "
+                              >
+                            </div>
+                          }
+                        </div>
+                        <!-- 线条 -->
+                        @for (line of showLine(node); track line; let lineIndex = $index) {
+                          @if (line.direction === 'up') {
+                            <div class="up-line">
+                              <div class="line">
+                                <div class="left"
+                                  [style]="{'height': line.yLength  + 'px' ,   'width': 100 + 200 * (line.xLength - 1) + '%' }">
+                                </div>
+                                <div class="right"
+                                  [style]="{'height': line.yLength   + 'px' ,  'left':200 * (line.xLength-1) + '%' }">
+                                </div>
+                              </div>
+                            </div>
+                          }
+                          @if (line.direction === 'down') {
+                            <div class="down-line">
+                              <div class="line">
+                                <div class="left"
+                                  [style]="{'height':  line.yLength  + 'px', 'width': 100 + 200 * (line.xLength - 1) + '%' }">
+                                </div>
+                                <div class="right"
+                                  [style]="{'height':  line.yLength  + 'px' , 'left':200 * (line.xLength-1) + '%'  }">
+                                </div>
+                              </div>
+                            </div>
+                          }
+                          @if (line.direction === 'flat') {
+                            <div class="flat" [style.width]="100 + 100 * (line.xLength - 1) + '%'"></div>
+                          }
+                        }
+                      </div>
+                    }
+                  }
+                  @if (!(nodeCoordinatesMap && nodeCoordinatesMap!.get(rowIndex+1) && nodeCoordinatesMap!.get(rowIndex+1)!.get(colIndex))) {
+                    <div class="flex flex-grow1 nodes"
+                      [style.padding-left]="rootStage !== 0 && groupStageIndex === 0 ? '16px' : '16px' ">
                     </div>
+                  }
                 </div>
+              }
             </div>
+          }
         </div>
+      }
     </div>
-    <div class="flex-grow0 flex center">
-        
-    </div>
+  </div>
+  <div class="flex-grow0 flex center">
+
+  </div>
 </div>
 
 <ng-template #default let-data>
-    <div class="flex-grow1 aligin-center">
-        {{data.name}}
-    </div>
+  <div class="flex-grow1 aligin-center">
+    {{data.name}}
+  </div>
 </ng-template>
 
-        

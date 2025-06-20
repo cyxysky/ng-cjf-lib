@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { InputComponent } from '@project';
@@ -23,7 +23,7 @@ export interface ApiItem {
 @Component({
   selector: 'app-doc-api-table',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputComponent],
+  imports: [FormsModule, InputComponent],
   templateUrl: './doc-api-table.component.html',
   styleUrl: './doc-api-table.component.less',
   animations: [

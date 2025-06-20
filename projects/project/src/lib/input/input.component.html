@@ -1,4 +1,4 @@
-<div 
+<div
   class="c-lib-input-affix-wrapper"
   [class.c-lib-input-sm]="size === 'small'"
   [class.c-lib-input-lg]="size === 'large'"
@@ -7,12 +7,18 @@
   [class.c-lib-input-status-error]="status === 'error'"
   [class.c-lib-input-status-warning]="status === 'warning'"
   [class.c-lib-input-focused]="hasFocus()">
-  <div class="c-lib-input-prefix" *ngIf="prefix || prefixIcon">
-    <ng-content select="[prefix]"></ng-content>
-    <i class="c-lib-input-prefix-icon" *ngIf="prefixIcon" [class]="prefixIcon"></i>
-    <ng-container *ngIf="prefix">{{ prefix }}</ng-container>
-  </div>
-  <input 
+  @if (prefix || prefixIcon) {
+    <div class="c-lib-input-prefix">
+      <ng-content select="[prefix]"></ng-content>
+      @if (prefixIcon) {
+        <i class="c-lib-input-prefix-icon" [class]="prefixIcon"></i>
+      }
+      @if (prefix) {
+        {{ prefix }}
+      }
+    </div>
+  }
+  <input
     class="c-lib-input-control"
     [ngModel]="_data"
     [disabled]="disabled"
@@ -21,24 +27,34 @@
     [placeholder]="placeholder"
     [readonly]="readonly"
     [type]="type"
-    [id]="id"    
+    [id]="id"
     [autofocus]="autofocus ? 'autofocus' : null"
     [autocomplete]="autocomplete"
-    (ngModelChange)="changeValue($event)" 
+    (ngModelChange)="changeValue($event)"
     (focus)="onFocus($event)"
     (blur)="onBlur($event)"
     (keydown)="onKeyDown($event)"
     (keyup)="onKeyUp($event)"
     (keypress)="onKeyPress($event)"
     (click)="onClick($event)"
-  />
-  <div class="c-lib-input-suffix" *ngIf="suffix || suffixIcon || (showCount && maxlength) || (allowClear && _data && !disabled && !readonly)">
-    <ng-content select="[suffix]"></ng-content>
-    <ng-container *ngIf="suffix">{{ suffix }}</ng-container>
-    <i class="c-lib-input-suffix-icon" *ngIf="suffixIcon" [class]="suffixIcon"></i>
-    <div class="c-lib-input-char-count" *ngIf="showCount && maxlength">{{ getCharCount() }}</div>
-    <div class="c-lib-input-clear-icon" (click)="clear($event)" *ngIf="allowClear && _data && !disabled && !readonly">
-      <i class="bi-x-circle-fill"></i>
-    </div>
+    />
+    @if (suffix || suffixIcon || (showCount && maxlength) || (allowClear && _data && !disabled && !readonly)) {
+      <div class="c-lib-input-suffix">
+        <ng-content select="[suffix]"></ng-content>
+        @if (suffix) {
+          {{ suffix }}
+        }
+        @if (suffixIcon) {
+          <i class="c-lib-input-suffix-icon" [class]="suffixIcon"></i>
+        }
+        @if (showCount && maxlength) {
+          <div class="c-lib-input-char-count">{{ getCharCount() }}</div>
+        }
+        @if (allowClear && _data && !disabled && !readonly) {
+          <div class="c-lib-input-clear-icon" (click)="clear($event)">
+            <i class="bi-x-circle-fill"></i>
+          </div>
+        }
+      </div>
+    }
   </div>
-</div>

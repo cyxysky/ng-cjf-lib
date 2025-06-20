@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -9,7 +9,6 @@ import { ProjectModule, DropMenu, DropMenuDirective, OverlayBasicPosition, Butto
   selector: 'app-doc-drop-menu',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     DocBoxComponent,
@@ -17,7 +16,7 @@ import { ProjectModule, DropMenu, DropMenuDirective, OverlayBasicPosition, Butto
     ProjectModule,
     DropMenuDirective,
     ButtonComponent
-  ],
+],
   templateUrl: './doc-drop-menu.component.html',
   styleUrl: './doc-drop-menu.component.less'
 })

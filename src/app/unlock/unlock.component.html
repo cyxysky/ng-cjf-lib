@@ -2,7 +2,9 @@
   <div class="unlock-backdrop">
     <!-- 背景动画粒子 -->
     <div class="particles">
-      <div class="particle" *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"></div>
+      @for (i of [1,2,3,4,5,6,7,8,9,10]; track i) {
+        <div class="particle"></div>
+      }
     </div>
   </div>
 
@@ -29,23 +31,23 @@
             placeholder="请输入访问密码"
             class="password-input"
             autocomplete="off">
+          </div>
         </div>
+
+        <button
+          type="button"
+          class="unlock-btn"
+          (click)="unlock()"
+          [disabled]="!password()">
+          <span class="btn-text">解锁访问</span>
+          <i class="fas fa-arrow-right btn-icon"></i>
+        </button>
       </div>
 
-      <button
-        type="button"
-        class="unlock-btn"
-        (click)="unlock()"
-        [disabled]="!password()">
-        <span class="btn-text">解锁访问</span>
-        <i class="fas fa-arrow-right btn-icon"></i>
-      </button>
-    </div>
-
-    <!-- 提示信息 -->
-    <div class="unlock-footer">
-      <p class="hint-text">
-      </p>
+      <!-- 提示信息 -->
+      <div class="unlock-footer">
+        <p class="hint-text">
+        </p>
+      </div>
     </div>
   </div>
-</div>

@@ -1,5 +1,5 @@
-<div 
-  class="c-lib-popover" 
+<div
+  class="c-lib-popover"
   [class.c-lib-popover-visible]="isVisible"
   [class.c-lib-popover-top]="placement === 'top'"
   [class.c-lib-popover-bottom]="placement === 'bottom'"
@@ -17,39 +17,45 @@
   <div class="c-lib-popover-arrow"></div>
   <div class="c-lib-popover-content-box">
     <div class="c-lib-popover-title">
-      <ng-container *ngIf="isTemplateRef(title); else titleTemplate">
+      @if (isTemplateRef(title)) {
         <ng-container [ngTemplateOutlet]="title"></ng-container>
-      </ng-container>
-      <ng-template #titleTemplate>{{title}}</ng-template>
+      } @else {
+        {{title}}
+      }
     </div>
     <div class="c-lib-popover-content">
-      <ng-container *ngIf="isTemplateRef(content); else contentTemplate">
+      @if (isTemplateRef(content)) {
         <ng-container [ngTemplateOutlet]="content"></ng-container>
-      </ng-container>
-      <ng-template #contentTemplate>{{content}}</ng-template>
+      } @else {
+        {{content}}
+      }
     </div>
-    <div class="c-lib-popover-footer" *ngIf="confirm">
-      <ng-container [ngTemplateOutlet]="bottomTemplate || defaultBottomTemplate"></ng-container>
-      <ng-template #defaultBottomTemplate>
-        <div style="flex-grow: 1;"></div>
-        <lib-button 
-          [buttonColor]="cancelButtonColor || 'ghost'" 
-          buttonSize="small" 
-          (click)="onCancelClick()">
-          <ng-container *ngIf="isTemplateRef(cancelButtonContent); else cancelButtonContentTemplate">
-            <ng-container [ngTemplateOutlet]="cancelButtonContent"></ng-container>
-          </ng-container>
-          <ng-template #cancelButtonContentTemplate>{{cancelButtonContent}}</ng-template>
-        </lib-button>
-        <lib-button 
-          [buttonColor]="confirmButtonColor || 'primary'" 
-          buttonSize="small" 
-          (click)="onConfirmClick()">
-          <ng-container *ngIf="isTemplateRef(confirmButtonContent); else confirmButtonContentTemplate">
-            <ng-container [ngTemplateOutlet]="confirmButtonContent"></ng-container>
-          </ng-container>
-          <ng-template #confirmButtonContentTemplate>{{confirmButtonContent}}</ng-template>
-        </lib-button>
-      </ng-template>
-    </div>
+    @if (confirm) {
+      <div class="c-lib-popover-footer">
+        <ng-container [ngTemplateOutlet]="bottomTemplate || defaultBottomTemplate"></ng-container>
+        <ng-template #defaultBottomTemplate>
+          <div style="flex-grow: 1;"></div>
+          <lib-button
+            [buttonColor]="cancelButtonColor || 'ghost'"
+            buttonSize="small"
+            (click)="onCancelClick()">
+            @if (isTemplateRef(cancelButtonContent)) {
+              <ng-container [ngTemplateOutlet]="cancelButtonContent"></ng-container>
+            } @else {
+              {{cancelButtonContent}}
+            }
+          </lib-button>
+          <lib-button
+            [buttonColor]="confirmButtonColor || 'primary'"
+            buttonSize="small"
+            (click)="onConfirmClick()">
+            @if (isTemplateRef(confirmButtonContent)) {
+              <ng-container [ngTemplateOutlet]="confirmButtonContent"></ng-container>
+            } @else {
+              {{confirmButtonContent}}
+            }
+          </lib-button>
+        </ng-template>
+      </div>
+    }
   </div>

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, forwardRef, Input, OnDestroy, OnInit, Output, Renderer2, SimpleChanges, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CdkOverlayOrigin, ConnectedPosition, CdkConnectedOverlay } from '@angular/cdk/overlay';
@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'lib-tree-select',
   standalone: true,
-  imports: [CommonModule, FormsModule, CdkOverlayOrigin, TreeComponent, SelectBoxComponent, CdkConnectedOverlay],
+  imports: [FormsModule, CdkOverlayOrigin, TreeComponent, SelectBoxComponent, CdkConnectedOverlay],
   templateUrl: './tree-select.component.html',
   providers: [
     {

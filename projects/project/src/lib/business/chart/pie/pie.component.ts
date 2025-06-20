@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild, AfterViewInit, NgZone, Renderer2, TemplateRef, HostListener, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ChartService } from '../chart.service';
 
 export interface PieChartData {
@@ -50,7 +50,7 @@ export interface PieChartOptions {
 @Component({
   selector: 'lib-pie',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './pie.component.html',
   styleUrl: './pie.component.less'
 })

@@ -1,42 +1,44 @@
-<div 
-    class="c-lib-drop-menu" 
-    [class.c-lib-drop-menu-visible]="isVisible" 
-    [class]="'c-lib-drop-menu-' + placement"
-    [class.c-lib-drop-menu-submenu-mode]="isSubMenu"
-    [style.width]="width"
-
-    >
-    <ul class="c-lib-drop-menu-list">
-        <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: items }"></ng-container>
-    </ul>
+<div
+  class="c-lib-drop-menu"
+  [class.c-lib-drop-menu-visible]="isVisible"
+  [class]="'c-lib-drop-menu-' + placement"
+  [class.c-lib-drop-menu-submenu-mode]="isSubMenu"
+  [style.width]="width">
+  <ul class="c-lib-drop-menu-list">
+    <ng-container *ngTemplateOutlet="template || defaultTemplate; context: { $implicit: items }"></ng-container>
+  </ul>
 </div>
 
 <ng-template #defaultTemplate>
-    <ng-container *ngFor="let item of items; let i = index">
-        <li 
-            #menuItemEl
-            class="c-lib-drop-menu-item"
-            [class.c-lib-drop-menu-item-disabled]="isItemDisabled(item)" 
-            [class.c-lib-drop-menu-item-selected]="selectedItem === item && allowSelected"
-            (mouseenter)="onMouseEnterItem(i)"
-            (mouseleave)="onMouseLeaveItem()" 
-            (click)="!isItemDisabled(item) && onItemClick(item, $event)"
-            >
-            <ng-container *ngIf="itemTemplate; else defaultItemTemplate">
-                <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ $implicit: item, index: i }"></ng-container>
-            </ng-container>
-            <ng-template #defaultItemTemplate>
-                <span class="c-lib-drop-menu-item-icon" *ngIf="item.icon">
-                    <i [class]="item.icon"></i>
-                </span>
-                <span class="c-lib-drop-menu-item-label">{{ item.title }}</span>
-                <span class="c-lib-drop-menu-item-expand-icon" *ngIf="item.children?.length">
-                    <i class="arrow-right-icon"></i>
-                </span>
-            </ng-template>
-        </li>
-    </ng-container>
-    <li class="c-lib-drop-menu-empty" *ngIf="!items?.length">
-        <span>暂无数据</span>
-    </li>
+  @for (item of items; track item; let i = $index) {
+  <li
+    #menuItemEl
+    class="c-lib-drop-menu-item"
+    [class.c-lib-drop-menu-item-disabled]="isItemDisabled(item)"
+    [class.c-lib-drop-menu-item-selected]="selectedItem === item && allowSelected"
+    (mouseenter)="onMouseEnterItem(i)"
+    (mouseleave)="onMouseLeaveItem()"
+    (click)="!isItemDisabled(item) && onItemClick(item, $event)">
+    @if (itemTemplate) {
+    <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{ $implicit: item, index: i }"></ng-container>
+    } @else {
+    @if (item.icon) {
+    <span class="c-lib-drop-menu-item-icon">
+      <i [class]="item.icon"></i>
+    </span>
+    }
+    <span class="c-lib-drop-menu-item-label">{{ item.title }}</span>
+    @if (item.children?.length) {
+    <span class="c-lib-drop-menu-item-expand-icon">
+      <i class="arrow-right-icon"></i>
+    </span>
+    }
+    }
+  </li>
+  }
+  @if (!items.length) {
+  <li class="c-lib-drop-menu-empty">
+    <span>暂无数据</span>
+  </li>
+  }
 </ng-template>

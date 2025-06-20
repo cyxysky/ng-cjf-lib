@@ -12,7 +12,7 @@
           向下弹出的列表，用于显示链接、动作或菜单。当页面上的操作命令过多时，用此组件可以收纳操作元素。点击或悬停触发子菜单，用于导航、功能切换和展示更多选项。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -47,8 +47,8 @@
       <!-- 基本用法 -->
       <app-doc-box title="基本用法" [sourceCode]="basicSource">
         <div demo class="demo-container">
-          <lib-button 
-            libDropMenu 
+          <lib-button
+            libDropMenu
             [dropMenuItems]="basicItems"
             [buttonContent]="'点击显示菜单'"
             [buttonColor]="'tertiary'"
@@ -59,22 +59,22 @@
           <p>最简单的下拉菜单，点击按钮弹出。</p>
         </div>
       </app-doc-box>
-      
+
       <!-- 不同的触发方式 -->
       <app-doc-box title="触发方式" [sourceCode]="triggerSource">
         <div demo class="demo-container">
           <div class="trigger-demo">
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuTrigger]="'click'"
               [buttonContent]="'点击触发'"
               [buttonColor]="'tertiary'"
               [buttonType]="'default'">
             </lib-button>
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuTrigger]="'hover'"
               [buttonContent]="'悬停触发'"
               [buttonColor]="'tertiary'"
@@ -100,20 +100,22 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 位置 -->
       <app-doc-box title="菜单位置" [sourceCode]="placementSource">
         <div demo class="demo-container">
           <div class="placement-demo">
-            <lib-button *ngFor="let pos of placements" 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
-              [dropMenuPlacement]="pos"
-              [buttonContent]="pos"
-              [buttonColor]="'tertiary'"
-              [buttonSize]="'small'"
-              [buttonType]="'default'">
-            </lib-button>
+            @for (pos of placements; track pos) {
+              <lib-button
+                libDropMenu
+                [dropMenuItems]="basicItems"
+                [dropMenuPlacement]="pos"
+                [buttonContent]="pos"
+                [buttonColor]="'tertiary'"
+                [buttonSize]="'small'"
+                [buttonType]="'default'">
+              </lib-button>
+            }
           </div>
         </div>
         <div description>
@@ -128,22 +130,22 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 自定义宽度 -->
       <app-doc-box title="自定义宽度" [sourceCode]="widthSource">
         <div demo class="demo-container">
           <div class="width-demo">
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuWidth]="200"
               [buttonContent]="'宽度: 200px'"
               [buttonColor]="'tertiary'"
               [buttonType]="'default'">
             </lib-button>
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuWidth]="'300px'"
               [buttonContent]="'宽度: 300px'"
               [buttonColor]="'tertiary'"
@@ -156,12 +158,12 @@
           <p>菜单的宽度可以自定义，支持数字（单位为px）或字符串。</p>
         </div>
       </app-doc-box>
-      
+
       <!-- 嵌套菜单 -->
       <app-doc-box title="嵌套菜单" [sourceCode]="nestedSource">
         <div demo class="demo-container">
-          <lib-button 
-            libDropMenu 
+          <lib-button
+            libDropMenu
             [dropMenuItems]="nestedItems"
             [buttonContent]="'嵌套菜单'"
             [buttonColor]="'tertiary'"
@@ -176,19 +178,19 @@
           <p>下拉菜单支持多级嵌套，鼠标悬停在带有子菜单的项目上会显示子菜单。</p>
         </div>
       </app-doc-box>
-      
+
       <!-- 自定义模板 -->
       <app-doc-box title="自定义菜单项" [sourceCode]="customTemplateSource">
         <div demo class="demo-container">
-          <lib-button 
-            libDropMenu 
-            [dropMenuItems]="customItems" 
+          <lib-button
+            libDropMenu
+            [dropMenuItems]="customItems"
             [dropMenuItemTemplate]="customItemTpl"
             [buttonContent]="'自定义菜单项'"
             [buttonColor]="'ghost'"
             [buttonType]="'dashed'">
           </lib-button>
-          
+
           <ng-template #customItemTpl let-item let-index="index">
             <li (click)="onItemClick(item)">
               <span class="custom-menu-item-label">
@@ -201,20 +203,20 @@
           <p>通过自定义模板，可以完全控制菜单项的渲染方式。</p>
         </div>
       </app-doc-box>
-      
+
       <!-- 受控模式 -->
       <app-doc-box title="受控模式" [sourceCode]="controlledSource">
         <div demo class="demo-container">
           <div class="controlled-demo">
-            <lib-button 
+            <lib-button
               [buttonContent]="controlledVisible ? '隐藏菜单' : '显示菜单'"
               [buttonColor]="'tertiary'"
               [buttonType]="'link'"
               (click)="controlledVisible = !controlledVisible">
             </lib-button>
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [(dropMenuVisible)]="controlledVisible"
               [dropMenuStrictVisible]="true"
               (dropMenuVisibleChange)="onVisibleChange($event)"
@@ -238,23 +240,25 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 监听菜单项点击 -->
       <app-doc-box title="监听菜单项点击" [sourceCode]="eventSource">
         <div demo class="demo-container">
           <div class="event-demo">
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               (dropMenuItemClick)="onMenuItemClick($event)"
               [buttonContent]="'点击菜单项'"
               [buttonColor]="'tertiary'"
               [buttonType]="'default'">
             </lib-button>
-            
-            <div *ngIf="selectedItem">
-              已选择: {{ selectedItem.title }}
-            </div>
+
+            @if (selectedItem) {
+              <div>
+                已选择: {{ selectedItem.title }}
+              </div>
+            }
           </div>
         </div>
         <div description>
@@ -267,22 +271,22 @@
           </div>
         </div>
       </app-doc-box>
-      
+
       <!-- 添加自动关闭模式示例 -->
       <app-doc-box title="自动关闭模式" [sourceCode]="autoCloseSource">
         <div demo class="demo-container">
           <div class="auto-close-demo">
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuAutoClose]="true"
               [buttonContent]="'自动关闭'"
               [buttonColor]="'tertiary'"
               [buttonType]="'default'">
             </lib-button>
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuAutoClose]="false"
               [buttonContent]="'点击不关闭'"
               [buttonColor]="'ghost'"
@@ -309,19 +313,21 @@
       <app-doc-box title="菜单项选中状态" [sourceCode]="selectedItemSource">
         <div demo class="demo-container">
           <div class="selected-demo">
-            <lib-button 
-              libDropMenu 
-              [dropMenuItems]="basicItems" 
+            <lib-button
+              libDropMenu
+              [dropMenuItems]="basicItems"
               [dropMenuSelected]="selectedMenuItem"
               (dropMenuSelectedChange)="onSelectedChange($event)"
               [buttonContent]="'选择菜单项'"
               [buttonColor]="'tertiary'"
               [buttonType]="'default'">
             </lib-button>
-            
-            <div *ngIf="selectedMenuItem">
-              当前选中: {{ selectedMenuItem.title }}
-            </div>
+
+            @if (selectedMenuItem) {
+              <div>
+                当前选中: {{ selectedMenuItem.title }}
+              </div>
+            }
           </div>
         </div>
         <div description>
@@ -342,15 +348,15 @@
       <!-- 完全自定义模板 -->
       <app-doc-box title="完全自定义模板" [sourceCode]="fullTemplateSource">
         <div demo class="demo-container">
-          <lib-button 
-            libDropMenu 
+          <lib-button
+            libDropMenu
             [dropMenuTemplate]="fullCustomTpl"
             [(dropMenuVisible)]="fullCustomVisible"
             [buttonContent]="'完全自定义模板'"
             [buttonColor]="'tertiary'"
             [buttonType]="'default'">
           </lib-button>
-          
+
           <ng-template #fullCustomTpl>
             <div class="custom-menu-container">
               <div class="custom-menu-header">
@@ -365,7 +371,7 @@
                 </ul>
               </div>
               <div class="custom-menu-footer">
-                <lib-button 
+                <lib-button
                   [buttonContent]="'关闭菜单'"
                   [buttonColor]="'tertiary'"
                   [buttonType]="'default'"
@@ -392,7 +398,7 @@
       </app-doc-box>
     </div>
   </div>
-  
+
   <!-- API 文档区域 -->
   <div class="api-section">
     <div class="section-header">
@@ -404,7 +410,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>
@@ -413,7 +419,9 @@
 
 <ng-template #demoCustomItem let-item>
   <span class="custom-menu-item">
-    <i [class]="item.icon" *ngIf="item.icon"></i>
+    @if (item.icon) {
+      <i [class]="item.icon"></i>
+    }
     <strong>{{item.label}}</strong>
   </span>
 </ng-template>

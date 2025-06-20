@@ -12,7 +12,7 @@
           下拉选择器，用于从一组选项中选择单个或多个值。提供丰富的配置选项和灵活的交互方式，适用于各种数据选择场景。
         </p>
       </div>
-      
+
       <div class="usage-section">
         <div class="usage-card">
           <h3 class="usage-title">
@@ -44,24 +44,26 @@
     </div>
 
     <div class="demo-grid">
-  
+
       <!-- 基本用法 -->
-    <app-doc-box
-      title="基本用法"
-      [sourceCode]="basicSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="selectedValue"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="请选择">
-        </lib-select>
-        <div *ngIf="selectedValue" class="example-value">
-          当前选择: {{ selectedValue }}
+      <app-doc-box
+        title="基本用法"
+        [sourceCode]="basicSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="selectedValue"
+            [selectOption]="options"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="请选择">
+          </lib-select>
+          @if (selectedValue) {
+            <div class="example-value">
+              当前选择: {{ selectedValue }}
+            </div>
+          }
         </div>
-      </div>
-              <div description>
+        <div description>
           <p>最简单的用法，单选模式下选择值。</p>
           <div class="feature-list">
             <div class="feature-item">
@@ -70,45 +72,45 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 不同大小 -->
-    <app-doc-box
-      title="三种大小"
-      [sourceCode]="sizeSource">
-      <div demo>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <lib-select
-            selectSize="large"
-            [(ngModel)]="selectedSizes.large"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectMode="multiple"
-            selectOptionValue="value"
-            selectPlaceHolder="大号选择框">
-          </lib-select>
-          
-          <lib-select
-            [(ngModel)]="selectedSizes.default"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectMode="multiple"
-            selectOptionValue="value"
-            selectPlaceHolder="默认大小">
-          </lib-select>
-          
-          <lib-select
-            selectSize="small"
-            [(ngModel)]="selectedSizes.small"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectMode="multiple"
-            selectOptionValue="value"
-            selectPlaceHolder="小号选择框">
-          </lib-select>
+      </app-doc-box>
+
+      <!-- 不同大小 -->
+      <app-doc-box
+        title="三种大小"
+        [sourceCode]="sizeSource">
+        <div demo>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <lib-select
+              selectSize="large"
+              [(ngModel)]="selectedSizes.large"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectMode="multiple"
+              selectOptionValue="value"
+              selectPlaceHolder="大号选择框">
+            </lib-select>
+
+            <lib-select
+              [(ngModel)]="selectedSizes.default"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectMode="multiple"
+              selectOptionValue="value"
+              selectPlaceHolder="默认大小">
+            </lib-select>
+
+            <lib-select
+              selectSize="small"
+              [(ngModel)]="selectedSizes.small"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectMode="multiple"
+              selectOptionValue="value"
+              selectPlaceHolder="小号选择框">
+            </lib-select>
+          </div>
         </div>
-      </div>
-              <div description>
+        <div description>
           <p>提供大、中、小三种尺寸的选择框：</p>
           <div class="size-list">
             <div class="size-item">
@@ -134,26 +136,28 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 多选模式 -->
-    <app-doc-box
-      title="多选模式"
-      [sourceCode]="multipleSource">
-      <div demo>
-        <lib-select
-          selectMode="multiple"
-          [(ngModel)]="multipleSelected"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="请选择多个选项">
-        </lib-select>
-        <div *ngIf="multipleSelected && multipleSelected.length > 0" class="example-value">
-          当前选择: {{ multipleSelected.join(', ') }}
+      </app-doc-box>
+
+      <!-- 多选模式 -->
+      <app-doc-box
+        title="多选模式"
+        [sourceCode]="multipleSource">
+        <div demo>
+          <lib-select
+            selectMode="multiple"
+            [(ngModel)]="multipleSelected"
+            [selectOption]="options"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="请选择多个选项">
+          </lib-select>
+          @if (multipleSelected && multipleSelected.length > 0) {
+            <div class="example-value">
+              当前选择: {{ multipleSelected.join(', ') }}
+            </div>
+          }
         </div>
-      </div>
-              <div description>
+        <div description>
           <p>多选模式下，用户可以选择多个选项：</p>
           <div class="feature-list">
             <div class="feature-item">
@@ -166,30 +170,32 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 自定义标签 -->
-    <app-doc-box
-      title="自定义标签"
-      [sourceCode]="tagsSource">
-      <div demo>
-        <lib-select
-          selectMode="multiple"
-          [selectTagMode]="true"
-          [(ngModel)]="tagsSelected"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="可输入自定义标签">
-        </lib-select>
-        <div *ngIf="tagsSelected && tagsSelected.length > 0" class="example-value">
-          当前选择: {{ tagsSelected.join(', ') }}
+      </app-doc-box>
+
+      <!-- 自定义标签 -->
+      <app-doc-box
+        title="自定义标签"
+        [sourceCode]="tagsSource">
+        <div demo>
+          <lib-select
+            selectMode="multiple"
+            [selectTagMode]="true"
+            [(ngModel)]="tagsSelected"
+            [selectOption]="options"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="可输入自定义标签">
+          </lib-select>
+          @if (tagsSelected && tagsSelected.length > 0) {
+            <div class="example-value">
+              当前选择: {{ tagsSelected.join(', ') }}
+            </div>
+          }
+          <div class="tip">
+            提示: 可以尝试输入"露西,杰克"并按回车键
+          </div>
         </div>
-        <div class="tip">
-          提示: 可以尝试输入"露西,杰克"并按回车键
-        </div>
-      </div>
-              <div description>
+        <div description>
           <p>标签模式下的强大功能：</p>
           <div class="feature-list">
             <div class="feature-item">
@@ -202,47 +208,51 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 分组 -->
-    <app-doc-box
-      title="分组"
-      [sourceCode]="groupSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="groupSelected"
-          [selectOption]="groupOptions"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="请选择分组选项">
-        </lib-select>
-        <div *ngIf="groupSelected" class="example-value">
-          当前选择: {{ groupSelected }}
+      </app-doc-box>
+
+      <!-- 分组 -->
+      <app-doc-box
+        title="分组"
+        [sourceCode]="groupSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="groupSelected"
+            [selectOption]="groupOptions"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="请选择分组选项">
+          </lib-select>
+          @if (groupSelected) {
+            <div class="example-value">
+              当前选择: {{ groupSelected }}
+            </div>
+          }
         </div>
-      </div>
-      <div description>
-        使用分组将相关的选项进行归类展示，提高选项的可读性和可用性。
-      </div>
-    </app-doc-box>
-    
-    <!-- 搜索功能 -->
-    <app-doc-box
-      title="搜索"
-      [sourceCode]="searchSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="searchSelected"
-          [selectShowSearch]="true"
-          [selectOption]="largeOptions"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="支持搜索的选择框">
-        </lib-select>
-        <div *ngIf="searchSelected" class="example-value">
-          当前选择: {{ searchSelected }}
+        <div description>
+          使用分组将相关的选项进行归类展示，提高选项的可读性和可用性。
         </div>
-      </div>
-              <div description>
+      </app-doc-box>
+
+      <!-- 搜索功能 -->
+      <app-doc-box
+        title="搜索"
+        [sourceCode]="searchSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="searchSelected"
+            [selectShowSearch]="true"
+            [selectOption]="largeOptions"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="支持搜索的选择框">
+          </lib-select>
+          @if (searchSelected) {
+            <div class="example-value">
+              当前选择: {{ searchSelected }}
+            </div>
+          }
+        </div>
+        <div description>
           <p>强大的搜索功能，提升用户体验：</p>
           <div class="feature-list">
             <div class="feature-item">
@@ -255,72 +265,78 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 远程搜索 -->
-    <app-doc-box
-      title="远程搜索"
-      [sourceCode]="remoteSearchSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="remoteSelected"
-          [selectShowSearch]="true"
-          [selectLoading]="remoteLoading"
-          [selectSearchFn]="onRemoteSearch"
-          [selectOption]="remoteOptions"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="输入关键字搜索">
-        </lib-select>
-        <div *ngIf="remoteSelected" class="example-value">
-          当前选择: {{ remoteSelected }}
+      </app-doc-box>
+
+      <!-- 远程搜索 -->
+      <app-doc-box
+        title="远程搜索"
+        [sourceCode]="remoteSearchSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="remoteSelected"
+            [selectShowSearch]="true"
+            [selectLoading]="remoteLoading"
+            [selectSearchFn]="onRemoteSearch"
+            [selectOption]="remoteOptions"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="输入关键字搜索">
+          </lib-select>
+          @if (remoteSelected) {
+            <div class="example-value">
+              当前选择: {{ remoteSelected }}
+            </div>
+          }
         </div>
-      </div>
-      <div description>
-        从服务器搜索并加载选项数据的选择器。在搜索过程中会显示加载状态，并支持节流控制和请求时序控制。
-      </div>
-    </app-doc-box>
-    
-    <!-- 隐藏已选择选项 -->
-    <app-doc-box
-      title="隐藏已选择选项"
-      [sourceCode]="hideSelectedSource">
-      <div demo>
-        <lib-select
-          selectMode="multiple"
-          [selectHideSelected]="true"
-          [(ngModel)]="hideSelected"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="已选项不会显示在下拉列表中">
-        </lib-select>
-        <div *ngIf="hideSelected && hideSelected.length > 0" class="example-value">
-          当前选择: {{ hideSelected.join(', ') }}
+        <div description>
+          从服务器搜索并加载选项数据的选择器。在搜索过程中会显示加载状态，并支持节流控制和请求时序控制。
         </div>
-      </div>
-      <div description>
-        多选模式下，可以设置隐藏已经选择的选项，避免重复选择。
-      </div>
-    </app-doc-box>
-    
-    <!-- 虚拟滚动 -->
-    <app-doc-box
-      title="虚拟滚动"
-      [sourceCode]="virtualScrollSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="virtualScrollSelected"
-          [selectOption]="hugeOptions"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="包含1000个选项">
-        </lib-select>
-        <div *ngIf="virtualScrollSelected" class="example-value">
-          当前选择: {{ virtualScrollSelected }}
+      </app-doc-box>
+
+      <!-- 隐藏已选择选项 -->
+      <app-doc-box
+        title="隐藏已选择选项"
+        [sourceCode]="hideSelectedSource">
+        <div demo>
+          <lib-select
+            selectMode="multiple"
+            [selectHideSelected]="true"
+            [(ngModel)]="hideSelected"
+            [selectOption]="options"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="已选项不会显示在下拉列表中">
+          </lib-select>
+          @if (hideSelected && hideSelected.length > 0) {
+            <div class="example-value">
+              当前选择: {{ hideSelected.join(', ') }}
+            </div>
+          }
         </div>
-      </div>
-              <div description>
+        <div description>
+          多选模式下，可以设置隐藏已经选择的选项，避免重复选择。
+        </div>
+      </app-doc-box>
+
+      <!-- 虚拟滚动 -->
+      <app-doc-box
+        title="虚拟滚动"
+        [sourceCode]="virtualScrollSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="virtualScrollSelected"
+            [selectOption]="hugeOptions"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="包含1000个选项">
+          </lib-select>
+          @if (virtualScrollSelected) {
+            <div class="example-value">
+              当前选择: {{ virtualScrollSelected }}
+            </div>
+          }
+        </div>
+        <div description>
           <p>高性能虚拟滚动技术：</p>
           <div class="feature-list">
             <div class="feature-item">
@@ -333,222 +349,234 @@
             </div>
           </div>
         </div>
-    </app-doc-box>
-    
-    <!-- 无边框 -->
-    <app-doc-box
-      title="无边框"
-      [sourceCode]="borderlessSource">
-      <div demo>
-        <div style="padding: 16px; background-color: #f5f5f5;">
-          <lib-select
-            [selectBorderless]="true"
-            [(ngModel)]="borderlessSelected"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectOptionValue="value"
-            selectPlaceHolder="无边框选择框">
-          </lib-select>
+      </app-doc-box>
+
+      <!-- 无边框 -->
+      <app-doc-box
+        title="无边框"
+        [sourceCode]="borderlessSource">
+        <div demo>
+          <div style="padding: 16px; background-color: #f5f5f5;">
+            <lib-select
+              [selectBorderless]="true"
+              [(ngModel)]="borderlessSelected"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectOptionValue="value"
+              selectPlaceHolder="无边框选择框">
+            </lib-select>
+          </div>
         </div>
-      </div>
-      <div description>
-        无边框样式的选择器，常用于嵌入在其他容器中时使用。
-      </div>
-    </app-doc-box>
-    
-    <!-- 状态 -->
-    <app-doc-box
-      title="带验证状态"
-      [sourceCode]="statusSource">
-      <div demo>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <lib-select
-            [(ngModel)]="statusValues.default"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectOptionValue="value"
-            selectPlaceHolder="默认状态">
-          </lib-select>
-          
-          <lib-select
-            [(ngModel)]="statusValues.error"
-            [selectStatus]="'error'"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectOptionValue="value"
-            selectPlaceHolder="错误状态">
-          </lib-select>
-          
-          <lib-select
-            [(ngModel)]="statusValues.warning"
-            [selectStatus]="'warning'"
-            [selectOption]="options"
-            selectOptionKey="label"
-            selectOptionValue="value"
-            selectPlaceHolder="警告状态">
-          </lib-select>
+        <div description>
+          无边框样式的选择器，常用于嵌入在其他容器中时使用。
         </div>
-      </div>
-      <div description>
-        为选择器添加状态，可选择 error 或 warning，用于表单验证。
-      </div>
-    </app-doc-box>
-    
-    <!-- 最大选项数 -->
-    <app-doc-box
-      title="最大选择数量"
-      [sourceCode]="maxCountSource">
-      <div demo>
-        <lib-select
-          selectMode="multiple"
-          [selectMaxMultipleCount]="3"
-          [(ngModel)]="maxCountSelected"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          selectPlaceHolder="最多选择3项">
-        </lib-select>
-        <div *ngIf="maxCountSelected && maxCountSelected.length > 0" class="example-value">
-          当前选择: {{ maxCountSelected.join(', ') }} (已选择 {{ maxCountSelected.length }}/3)
+      </app-doc-box>
+
+      <!-- 状态 -->
+      <app-doc-box
+        title="带验证状态"
+        [sourceCode]="statusSource">
+        <div demo>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <lib-select
+              [(ngModel)]="statusValues.default"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectOptionValue="value"
+              selectPlaceHolder="默认状态">
+            </lib-select>
+
+            <lib-select
+              [(ngModel)]="statusValues.error"
+              [selectStatus]="'error'"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectOptionValue="value"
+              selectPlaceHolder="错误状态">
+            </lib-select>
+
+            <lib-select
+              [(ngModel)]="statusValues.warning"
+              [selectStatus]="'warning'"
+              [selectOption]="options"
+              selectOptionKey="label"
+              selectOptionValue="value"
+              selectPlaceHolder="警告状态">
+            </lib-select>
+          </div>
         </div>
-      </div>
-      <div description>
-        可以限制多选模式下最多可选中的选项数量。当达到最大数量时，未选中的选项将被禁用。
-      </div>
-    </app-doc-box>
-    
-    <!-- 禁用选择框 -->
-    <app-doc-box
-      title="禁用选择框"
-      [sourceCode]="disabledSource">
-      <div demo>
-        <div style="display: flex; flex-direction: column; gap: 16px;">
-          <lib-select
-            [(ngModel)]="disabledValue"
-            [selectOption]="options"
-            [selectDisabled]="true"
-            selectPlaceHolder="禁用状态的选择框">
-          </lib-select>
-          
+        <div description>
+          为选择器添加状态，可选择 error 或 warning，用于表单验证。
+        </div>
+      </app-doc-box>
+
+      <!-- 最大选项数 -->
+      <app-doc-box
+        title="最大选择数量"
+        [sourceCode]="maxCountSource">
+        <div demo>
           <lib-select
             selectMode="multiple"
-            [(ngModel)]="disabledMultipleValue"
+            [selectMaxMultipleCount]="3"
+            [(ngModel)]="maxCountSelected"
             [selectOption]="options"
-            [selectDisabled]="true"
-            selectPlaceHolder="禁用状态的多选框">
+            selectOptionKey="label"
+            selectOptionValue="value"
+            selectPlaceHolder="最多选择3项">
           </lib-select>
+          @if (maxCountSelected && maxCountSelected.length > 0) {
+            <div class="example-value">
+              当前选择: {{ maxCountSelected.join(', ') }} (已选择 {{ maxCountSelected.length }}/3)
+            </div>
+          }
         </div>
-      </div>
-      <div description>
-        禁用状态的选择框不可点击，常用于权限控制或特定条件下禁止用户操作的场景。
-      </div>
-    </app-doc-box>
-    
-    <!-- 选项禁用 -->
-    <app-doc-box
-      title="选项禁用"
-      [sourceCode]="disabledOptionSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="disabledOptionValue"
-          [selectOption]="disabledOptions"
-          selectPlaceHolder="包含禁用选项的选择框">
-        </lib-select>
-        <div *ngIf="disabledOptionValue" class="example-value">
-          当前选择: {{ disabledOptionValue }}
+        <div description>
+          可以限制多选模式下最多可选中的选项数量。当达到最大数量时，未选中的选项将被禁用。
         </div>
-      </div>
-      <div description>
-        部分选项可以设置为禁用状态，禁用的选项不可被选择。适用于特定选项在当前场景下不可用的情况。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义选项模板 -->
-    <app-doc-box
-      title="自定义选项模板"
-      [sourceCode]="customOptionTemplateSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="customOptionTemplateValue"
-          [selectOption]="customOptions"
-          [selectOptionTemplate]="customOptionTpl"
-          selectPlaceHolder="自定义选项显示内容">
-        </lib-select>
-        
-        <ng-template #customOptionTpl let-option>
-          <div class="custom-option">
-            <i class="bi" [ngClass]="option.icon"></i>
-            <span>{{option.label}}</span>
-            <span class="option-desc" *ngIf="option.description">{{option.description}}</span>
+      </app-doc-box>
+
+      <!-- 禁用选择框 -->
+      <app-doc-box
+        title="禁用选择框"
+        [sourceCode]="disabledSource">
+        <div demo>
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <lib-select
+              [(ngModel)]="disabledValue"
+              [selectOption]="options"
+              [selectDisabled]="true"
+              selectPlaceHolder="禁用状态的选择框">
+            </lib-select>
+
+            <lib-select
+              selectMode="multiple"
+              [(ngModel)]="disabledMultipleValue"
+              [selectOption]="options"
+              [selectDisabled]="true"
+              selectPlaceHolder="禁用状态的多选框">
+            </lib-select>
           </div>
-        </ng-template>
-        
-        <div *ngIf="customOptionTemplateValue" class="example-value">
-          当前选择: {{ customOptionTemplateValue }}
         </div>
-      </div>
-      <div description>
-        通过自定义模板，可以自由定制选项的显示内容和样式，支持图标、描述文本等复杂内容的展示。
-      </div>
-    </app-doc-box>
-    
-    <!-- 自定义选中内容模板 -->
-    <app-doc-box
-      title="自定义选中内容"
-      [sourceCode]="customLabelTemplateSource">
-      <div demo>
-        <lib-select
-          [(ngModel)]="customLabelTemplateValue"
-          [selectOption]="customOptions"
-          [selectOptionLabelTemplate]="customLabelTpl"
-          selectPlaceHolder="自定义选中内容显示">
-        </lib-select>
-        
-        <ng-template #customLabelTpl let-option let-label="label">
-          <div class="custom-label">
-            <span>自定义选中-{{ label }}</span>
-          </div>
-        </ng-template>
-        
-        <div *ngIf="customLabelTemplateValue" class="example-value">
-          当前选择: {{ customLabelTemplateValue }}
+        <div description>
+          禁用状态的选择框不可点击，常用于权限控制或特定条件下禁止用户操作的场景。
         </div>
-      </div>
-      <div description>
-        通过自定义选中内容模板，可以自定义选中后显示的内容和样式，在有限的空间内展示更丰富的信息。
-      </div>
-    </app-doc-box>
-    
-    <!-- 底部操作栏 -->
-    <app-doc-box
-      title="底部操作栏"
-      [sourceCode]="bottomBarSource">
-      <div demo>
-        <lib-select
-          selectMode="multiple"
-          [(ngModel)]="bottomBarSelected"
-          [selectOption]="options"
-          selectOptionKey="label"
-          selectOptionValue="value"
-          [selectBottomBar]="bottomBarTpl"
-          selectPlaceHolder="带底部操作栏的选择器">
-        </lib-select>
-        
-        <ng-template #bottomBarTpl>
-          <div style="display: flex; justify-content: space-between; padding: 8px 12px; border-top: 1px solid #f0f0f0;">
-            <a style="color: #1677ff; font-size: 12px; cursor: pointer;" (click)="selectAll()">全选</a>
-            <a style="color: #1677ff; font-size: 12px; cursor: pointer;" (click)="clearAll()">清空</a>
-          </div>
-        </ng-template>
-        
-        <div *ngIf="bottomBarSelected && bottomBarSelected.length > 0" class="example-value">
-          当前选择: {{ bottomBarSelected.join(', ') }}
+      </app-doc-box>
+
+      <!-- 选项禁用 -->
+      <app-doc-box
+        title="选项禁用"
+        [sourceCode]="disabledOptionSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="disabledOptionValue"
+            [selectOption]="disabledOptions"
+            selectPlaceHolder="包含禁用选项的选择框">
+          </lib-select>
+          @if (disabledOptionValue) {
+            <div class="example-value">
+              当前选择: {{ disabledOptionValue }}
+            </div>
+          }
         </div>
-      </div>
-      <div description>
-        可以在选择框底部添加自定义的操作栏，例如全选、清空等常用操作按钮，提高用户操作效率。
-      </div>
-    </app-doc-box>
+        <div description>
+          部分选项可以设置为禁用状态，禁用的选项不可被选择。适用于特定选项在当前场景下不可用的情况。
+        </div>
+      </app-doc-box>
+
+      <!-- 自定义选项模板 -->
+      <app-doc-box
+        title="自定义选项模板"
+        [sourceCode]="customOptionTemplateSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="customOptionTemplateValue"
+            [selectOption]="customOptions"
+            [selectOptionTemplate]="customOptionTpl"
+            selectPlaceHolder="自定义选项显示内容">
+          </lib-select>
+
+          <ng-template #customOptionTpl let-option>
+            <div class="custom-option">
+              <i class="bi" [ngClass]="option.icon"></i>
+              <span>{{option.label}}</span>
+              @if (option.description) {
+                <span class="option-desc">{{option.description}}</span>
+              }
+            </div>
+          </ng-template>
+
+          @if (customOptionTemplateValue) {
+            <div class="example-value">
+              当前选择: {{ customOptionTemplateValue }}
+            </div>
+          }
+        </div>
+        <div description>
+          通过自定义模板，可以自由定制选项的显示内容和样式，支持图标、描述文本等复杂内容的展示。
+        </div>
+      </app-doc-box>
+
+      <!-- 自定义选中内容模板 -->
+      <app-doc-box
+        title="自定义选中内容"
+        [sourceCode]="customLabelTemplateSource">
+        <div demo>
+          <lib-select
+            [(ngModel)]="customLabelTemplateValue"
+            [selectOption]="customOptions"
+            [selectOptionLabelTemplate]="customLabelTpl"
+            selectPlaceHolder="自定义选中内容显示">
+          </lib-select>
+
+          <ng-template #customLabelTpl let-option let-label="label">
+            <div class="custom-label">
+              <span>自定义选中-{{ label }}</span>
+            </div>
+          </ng-template>
+
+          @if (customLabelTemplateValue) {
+            <div class="example-value">
+              当前选择: {{ customLabelTemplateValue }}
+            </div>
+          }
+        </div>
+        <div description>
+          通过自定义选中内容模板，可以自定义选中后显示的内容和样式，在有限的空间内展示更丰富的信息。
+        </div>
+      </app-doc-box>
+
+      <!-- 底部操作栏 -->
+      <app-doc-box
+        title="底部操作栏"
+        [sourceCode]="bottomBarSource">
+        <div demo>
+          <lib-select
+            selectMode="multiple"
+            [(ngModel)]="bottomBarSelected"
+            [selectOption]="options"
+            selectOptionKey="label"
+            selectOptionValue="value"
+            [selectBottomBar]="bottomBarTpl"
+            selectPlaceHolder="带底部操作栏的选择器">
+          </lib-select>
+
+          <ng-template #bottomBarTpl>
+            <div style="display: flex; justify-content: space-between; padding: 8px 12px; border-top: 1px solid #f0f0f0;">
+              <a style="color: #1677ff; font-size: 12px; cursor: pointer;" (click)="selectAll()">全选</a>
+              <a style="color: #1677ff; font-size: 12px; cursor: pointer;" (click)="clearAll()">清空</a>
+            </div>
+          </ng-template>
+
+          @if (bottomBarSelected && bottomBarSelected.length > 0) {
+            <div class="example-value">
+              当前选择: {{ bottomBarSelected.join(', ') }}
+            </div>
+          }
+        </div>
+        <div description>
+          可以在选择框底部添加自定义的操作栏，例如全选、清空等常用操作按钮，提高用户操作效率。
+        </div>
+      </app-doc-box>
     </div>
   </div>
 
@@ -563,7 +591,7 @@
       </h2>
       <p class="section-description">详细的属性、事件和方法说明</p>
     </div>
-    
+
     <div class="api-container">
       <app-doc-api-table [apiData]="apiSections"></app-doc-api-table>
     </div>

@@ -1,384 +1,437 @@
 <!-- 基础输入框 -->
-<div 
-  class="c-lib-date-timer-container" 
-  [class.c-lib-date-timer-disabled]="disabled" 
+<div
+  class="c-lib-date-timer-container"
+  [class.c-lib-date-timer-disabled]="disabled"
   cdkOverlayOrigin
   #overlayOrigin="cdkOverlayOrigin"
   >
   <!-- 单个日期/时间选择 -->
-  <div *ngIf="selectType === 'single'" class="c-lib-date-timer-single" (click)="openDropdown()">
-    <div class="c-lib-date-timer-input" 
-         [class.c-lib-date-timer-input-focused]="isFocused"
-         [class.c-lib-date-timer-input-disabled]="disabled"
-         [class.c-lib-date-timer-input-borderless]="borderless"
-         [class.c-lib-date-timer-input-error]="status === 'error'"
-         [class.c-lib-date-timer-input-warning]="status === 'warning'"
-         [class.c-lib-date-timer-input-small]="size === 'small'"
-         [class.c-lib-date-timer-input-large]="size === 'large'">
-      <input 
-        #inputElement
-        type="text" 
-        [placeholder]="placeholder.toString()"
-        [disabled]="disabled"
-        [value]="displayValue"
-        readonly
-        (focus)="onInputFocus()"
-        (blur)="onInputBlur()"
-      />
-      <ng-container *ngTemplateOutlet="dateTimerIcon"></ng-container>
-    </div>
-  </div>
-  <!-- 日期范围选择 -->
-  <div *ngIf="selectType === 'range'" class="c-lib-date-timer-range" (click)="openDropdown()">
-    <div class="c-lib-date-timer-input" 
-         [class.c-lib-date-timer-input-focused]="isFocused"
-         [class.c-lib-date-timer-input-disabled]="disabled"
-         [class.c-lib-date-timer-input-borderless]="borderless"
-         [class.c-lib-date-timer-input-error]="status === 'error'"
-         [class.c-lib-date-timer-input-warning]="status === 'warning'"
-         [class.c-lib-date-timer-input-small]="size === 'small'"
-         [class.c-lib-date-timer-input-large]="size === 'large'">
-      <input 
-        type="text" 
-        [placeholder]="rangePlaceholder[0]"
-        [disabled]="disabled"
-        [value]="getStartDate() ? formatDate(getStartDate()!) : ''"
-        readonly
-      />
-      <span class="c-lib-date-timer-range-separator">~</span>
-      <input 
-        type="text" 
-        [placeholder]="rangePlaceholder[1]"
-        [disabled]="disabled"
-        [value]="getEndDate() ? formatDate(getEndDate()!) : ''"
-        readonly
-      />
-      <ng-container *ngTemplateOutlet="dateTimerIcon"></ng-container>
-    </div>
-  </div>
-</div>
-
-<!-- 下拉面板模板 -->
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="overlayOrigin"
-  [cdkConnectedOverlayPush]="true"
-  [cdkConnectedOverlayPositions]="selectOverlayPosition"
-  [cdkConnectedOverlayGrowAfterOpen]="true"
-  [cdkConnectedOverlayHasBackdrop]="false"
-  [cdkConnectedOverlayWidth]="getDropdownWidth()"
-  [cdkConnectedOverlayOpen]="isOverlayOpen"
-  (overlayOutsideClick)="closeDropdown()"
-  >
-  <div 
-    class="c-lib-date-timer-dropdown"
-    [class.c-lib-date-timer-dropdown-visible]="isDropdownOpen"
-    [class.c-lib-date-timer-dropdown-time]="currentPanelMode === 'time' && !showTime"
-    [class.c-lib-date-timer-dropdown-date-time]="showTime && ['date', 'week'].includes(mode)"
-  >
-    <!-- 添加开始/结束选择按钮Tab，只在范围选择模式下显示 -->
-    <div *ngIf="selectType === 'range'" class="c-lib-date-timer-range-tabs">
-      <button 
-        class="c-lib-date-timer-range-tab" 
-        [class.c-lib-date-timer-range-tab-active]="rangePart === 'start'"
-        (click)="switchRangePart('start')"
-      >
-        开始
-      </button>
-      <button 
-        class="c-lib-date-timer-range-tab" 
-        [class.c-lib-date-timer-range-tab-active]="rangePart === 'end'"
-        (click)="switchRangePart('end')"
-      >
-        结束
-      </button>
-    </div>
-    
-    <div class="c-lib-date-timer-panels-container">
-      <!-- 年份选择面板 -->
-      <div *ngIf="currentPanelMode === 'year'" class="c-lib-date-timer-year-panel">
-        <div class="c-lib-date-timer-header">
-          <button class="c-lib-date-timer-prev-year-btn" (click)="prevYearRange()">&lt;&lt;</button>
-          <span class="c-lib-date-timer-header-view">{{ yearRangeText }}</span>
-          <button class="c-lib-date-timer-next-year-btn" (click)="nextYearRange()">&gt;&gt;</button>
-        </div>
-        <div class="c-lib-date-timer-body">
-          <div class="c-lib-date-timer-year-grid">
-            <div 
-              *ngFor="let year of years" 
-              class="c-lib-date-timer-year-cell"
-              [class.c-lib-date-timer-cell-selected]="isSelectedYear(year)"
-              [class.c-lib-date-timer-cell-in-range]="isInYearRange(year)"
-              (click)="onSelectYear(year)"
-              (mouseenter)="selectType === 'range' && onCellYearHover(year)"
-            >
-              {{ year }}
-            </div>
-          </div>
+  @if (selectType === 'single') {
+    <div class="c-lib-date-timer-single" (click)="openDropdown()">
+      <div class="c-lib-date-timer-input"
+        [class.c-lib-date-timer-input-focused]="isFocused"
+        [class.c-lib-date-timer-input-disabled]="disabled"
+        [class.c-lib-date-timer-input-borderless]="borderless"
+        [class.c-lib-date-timer-input-error]="status === 'error'"
+        [class.c-lib-date-timer-input-warning]="status === 'warning'"
+        [class.c-lib-date-timer-input-small]="size === 'small'"
+        [class.c-lib-date-timer-input-large]="size === 'large'">
+        <input
+          #inputElement
+          type="text"
+          [placeholder]="placeholder.toString()"
+          [disabled]="disabled"
+          [value]="displayValue"
+          readonly
+          (focus)="onInputFocus()"
+          (blur)="onInputBlur()"
+          />
+          <ng-container *ngTemplateOutlet="dateTimerIcon"></ng-container>
         </div>
       </div>
-      
-      <!-- 月份选择面板 -->
-      <div *ngIf="currentPanelMode === 'month'" class="c-lib-date-timer-month-panel">
-        <div class="c-lib-date-timer-header">
-          <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
-          <span *ngIf="mode === 'date'" class="c-lib-date-timer-header-view">
-            <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('year')">{{ getYear(currentViewDate) }}年</span>
-          </span>
-          <span *ngIf="mode !== 'date'" class="c-lib-date-timer-header-view">{{ getYear(currentViewDate) }}</span>
-          <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
-        </div>
-        <div class="c-lib-date-timer-body">
-          <div class="c-lib-date-timer-month-grid">
-            <div 
-              *ngFor="let month of months; let i = index" 
-              class="c-lib-date-timer-month-cell"
-              [class.c-lib-date-timer-cell-selected]="isSelectedMonth(i)"
-              [class.c-lib-date-timer-cell-in-range]="isInMonthRange(i)"
-              (click)="onSelectMonth(i)"
-              (mouseenter)="selectType === 'range' && onCellMonthHover(i)"
-            >
-              {{ i + 1 }}月
+    }
+    <!-- 日期范围选择 -->
+    @if (selectType === 'range') {
+      <div class="c-lib-date-timer-range" (click)="openDropdown()">
+        <div class="c-lib-date-timer-input"
+          [class.c-lib-date-timer-input-focused]="isFocused"
+          [class.c-lib-date-timer-input-disabled]="disabled"
+          [class.c-lib-date-timer-input-borderless]="borderless"
+          [class.c-lib-date-timer-input-error]="status === 'error'"
+          [class.c-lib-date-timer-input-warning]="status === 'warning'"
+          [class.c-lib-date-timer-input-small]="size === 'small'"
+          [class.c-lib-date-timer-input-large]="size === 'large'">
+          <input
+            type="text"
+            [placeholder]="rangePlaceholder[0]"
+            [disabled]="disabled"
+            [value]="getStartDate() ? formatDate(getStartDate()!) : ''"
+            readonly
+            />
+            <span class="c-lib-date-timer-range-separator">~</span>
+            <input
+              type="text"
+              [placeholder]="rangePlaceholder[1]"
+              [disabled]="disabled"
+              [value]="getEndDate() ? formatDate(getEndDate()!) : ''"
+              readonly
+              />
+              <ng-container *ngTemplateOutlet="dateTimerIcon"></ng-container>
             </div>
           </div>
-        </div>
+        }
       </div>
-      
-      <!-- 季度选择面板 -->
-      <div *ngIf="currentPanelMode === 'quarter'" class="c-lib-date-timer-quarter-panel">
-        <div class="c-lib-date-timer-header">
-          <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
-          <span class="c-lib-date-timer-header-view">{{ getYear(currentViewDate) }}</span>
-          <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
-        </div>
-        <div class="c-lib-date-timer-body">
-          <div class="c-lib-date-timer-quarter-grid">
-            <div 
-              *ngFor="let quarter of quarters; let i = index" 
-              class="c-lib-date-timer-quarter-cell"
-              [class.c-lib-date-timer-cell-selected]="isSelectedQuarter(i)"
-              [class.c-lib-date-timer-cell-in-range]="isInQuarterRange(i)"
-              (click)="onSelectQuarter(i)"
-              (mouseenter)="selectType === 'range' && onCellQuarterHover(i)"
-            >
-              {{ i + 1 }}季度
+
+      <!-- 下拉面板模板 -->
+      <ng-template
+        cdkConnectedOverlay
+        [cdkConnectedOverlayOrigin]="overlayOrigin"
+        [cdkConnectedOverlayPush]="true"
+        [cdkConnectedOverlayPositions]="selectOverlayPosition"
+        [cdkConnectedOverlayGrowAfterOpen]="true"
+        [cdkConnectedOverlayHasBackdrop]="false"
+        [cdkConnectedOverlayWidth]="getDropdownWidth()"
+        [cdkConnectedOverlayOpen]="isOverlayOpen"
+        (overlayOutsideClick)="closeDropdown()"
+        >
+        <div
+          class="c-lib-date-timer-dropdown"
+          [class.c-lib-date-timer-dropdown-visible]="isDropdownOpen"
+          [class.c-lib-date-timer-dropdown-time]="currentPanelMode === 'time' && !showTime"
+          [class.c-lib-date-timer-dropdown-date-time]="showTime && ['date', 'week'].includes(mode)"
+          >
+          <!-- 添加开始/结束选择按钮Tab，只在范围选择模式下显示 -->
+          @if (selectType === 'range') {
+            <div class="c-lib-date-timer-range-tabs">
+              <button
+                class="c-lib-date-timer-range-tab"
+                [class.c-lib-date-timer-range-tab-active]="rangePart === 'start'"
+                (click)="switchRangePart('start')"
+                >
+                开始
+              </button>
+              <button
+                class="c-lib-date-timer-range-tab"
+                [class.c-lib-date-timer-range-tab-active]="rangePart === 'end'"
+                (click)="switchRangePart('end')"
+                >
+                结束
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- 日期面板（用于日期和周选择） -->
-      <div *ngIf="currentPanelMode === 'date' || currentPanelMode === 'week'" class="c-lib-date-timer-date-panel"
-           [class.c-lib-date-timer-date-panel-week-mode]="mode === 'week'">
-        <!-- 面板头部 -->
-        <div class="c-lib-date-timer-header">
-          <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
-          <button class="c-lib-date-timer-prev-month-btn" (click)="prevMonth()">&lt;</button>
-          
-          <!-- 日期模式下的可点击标题 -->
-          <span *ngIf="mode === 'date'" class="c-lib-date-timer-header-view">
-            <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('year')">{{ getHeaderYear() }}</span>
-            <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('month')">{{ getHeaderMonth() }}</span>
-          </span>
-          
-          <!-- 其他模式下的只读标题 -->
-          <span *ngIf="mode !== 'date'" class="c-lib-date-timer-header-view">{{ getHeaderText() }}</span>
-          
-          <button class="c-lib-date-timer-next-month-btn" (click)="nextMonth()">&gt;</button>
-          <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
-        </div>
+          }
 
-        <!-- 星期标题 -->
-        <div class="c-lib-date-timer-weekdays">
-          <!-- 周模式下才显示周数标题列 -->
-          <div *ngIf="mode === 'week'" class="c-lib-date-timer-weekday-week-num">周</div>
-          <div *ngFor="let weekday of weekdays" class="c-lib-date-timer-weekday">{{ weekday }}</div>
-        </div>
-
-        <!-- 日期表 -->
-        <div class="c-lib-date-timer-body">
-          <!-- 日期选择 -->
-          <ng-container *ngIf="mode !== 'week'">
-            <div class="c-lib-date-timer-week" *ngFor="let week of dateMatrix">
-              <div 
-                *ngFor="let day of week" 
-                class="c-lib-date-timer-cell"
-                [class.c-lib-date-timer-cell-disabled]="isDateDisabled(day)"
-                [class.c-lib-date-timer-cell-selected]="isSelectedDay(day)"
-                [class.c-lib-date-timer-cell-in-range]="isInRange(day)"
-                [class.c-lib-date-timer-cell-prev-month]="getMonth(day) !== getMonth(currentViewDate)"
-                [class.c-lib-date-timer-cell-next-month]="getMonth(day) !== getMonth(currentViewDate)"
-                [class.c-lib-date-timer-cell-today]="isToday(day)"
-                (click)="onSelectDate(day)"
-                (mouseenter)="onCellHover(day)"
-              >
-                <div class="c-lib-date-timer-cell-content">
-                  <ng-container *ngIf="dateRender; else defaultCellContent">
-                    {{ renderDateCell(day) }}
-                  </ng-container>
-                  <ng-template #defaultCellContent>
-                    {{ getDate(day) }}
-                  </ng-template>
+          <div class="c-lib-date-timer-panels-container">
+            <!-- 年份选择面板 -->
+            @if (currentPanelMode === 'year') {
+              <div class="c-lib-date-timer-year-panel">
+                <div class="c-lib-date-timer-header">
+                  <button class="c-lib-date-timer-prev-year-btn" (click)="prevYearRange()">&lt;&lt;</button>
+                  <span class="c-lib-date-timer-header-view">{{ yearRangeText }}</span>
+                  <button class="c-lib-date-timer-next-year-btn" (click)="nextYearRange()">&gt;&gt;</button>
+                </div>
+                <div class="c-lib-date-timer-body">
+                  <div class="c-lib-date-timer-year-grid">
+                    @for (year of years; track year) {
+                      <div
+                        class="c-lib-date-timer-year-cell"
+                        [class.c-lib-date-timer-cell-selected]="isSelectedYear(year)"
+                        [class.c-lib-date-timer-cell-in-range]="isInYearRange(year)"
+                        (click)="onSelectYear(year)"
+                        (mouseenter)="selectType === 'range' && onCellYearHover(year)"
+                        >
+                        {{ year }}
+                      </div>
+                    }
+                  </div>
                 </div>
               </div>
-            </div>
-          </ng-container>
-          
-          <!-- 周选择 -->
-          <ng-container *ngIf="mode === 'week'">
-            <div class="c-lib-date-timer-week" 
-                 *ngFor="let week of dateMatrix; let i = index"
-                 [class.c-lib-date-timer-week-selected]="isWeekInDateRange(week)"
-                 [class.c-lib-date-timer-week-in-range]="isInWeekRange(week)">
-              <!-- 周数指示器 -->
-              <div class="c-lib-date-timer-week-indicator" (click)="onSelectWeek(week)">
-                {{ getWeekNumber(week[0]) }}
+            }
+
+            <!-- 月份选择面板 -->
+            @if (currentPanelMode === 'month') {
+              <div class="c-lib-date-timer-month-panel">
+                <div class="c-lib-date-timer-header">
+                  <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
+                  @if (mode === 'date') {
+                    <span class="c-lib-date-timer-header-view">
+                      <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('year')">{{ getYear(currentViewDate) }}年</span>
+                    </span>
+                  }
+                  @if (mode !== 'date') {
+                    <span class="c-lib-date-timer-header-view">{{ getYear(currentViewDate) }}</span>
+                  }
+                  <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
+                </div>
+                <div class="c-lib-date-timer-body">
+                  <div class="c-lib-date-timer-month-grid">
+                    @for (month of months; track month; let i = $index) {
+                      <div
+                        class="c-lib-date-timer-month-cell"
+                        [class.c-lib-date-timer-cell-selected]="isSelectedMonth(i)"
+                        [class.c-lib-date-timer-cell-in-range]="isInMonthRange(i)"
+                        (click)="onSelectMonth(i)"
+                        (mouseenter)="selectType === 'range' && onCellMonthHover(i)"
+                        >
+                        {{ i + 1 }}月
+                      </div>
+                    }
+                  </div>
+                </div>
               </div>
-              <div 
-                *ngFor="let day of week" 
-                class="c-lib-date-timer-cell"
-                [class.c-lib-date-timer-cell-in-week]="isWeekInDateRange(week)"
-                [class.c-lib-date-timer-cell-selected]="isSelectedDay(day)"
-                [class.c-lib-date-timer-cell-in-range]="isInWeekRange(week)"
-                [class.c-lib-date-timer-cell-disabled]="isDateDisabled(day)"
-                [class.c-lib-date-timer-cell-prev-month]="getMonth(day) !== getMonth(currentViewDate)"
-                [class.c-lib-date-timer-cell-next-month]="getMonth(day) !== getMonth(currentViewDate)"
-                [class.c-lib-date-timer-cell-today]="isToday(day)"
-                (click)="onSelectWeek(week)"
-                (mouseenter)="selectType === 'range' && onCellWeekHover(week)"
-              >
-                <div class="c-lib-date-timer-cell-content">{{ getDate(day) }}</div>
+            }
+
+            <!-- 季度选择面板 -->
+            @if (currentPanelMode === 'quarter') {
+              <div class="c-lib-date-timer-quarter-panel">
+                <div class="c-lib-date-timer-header">
+                  <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
+                  <span class="c-lib-date-timer-header-view">{{ getYear(currentViewDate) }}</span>
+                  <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
+                </div>
+                <div class="c-lib-date-timer-body">
+                  <div class="c-lib-date-timer-quarter-grid">
+                    @for (quarter of quarters; track quarter; let i = $index) {
+                      <div
+                        class="c-lib-date-timer-quarter-cell"
+                        [class.c-lib-date-timer-cell-selected]="isSelectedQuarter(i)"
+                        [class.c-lib-date-timer-cell-in-range]="isInQuarterRange(i)"
+                        (click)="onSelectQuarter(i)"
+                        (mouseenter)="selectType === 'range' && onCellQuarterHover(i)"
+                        >
+                        {{ i + 1 }}季度
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+
+            <!-- 日期面板（用于日期和周选择） -->
+            @if (currentPanelMode === 'date' || currentPanelMode === 'week') {
+              <div class="c-lib-date-timer-date-panel"
+                [class.c-lib-date-timer-date-panel-week-mode]="mode === 'week'">
+                <!-- 面板头部 -->
+                <div class="c-lib-date-timer-header">
+                  <button class="c-lib-date-timer-prev-year-btn" (click)="prevYear()">&lt;&lt;</button>
+                  <button class="c-lib-date-timer-prev-month-btn" (click)="prevMonth()">&lt;</button>
+                  <!-- 日期模式下的可点击标题 -->
+                  @if (mode === 'date') {
+                    <span class="c-lib-date-timer-header-view">
+                      <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('year')">{{ getHeaderYear() }}</span>
+                      <span class="c-lib-date-timer-header-clickable" (click)="onHeaderClick('month')">{{ getHeaderMonth() }}</span>
+                    </span>
+                  }
+                  <!-- 其他模式下的只读标题 -->
+                  @if (mode !== 'date') {
+                    <span class="c-lib-date-timer-header-view">{{ getHeaderText() }}</span>
+                  }
+                  <button class="c-lib-date-timer-next-month-btn" (click)="nextMonth()">&gt;</button>
+                  <button class="c-lib-date-timer-next-year-btn" (click)="nextYear()">&gt;&gt;</button>
+                </div>
+                <!-- 星期标题 -->
+                <div class="c-lib-date-timer-weekdays">
+                  <!-- 周模式下才显示周数标题列 -->
+                  @if (mode === 'week') {
+                    <div class="c-lib-date-timer-weekday-week-num">周</div>
+                  }
+                  @for (weekday of weekdays; track weekday) {
+                    <div class="c-lib-date-timer-weekday">{{ weekday }}</div>
+                  }
+                </div>
+                <!-- 日期表 -->
+                <div class="c-lib-date-timer-body">
+                  <!-- 日期选择 -->
+                  @if (mode !== 'week') {
+                    @for (week of dateMatrix; track week) {
+                      <div class="c-lib-date-timer-week">
+                        @for (day of week; track day) {
+                          <div
+                            class="c-lib-date-timer-cell"
+                            [class.c-lib-date-timer-cell-disabled]="isDateDisabled(day)"
+                            [class.c-lib-date-timer-cell-selected]="isSelectedDay(day)"
+                            [class.c-lib-date-timer-cell-in-range]="isInRange(day)"
+                            [class.c-lib-date-timer-cell-prev-month]="getMonth(day) !== getMonth(currentViewDate)"
+                            [class.c-lib-date-timer-cell-next-month]="getMonth(day) !== getMonth(currentViewDate)"
+                            [class.c-lib-date-timer-cell-today]="isToday(day)"
+                            (click)="onSelectDate(day)"
+                            (mouseenter)="onCellHover(day)"
+                            >
+                            <div class="c-lib-date-timer-cell-content">
+                              @if (dateRender) {
+                                {{ renderDateCell(day) }}
+                              } @else {
+                                {{ getDate(day) }}
+                              }
+                            </div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  }
+                  <!-- 周选择 -->
+                  @if (mode === 'week') {
+                    @for (week of dateMatrix; track week; let i = $index) {
+                      <div class="c-lib-date-timer-week"
+                        [class.c-lib-date-timer-week-selected]="isWeekInDateRange(week)"
+                        [class.c-lib-date-timer-week-in-range]="isInWeekRange(week)">
+                        <!-- 周数指示器 -->
+                        <div class="c-lib-date-timer-week-indicator" (click)="onSelectWeek(week)">
+                          {{ getWeekNumber(week[0]) }}
+                        </div>
+                        @for (day of week; track day) {
+                          <div
+                            class="c-lib-date-timer-cell"
+                            [class.c-lib-date-timer-cell-in-week]="isWeekInDateRange(week)"
+                            [class.c-lib-date-timer-cell-selected]="isSelectedDay(day)"
+                            [class.c-lib-date-timer-cell-in-range]="isInWeekRange(week)"
+                            [class.c-lib-date-timer-cell-disabled]="isDateDisabled(day)"
+                            [class.c-lib-date-timer-cell-prev-month]="getMonth(day) !== getMonth(currentViewDate)"
+                            [class.c-lib-date-timer-cell-next-month]="getMonth(day) !== getMonth(currentViewDate)"
+                            [class.c-lib-date-timer-cell-today]="isToday(day)"
+                            (click)="onSelectWeek(week)"
+                            (mouseenter)="selectType === 'range' && onCellWeekHover(week)"
+                            >
+                            <div class="c-lib-date-timer-cell-content">{{ getDate(day) }}</div>
+                          </div>
+                        }
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+            }
+
+            <!-- 时间选择面板 - 独立模式 -->
+            @if (mode === 'time' && currentPanelMode === 'time' && !showTime) {
+              <div class="c-lib-date-timer-time-panel">
+                <div class="c-lib-date-timer-time-columns">
+                  <!-- 小时 -->
+                  <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'hour'">
+                    <ng-container *ngTemplateOutlet="hourCell"></ng-container>
+                  </div>
+                  <!-- 分钟 -->
+                  <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'minute'">
+                    <ng-container *ngTemplateOutlet="minuteCell"></ng-container>
+                  </div>
+                  <!-- 秒钟 -->
+                  <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'second'">
+                    <ng-container *ngTemplateOutlet="secondCell"></ng-container>
+                  </div>
+                </div>
+              </div>
+            }
+
+            <!-- 时间选择面板 - 组合模式 -->
+            @if (showTime && ['date', 'week'].includes(mode)) {
+              <div class="c-lib-date-timer-time-panel c-lib-date-timer-time-panel-combined">
+                <div class="c-lib-date-timer-time-columns">
+                  <!-- 小时 -->
+                  <div class="c-lib-date-timer-time-column">
+                    <ng-container *ngTemplateOutlet="hourCell"></ng-container>
+                  </div>
+                  <!-- 分钟 -->
+                  <div class="c-lib-date-timer-time-column">
+                    <ng-container *ngTemplateOutlet="minuteCell"></ng-container>
+                  </div>
+                  <!-- 秒钟 -->
+                  <div class="c-lib-date-timer-time-column">
+                    <ng-container *ngTemplateOutlet="secondCell"></ng-container>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- 额外页脚 -->
+          @if (extraFooter) {
+            <div class="c-lib-date-timer-footer-extra">
+              @if (typeof extraFooter === 'string') {
+                {{ extraFooter }}
+              }
+              @if (typeof extraFooter !== 'string') {
+                <!-- <ng-container *ngTemplateOutlet="extraFooter"></ng-container> -->
+              }
+            </div>
+          }
+
+          <!-- 底部操作栏 -->
+          @if (showTime || mode === 'time' || showToday) {
+            <div class="c-lib-date-timer-footer">
+              @if (showTime || mode === 'time') {
+                <div class="c-lib-date-timer-time-display">
+                  @if (selectType === 'single' && isSingleDate(selectedValue)) {
+                    {{ selectedValue.getHours() | number:'2.0-0' }}:{{ selectedValue.getMinutes() | number:'2.0-0' }}:{{ selectedValue.getSeconds() | number:'2.0-0' }}
+                  }
+                  @if (selectType === 'single' && isRangeValue(selectedValue) && selectedValue.start) {
+                    {{ selectedValue.start.getHours() | number:'2.0-0' }}:{{ selectedValue.start.getMinutes() | number:'2.0-0' }}:{{ selectedValue.start.getSeconds() | number:'2.0-0' }}
+                  }
+                  @if (selectType === 'range' && isRangeValue(selectedValue)) {
+                    @if (rangePart === 'start' && selectedValue.start) {
+                      开始: {{ selectedValue.start.getHours() | number:'2.0-0' }}:{{ selectedValue.start.getMinutes() | number:'2.0-0' }}:{{ selectedValue.start.getSeconds() | number:'2.0-0' }}
+                    }
+                    @if (rangePart === 'end') {
+                      @if (selectedValue.start && !selectedValue.end) {
+                        结束: 请选择结束时间
+                      }
+                      @if (selectedValue.start && selectedValue.end) {
+                        结束: {{ selectedValue.end.getHours() | number:'2.0-0' }}:{{ selectedValue.end.getMinutes() | number:'2.0-0' }}:{{ selectedValue.end.getSeconds() | number:'2.0-0' }}
+                      }
+                    }
+                  }
+                </div>
+              }
+              <div class="c-lib-date-timer-footer-buttons">
+                @if (showToday && currentPanelMode !== 'time' && selectType === 'single') {
+                  <lib-button [buttonSize]="'small'" [buttonType]="'link'" (click)="today()">今天</lib-button>
+                }
+                @if (mode === 'time' && selectType === 'single') {
+                  <lib-button [buttonSize]="'small'" [buttonType]="'link'" (click)="setCurrentTime()">此刻</lib-button>
+                }
+                <lib-button [buttonSize]="'small'" [buttonColor]="'primary'" (click)="confirm()">确定</lib-button>
               </div>
             </div>
-          </ng-container>
+          }
         </div>
-      </div>
+      </ng-template>
 
-      <!-- 时间选择面板 - 独立模式 -->
-      <div *ngIf="mode === 'time' && currentPanelMode === 'time' && !showTime" class="c-lib-date-timer-time-panel">
-        <div class="c-lib-date-timer-time-columns">
-          <!-- 小时 -->
-          <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'hour'">
-            <ng-container *ngTemplateOutlet="hourCell"></ng-container>
-          </div>
-          <!-- 分钟 -->
-          <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'minute'">
-            <ng-container *ngTemplateOutlet="minuteCell"></ng-container>
-          </div>
-          <!-- 秒钟 -->
-          <div class="c-lib-date-timer-time-column" [class.c-lib-date-timer-time-column-active]="timeSelectStep === 'second'">
-            <ng-container *ngTemplateOutlet="secondCell"></ng-container>
-          </div>
+      <!-- 小时选择 -->
+      <ng-template #hourCell>
+        <div class="c-lib-date-timer-time-column-title">时</div>
+        <ul #hourList>
+          @for (hour of hours; track hour) {
+            <li
+              class="c-lib-date-timer-time-cell"
+              [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('hour', hour)"
+              [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('hour', hour)"
+              (click)="!isTimeDisabled('hour', hour) && onSelectHour(hour)">
+              {{ hour < 10 ? '0' + hour : hour }}
+            </li>
+          }
+        </ul>
+      </ng-template>
+
+      <!-- 分钟选择 -->
+      <ng-template #minuteCell>
+        <div class="c-lib-date-timer-time-column-title">分</div>
+        <ul #minuteList>
+          @for (minute of minutes; track minute) {
+            <li
+              class="c-lib-date-timer-time-cell"
+              [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('minute', minute)"
+              [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('minute', minute)"
+              (click)="!isTimeDisabled('minute', minute) && onSelectMinute(minute)">
+              {{ minute < 10 ? '0' + minute : minute }}
+            </li>
+          }
+        </ul>
+      </ng-template>
+
+      <!-- 秒钟选择 -->
+      <ng-template #secondCell>
+        <div class="c-lib-date-timer-time-column-title">秒</div>
+        <ul #secondList>
+          @for (second of seconds; track second) {
+            <li
+              class="c-lib-date-timer-time-cell"
+              [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('second', second)"
+              [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('second', second)"
+              (click)="!isTimeDisabled('second', second) && onSelectSecond(second)">
+              {{ second < 10 ? '0' + second : second }}
+            </li>
+          }
+        </ul>
+      </ng-template>
+
+      <!-- 时间选择器图标 -->
+      <ng-template #dateTimerIcon>
+        <div class="c-lib-date-timer-suffix">
+          @if (allowClear && displayValue) {
+            <span (click)="clearValue($event)">
+              <i class="bi-x-circle-fill c-lib-date-timer-clear-btn"></i>
+            </span>
+          }
+          @if (!displayValue) {
+            <i class="bi-calendar-week"></i>
+          }
         </div>
-      </div>
-      
-      <!-- 时间选择面板 - 组合模式 -->
-      <div *ngIf="showTime && ['date', 'week'].includes(mode)" class="c-lib-date-timer-time-panel c-lib-date-timer-time-panel-combined">
-        <div class="c-lib-date-timer-time-columns">
-          <!-- 小时 -->
-          <div class="c-lib-date-timer-time-column">
-            <ng-container *ngTemplateOutlet="hourCell"></ng-container>
-          </div>
-          <!-- 分钟 -->
-          <div class="c-lib-date-timer-time-column">
-            <ng-container *ngTemplateOutlet="minuteCell"></ng-container>
-          </div>
-          <!-- 秒钟 -->
-          <div class="c-lib-date-timer-time-column">
-            <ng-container *ngTemplateOutlet="secondCell"></ng-container>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 额外页脚 -->
-    <div *ngIf="extraFooter" class="c-lib-date-timer-footer-extra">
-      <ng-container *ngIf="typeof extraFooter === 'string'">{{ extraFooter }}</ng-container>
-      <ng-container *ngIf="typeof extraFooter !== 'string'">
-        <!-- <ng-container *ngTemplateOutlet="extraFooter"></ng-container> -->
-      </ng-container>
-    </div>
-    
-    <!-- 底部操作栏 -->
-    <div class="c-lib-date-timer-footer" *ngIf="showTime || mode === 'time' || showToday">
-      <div *ngIf="showTime || mode === 'time'" class="c-lib-date-timer-time-display">
-        <ng-container *ngIf="selectType === 'single' && isSingleDate(selectedValue)">
-          {{ selectedValue.getHours() | number:'2.0-0' }}:{{ selectedValue.getMinutes() | number:'2.0-0' }}:{{ selectedValue.getSeconds() | number:'2.0-0' }}
-        </ng-container>
-        <ng-container *ngIf="selectType === 'single' && isRangeValue(selectedValue) && selectedValue.start">
-          {{ selectedValue.start.getHours() | number:'2.0-0' }}:{{ selectedValue.start.getMinutes() | number:'2.0-0' }}:{{ selectedValue.start.getSeconds() | number:'2.0-0' }}
-        </ng-container>
-        <ng-container *ngIf="selectType === 'range' && isRangeValue(selectedValue)">
-          <ng-container *ngIf="rangePart === 'start' && selectedValue.start">
-            开始: {{ selectedValue.start.getHours() | number:'2.0-0' }}:{{ selectedValue.start.getMinutes() | number:'2.0-0' }}:{{ selectedValue.start.getSeconds() | number:'2.0-0' }}
-          </ng-container>
-          <ng-container *ngIf="rangePart === 'end'">
-            <ng-container *ngIf="selectedValue.start && !selectedValue.end">
-              结束: 请选择结束时间
-            </ng-container>
-            <ng-container *ngIf="selectedValue.start && selectedValue.end">
-              结束: {{ selectedValue.end.getHours() | number:'2.0-0' }}:{{ selectedValue.end.getMinutes() | number:'2.0-0' }}:{{ selectedValue.end.getSeconds() | number:'2.0-0' }}
-            </ng-container>
-          </ng-container>
-        </ng-container>
-      </div>
-      <div class="c-lib-date-timer-footer-buttons">
-        <lib-button *ngIf="showToday && currentPanelMode !== 'time' && selectType === 'single'" [buttonSize]="'small'" [buttonType]="'link'" (click)="today()">今天</lib-button>
-        <lib-button *ngIf="mode === 'time' && selectType === 'single'" [buttonSize]="'small'" [buttonType]="'link'" (click)="setCurrentTime()">此刻</lib-button>
-        <lib-button [buttonSize]="'small'" [buttonColor]="'primary'" (click)="confirm()">确定</lib-button>
-      </div>
-    </div>
-  </div>
-</ng-template> 
-
-<!-- 小时选择 -->
-<ng-template #hourCell>
-  <div class="c-lib-date-timer-time-column-title">时</div>
-  <ul #hourList>
-    <li *ngFor="let hour of hours" 
-        class="c-lib-date-timer-time-cell"
-        [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('hour', hour)"
-        [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('hour', hour)"
-        (click)="!isTimeDisabled('hour', hour) && onSelectHour(hour)">
-      {{ hour < 10 ? '0' + hour : hour }}
-    </li>
-  </ul>
-</ng-template>
-
-<!-- 分钟选择 -->
-<ng-template #minuteCell>
-  <div class="c-lib-date-timer-time-column-title">分</div>
-  <ul #minuteList>
-    <li *ngFor="let minute of minutes" 
-        class="c-lib-date-timer-time-cell"
-        [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('minute', minute)"
-        [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('minute', minute)"
-        (click)="!isTimeDisabled('minute', minute) && onSelectMinute(minute)">
-      {{ minute < 10 ? '0' + minute : minute }}
-    </li>
-  </ul>
-</ng-template>
-
-<!-- 秒钟选择 --> 
-<ng-template #secondCell>
-  <div class="c-lib-date-timer-time-column-title">秒</div>
-  <ul #secondList>
-    <li *ngFor="let second of seconds" 
-        class="c-lib-date-timer-time-cell"
-        [class.c-lib-date-timer-time-cell-selected]="isSelectedTimeUnit('second', second)"
-        [class.c-lib-date-timer-time-cell-disabled]="isTimeDisabled('second', second)"
-        (click)="!isTimeDisabled('second', second) && onSelectSecond(second)">
-      {{ second < 10 ? '0' + second : second }}
-    </li>
-  </ul>
-</ng-template>
-
-<!-- 时间选择器图标 -->
-<ng-template #dateTimerIcon>
-  <div class="c-lib-date-timer-suffix">
-    <span *ngIf="allowClear && displayValue" (click)="clearValue($event)">
-      <i class="bi-x-circle-fill c-lib-date-timer-clear-btn"></i>
-    </span>
-    <i *ngIf="!displayValue" class="bi-calendar-week"></i>
-  </div>
-</ng-template>
+      </ng-template>

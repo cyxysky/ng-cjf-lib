@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
@@ -9,12 +9,11 @@ import { MenuComponent, MenuItem } from '@project';
   selector: 'app-doc-menu',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     DocBoxComponent,
     DocApiTableComponent,
-    MenuComponent,
-  ],
+    MenuComponent
+],
   templateUrl: './doc-menu.component.html',
   styleUrl: './doc-menu.component.less'
 })

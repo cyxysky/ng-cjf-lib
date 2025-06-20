@@ -1,55 +1,60 @@
-<div class="c-lib-modal-container" *ngIf="isVisible" (click)="maskClick()">
-  <div class="c-lib-modal-mask" [@maskAnimation]="this.visible ? 'visible' : 'void'"></div>
-  <div
-    #modalContent
-    class="c-lib-modal-content"
-    [style.width]="width | toPx"
-    [style.height]="height | toPx"
-    [style.zIndex]="zIndex"
-    [style.marginTop]="centered ? 'auto' : top"
-    [style.marginBottom]="centered ? 'auto' : ''"
-    [style.transform]="drag ? `translate(${transformX}px, ${transformY}px)` : ''"
-
-    [@modalAnimation]="this.visible ? 'visible' : 'void'"
-    (@modalAnimation.done)="animationDone($event)"
-    (click)="$event.stopPropagation()">
-
-
-    <div #modalHeader class="c-lib-modal-header" [class.c-lib-modal-draggable]="drag" (mousedown)="onDragStart($event)">
-      <!-- 优先使用headerContent，其次使用投影内容 -->
-      <!-- 模板内容 -->
-      <ng-container *ngIf="headerContent">
-        <ng-container *ngTemplateOutlet="headerContent; context: { $implicit: contentContext || {} }"></ng-container>
-      </ng-container>
-      <!-- 投影内容 -->
-      <ng-content *ngIf="!headerContent" select="[modalHeader], modalHeader"></ng-content>
-      <div *ngIf="closable" class="c-lib-modal-close" (click)="close()">
-        <i class="bi-x-lg"></i>
+@if (isVisible) {
+  <div class="c-lib-modal-container" (click)="maskClick()">
+    <div class="c-lib-modal-mask" [@maskAnimation]="this.visible ? 'visible' : 'void'"></div>
+    <div
+      #modalContent
+      class="c-lib-modal-content"
+      [style.width]="width | toPx"
+      [style.height]="height | toPx"
+      [style.zIndex]="zIndex"
+      [style.marginTop]="centered ? 'auto' : top"
+      [style.marginBottom]="centered ? 'auto' : ''"
+      [style.transform]="drag ? `translate(${transformX}px, ${transformY}px)` : ''"
+      [@modalAnimation]="this.visible ? 'visible' : 'void'"
+      (@modalAnimation.done)="animationDone($event)"
+      (click)="$event.stopPropagation()">
+      <div #modalHeader class="c-lib-modal-header" [class.c-lib-modal-draggable]="drag" (mousedown)="onDragStart($event)">
+        <!-- 优先使用headerContent，其次使用投影内容 -->
+        <!-- 模板内容 -->
+        @if (headerContent) {
+          <ng-container *ngTemplateOutlet="headerContent; context: { $implicit: contentContext || {} }"></ng-container>
+        }
+        <!-- 投影内容 -->
+        @if (!headerContent) {
+          <ng-content select="[modalHeader], modalHeader"></ng-content>
+        }
+        @if (closable) {
+          <div class="c-lib-modal-close" (click)="close()">
+            <i class="bi-x-lg"></i>
+          </div>
+        }
+      </div>
+      <div #modalBody class="c-lib-modal-body">
+        <!-- 优先使用bodyContent，其次使用投影内容 -->
+        <!-- 模板内容 -->
+        @if (bodyContent) {
+          <ng-container *ngTemplateOutlet="bodyContent; context: { $implicit: contentContext || {} }"></ng-container>
+        }
+        <!-- 组件内容 -->
+        @if (componentContent) {
+          <ng-container *ngComponentOutlet="componentContent; inputs: componentInputs;"></ng-container>
+        }
+        <!-- 投影内容 -->
+        @if (!bodyContent) {
+          <ng-content select="[modalBody], modalBody"></ng-content>
+        }
+      </div>
+      <div #modalFooter class="c-lib-modal-footer">
+        <!-- 优先使用footerContent，其次使用投影内容 -->
+        <!-- 模板内容 -->
+        @if (footerContent) {
+          <ng-container *ngTemplateOutlet="footerContent; context: { $implicit: contentContext || {} }"></ng-container>
+        }
+        <!-- 投影内容 -->
+        @if (!footerContent) {
+          <ng-content select="[modalFooter], modalFooter"></ng-content>
+        }
       </div>
     </div>
-
-    <div #modalBody class="c-lib-modal-body">
-      <!-- 优先使用bodyContent，其次使用投影内容 -->
-      <!-- 模板内容 -->
-      <ng-container *ngIf="bodyContent">
-        <ng-container *ngTemplateOutlet="bodyContent; context: { $implicit: contentContext || {} }"></ng-container>
-      </ng-container>
-      <!-- 组件内容 -->
-      <ng-container *ngIf="componentContent">
-        <ng-container *ngComponentOutlet="componentContent; inputs: componentInputs;"></ng-container>
-      </ng-container>
-      <!-- 投影内容 -->
-      <ng-content *ngIf="!bodyContent" select="[modalBody], modalBody"></ng-content>
-    </div>
-
-    <div #modalFooter class="c-lib-modal-footer">
-      <!-- 优先使用footerContent，其次使用投影内容 -->
-      <!-- 模板内容 -->
-      <ng-container *ngIf="footerContent">
-        <ng-container *ngTemplateOutlet="footerContent; context: { $implicit: contentContext || {} }"></ng-container>
-      </ng-container>
-      <!-- 投影内容 -->
-      <ng-content *ngIf="!footerContent" select="[modalFooter], modalFooter"></ng-content>
-    </div>
   </div>
-</div>
+}

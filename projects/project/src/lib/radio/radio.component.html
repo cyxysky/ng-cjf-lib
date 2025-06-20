@@ -1,28 +1,29 @@
-<div 
-  class="c-lib-radio-group" 
+<div
+  class="c-lib-radio-group"
   [class.c-lib-radio-group-vertical]="direction === 'vertical'"
   >
-  <div 
-    class="c-lib-radio-wrapper" 
-    *ngFor="let option of options" 
-    [class.c-lib-radio-disabled]="disabled || option.disabled"
-    (click)="selectOption(option)"
-  >
-    <span class="c-lib-radio">
-      <input 
-        type="radio" 
-        [checked]="isChecked(option)" 
-        [disabled]="disabled || option.disabled" 
-      />
-      <span class="c-lib-radio-inner" 
-        [style.borderColor]="isChecked(option) ? color : ''"
-        [style.color]="color">
-      </span>
-    </span>
-    <ng-container [ngTemplateOutlet]="labelTemplate || defaultLabel" [ngTemplateOutletContext]="{ $implicit: option }"></ng-container>
+  @for (option of options; track option) {
+    <div
+      class="c-lib-radio-wrapper"
+      [class.c-lib-radio-disabled]="disabled || option.disabled"
+      (click)="selectOption(option)"
+      >
+      <span class="c-lib-radio">
+        <input
+          type="radio"
+          [checked]="isChecked(option)"
+          [disabled]="disabled || option.disabled"
+          />
+          <span class="c-lib-radio-inner"
+            [style.borderColor]="isChecked(option) ? color : ''"
+            [style.color]="color">
+          </span>
+        </span>
+        <ng-container [ngTemplateOutlet]="labelTemplate || defaultLabel" [ngTemplateOutletContext]="{ $implicit: option }"></ng-container>
+      </div>
+    }
   </div>
-</div>
 
-<ng-template #defaultLabel let-option>
+  <ng-template #defaultLabel let-option>
     <span class="c-lib-radio-label">{{ option.label }}</span>
-</ng-template>
+  </ng-template>

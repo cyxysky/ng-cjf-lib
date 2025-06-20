@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Output, signal, Input, booleanAttribute, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { InputSize, InputStatus } from './input.interface';
 
 @Component({
   selector: 'lib-input',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   standalone: true,
   templateUrl: './input.component.html',
   providers: [

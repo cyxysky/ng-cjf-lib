@@ -1,5 +1,5 @@
 import { booleanAttribute, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, ViewEncapsulation } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { rippleAnimation } from '../core/animation/ripple.animation';
 import * as _ from 'lodash';
@@ -9,7 +9,7 @@ import { UtilsService } from '../core/utils/utils.service';
 @Component({
 	selector: 'lib-button',
 	standalone: true,
-	imports: [CommonModule],
+	imports: [],
 	templateUrl: './button.component.html',
 	animations: [
 		trigger('ripple', [

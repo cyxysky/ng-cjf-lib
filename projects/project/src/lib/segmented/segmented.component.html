@@ -1,61 +1,65 @@
-<div 
+<div
   #rootElement
-  class="c-lib-segmented-wrapper" 
+  class="c-lib-segmented-wrapper"
   [style.max-width.px]="maxWidth"
   >
-  <div 
-    class="c-lib-segmented" 
-    [class.c-lib-segmented-block]="block" 
+  <div
+    class="c-lib-segmented"
+    [class.c-lib-segmented-block]="block"
     [class.c-lib-segmented-lg]="size === 'large'"
-    [class.c-lib-segmented-sm]="size === 'small'" 
+    [class.c-lib-segmented-sm]="size === 'small'"
     [class.c-lib-segmented-disabled]="disabled">
-    <div 
-      *ngIf="showScrollButtons"
-      class="c-lib-segmented-nav c-lib-segmented-prev" 
-      [class.c-lib-segmented-nav-disabled]="!canScrollLeft || disabled" 
-      (click)="scrollLeft()"
-      >
-      <div class="c-lib-segmented-nav-icon"></div>
-    </div>
-    <div 
+    @if (showScrollButtons) {
+      <div
+        class="c-lib-segmented-nav c-lib-segmented-prev"
+        [class.c-lib-segmented-nav-disabled]="!canScrollLeft || disabled"
+        (click)="scrollLeft()"
+        >
+        <div class="c-lib-segmented-nav-icon"></div>
+      </div>
+    }
+    <div
       #segmentContainer
-      class="c-lib-segmented-container" 
+      class="c-lib-segmented-container"
       (scroll)="onScroll()"
       >
-      <div 
-        #segmentGroup 
+      <div
+        #segmentGroup
         class="c-lib-segmented-group">
-        <div 
-          #segmentItem
-          *ngFor="let option of options; let i = index" 
-          class="c-lib-segmented-item"
-          [class.c-lib-segmented-item-disabled]="disabled || option.disabled" 
-          (click)="selectOption(option)"
-          >
-          <div class="c-lib-segmented-item-label">
-            <ng-container *ngTemplateOutlet="template || defaultLabel; context: { $implicit: option }"></ng-container>
+        @for (option of options; track option; let i = $index) {
+          <div
+            #segmentItem
+            class="c-lib-segmented-item"
+            [class.c-lib-segmented-item-disabled]="disabled || option.disabled"
+            (click)="selectOption(option)"
+            >
+            <div class="c-lib-segmented-item-label">
+              <ng-container *ngTemplateOutlet="template || defaultLabel; context: { $implicit: option }"></ng-container>
+            </div>
           </div>
-        </div>
+        }
         <div class="c-lib-segmented-thumb" [style.display]="'block'" #thumb></div>
       </div>
     </div>
-    <div 
-      *ngIf="showScrollButtons"
-      class="c-lib-segmented-nav c-lib-segmented-next" 
-      [class.c-lib-segmented-nav-disabled]="!canScrollRight || disabled" 
-      (click)="scrollRight()"
-      >
-      <div class="c-lib-segmented-nav-icon"></div>
-    </div>
+    @if (showScrollButtons) {
+      <div
+        class="c-lib-segmented-nav c-lib-segmented-next"
+        [class.c-lib-segmented-nav-disabled]="!canScrollRight || disabled"
+        (click)="scrollRight()"
+        >
+        <div class="c-lib-segmented-nav-icon"></div>
+      </div>
+    }
   </div>
 </div>
 
 <ng-template #defaultLabel let-option>
-  <span 
-    *ngIf="option.icon" 
-    class="c-lib-segmented-item-icon"
-    >
-    <i class="{{option.icon}}"></i>
-  </span>
+  @if (option.icon) {
+    <span
+      class="c-lib-segmented-item-icon"
+      >
+      <i class="{{option.icon}}"></i>
+    </span>
+  }
   <span>{{option.label}}</span>
 </ng-template>

@@ -1,107 +1,114 @@
-<div 
-  class="c-lib-tabs" 
+<div
+  class="c-lib-tabs"
   [class.c-lib-tabs-top]="tabPosition === 'top'"
-  [class.c-lib-tabs-bottom]="tabPosition === 'bottom'" 
+  [class.c-lib-tabs-bottom]="tabPosition === 'bottom'"
   [class.c-lib-tabs-card]="type === 'card'"
-  [class.c-lib-tabs-small]="size === 'small'" 
+  [class.c-lib-tabs-small]="size === 'small'"
   [class.c-lib-tabs-large]="size === 'large'"
   >
   <div class="c-lib-tabs-nav-wrapper">
-    <span 
-      *ngIf="showScrollNav && isHorizontal" 
-      class="c-lib-tabs-nav-arrow c-lib-tabs-nav-prev"
-      [class.c-lib-tabs-nav-arrow-disabled]="!canScrollLeft" 
-      (click)="scrollPrev()"
-      >
-      <i class="c-lib-tabs-nav-arrow-icon"></i>
-    </span>
+    @if (showScrollNav && isHorizontal) {
+      <span
+        class="c-lib-tabs-nav-arrow c-lib-tabs-nav-prev"
+        [class.c-lib-tabs-nav-arrow-disabled]="!canScrollLeft"
+        (click)="scrollPrev()"
+        >
+        <i class="c-lib-tabs-nav-arrow-icon"></i>
+      </span>
+    }
     <div class="c-lib-tabs-nav">
-      <div 
-        #tabsNav 
-        class="c-lib-tabs-nav-view" 
+      <div
+        #tabsNav
+        class="c-lib-tabs-nav-view"
         [class.c-lib-tabs-nav-centered]="align === 'center' && !showScrollNav"
         [class.c-lib-tabs-nav-right]="align === 'right' && !showScrollNav"
         >
         <div #tabsNavList class="c-lib-tabs-nav-list">
-          <div 
-            #tabItem
-            *ngFor="let tab of allTabs; let i = index; trackBy: trackByTab" 
-            class="c-lib-tabs-tab"
-            (click)="selectTab(i)" 
-            [class.c-lib-tabs-tab-active]="isActive(i)"
-            [class.c-lib-tabs-tab-disabled]="tab.disabled" 
-            >
-            <div class="c-lib-tabs-tab-btn">
-              <ng-container *ngIf="tab.customTitle; else defaultTitle">
-                <div style="width: 100%;overflow: hidden;text-overflow: ellipsis;">
-                  <ng-container [ngTemplateOutlet]="tab.customTitle"></ng-container>
-                </div>
-              </ng-container>
-              <ng-template #defaultTitle>
-                <span class="c-lib-tabs-tab-text">{{tab.title}}</span>
-              </ng-template>
-              <span 
-                *ngIf="closable && !tab.disabled" 
-                class="c-lib-tabs-tab-close" 
-                (click)="onCloseTab(i, $event)"
-                >
-                <i [class]="closeIcon"></i>
-              </span>
+          @for (tab of allTabs; track trackByTab(i, tab); let i = $index) {
+            <div
+              #tabItem
+              class="c-lib-tabs-tab"
+              (click)="selectTab(i)"
+              [class.c-lib-tabs-tab-active]="isActive(i)"
+              [class.c-lib-tabs-tab-disabled]="tab.disabled"
+              >
+              <div class="c-lib-tabs-tab-btn">
+                @if (tab.customTitle) {
+                  <div style="width: 100%;overflow: hidden;text-overflow: ellipsis;">
+                    <ng-container [ngTemplateOutlet]="tab.customTitle"></ng-container>
+                  </div>
+                } @else {
+                  <span class="c-lib-tabs-tab-text">{{tab.title}}</span>
+                }
+                @if (closable && !tab.disabled) {
+                  <span
+                    class="c-lib-tabs-tab-close"
+                    (click)="onCloseTab(i, $event)"
+                    >
+                    <i [class]="closeIcon"></i>
+                  </span>
+                }
+              </div>
             </div>
-          </div>
-          <div 
-            *ngIf="!hideAdd && !showScrollNav" 
-            class="c-lib-tabs-tab c-lib-tabs-tab-add" 
-            (click)="onAddTab()"
-            >
-            <div class="c-lib-tabs-tab-btn">
-              <span class="c-lib-tabs-tab-add-icon">
-                <i [class]="addIcon"></i>
-              </span>
+          }
+          @if (!hideAdd && !showScrollNav) {
+            <div
+              class="c-lib-tabs-tab c-lib-tabs-tab-add"
+              (click)="onAddTab()"
+              >
+              <div class="c-lib-tabs-tab-btn">
+                <span class="c-lib-tabs-tab-add-icon">
+                  <i [class]="addIcon"></i>
+                </span>
+              </div>
             </div>
-          </div>
-          <div 
-            *ngIf="type === 'line'" 
-            class="c-lib-tabs-ink-bar" 
-            [ngStyle]="inkBarStyle">
-          </div>
+          }
+          @if (type === 'line') {
+            <div
+              class="c-lib-tabs-ink-bar"
+              [ngStyle]="inkBarStyle">
+            </div>
+          }
         </div>
       </div>
     </div>
-    <span 
-      *ngIf="showScrollNav && isHorizontal" 
-      class="c-lib-tabs-nav-arrow c-lib-tabs-nav-next"
-      [class.c-lib-tabs-nav-arrow-disabled]="!canScrollRight"
-      (click)="scrollNext()"
-      >
-      <i class="c-lib-tabs-nav-arrow-icon"></i>
-    </span>
-    <ng-container *ngIf="!hideAdd">
-      <div 
-        *ngIf="showScrollNav" 
-        class="c-lib-tabs-tab c-lib-tabs-tab-add c-lib-tabs-tab-add-fixed"
-        (click)="onAddTab()"
+    @if (showScrollNav && isHorizontal) {
+      <span
+        class="c-lib-tabs-nav-arrow c-lib-tabs-nav-next"
+        [class.c-lib-tabs-nav-arrow-disabled]="!canScrollRight"
+        (click)="scrollNext()"
         >
-        <div class="c-lib-tabs-tab-btn">
-          <span class="c-lib-tabs-tab-add-icon">
-            <i [class]="addIcon"></i>
-          </span>
+        <i class="c-lib-tabs-nav-arrow-icon"></i>
+      </span>
+    }
+    @if (!hideAdd) {
+      @if (showScrollNav) {
+        <div
+          class="c-lib-tabs-tab c-lib-tabs-tab-add c-lib-tabs-tab-add-fixed"
+          (click)="onAddTab()"
+          >
+          <div class="c-lib-tabs-tab-btn">
+            <span class="c-lib-tabs-tab-add-icon">
+              <i [class]="addIcon"></i>
+            </span>
+          </div>
         </div>
-      </div>
-    </ng-container>
+      }
+    }
   </div>
   <div class="c-lib-tabs-content">
-    <div 
-      *ngFor="let tab of allTabs; let i = index; trackBy: trackByTab" 
-      class="c-lib-tabs-tabpane"
-      [class.c-lib-tabs-tabpane-active]="isActive(i)" 
-      [style.display]="!isActive(i) ? 'none' : 'block'"
-      >
-      <ng-container *ngIf="shouldRenderTab(i)">
-        <ng-container *ngIf="isActive(i) || !destroyInactive">
-          <ng-container [ngTemplateOutlet]="tab.content"></ng-container>
-        </ng-container>
-      </ng-container>
-    </div>
+    @for (tab of allTabs; track trackByTab(i, tab); let i = $index) {
+      <div
+        class="c-lib-tabs-tabpane"
+        [class.c-lib-tabs-tabpane-active]="isActive(i)"
+        [style.display]="!isActive(i) ? 'none' : 'block'"
+        >
+        @if (shouldRenderTab(i)) {
+          @if (isActive(i) || !destroyInactive) {
+            <ng-container [ngTemplateOutlet]="tab.content"></ng-container>
+          }
+        }
+      </div>
+    }
   </div>
 </div>

@@ -1,97 +1,124 @@
-<div 
-    class="c-lib-menu" 
-    [class.c-lib-menu-inline]="mode === 'inline'" 
-    [class.c-lib-menu-vertical]="mode === 'vertical'"
-    [class.c-lib-menu-horizontal]="mode === 'horizontal'"
-    [class.c-lib-menu-light]="theme === 'light'"
-    [class.c-lib-menu-dark]="theme === 'dark'" 
-    [class.c-lib-menu-collapsed]="inlineCollapsed"
-    [style.width.px]="inlineCollapsed ? 64 : ''"
-    >
-    <ul class="c-lib-menu-root">
-        <ng-container *ngFor="let item of internalItems">
-            <li 
-                *ngIf="item.children && item.children.length > 0" 
-                class="c-lib-menu-submenu"
-                [class.c-lib-menu-submenu-open]="item.isOpen" 
-                [class.c-lib-menu-submenu-selected]="hasSelectedChild(item)"
-                [class.c-lib-menu-submenu-disabled]="item.disabled"
-                >
-                <div 
-                    class="c-lib-menu-submenu-title"
-                    [style.paddingLeft.px]="(mode === 'inline' && !inlineCollapsed) ? inlineIndent : 24"
-                    (click)="(mode === 'inline' && !inlineCollapsed) ? toggleSubMenu(item) : toggleSubMenu(item)"
-                    libDropMenu
-                    [dropMenuItems]="item.children"
-                    [dropMenuStrictVisible]="showDropMenu()"
-                    [dropMenuPlacement]="mode !== 'horizontal' ? 'right-top' : 'bottom-left'"
-                    [dropMenuTrigger]="'hover'"
-                    [dropMenuSelected]="currentSelectedItem"
-                    (dropMenuItemClick)="onDropMenuItemClick($event, null)"
-                    >
-                    <i *ngIf="item.icon" class="c-lib-menu-icon" [class]="item.icon"></i>
-                    <span *ngIf="!inlineCollapsed || mode !== 'inline'" class="c-lib-menu-title-content">{{ item.title }}</span>
-                    <i *ngIf="(mode !== 'horizontal') && (!inlineCollapsed || mode !== 'inline')" class="c-lib-menu-submenu-arrow"></i>
-                </div>
-                <div *ngIf="mode === 'inline' && !inlineCollapsed">
-                    <ul *ngIf="item.isOpen" class="c-lib-menu-sub c-lib-menu-inline" @expandCollapse>
-                        <ng-container *ngFor="let child of item.children">
-                            <li 
-                                *ngIf="child.children && child.children.length > 0" 
-                                class="c-lib-menu-submenu"
-                                [class.c-lib-menu-submenu-open]="child.isOpen"
-                                [class.c-lib-menu-submenu-selected]="hasSelectedChild(child)"
-                                [class.c-lib-menu-submenu-disabled]="child.disabled"
-                                >
-                                <div 
-                                    class="c-lib-menu-submenu-title" 
-                                    [style.paddingLeft.px]="inlineIndent * 2"
-                                    (click)="toggleSubMenu(child)"
-                                    >
-                                    <i *ngIf="child.icon" class="c-lib-menu-icon" [class]="child.icon"></i>
-                                    <span class="c-lib-menu-title-content">{{ child.title }}</span>
-                                    <i class="c-lib-menu-submenu-arrow"></i>
-                                </div>
-                                <ul *ngIf="child.isOpen" class="c-lib-menu-sub c-lib-menu-inline" @expandCollapse>
-                                    <li 
-                                        *ngFor="let subChild of child.children" 
-                                        class="c-lib-menu-item"
-                                        [class.c-lib-menu-item-selected]="subChild.selected"
-                                        [class.c-lib-menu-item-disabled]="subChild.disabled"
-                                        [style.paddingLeft.px]="inlineIndent * 3"
-                                        (click)="onMenuItemClick(subChild, $event)"
-                                        >
-                                        <i *ngIf="subChild.icon" class="c-lib-menu-icon" [class]="subChild.icon"></i>
-                                        <span class="c-lib-menu-title-content">{{ subChild.title }}</span>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li 
-                                *ngIf="!child.children || child.children.length === 0" 
+<div
+  class="c-lib-menu"
+  [class.c-lib-menu-inline]="mode === 'inline'"
+  [class.c-lib-menu-vertical]="mode === 'vertical'"
+  [class.c-lib-menu-horizontal]="mode === 'horizontal'"
+  [class.c-lib-menu-light]="theme === 'light'"
+  [class.c-lib-menu-dark]="theme === 'dark'"
+  [class.c-lib-menu-collapsed]="inlineCollapsed"
+  [style.width.px]="inlineCollapsed ? 64 : ''"
+  >
+  <ul class="c-lib-menu-root">
+    @for (item of internalItems; track item) {
+      @if (item.children && item.children.length > 0) {
+        <li
+          class="c-lib-menu-submenu"
+          [class.c-lib-menu-submenu-open]="item.isOpen"
+          [class.c-lib-menu-submenu-selected]="hasSelectedChild(item)"
+          [class.c-lib-menu-submenu-disabled]="item.disabled"
+          >
+          <div
+            class="c-lib-menu-submenu-title"
+            [style.paddingLeft.px]="(mode === 'inline' && !inlineCollapsed) ? inlineIndent : 24"
+            (click)="(mode === 'inline' && !inlineCollapsed) ? toggleSubMenu(item) : toggleSubMenu(item)"
+            libDropMenu
+            [dropMenuItems]="item.children"
+            [dropMenuStrictVisible]="showDropMenu()"
+            [dropMenuPlacement]="mode !== 'horizontal' ? 'right-top' : 'bottom-left'"
+            [dropMenuTrigger]="'hover'"
+            [dropMenuSelected]="currentSelectedItem"
+            (dropMenuItemClick)="onDropMenuItemClick($event, null)"
+            >
+            @if (item.icon) {
+              <i class="c-lib-menu-icon" [class]="item.icon"></i>
+            }
+            @if (!inlineCollapsed || mode !== 'inline') {
+              <span class="c-lib-menu-title-content">{{ item.title }}</span>
+            }
+            @if ((mode !== 'horizontal') && (!inlineCollapsed || mode !== 'inline')) {
+              <i class="c-lib-menu-submenu-arrow"></i>
+            }
+          </div>
+          @if (mode === 'inline' && !inlineCollapsed) {
+            <div>
+              @if (item.isOpen) {
+                <ul class="c-lib-menu-sub c-lib-menu-inline" @expandCollapse>
+                  @for (child of item.children; track child) {
+                    @if (child.children && child.children.length > 0) {
+                      <li
+                        class="c-lib-menu-submenu"
+                        [class.c-lib-menu-submenu-open]="child.isOpen"
+                        [class.c-lib-menu-submenu-selected]="hasSelectedChild(child)"
+                        [class.c-lib-menu-submenu-disabled]="child.disabled"
+                        >
+                        <div
+                          class="c-lib-menu-submenu-title"
+                          [style.paddingLeft.px]="inlineIndent * 2"
+                          (click)="toggleSubMenu(child)"
+                          >
+                          @if (child.icon) {
+                            <i class="c-lib-menu-icon" [class]="child.icon"></i>
+                          }
+                          <span class="c-lib-menu-title-content">{{ child.title }}</span>
+                          <i class="c-lib-menu-submenu-arrow"></i>
+                        </div>
+                        @if (child.isOpen) {
+                          <ul class="c-lib-menu-sub c-lib-menu-inline" @expandCollapse>
+                            @for (subChild of child.children; track subChild) {
+                              <li
                                 class="c-lib-menu-item"
-                                [class.c-lib-menu-item-selected]="child.selected"
-                                [class.c-lib-menu-item-disabled]="child.disabled"
-                                [style.paddingLeft.px]="inlineIndent * 2" 
-                                (click)="onMenuItemClick(child, $event)"
+                                [class.c-lib-menu-item-selected]="subChild.selected"
+                                [class.c-lib-menu-item-disabled]="subChild.disabled"
+                                [style.paddingLeft.px]="inlineIndent * 3"
+                                (click)="onMenuItemClick(subChild, $event)"
                                 >
-                                <i *ngIf="child.icon" class="c-lib-menu-icon" [class]="child.icon"></i>
-                                <span class="c-lib-menu-title-content">{{ child.title }}</span>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </div>
-            </li>
-            <li 
-                *ngIf="!item.children || item.children.length === 0" 
-                class="c-lib-menu-item"
-                [class.c-lib-menu-item-selected]="item.selected" 
-                [class.c-lib-menu-item-disabled]="item.disabled"
-                [style.paddingLeft.px]="(mode === 'inline' && !inlineCollapsed) ? inlineIndent : 24"
-                (click)="onMenuItemClick(item, $event)"
-                >
-                <i *ngIf="item.icon" class="c-lib-menu-icon" [class]="item.icon"></i>
-                <span class="c-lib-menu-title-content" *ngIf="!inlineCollapsed || mode !== 'inline'">{{ item.title }}</span>
-            </li>
-        </ng-container>
-    </ul>
+                                @if (subChild.icon) {
+                                  <i class="c-lib-menu-icon" [class]="subChild.icon"></i>
+                                }
+                                <span class="c-lib-menu-title-content">{{ subChild.title }}</span>
+                              </li>
+                            }
+                          </ul>
+                        }
+                      </li>
+                    }
+                    @if (!child.children || child.children.length === 0) {
+                      <li
+                        class="c-lib-menu-item"
+                        [class.c-lib-menu-item-selected]="child.selected"
+                        [class.c-lib-menu-item-disabled]="child.disabled"
+                        [style.paddingLeft.px]="inlineIndent * 2"
+                        (click)="onMenuItemClick(child, $event)"
+                        >
+                        @if (child.icon) {
+                          <i class="c-lib-menu-icon" [class]="child.icon"></i>
+                        }
+                        <span class="c-lib-menu-title-content">{{ child.title }}</span>
+                      </li>
+                    }
+                  }
+                </ul>
+              }
+            </div>
+          }
+        </li>
+      }
+      @if (!item.children || item.children.length === 0) {
+        <li
+          class="c-lib-menu-item"
+          [class.c-lib-menu-item-selected]="item.selected"
+          [class.c-lib-menu-item-disabled]="item.disabled"
+          [style.paddingLeft.px]="(mode === 'inline' && !inlineCollapsed) ? inlineIndent : 24"
+          (click)="onMenuItemClick(item, $event)"
+          >
+          @if (item.icon) {
+            <i class="c-lib-menu-icon" [class]="item.icon"></i>
+          }
+          @if (!inlineCollapsed || mode !== 'inline') {
+            <span class="c-lib-menu-title-content">{{ item.title }}</span>
+          }
+        </li>
+      }
+    }
+  </ul>
 </div>

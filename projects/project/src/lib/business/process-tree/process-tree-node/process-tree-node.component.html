@@ -1,192 +1,239 @@
 <ng-content></ng-content>
 <div [ngClass]="data.numberType === NodeNumberType.BRANCH ? 'branch-node-children-node' : ''">
-  <div 
+  <div
     class="node-box"
     [style.padding-top]="data.type === NodeType.ROOT ? '0px' : (data.numberType === NodeNumberType.BRANCHS ? '5px' : '')"
     [style.padding-bottom]="data.type === NodeType.END ? '0px' : ''">
     <!-- 节点箭头 -->
-    <div *ngIf="data.numberType !== NodeNumberType.BRANCHS && data.type !== NodeType.ROOT" class="arrows"></div>
+    @if (data.numberType !== NodeNumberType.BRANCHS && data.type !== NodeType.ROOT) {
+      <div class="arrows"></div>
+    }
     <!-- 分支节点添加按钮，配置需要修改内容 -->
-    <ng-container *ngIf="data.numberType === NodeNumberType.BRANCHS">
+    @if (data.numberType === NodeNumberType.BRANCHS) {
       <div>
-        <div class="branchs-node-add-button" (click)="add('addBranch')" *ngIf="data.type !== NodeType.END">
-          添加条件节点
-        </div>
-        <div class="end-node" *ngIf="data.type === NodeType.END">
-          结束
-        </div>
+        @if (data.type !== NodeType.END) {
+          <div class="branchs-node-add-button" (click)="add('addBranch')">
+            添加条件节点
+          </div>
+        }
+        @if (data.type === NodeType.END) {
+          <div class="end-node">
+            结束
+          </div>
+        }
       </div>
-    </ng-container>
+    }
     <!-- 节点内容，配置需要修改内容 -->
-    <ng-container *ngIf="data.numberType !== NodeNumberType.BRANCHS">
+    @if (data.numberType !== NodeNumberType.BRANCHS) {
       <!-- 用于去除边框的横线，配置需要修改内容 -->
-      <ng-container *ngIf="data.numberType === NodeNumberType.BRANCH">
-        <ng-container *ngIf="branchIndex === 0">
+      @if (data.numberType === NodeNumberType.BRANCH) {
+        @if (branchIndex === 0) {
           <div class="line-top-left"></div>
           <div class="line-bot-left"></div>
-        </ng-container>
-        <ng-container *ngIf="branchIndex === 1">
+        }
+        @if (branchIndex === 1) {
           <div class="line-top-right"></div>
           <div class="line-bot-right"></div>
-        </ng-container>
-      </ng-container>
+        }
+      }
       <!-- 流程节点内容 -->
       <div (wheel)="onChildWheel($event)">
         <!-- 默认流程节点内容  (click)="data['error'] = true"-->
-        <div 
-          class="nodes-card" 
+        <div
+          class="nodes-card"
           [ngClass]="{'error-border' : data.error}"
           [style.box-shadow]="(selectedNodeID === data.id && !data.error) ? '0px 0px 0px 2px #01CFE2' : ''">
           <!-- 错误icon图标 -->
           <ng-container>
             <!-- 头部 -->
-            <div
-              *ngIf="data.hasHeader !== undefined ? data.hasHeader : true"
-              [style.background]="data.headerConfig && data.headerConfig.backgroundColor ? data.headerConfig.backgroundColor : 'white'"
-              class="nodes-card-header"
-              [ngClass]="{'error-header' : data.error && data.numberType !== NodeNumberType.BRANCH}">
-              <div class="header-content">
-                <ng-container
-                  [ngTemplateOutlet]="source.get(data.headerTemplate) || headerDefault"
-                  [ngTemplateOutletContext]="{$implicit : data}">
-                </ng-container>
-              </div>
-              <!-- 复制icon -->
-              <div class="header-icon" (click)="add('copy')" *ngIf="data.numberType === NodeNumberType.BRANCH">
-                <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                  </svg>
-                </div>
-              </div>
-              <!-- 编辑 -->
-              <div class="header-icon" (click)="add('select')">
-                <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg>
-                </span>
-              </div>
-              <!-- 删除icon -->
-              <div *ngIf="data.type !== NodeType.ROOT" class="header-icon" (click)="add('delete')">
-                <span *ngIf="data.type !== 'endNode'">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <!-- 节点卡片内容 -->
-            <div *ngIf="data.hasBody !== undefined ? data.hasBody : true" class="nodes-card-body">
-              <!-- 多分支节点左移动按钮 -->
-              <div class="nodes-card-body-move-left" (click)="add('move', -1)" *ngIf="(branchIndex === 1 || branchIndex === -1) && data.type !== 'endNode'">
-                <div class="move-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                  </svg>
-                </div>
-              </div>
-              <!-- node内容 (click)="add('select')" -->
-              <div class="nodes-card-body-content" >
-                <div>
+            @if (data.hasHeader !== undefined ? data.hasHeader : true) {
+              <div
+                [style.background]="data.headerConfig && data.headerConfig.backgroundColor ? data.headerConfig.backgroundColor : 'white'"
+                class="nodes-card-header"
+                [ngClass]="{'error-header' : data.error && data.numberType !== NodeNumberType.BRANCH}">
+                <div class="header-content">
                   <ng-container
-                    [ngTemplateOutlet]="source.get(data.bodyTemplate) || bodyDefault"
+                    [ngTemplateOutlet]="source.get(data.headerTemplate) || headerDefault"
                     [ngTemplateOutletContext]="{$implicit : data}">
                   </ng-container>
                 </div>
-              </div>
-              <!-- 多分支节点右移动按钮 -->
-              <div class="nodes-card-body-move-right" (click)="add('move', 1)" *ngIf="(branchIndex === 0 || branchIndex === -1) && data.type !== 'endNode'">
-                <div class="move-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                    <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                  </svg>
+                <!-- 复制icon -->
+                @if (data.numberType === NodeNumberType.BRANCH) {
+                  <div class="header-icon" (click)="add('copy')">
+                    <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                    </div>
+                  </div>
+                }
+                <!-- 编辑 -->
+                <div class="header-icon" (click)="add('select')">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                  </span>
                 </div>
+                <!-- 删除icon -->
+                @if (data.type !== NodeType.ROOT) {
+                  <div class="header-icon" (click)="add('delete')">
+                    @if (data.type !== 'endNode') {
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"/>
+                        </svg>
+                      </span>
+                    }
+                  </div>
+                }
               </div>
-            </div>
+            }
+            <!-- 节点卡片内容 -->
+            @if (data.hasBody !== undefined ? data.hasBody : true) {
+              <div class="nodes-card-body">
+                <!-- 多分支节点左移动按钮 -->
+                @if ((branchIndex === 1 || branchIndex === -1) && data.type !== 'endNode') {
+                  <div class="nodes-card-body-move-left" (click)="add('move', -1)">
+                    <div class="move-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                      </svg>
+                    </div>
+                  </div>
+                }
+                <!-- node内容 (click)="add('select')" -->
+                <div class="nodes-card-body-content" >
+                  <div>
+                    <ng-container
+                      [ngTemplateOutlet]="source.get(data.bodyTemplate) || bodyDefault"
+                      [ngTemplateOutletContext]="{$implicit : data}">
+                    </ng-container>
+                  </div>
+                </div>
+                <!-- 多分支节点右移动按钮 -->
+                @if ((branchIndex === 0 || branchIndex === -1) && data.type !== 'endNode') {
+                  <div class="nodes-card-body-move-right" (click)="add('move', 1)">
+                    <div class="move-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                        <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                      </svg>
+                    </div>
+                  </div>
+                }
+              </div>
+            }
             <!-- 底部 -->
-            <div class="nodes-card-footer" *ngIf="data.hasFooter !== undefined ? data.hasFooter : true">
-              <ng-container
-                [ngTemplateOutlet]="source.get(data.footerTemplate) ||footDefault"
-                [ngTemplateOutletContext]="{$implicit : data}">
-              </ng-container>
-            </div>
+            @if (data.hasFooter !== undefined ? data.hasFooter : true) {
+              <div class="nodes-card-footer">
+                <ng-container
+                  [ngTemplateOutlet]="source.get(data.footerTemplate) ||footDefault"
+                  [ngTemplateOutletContext]="{$implicit : data}">
+                </ng-container>
+              </div>
+            }
           </ng-container>
         </div>
         <!-- 添加节点按钮 -->
         <div class="add-node-button-box">
           <div class="add-node-button" libDropMenu [dropMenuTemplate]="fullCustomTpl">
-            <div *ngIf="data.type !== 'endNode'" style="display: flex;align-items: center;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-              </svg>
-            </div>
+            @if (data.type !== 'endNode') {
+              <div style="display: flex;align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+              </div>
+            }
           </div>
         </div>
       </div>
-    </ng-container>
+    }
   </div>
 </div>
 
 <!-- 子级节点，单一节点 -->
-<div *ngIf="notEmpty(data.children) && !data.branchs" class="children-node-tree">
-  <lib-process-tree-node [data]="data.children" [subject]="subject" [addNodeConfig]="addNodeConfig" [selectedNodeID]="selectedNodeID"></lib-process-tree-node>
-</div>
+@if (notEmpty(data.children) && !data.branchs) {
+  <div class="children-node-tree">
+    <lib-process-tree-node [data]="data.children" [subject]="subject" [addNodeConfig]="addNodeConfig" [selectedNodeID]="selectedNodeID"></lib-process-tree-node>
+  </div>
+}
 
 <!-- 分支节点，多层级节点 -->
-<div *ngIf="data.branchs" class="branch-node-tree">
-  <ng-container *ngFor="let item of data.branchs;index as i">
-    <lib-process-tree-node 
-      [ngClass]="data.type !== NodeType.END? 'branch-node-children-box' : 'branch-node-end-box'" 
-      [data]="item" 
-      [subject]="subject" 
-      [addNodeConfig]="addNodeConfig"
-      [selectedNodeID]="selectedNodeID"
-      [branchIndex]="i === 0 ? 0 : i === data.branchs.length-1 ? 1 : -1">
-      <div *ngIf="i === 0" class="line-top-left"></div>
-      <div *ngIf="i === 0" class="line-bot-left"></div>
-      <div *ngIf="i === data.branchs.length-1" class="line-top-right"></div>
-      <div *ngIf="i === data.branchs.length-1" class="line-bot-right"></div>
-    </lib-process-tree-node>
-  </ng-container>
-</div>
+@if (data.branchs) {
+  <div class="branch-node-tree">
+    @for (item of data.branchs; track item; let i = $index) {
+      <lib-process-tree-node
+        [ngClass]="data.type !== NodeType.END? 'branch-node-children-box' : 'branch-node-end-box'"
+        [data]="item"
+        [subject]="subject"
+        [addNodeConfig]="addNodeConfig"
+        [selectedNodeID]="selectedNodeID"
+        [branchIndex]="i === 0 ? 0 : i === data.branchs.length-1 ? 1 : -1">
+        @if (i === 0) {
+          <div class="line-top-left"></div>
+        }
+        @if (i === 0) {
+          <div class="line-bot-left"></div>
+        }
+        @if (i === data.branchs.length-1) {
+          <div class="line-top-right"></div>
+        }
+        @if (i === data.branchs.length-1) {
+          <div class="line-bot-right"></div>
+        }
+      </lib-process-tree-node>
+    }
+  </div>
+}
 
 <!-- 分支节点结束 -->
-<div *ngIf="data.branchs">
-  <div *ngIf="data.type !== NodeType.END" class="branchs-node-end-add-button-box">
-    <div class="add-node-button" libDropMenu [dropMenuTemplate]="fullCustomTpls">
-      <div *ngIf="data.type !== NodeType.END" style="display: flex;align-items: center;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-        </svg>
+@if (data.branchs) {
+  <div>
+    @if (data.type !== NodeType.END) {
+      <div class="branchs-node-end-add-button-box">
+        <div class="add-node-button" libDropMenu [dropMenuTemplate]="fullCustomTpls">
+          @if (data.type !== NodeType.END) {
+            <div style="display: flex;align-items: center;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+              </svg>
+            </div>
+          }
+        </div>
+        <!-- 添加节点按钮 -->
+        @if (notEmpty(data.children)) {
+          <div>
+            <lib-process-tree-node [data]="data.children" [subject]="subject" [addNodeConfig]="addNodeConfig" [selectedNodeID]="selectedNodeID"></lib-process-tree-node>
+          </div>
+        }
       </div>
-    </div>
-    <!-- 添加节点按钮 -->
-    <div *ngIf="notEmpty(data.children)">
-      <lib-process-tree-node [data]="data.children" [subject]="subject" [addNodeConfig]="addNodeConfig" [selectedNodeID]="selectedNodeID"></lib-process-tree-node>
-    </div>
+    }
   </div>
-</div>
+}
 
 <!-- 结束节点 -->
-<div *ngIf="hasEndNode">
-  <div class="node-box" style="padding-bottom: 0px;">
-    <div class="arrows"></div>
-    <div class="end-node">
-      结束
+@if (hasEndNode) {
+  <div>
+    <div class="node-box" style="padding-bottom: 0px;">
+      <div class="arrows"></div>
+      <div class="end-node">
+        结束
+      </div>
     </div>
   </div>
-</div>
+}
 
 <!-- 头部默认的模板 -->
 <ng-template #headerDefault let-data>
   <div class="default-header">
     <div class="default-header-content">
       <!-- 对应的icon -->
-      <span class="default-header-content-icon" *ngIf="data.headerConfig && data.headerConfig.icon">
-      </span>
+      @if (data.headerConfig && data.headerConfig.icon) {
+        <span class="default-header-content-icon">
+        </span>
+      }
     </div>
     <!-- 有颜色就颜色，没有默认黑色 -->
     <div
@@ -210,17 +257,21 @@
 
 <!-- 添加流程节点模板内容 -->
 <ng-template #fullCustomTpl>
-  <ul class="ul-add-list"  *ngFor="let item of addNodeConfig;index as i" (click)="add(NodeOperateType.ADD,item)">
-    <li class="add-list" >
-      <span class="li-name">{{item.name}}</span>	
-    </li>
-  </ul>
+  @for (item of addNodeConfig; track item; let i = $index) {
+    <ul class="ul-add-list"  (click)="add(NodeOperateType.ADD,item)">
+      <li class="add-list" >
+        <span class="li-name">{{item.name}}</span>
+      </li>
+    </ul>
+  }
 </ng-template>
 
 <ng-template #fullCustomTpls>
-  <ul *ngFor="let item of addNodeConfig;index as i" (click)="add('branchEndAdd',item)">
-    <li class="add-list">
-      <span class="li-name">{{item.name}}</span>	
-    </li>
-  </ul>
+  @for (item of addNodeConfig; track item; let i = $index) {
+    <ul (click)="add('branchEndAdd',item)">
+      <li class="add-list">
+        <span class="li-name">{{item.name}}</span>
+      </li>
+    </ul>
+  }
 </ng-template>

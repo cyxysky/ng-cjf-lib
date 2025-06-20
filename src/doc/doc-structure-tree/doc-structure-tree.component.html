@@ -57,21 +57,25 @@
           </div>
 
           <div class="structure-tree-wrapper">
-            <lib-structure-tree *ngIf="viewType === 'user'"
-              [data]="structureData"
-              [type]="'user'"
-              [lineRadius]="'35px'"
-              [levelMap]="{ top: 1, bottom: 1 }"
-              [selectedId]="selectedId"
-              [nodeTemplate]="userTemplate">
-            </lib-structure-tree>
+            @if (viewType === 'user') {
+              <lib-structure-tree
+                [data]="structureData"
+                [type]="'user'"
+                [lineRadius]="'35px'"
+                [levelMap]="{ top: 1, bottom: 1 }"
+                [selectedId]="selectedId"
+                [nodeTemplate]="userTemplate">
+              </lib-structure-tree>
+            }
 
-            <lib-structure-tree *ngIf="viewType === 'department'"
-              [data]="department"
-              [type]="'department'"
-              [lineRadius]="'15px'"
-              [nodeTemplate]="departmentTemplate">
-            </lib-structure-tree>
+            @if (viewType === 'department') {
+              <lib-structure-tree
+                [data]="department"
+                [type]="'department'"
+                [lineRadius]="'15px'"
+                [nodeTemplate]="departmentTemplate">
+              </lib-structure-tree>
+            }
           </div>
         </div>
         <div description>
@@ -146,15 +150,23 @@
 <ng-template #userTemplate let-node let-level="level">
   <div class="node-content" (click)="selectNode(node, level)" [class.selected]="selectedId === node.id">
     <div class="node-avatar">
-      <img *ngIf="node.avatar" [src]="node.avatar" alt="avatar" />
-      <div *ngIf="!node.avatar" class="default-avatar">{{ node.name?.charAt(0) }}</div>
+      @if (node.avatar) {
+        <img [src]="node.avatar" alt="avatar" />
+      }
+      @if (!node.avatar) {
+        <div class="default-avatar">{{ node.name?.charAt(0) }}</div>
+      }
     </div>
     <div>
       <div class="node-name">{{ node.name }}</div>
       <div class="node-info">
         <div class="node-title">{{ node.title }}</div>
-        <div *ngIf="node.value !== undefined" class="devider"></div>
-        <div *ngIf="node.value !== undefined" class="node-title">{{ node.value }}</div>
+        @if (node.value !== undefined) {
+          <div class="devider"></div>
+        }
+        @if (node.value !== undefined) {
+          <div class="node-title">{{ node.value }}</div>
+        }
       </div>
     </div>
   </div>
@@ -165,8 +177,12 @@
   <div [style.width]="level > 1 ? '36px' : '200px'" [style.height]="level > 1 ? '' : '40px'" [style.z-index]="8"
     style="position: relative;" [class.level-0]="level === 0" [class.level-1]="level === 1"
     (click)="redirectToDepartment(node.id)">
-    <div class="black-circle" *ngIf="level > 1" [style.bottom]="node.children && level > 1 ? '48px' : '2px'"></div>
-    <div class="white-circle" *ngIf="level < 2"></div>
+    @if (level > 1) {
+      <div class="black-circle" [style.bottom]="node.children && level > 1 ? '48px' : '2px'"></div>
+    }
+    @if (level < 2) {
+      <div class="white-circle"></div>
+    }
     <div [style.flex-direction]="level > 1 ? 'column' : 'row'" [ngClass]="level > 1 ? 'sub' : 'staple'"
       [style.padding]="level > 1 ? '8px' : ''" class="flex">
       <div class="title">
@@ -179,14 +195,16 @@
         {{ node.value }}
       </div>
     </div>
-    <div *ngIf="node.children && level > 1" (click)="openChildren(node)"
-      style="display: flex;align-items: center;justify-content: center;flex-direction: column;left: calc(50% - 10px);cursor: pointer;">
-      <div style="width: 2px;height: 26px;" [style.background-color]="node.showChildren ? '#32d8e7' : '#D5DADE'">
+    @if (node.children && level > 1) {
+      <div (click)="openChildren(node)"
+        style="display: flex;align-items: center;justify-content: center;flex-direction: column;left: calc(50% - 10px);cursor: pointer;">
+        <div style="width: 2px;height: 26px;" [style.background-color]="node.showChildren ? '#32d8e7' : '#D5DADE'">
+        </div>
+        <div [style.border-color]="node.showChildren ? '#32d8e7' : '#D5DADE'"
+          style="border: 2px solid #D5DADE;border-radius: 50%;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;">
+          {{ node?.children?.length || 0 }}
+        </div>
       </div>
-      <div [style.border-color]="node.showChildren ? '#32d8e7' : '#D5DADE'"
-        style="border: 2px solid #D5DADE;border-radius: 50%;width: 20px;height: 20px;display: flex;align-items: center;justify-content: center;">
-        {{ node?.children?.length || 0 }}
-      </div>
-    </div>
+    }
   </div>
 </ng-template>
