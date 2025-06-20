@@ -66,7 +66,7 @@ export class SelectBoxComponent {
    * @param data 数据
    * @returns 标签
    */
-  getDisplayTags(data: any): string {
+  getDisplayTags(data: any): string | null {
     return this.getLabel && this.getLabel(data) !== null && this.getLabel(data) !== undefined ? this.getLabel(data) : null;
   }
 

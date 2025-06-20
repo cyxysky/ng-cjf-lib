@@ -390,7 +390,7 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
    * @param node 节点
    * @returns 节点标签
    */
-  public getLabel = (node: any): string => {
+  public getLabel = (node: any): string | null => {
     return node && node.title !== undefined && node.title !== null ? node.title : null;
   }
 

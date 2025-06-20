@@ -271,7 +271,7 @@ export class SelectComponent implements ControlValueAccessor, OnChanges, OnInit 
   /**
    * 根据值获取标签
    */
-  public getLabel = (value?: any): string => {
+  public getLabel = (value?: any): string | null => {
     return value ? value[this.optionLabel] : null;
   }
 
