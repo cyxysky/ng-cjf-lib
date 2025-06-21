@@ -64,6 +64,16 @@
               <div>基本模态框</div>
             </div>
             <div modalBody>
+              <lib-select [selectOption]="options" selectOptionKey="label" selectOptionValue="value" selectPlaceHolder="请选择"></lib-select>
+              <lib-tree-select></lib-tree-select>
+              <lib-cascader></lib-cascader>
+              <lib-modal [(modalVisible)]="modalLevel2" modalWidth="400px">
+                <div modalBody>
+                  <lib-modal [(modalVisible)]="modalLevel3" modalWidth="300px"></lib-modal>
+                  <lib-button (click)="modalLevel3 = true">打开三级模态框</lib-button>
+                </div>
+              </lib-modal>
+              <lib-button (click)="modalLevel2 = true">打开二级模态框</lib-button>
               <p>这是一个基本的模态框内容</p>
               <p>您可以在这里放置任何内容</p>
             </div>

@@ -4,6 +4,8 @@ import { maskAnimation, modalAnimation } from '../core/animation';
 import { UtilsService } from '../core/utils/utils.service';
 import { OverlayService } from '../core/overlay/overlay.service';
 import { ToPxPipe } from '../core/pipe/toPx.pipe';
+import { ModalService } from './modal.service';
+
 @Component({
   selector: 'lib-modal',
   standalone: true,
@@ -24,8 +26,6 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
   @Input({ alias: 'modalWidth' }) width: string | number = '520px';
   /** 高度 */
   @Input({ alias: 'modalHeight' }) height: string | number = 'auto';
-  /** 层级 */
-  @Input({ alias: 'modalZIndex' }) zIndex: number = 1000;
   /** 是否可关闭 */
   @Input({ alias: 'modalClosable', transform: booleanAttribute }) closable: boolean = true;
   /** 顶部偏移 */
@@ -81,11 +81,19 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
   initialTransformY: number = 0;
   /** 是否显示 */
   isVisible: boolean = false;
+  /** 模态框id */
+  modalId: string = '';
+  /** 层级 */
+  zIndex: number = 1000;
 
   constructor(
     public cdr: ChangeDetectorRef,
-    private utilsService: UtilsService
-  ) { }
+    private utilsService: UtilsService,
+    private modalService: ModalService,
+    private renderer: Renderer2
+  ) {
+    !this.modalId && (this.modalId = `modal-${this.modalService.modalCounter++}`);
+  }
 
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
@@ -101,7 +109,7 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['visible']) {
       if (this.visible) {
-        this.isVisible = this.visible;
+        this.openModal();
       } else {
         this.close();
       }
@@ -115,14 +123,25 @@ export class ModalComponent implements AfterViewInit, OnDestroy {
   }
 
   /**
+   * 打开模态框
+   */
+  openModal(): void {
+    this.isVisible = true;
+    this.zIndex = this.modalService.getMaxZIndex() + 1;
+    this.modalService.setModalZindex(this.modalId);
+  }
+
+  /**
    * 关闭模态框
    */
   close(): void {
     this.visible = false;
     this.visibleChange.emit(false);
+    this.modalService.deleteModalZindex(this.modalId);
     this.cdr.detectChanges();
     this.utilsService.delayExecution(() => {
       this.closeModal();
+      this.modalService.deleteModalInstance(this.modalId);
       this.cdr.detectChanges();
     }, OverlayService.overlayVisiableDuration);
   }

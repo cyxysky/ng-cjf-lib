@@ -1,7 +1,7 @@
 @if (isVisible) {
-  <div class="c-lib-modal-container" (click)="maskClick()">
-    <div class="c-lib-modal-mask" [@maskAnimation]="this.visible ? 'visible' : 'void'"></div>
-    <div
+  <div class="c-lib-modal-container">
+  <div class="c-lib-modal-mask" [style.zIndex]="zIndex" [@maskAnimation]="this.visible ? 'visible' : 'void'" (click)="maskClick()"></div>
+  <div
       #modalContent
       class="c-lib-modal-content"
       [style.width]="width | toPx"
@@ -9,7 +9,8 @@
       [style.zIndex]="zIndex"
       [style.marginTop]="centered ? 'auto' : top"
       [style.marginBottom]="centered ? 'auto' : ''"
-      [style.transform]="drag ? `translate(${transformX}px, ${transformY}px)` : ''"
+      [style.left]="drag ? transformX + 'px' : ''"
+      [style.top]="drag ? transformY + 'px' : ''"
       [@modalAnimation]="this.visible ? 'visible' : 'void'"
       (@modalAnimation.done)="animationDone($event)"
       (click)="$event.stopPropagation()">

@@ -9,8 +9,10 @@ import { OverlayService } from '../core';
   providedIn: 'root'
 })
 export class ModalService {
+  public modalCounter = 0;
+
   private modalInstances: ModalRefMap = new Map();
-  private modalCounter = 0;
+  private modalZindex = new Map<string, number>();
 
   constructor(
     private overlay: Overlay,
@@ -29,7 +31,6 @@ export class ModalService {
     const modalOptions: ModalOptions = {
       width: '520px',
       height: 'auto',
-      zIndex: 1000,
       closable: true,
       centered: false,
       maskClosable: true,
@@ -51,9 +52,9 @@ export class ModalService {
     const componentRef = overlayRef.attach(modalPortal);
     // 获取模态框实例
     const modalInstance = componentRef.instance;
+    modalInstance.modalId = modalId;
     componentRef.setInput('modalWidth', modalOptions.width!);
     componentRef.setInput('modalHeight', modalOptions.height!);
-    componentRef.setInput('modalZIndex', modalOptions.zIndex!);
     componentRef.setInput('modalClosable', modalOptions.closable!);
     componentRef.setInput('modalCentered', modalOptions.centered!);
     componentRef.setInput('modalMaskClosable', modalOptions.maskClosable!);
@@ -80,9 +81,9 @@ export class ModalService {
       modalOptions.afterOpen && modalOptions.afterOpen();
     });
     // 点击背景关闭
-    modalOptions.maskClosable && overlayRef.backdropClick().subscribe(() => {
-      this.closeModal(modalId);
-    });
+    // modalOptions.maskClosable && overlayRef.backdropClick().subscribe(() => {
+    //   this.closeModal(modalId);
+    // });
     // 显示模态框
     componentRef.setInput('modalVisible', true);
     // 存储实例
@@ -90,6 +91,7 @@ export class ModalService {
       overlayRef,
       componentRef
     });
+
     return modalId;
   }
 
@@ -99,13 +101,29 @@ export class ModalService {
    */
   closeModal(modalId: string): void {
     const instance = this.modalInstances.get(modalId);
+    this.modalZindex.delete(modalId);
     if (instance) {
       const { overlayRef, componentRef } = instance;
       componentRef.setInput('modalVisible', false);
       this.utils.delayExecution(() => {
         overlayRef.dispose();
+        componentRef.destroy();
         this.modalInstances.delete(modalId);
       }, OverlayService.overlayVisiableDuration);
+    }
+  }
+
+  /**
+   * 删除模态框实例
+   * @param modalId 模态框ID
+   */
+  deleteModalInstance(modalId: string): void {
+    const instance = this.modalInstances.get(modalId);
+    if (instance) {
+      const { overlayRef, componentRef } = instance;
+      overlayRef.dispose();
+      componentRef.destroy();
+      this.modalInstances.delete(modalId);
     }
   }
 
@@ -128,6 +146,38 @@ export class ModalService {
       return this.modalInstances.get(modalId);
     }
     return undefined;
+  }
+
+  /**
+   * 获取当前最大层级
+   * @returns 最大层级
+   */
+  public getMaxZIndex(): number {
+    let maxZIndex = 1000;
+    this.modalZindex.forEach((zIndex, modalId) => {
+      maxZIndex = Math.max(maxZIndex, zIndex);
+    });
+    return maxZIndex;
+  }
+
+  /**
+   * 设置模态框层级
+   * @param modalId 模态框ID
+   * @param zIndex 层级
+   */
+  public setModalZindex(modalId: string): void {
+    if (modalId) {
+      this.modalZindex.set(modalId, this.getMaxZIndex() + 1);
+    }
+    console.log(this.modalZindex)
+  }
+
+  /**
+   * 删除模态框层级
+   * @param modalId 模态框ID
+   */
+  public deleteModalZindex(modalId: string): void {
+    this.modalZindex.delete(modalId);
   }
 
 }

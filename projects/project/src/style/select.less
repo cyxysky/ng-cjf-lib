@@ -19,6 +19,8 @@
     opacity: 0;
     transform: scaleY(0.1);
     transition: opacity @transition-duration-base, transform @transition-duration-fast;
+    position: relative;
+    z-index: 1060;
 
     &.c-lib-select-dropdown-visible {
         opacity: 1;
