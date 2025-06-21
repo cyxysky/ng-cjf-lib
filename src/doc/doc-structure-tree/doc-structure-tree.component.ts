@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { StructureTreeComponent } from '@project';
+import { StructureTreeComponent ,SegmentedComponent} from '@project';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SegmentedComponent } from '@project';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
 

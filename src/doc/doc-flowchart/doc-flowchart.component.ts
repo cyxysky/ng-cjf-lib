@@ -23,7 +23,7 @@ export class DocFlowchartComponent {
   // 示例源代码
   basicSource = `
 import { Component, OnInit } from '@angular/core';
-import { MultiDimensionalFlowchartComponent } from '@project';
+import { MultiDimensionalFlowchartComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -127,7 +127,7 @@ export class BasicDemoComponent implements OnInit {
   // 自定义流程图示例
   customSource = `
 import { Component } from '@angular/core';
-import { MultiDimensionalFlowchartComponent } from '@project';
+import { MultiDimensionalFlowchartComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-demo',

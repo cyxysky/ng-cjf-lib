@@ -54,7 +54,7 @@ export class DocPopconfirmComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -87,7 +87,7 @@ export class BasicDemoComponent {
   // 不同位置
   placementSource = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-placement-demo',
@@ -155,7 +155,7 @@ export class PlacementDemoComponent {
   // 自定义按钮文本
   customButtonSource = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-button-demo',
@@ -189,7 +189,7 @@ export class CustomButtonDemoComponent {
   // 自定义模板
   templateSource = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-template-demo',
@@ -236,7 +236,7 @@ export class TemplateDemoComponent {
   // 受控模式
   controlledSource = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-controlled-demo',
@@ -284,7 +284,7 @@ export class ControlledDemoComponent {
   // 自定义底部
   bottomTemplate = `
 import { Component } from '@angular/core';
-import { ButtonComponent, PopconfirmDirective } from '@project';
+import { ButtonComponent, PopconfirmDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-bottom-template-demo',

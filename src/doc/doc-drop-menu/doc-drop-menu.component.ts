@@ -163,7 +163,7 @@ export class DocDropMenuComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -187,7 +187,7 @@ export class DemoComponent {
   // 触发方式
   triggerSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -218,7 +218,7 @@ export class DemoComponent {
   // 菜单位置
   placementSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -240,7 +240,7 @@ export class DemoComponent {
   // 自定义宽度
   widthSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -268,7 +268,7 @@ export class DemoComponent {
   // 嵌套菜单
   nestedSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -312,7 +312,7 @@ export class DemoComponent {
   // 自定义模板
   customTemplateSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -352,7 +352,7 @@ export class DemoComponent {
   // 受控模式
   controlledSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -386,7 +386,7 @@ export class DemoComponent {
   // 监听菜单项点击
   eventSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -416,7 +416,7 @@ export class DemoComponent {
   // 更新自动关闭模式示例
   autoCloseSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -458,7 +458,7 @@ export class DemoComponent {
   // 选中状态示例
   selectedItemSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -489,7 +489,7 @@ export class DemoComponent {
   // 完全自定义模板示例
   fullTemplateSource = `
 import { Component } from '@angular/core';
-import { DropMenu } from 'your-lib';
+import { DropMenu } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',

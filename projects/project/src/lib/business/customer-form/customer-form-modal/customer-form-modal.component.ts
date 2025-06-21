@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import * as _ from 'lodash';
 import { CustomerFormComponentComponent } from '../customer-form-component/customer-form-component.component';
 import { ElementType, Form, FormCard, FormComponent } from '../customer-form.interface';
-import { UtilsService } from '@project';
+import { UtilsService } from '../../../core/utils/utils.service';
 
 @Component({
   selector: 'lib-customer-form-modal',

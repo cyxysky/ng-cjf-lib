@@ -182,7 +182,7 @@ export class DocMenuComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',
@@ -233,7 +233,7 @@ export class ExampleComponent {
   // 深色主题
   darkThemeSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',
@@ -281,7 +281,7 @@ export class ExampleComponent {
   // 垂直模式
   verticalSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',
@@ -327,7 +327,7 @@ export class ExampleComponent {
   // 水平模式
   horizontalSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',
@@ -373,7 +373,7 @@ export class ExampleComponent {
   // 折叠菜单
   collapsedSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',
@@ -428,7 +428,7 @@ export class ExampleComponent {
   // 禁用菜单项
   disabledSource = `
 import { Component } from '@angular/core';
-import { MenuComponent, MenuItem } from 'your-lib';
+import { MenuComponent, MenuItem } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-example',

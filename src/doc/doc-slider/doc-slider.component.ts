@@ -85,7 +85,7 @@ export class DocSliderComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -106,7 +106,7 @@ export class ExampleComponent {
   // 自定义颜色
   colorSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -128,7 +128,7 @@ export class ExampleComponent {
   // 步长
   stepSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -152,7 +152,7 @@ export class ExampleComponent {
   // 范围滑块
   rangeSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -174,7 +174,7 @@ export class ExampleComponent {
   // 刻度
   marksSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -211,7 +211,7 @@ export class ExampleComponent {
   // 对齐刻度
   snapSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -241,7 +241,7 @@ export class ExampleComponent {
   // 提示格式化
   tooltipSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -264,7 +264,7 @@ export class ExampleComponent {
   // 事件监听
   eventSource = `
 import { Component } from '@angular/core';
-import { SliderComponent } from '@project';
+import { SliderComponent } from '@ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({

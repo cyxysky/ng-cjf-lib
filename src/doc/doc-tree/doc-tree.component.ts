@@ -388,7 +388,7 @@ export class DocTreeComponent {
   // 基本用法
   basicSource = `
 import { Component, ViewChild } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -470,7 +470,7 @@ export class BasicTreeDemoComponent {
   // 带连接线的树
   lineSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-demo',
@@ -506,7 +506,7 @@ export class LineTreeDemoComponent {
   // 自定义节点
   customSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-demo',
@@ -568,7 +568,7 @@ export class CustomTreeDemoComponent {
   // 虚拟滚动
   virtualSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-virtual-demo',
@@ -627,7 +627,7 @@ export class VirtualTreeDemoComponent {
   // 自定义图标
   iconSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-icon-demo',
@@ -673,7 +673,7 @@ export class IconTreeDemoComponent {
   // 可搜索的树
   searchSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -717,7 +717,7 @@ export class SearchTreeDemoComponent {
   // 异步加载
   asyncSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-async-demo',
@@ -760,7 +760,7 @@ export class AsyncTreeDemoComponent {
   // 多选模式
   multipleSource = `
 import { Component } from '@angular/core';
-import { TreeComponent, TreeNodeOptions } from 'your-lib';
+import { TreeComponent, TreeNodeOptions } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({

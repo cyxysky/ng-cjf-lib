@@ -81,7 +81,7 @@ export class DocNumberInputComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -99,7 +99,7 @@ export class NumberInputComponent {
   // 前缀后缀
   prefixSuffixSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -129,7 +129,7 @@ export class NumberInputComponent {
   // 精度
   precisionSource =
     `import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -150,7 +150,7 @@ export class NumberInputComponent {
   // 禁用
   disabledSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -171,7 +171,7 @@ export class NumberInputComponent {
   // 只读
   readonlySource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -192,7 +192,7 @@ export class NumberInputComponent {
   // 步进
   stepSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -214,7 +214,7 @@ export class NumberInputComponent {
   // 范围限制
   boundedSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',
@@ -236,7 +236,7 @@ export class NumberInputComponent {
   // 格式化
   formattedSource = `
 import { Component } from '@angular/core';
-import { NumberInputComponent } from 'your-lib';
+import { NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-number-input',

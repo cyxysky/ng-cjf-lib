@@ -453,7 +453,7 @@ export class DocCascaderComponent implements OnInit {
   basicSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-example',
@@ -520,7 +520,7 @@ export class BasicExampleComponent {
   sizeSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-example',
@@ -567,7 +567,7 @@ export class SizeExampleComponent {
   hoverExpandSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-hover-expand-example',
@@ -604,7 +604,7 @@ export class HoverExpandExampleComponent {
   changeOnSelectSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-change-on-select-example',
@@ -641,7 +641,7 @@ export class ChangeOnSelectExampleComponent {
   multipleSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-multiple-example',
@@ -671,7 +671,7 @@ export class MultipleExampleComponent {
   disabledOptionSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-option-example',
@@ -738,7 +738,7 @@ export class DisabledOptionExampleComponent {
   searchSource = `
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-search-example',
@@ -806,7 +806,7 @@ export class SearchExampleComponent implements OnInit {
   customFieldSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-field-example',
@@ -866,7 +866,7 @@ export class CustomFieldExampleComponent {
   optionSelectFnSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-option-select-fn-example',
@@ -909,7 +909,7 @@ export class OptionSelectFnExampleComponent {
   disableCheckboxSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disable-checkbox-example',
@@ -959,7 +959,7 @@ export class DisableCheckboxExampleComponent {
   customTemplateSource = `
 import { Component } from '@angular/core';
 import { FormsModule, CommonModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-template-example',
@@ -1041,7 +1041,7 @@ export class CustomTemplateExampleComponent {
   statusSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-status-example',
@@ -1088,7 +1088,7 @@ export class StatusExampleComponent {
   borderlessSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-borderless-example',
@@ -1118,7 +1118,7 @@ export class BorderlessExampleComponent {
   disabledSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CascaderComponent } from '@project';
+import { CascaderComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-example',

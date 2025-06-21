@@ -228,7 +228,7 @@ export class DocModalComponent implements AfterViewInit {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -274,7 +274,7 @@ export class BasicDemoComponent {
   // 服务创建模态框
   serviceSource = `
 import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { ModalService, ButtonComponent } from 'your-lib';
+import { ModalService, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-service-demo',
@@ -330,7 +330,7 @@ export class ServiceDemoComponent {
   // 自定义位置和大小
   sizePositionSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-position-demo',
@@ -398,7 +398,7 @@ export class SizePositionDemoComponent {
   // 自定义页脚
   customFooterSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-footer-demo',
@@ -450,7 +450,7 @@ export class CustomFooterDemoComponent {
   // 异步关闭
   asyncCloseSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-async-close-demo',

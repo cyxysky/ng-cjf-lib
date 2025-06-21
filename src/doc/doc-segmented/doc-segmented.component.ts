@@ -105,7 +105,7 @@ export class DocSegmentedComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { SegmentedComponent } from 'your-lib';
+import { SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -131,7 +131,7 @@ export class SegmentedComponent {
   // 带图标
   iconSource = `
 import { Component } from '@angular/core';
-import { SegmentedComponent } from 'your-lib';
+import { SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-icon-demo',
@@ -165,7 +165,7 @@ export class SegmentedComponent {
   // 禁用
   disabledSource = `
 import { Component } from '@angular/core';
-import { SegmentedComponent } from 'your-lib';
+import { SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-demo',
@@ -196,7 +196,7 @@ export class SegmentedComponent {
   // 尺寸
   sizeSource = `
 import { Component } from '@angular/core';
-import { SegmentedComponent } from 'your-lib';
+import { SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-demo',
@@ -235,7 +235,7 @@ export class SegmentedComponent {
   // 块级
   blockSource = `
 import { Component } from '@angular/core';
-import { SegmentedComponent } from 'your-lib';
+import { SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-block-demo',

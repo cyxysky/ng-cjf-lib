@@ -3,8 +3,8 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { SegmentedComponent } from '@project';
-import { TabComponent, TabsComponent } from "@project";
+import { SegmentedComponent, TabComponent, TabsComponent } from '@project';
+
 @Component({
   selector: 'app-doc-tabs',
   standalone: true,
@@ -107,7 +107,7 @@ export class DocTabsComponent {
   // 代码示例
   basicSource = `
 import { Component } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -127,7 +127,7 @@ export class BasicDemoComponent {}
   positionSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TabComponent, TabsComponent, SegmentedComponent } from '@project';
+import { TabComponent, TabsComponent, SegmentedComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-position-demo',
@@ -158,7 +158,7 @@ export class PositionDemoComponent {
 
   cardSource = `
 import { Component } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-card-demo',
@@ -177,7 +177,7 @@ export class CardDemoComponent {}
 
   disabledSource = `
 import { Component } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-demo',
@@ -196,7 +196,7 @@ export class DisabledDemoComponent {}
 
   centeredSource = `
 import { Component } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-centered-demo',
@@ -215,7 +215,7 @@ export class CenteredDemoComponent {}
 
   closableSource = `
 import { Component } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -256,7 +256,7 @@ export class ClosableDemoComponent {
 
   customSource = `
 import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-title-demo',
@@ -286,7 +286,7 @@ export class CustomTitleDemoComponent {}
   lazyLoadSource = `
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabComponent, TabsComponent } from '@project';
+import { TabComponent, TabsComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-lazy-load-demo',
@@ -369,7 +369,7 @@ export class LazyLoadDemoComponent {
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TabComponent, TabsComponent, SegmentedComponent } from '@project';
+import { TabComponent, TabsComponent, SegmentedComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-destroy-inactive-demo',

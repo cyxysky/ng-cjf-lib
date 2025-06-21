@@ -81,7 +81,7 @@ export class DocRadioComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { RadioComponent } from 'your-lib';
+import { RadioComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -108,7 +108,7 @@ export class ExampleComponent {
   // 垂直排列
   verticalSource = `
 import { Component } from '@angular/core';
-import { RadioComponent } from 'your-lib';
+import { RadioComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -136,7 +136,7 @@ export class ExampleComponent {
   // 自定义颜色
   colorSource = `
 import { Component } from '@angular/core';
-import { RadioComponent } from 'your-lib';
+import { RadioComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -172,7 +172,7 @@ export class ExampleComponent {
   // 禁用
   disabledSource = `
 import { Component } from '@angular/core';
-import { RadioComponent } from 'your-lib';
+import { RadioComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -199,7 +199,7 @@ export class ExampleComponent {
   // 事件监听
   eventSource = `
 import { Component } from '@angular/core';
-import { RadioComponent } from 'your-lib';
+import { RadioComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
