@@ -1,0 +1,171 @@
+<form #form="ngForm">
+    <!-- ========================================= 拖拽表单实现区域 =========================================== -->
+    <!-- ========================================= 拖拽表单实现区域 =========================================== -->
+      <div
+        *ngIf="isAddingGroup && customForm?.cards && customForm.cards.length === 0"
+        (mouseenter)="groupMove(0, 0)"
+        class="group-back-grid drag-info-text"
+        style="height: 200px;">
+        将分组拖拽至此来添加新的一组
+      </div>
+      <!-- 添加组的区域 todo -->
+      <div
+        *ngIf="isAddingGroup && customForm?.cards && customForm.cards.length > 0"
+        (mouseenter)="groupMove(0, 0)"
+        style="height: 100px;"
+        class="group-back-grid drag-info-text">
+        添加为第一组
+      </div>
+      <!-- 循环出对应的组数据 -->
+      <div
+        *ngFor="let group of customForm?.cards;index as groupIndex"
+        #groupElement
+        class="group"
+        style="min-height: 180px;"
+        [ngClass]="{
+          'not-allow-copy': isGroupDragging,
+          'drop-placeholder': isGroupDragging && groupIndex === dragGroupIndex,
+          'group-select': dragGroupIndex === groupIndex && !isGroupDragging && !isComponentDragging && mode === 'edit'
+        }"
+        [style.z-index]="isGroupDragging ? '5' : '1'"
+        (mouseenter)="groupMove(groupIndex, 0)"
+        [style.pointer-events]="isGroupDragging && groupIndex === dragGroupIndex ? 'none' : 'auto'"
+        (mousedown)="startDraggingGroup(groupIndex, groupElement, $event)">
+       
+        <!-- 操作按钮  组移动的方法函数 -->
+        <div *ngIf="dragGroupIndex === groupIndex && !isGroupDragging && !isComponentDragging && mode === 'edit'" class="operater-buttons">
+          <!-- 复制icon -->
+          <!-- <div class="operater-buttons-icon">
+            <div
+              qzIcon2
+              qzIconName="icon-File"
+              qzIconSize="12"
+              qzIconColor="white"
+              (click)="copyComponents(groupIndex, componentIndex)">
+            </div>
+          </div>
+          <div>|</div> -->
+          <!-- 删除icon -->
+          <div class="operater-buttons-icon">
+            <i class="bi-trash3" (click)="deleteGroup(groupIndex)"></i>
+          </div>
+        </div>
+        <!-- 组标题 -->
+        <div class="group-title">
+          {{ group.title }}
+        </div>
+        <!-- 测试内容 组内容为空时显示的默认添加占位符-->
+        <div
+          *ngIf="(isAddingComponent || isComponentDragging) && group.components && group.components.length === 0"
+          (mouseenter)="enterDrag(groupIndex, 0, 1, 1)"
+          class="group-back-grid drag-info-text"
+          style="height: 100px;">
+          将组件拖拽至此来添加
+        </div>
+        <!-- 组内用于向上拖拽的占位空间 -->
+        <div *ngIf="mode === 'edit' && dragConfig.groupTop" class="group-space-line" [style.grid-template-columns]="columnsGridStyle">
+          <div *ngFor="let row of range(columns);index as colIndex" (mouseenter)="enterDrag(groupIndex, 0, colIndex + 1, 1)"></div>
+        </div>
+        <!-- 组拖拽背景grid布局 -->
+        <div
+          *ngIf="mode === 'edit' && group.components.length > 0"
+          class="group-grid-box"
+          [style.grid-template-rows]="'repeat(' + groupRowCountMap.get(groupIndex) + ', minmax(72px, max-content))'"
+          [style.grid-template-columns]="columnsGridStyle">
+          <ng-container *ngFor="let row of range(groupRowCountMap.get(groupIndex));index as rowIndex">
+            <ng-container *ngFor="let row of range(columns);index as colIndex">
+              <!-- 单个grid元素 -->
+              <div
+                [style.grid-column-start]="colIndex + 1"
+                [style.grid-row-start]="rowIndex + 1"
+                (mouseenter)="enterDrag(groupIndex, -1, colIndex + 1, rowIndex + 1)"
+                [ngClass]="{'backGrid': isComponentDragging}"
+                >
+              </div>
+            </ng-container>
+          </ng-container>
+          <!-- 组件 内容-->
+          <div
+            *ngFor="let component of group.components;index as componentIndex"
+            #COMPONENTS
+            class="components not-allow-copy"
+            [ngClass]="{
+              'components-select' : (selectedKey === getKey(component) && !isComponentDragging && mode === 'edit' && dragGroupIndex === null),
+              'drop-placeholder' : selectedKey === getKey(component) && mode === 'edit' && isComponentDragging
+            }"
+            [style.grid-column-end]="'span ' + getComponentWidth(component.width)"
+            [style.pointer-events]="isComponentDragging || isGroupDragging ? 'none' : 'auto'"
+            [style.grid-column-start]="getComponentLocation(component).x"
+            [style.grid-row-start]="getComponentLocation(component).y"
+            (mousedown)="startDraggingComponent(groupIndex, componentIndex, component, COMPONENTS, $event)"
+            (mouseleave)="leave()"
+            >
+            <!-- 操作按钮 -->
+            <div class="operater-buttons" *ngIf="selectedKey === getKey(component) && !isComponentDragging && mode === 'edit' && dragGroupIndex === null">
+              <!-- 复制icon -->
+              <!-- <div class="operater-buttons-icon">
+                <div
+                  qzIcon2
+                  qzIconName="icon-File"
+                  qzIconSize="12"
+                  qzIconColor="white"
+                  (click)="copyComponents(groupIndex, componentIndex)">
+                </div>
+              </div>
+              <div>|</div> -->
+              <!-- 删除icon -->
+              <div class="operater-buttons-icon">
+                <i class="bi-trash3" (click)="deleteComponents(groupIndex, componentIndex)"></i>
+              </div>
+            </div>
+            <div class="column-flex">
+              <!-- 组件名称 -->
+              <div class="form-label">
+                {{ component.title }}
+              </div>
+              <!-- 组件内容 -->
+              <div class="component-content">
+                <!-- 模板渲染 -->
+                <ng-container
+                  [ngTemplateOutlet]="componentTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: component, index: componentIndex }">
+                </ng-container>
+                @if (!componentTemplate) {
+                  <ng-container>
+                    <lib-customer-form-component 
+                      [componentType]="component.type"
+                      [disabled]="component.disabled || false"
+                      [required]="component.required || false"
+                      >
+                    </lib-customer-form-component>
+                  </ng-container>
+                }
+                <!-- 组件渲染 -->
+                <!-- <ng-container *ngIf="!component.template || (component.template && !widgetSource.get(component.template))">
+                  <qz-input qzPlaceholder="我永远喜欢椎名真白"></qz-input>
+                </ng-container> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 底部用于组内向下拖拽的占位空间 -->
+        <div *ngIf="mode === 'edit' && dragConfig.groupBottom" class="group-space-line group-bottom-add" [style.grid-template-columns]="columnsGridStyle">
+          <div
+            *ngFor="let row of range(columns);index as colIndex"
+            (mouseenter)="enterDrag(groupIndex, group.components.length , colIndex + 1, groupRowCountMap.get(groupIndex) + 1)">
+          </div>
+        </div>
+       
+      </div>
+      <!-- 组向下移动的区域 -->
+      <div  
+        *ngIf="isAddingGroup && customForm?.cards && customForm.cards.length > 0"
+        style="height: 100px;"
+        (mouseenter)="groupMove(customForm.cards.length, 1)"
+        class="group-back-grid drag-info-text">
+        添加为最后一组
+      </div>
+    <!-- ==================================================================================== -->
+    <!-- ==================================================================================== -->
+  </form>
+  

@@ -6,19 +6,20 @@ import { toObservable } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import * as _ from 'lodash';
+import { InputComponent } from '../../input/input.component';
+import { SelectComponent } from '../../select/select.component';
+import { UtilsService } from '../../core/utils/utils.service';
 import {
-  ComponentGroup,
-  ComponentConfig,
-  FormGroup,
   FormComponent,
   FormOption,
-  ElementType
+  ElementType,
+  ComponentLibraryItem
 } from './customer-form.interface';
 
 @Component({
   selector: 'lib-customer-form',
   standalone: true,
-  imports: [CustomerFormModalComponent, FormsModule, CommonModule, DragDropModule],
+  imports: [CustomerFormModalComponent, FormsModule, CommonModule, DragDropModule, SelectComponent, InputComponent],
   templateUrl: './customer-form.component.html',
   styleUrl: './customer-form.component.less'
 })
@@ -28,20 +29,19 @@ export class CustomerFormComponent {
 
   // 当前选中的组件
   selectedComponent: FormComponent | null = null;
-
-  // 组件配置表单数据
-  componentConfig: ComponentConfig = {
-    label: '',
-    placeholder: '',
-    required: false,
-    disabled: false,
-    width: 1,
-    options: []
-  };
-
+  // 当前选中的组
+  selectedGroup: any = null;
+  // 当前选中的组索引
+  selectedGroupIndex: number | null = null;
   // 基础属性
   /** 模式 */
   mode: 'edit' | 'show' = 'edit';
+
+  widthOptions: any[] = [
+    { label: '1/3 宽度', value: 8 },
+    { label: '2/3 宽度', value: 16 },
+    { label: '全宽度', value: 24 }
+  ];
   /** 列数 */
   columns: number = 3;
   /** 组件key */
@@ -63,53 +63,105 @@ export class CustomerFormComponent {
   newComponentData: any = {};
   newGroupData: any = {};
 
-  testChange(a: any) {
-    console.log(a);
-  }
-
-  constructor() {
-    this.initCustomForm();
-  }
+  groups: any[] = [
+    {
+      title: '基础组件',
+      expand: true,
+      components: [
+        { title: '单行文本', icon: '📝', type: 'input' },
+        { title: '数字输入', icon: '🔢', type: 'number' },
+        { title: '下拉选择', icon: '📋', type: 'select' },
+        { title: '日期时间', icon: '📅', type: 'date' }
+      ]
+    },
+    {
+      title: '选择组件',
+      expand: true,
+      components: [
+        { title: '选择器', icon: '📋', type: 'select' },
+        { title: '复选框', icon: '☑️', type: 'checkbox' },
+        { title: '单选框', icon: '🔘', type: 'radio' },
+        { title: '级联选择', icon: '🔗', type: 'cascader' },
+        { title: '树形选择', icon: '🌳', type: 'treeSelect' }
+      ]
+    },
+    {
+      title: '组模板',
+      expand: true,
+      components: [
+        {
+          title: '默认组',
+          icon: '👤',
+          isGroup: true,
+        },
+        {
+          title: '基础信息组',
+          icon: '👤',
+          isGroup: true,
+          defaultComponents: [
+            {
+              id: Math.random() * 1000,
+              title: '姓名',
+              type: 'input',
+              locationX: 1,
+              locationY: 1,
+              width: 2,
+              label: '姓名',
+              placeholder: '请输入姓名',
+              required: true
+            },
+            {
+              id: Math.random() * 1000,
+              title: '手机号',
+              type: 'input',
+              locationX: 1,
+              locationY: 2,
+              width: 2,
+              label: '手机号',
+              placeholder: '请输入手机号',
+              required: true
+            }
+          ]
+        },
+        {
+          title: '联系信息组',
+          icon: '📧',
+          isGroup: true,
+          defaultComponents: [
+            {
+              id: Math.random() * 1000,
+              title: '邮箱',
+              type: 'input',
+              locationX: 1,
+              locationY: 1,
+              width: 3,
+              label: '邮箱地址',
+              placeholder: '请输入邮箱地址'
+            },
+            {
+              id: Math.random() * 1000,
+              title: '地址',
+              type: 'input',
+              locationX: 1,
+              locationY: 2,
+              width: 3,
+              label: '联系地址',
+              placeholder: '请输入联系地址'
+            }
+          ]
+        }
+      ]
+    }
+  ];
 
   subject: Subject<any> = new Subject<any>();
 
+  constructor(
+    private utils: UtilsService
+  ) {
+  }
+
   ngOnInit(): void {
-    this.initSubject();
-  }
-
-  /**
-   * 初始化表单数据
-   */
-  initCustomForm() {
-    this.customForm = {
-      cards: [...this.group1] // 使用现有的 group1 数据
-    };
-  }
-
-  /**
-   * 初始化subject
-   */
-  public initSubject(): void {
-    if (this.subject) {
-      this.subject.subscribe((data) => {
-        switch (data.methods) {
-          case 'finishAddingNewComponent':
-            this.isAddingComponent = false;
-            break;
-          case 'finishAddingNewGroup':
-            this.isAddingGroup = false;
-            break;
-        }
-      })
-    }
-  }
-
-  /**
-   * 数据变化回调
-   */
-  public onDataChange(): void {
-    // 表单数据已更新
-    console.log('表单数据已更新', this.customForm);
   }
 
   /**
@@ -117,14 +169,33 @@ export class CustomerFormComponent {
    */
   selectGroup(group: any): void {
     console.log('选中组:', group);
-    // 处理组选择逻辑
+    this.selectedGroup = group;
+    this.selectedComponent = null; // 选择组时清除组件选择
+    this.selectedGroupIndex = this.customForm.cards?.findIndex((card: any) => card === group) ?? null;
   }
 
+  /**
+   * 选择组件事件处理
+   * @param component 组件
+   */
+  selectComponent(data: { data: FormComponent, groupIndex: number }) {
+    this.selectedComponent = data.data;
+    this.selectedGroupIndex = data.groupIndex;
+    this.selectedGroup = null; // 选择组件时清除组选择
+  }
+
+  onComponentWidthChange(component: FormComponent) {
+    console.log('onComponentWidthChange', component);
+    this.subject.next({
+      methods: 'updateComponentPosition',
+      groupIndex: this.selectedGroupIndex,
+      component: component
+    });
+  }
   /**
    * 从左侧组件库添加新组件
    */
   addNewComponent(component: any, componentItem: HTMLElement) {
-
 
   }
 
@@ -136,179 +207,30 @@ export class CustomerFormComponent {
   }
 
   /**
-   * 根据组件标题获取组件类型
-   */
-  getComponentType(title: string): ElementType {
-    const typeMap: Record<string, ElementType> = {
-      '单行文本': 'input',
-      '数字输入': 'number',
-      '下拉选择': 'select',
-      '复选框': 'checkbox',
-      '单选框': 'radio',
-      '级联选择': 'cascader',
-      '树形选择': 'treeSelect',
-      '日期时间': 'date'
-    };
-    return typeMap[title] || 'input';
-  }
-
-  /**
-   * 获取默认选项
-   */
-  getDefaultOptions(title: string): FormOption[] {
-    if (['下拉选择', '复选框', '单选框'].includes(title)) {
-      return [
-        { label: '选项1', value: 'option1' },
-        { label: '选项2', value: 'option2' }
-      ];
-    }
-    return [];
-  }
-
-
-  groups: ComponentGroup[] = [
-    {
-      title: '基础组件',
-      expand: true,
-      components: [
-        { title: '单行文本', icon: '📝' },
-        { title: '数字输入', icon: '🔢' },
-        { title: '下拉选择', icon: '📋' },
-        { title: '日期时间', icon: '📅' }
-      ]
-    },
-    {
-      title: '选择组件',
-      expand: true,
-      components: [
-        { title: '复选框', icon: '☑️' },
-        { title: '单选框', icon: '🔘' },
-        { title: '级联选择', icon: '🔗' },
-        { title: '树形选择', icon: '🌳' }
-      ]
-    },
-    {
-      title: '组模板',
-      expand: true,
-      components: [
-        { 
-          title: '基础信息组', 
-          icon: '👤',
-          isGroup: true,
-          defaultComponents: [
-            { 
-              id: Math.random() * 1000,
-              title: '姓名', 
-              type: 'input',
-              x: 1, 
-              y: 1, 
-              width: 2, 
-              label: '姓名',
-              placeholder: '请输入姓名',
-              required: true
-            },
-            { 
-              id: Math.random() * 1000,
-              title: '手机号', 
-              type: 'input',
-              x: 1, 
-              y: 2, 
-              width: 2, 
-              label: '手机号',
-              placeholder: '请输入手机号',
-              required: true
-            }
-          ]
-        },
-        { 
-          title: '联系信息组', 
-          icon: '📧',
-          isGroup: true,
-          defaultComponents: [
-            { 
-              id: Math.random() * 1000,
-              title: '邮箱', 
-              type: 'input',
-              x: 1, 
-              y: 1, 
-              width: 3, 
-              label: '邮箱地址',
-              placeholder: '请输入邮箱地址'
-            },
-            { 
-              id: Math.random() * 1000,
-              title: '地址', 
-              type: 'input',
-              x: 1, 
-              y: 2, 
-              width: 3, 
-              label: '联系地址',
-              placeholder: '请输入联系地址'
-            }
-          ]
-        }
-      ]
-    }
-  ];
-
-  selectComponent(component: FormComponent) {
-    console.log('选中组件:', component);
-    this.selectedComponent = component;
-
-    // 初始化组件配置
-    this.componentConfig = {
-      label: component.label || component.title,
-      placeholder: component.placeholder || `请输入${component.title}`,
-      required: component.required || false,
-      disabled: component.disabled || false,
-      width: component.width || 1,
-      options: component.options || this.getDefaultOptions(component.title)
-    };
-  }
-
-  /**
-   * 更新组件配置
-   */
-  updateComponentConfig() {
-    if (this.selectedComponent) {
-      Object.assign(this.selectedComponent, this.componentConfig);
-
-      // 通知组件更新
-      this.subject.next({
-        methods: 'updateComponent',
-        data: this.selectedComponent
-      });
-    }
-  }
-
-  /**
    * 添加选项
    */
   addOption() {
-    if (!this.componentConfig.options) {
-      this.componentConfig.options = [];
-    }
-    this.componentConfig.options.push({
-      label: `选项${this.componentConfig.options.length + 1}`,
-      value: `option${this.componentConfig.options.length + 1}`
+    if (!this.selectedComponent) return;
+    !this.selectedComponent?.options && (this.selectedComponent.options = []);
+    this.selectedComponent.options.push({
+      label: `选项${this.selectedComponent.options.length + 1}`,
+      value: `option${this.selectedComponent.options.length + 1}`
     });
-    this.updateComponentConfig();
   }
 
   /**
    * 删除选项
    */
   removeOption(index: number) {
-    if (this.componentConfig.options && this.componentConfig.options.length > 1) {
-      this.componentConfig.options.splice(index, 1);
-      this.updateComponentConfig();
+    if (this.selectedComponent?.options && this.selectedComponent.options.length > 1) {
+      this.selectedComponent.options.splice(index, 1);
     }
   }
 
   /**
    * 切换组件组展开状态
    */
-  toggleGroup(group: ComponentGroup) {
+  toggleGroup(group: any) {
     group.expand = !group.expand;
   }
 
@@ -321,46 +243,67 @@ export class CustomerFormComponent {
     return optionTypes.includes(this.selectedComponent.type);
   }
 
-  group1: FormGroup[] = [
-    {
-      id: 1,
-      title: '基础信息',
-      components: [
-        {
-          id: 1,
-          title: '姓名',
-          type: 'input',
-          x: 1,
-          y: 1,
-          width: 2,
-          template: 'inputs',
-          label: '姓名',
-          placeholder: '请输入姓名',
-          required: true
-        },
-        {
-          id: 2,
-          title: '年龄',
-          type: 'number',
-          width: 1,
-          x: 1,
-          y: 2,
-          template: 'inputs',
-          label: '年龄',
-          placeholder: '请输入年龄'
-        },
-        {
-          id: 3,
-          title: '邮箱',
-          type: 'input',
-          width: 3,
-          x: 1,
-          y: 3,
-          template: 'inputs',
-          label: '邮箱',
-          placeholder: '请输入邮箱地址'
-        },
-      ]
+  /**
+   * 添加新元素
+   * @param component 组件
+   * @param componentItem 组件HTML元素
+   * @param groupKey 组的键
+   */
+  addNewElement(component: FormComponent | ComponentLibraryItem, componentItem: HTMLElement, type: 'group' | 'component') {
+    let params;
+    let methods = '';
+    switch (type) {
+      case 'group':
+        component = component as ComponentLibraryItem;
+        methods = 'addNewGroup';
+        params = {
+          title: component.title,
+          components: [
+            ...component.defaultComponents || []
+          ]
+        };
+        break;
+      default:
+        component = component as FormComponent;
+        methods = 'addNewComponent';
+        params = {
+          type: component.type,
+          id: this.utils.getUUID(),
+          width: 8,
+          title: component.title,
+          required: false,
+          disable: false,
+          show: true,
+        };
+        break;
     }
-  ];
+    this.utils.addDragPlaceholderElement(componentItem);
+    this.subject.next({
+      methods: methods,
+      data: params
+    });
+  }
+
+  /**
+   * 保存表单
+   */
+  saveForm() {
+    console.log('saveForm', this.customForm);
+  }
+
+  /**
+   * 更新组名称
+   */
+  updateGroupName(newName: string) {
+    if (this.selectedGroup) {
+      this.selectedGroup.title = newName;
+      // 通知表单更新
+      this.subject.next({
+        methods: 'updateGroupName',
+        groupIndex: this.selectedGroupIndex,
+        title: newName
+      });
+    }
+  }
+
 }

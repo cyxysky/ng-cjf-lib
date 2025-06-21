@@ -38,7 +38,12 @@
 	  class="c-lib-tree-select-dropdown"
 	  [class.c-lib-tree-select-dropdown-visible]="isDropdownOpen"
 	  [style.min-width]="dropdownWidth">
-		<div class="c-lib-tree-select-container" [style.max-height.px]="dropdownHeight">
+		<div class="c-lib-tree-select-container" [style.max-height.px]="dropdownHeight" [style.min-height.px]="dropdownMinHeight">
+			@if (treeData.length === 0) {
+				<div class="c-lib-tree-select-empty">
+					暂无数据
+				</div>
+			}
 			<!-- 树组件 -->
 			<lib-tree
 			  [treeData]="treeData"

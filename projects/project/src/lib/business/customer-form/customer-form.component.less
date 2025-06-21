@@ -2,25 +2,30 @@
 @action-panel-max-width: 320px;
 @modal-panel-min-width: 724px;
 
-// 主题色彩
+// 主题色彩 - 优化配色方案
 @primary-color: #1890ff;
 @primary-light: #e6f7ff;
+@primary-dark: #096dd9;
 @success-color: #52c41a;
 @warning-color: #faad14;
 @error-color: #ff4d4f;
 
-// 中性色
+// 中性色 - 增强对比度
 @text-primary: #262626;
 @text-secondary: #595959;
 @text-disabled: #bfbfbf;
+@text-light: #8c8c8c;
 @border-color: #e8e8e8;
+@border-light: #f0f0f0;
 @bg-color: #fafafa;
+@bg-light: #f8f9fa;
 @white: #ffffff;
 
-// 阴影
+// 阴影 - 增强层次感
 @shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 @shadow-base: 0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 @shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+@shadow-card: 0 2px 8px 0 rgba(0, 0, 0, 0.06);
 
 .content-box {
 	flex-grow: 1;
@@ -43,18 +48,27 @@
 			z-index: 10;
 			background: @white;
 			padding: 20px 24px 16px 24px;
-			border-bottom: 1px solid @border-color;
+			border-bottom: 1px solid @border-light;
+			backdrop-filter: blur(8px);
 			
 			.panel-title {
+				display: flex;
+				align-items: center;
 				font-weight: 600;
 				font-size: 16px;
 				color: @text-primary;
 				margin-bottom: 4px;
+				
+				.title-icon {
+					margin-right: 8px;
+					font-size: 18px;
+				}
 			}
 			
 			.panel-subtitle {
 				font-size: 12px;
 				color: @text-secondary;
+				line-height: 1.4;
 			}
 		}
 	}
@@ -70,9 +84,14 @@
 				cursor: pointer;
 				user-select: none;
 				transition: all 0.2s ease;
+				border-radius: 6px;
+				margin: 0 -8px;
+				padding-left: 8px;
+				padding-right: 8px;
 				
 				&:hover {
 					color: @primary-color;
+					background: fade(@primary-color, 5%);
 				}
 
 				.group-expand-icon {
@@ -82,7 +101,7 @@
 					align-items: center;
 					justify-content: center;
 					color: @text-disabled;
-					transition: all 0.3s ease;
+					transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 					
 					&.expanded {
 						transform: rotate(90deg);
@@ -117,22 +136,27 @@
 		border-left: 1px solid @border-color;
 		
 		.property-panel {
-			padding: 0 24px 24px 24px;
+			padding: 24px;
 		}
 		
 		.property-section {
-			margin-bottom: 24px;
+			margin-bottom: 28px;
 			
 			.section-title {
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				font-weight: 500;
+				font-weight: 600;
 				font-size: 14px;
 				color: @text-primary;
-				margin-bottom: 12px;
-				padding-bottom: 8px;
-				border-bottom: 1px solid @border-color;
+				margin-bottom: 16px;
+				padding-bottom: 10px;
+				border-bottom: 2px solid @border-light;
+				
+				.section-icon {
+					margin-right: 8px;
+					font-size: 16px;
+				}
 			}
 			
 			.property-group {
@@ -144,16 +168,17 @@
 			.property-item {
 				display: flex;
 				flex-direction: column;
-				gap: 6px;
+				gap: 8px;
 				
 				.property-label {
-					font-size: 12px;
+					font-size: 13px;
 					color: @text-secondary;
 					font-weight: 500;
+					margin-bottom: 2px;
 				}
 				
 				.property-input, .property-select {
-					padding: 8px 12px;
+					padding: 10px 12px;
 					border: 1px solid @border-color;
 					border-radius: 6px;
 					font-size: 14px;
@@ -166,6 +191,10 @@
 						box-shadow: 0 0 0 2px fade(@primary-color, 20%);
 					}
 					
+					&:hover:not(:focus) {
+						border-color: darken(@border-color, 10%);
+					}
+					
 					&::placeholder {
 						color: @text-disabled;
 					}
@@ -174,19 +203,55 @@
 				.property-checkbox {
 					display: flex;
 					align-items: center;
-					gap: 8px;
+					gap: 10px;
 					cursor: pointer;
 					font-size: 14px;
+					padding: 8px 0;
+					border-radius: 4px;
+					transition: all 0.2s ease;
+					
+					&:hover {
+						background: fade(@primary-color, 3%);
+					}
 					
 					input[type="checkbox"] {
 						width: 16px;
 						height: 16px;
 						accent-color: @primary-color;
+						cursor: pointer;
 					}
 					
 					.checkbox-text {
 						color: @text-primary;
+						font-weight: 400;
 					}
+				}
+			}
+			
+			// 新增：组信息样式
+			.info-item {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 12px 16px;
+				background: @bg-light;
+				border-radius: 8px;
+				border: 1px solid @border-light;
+				
+				.info-label {
+					font-size: 13px;
+					color: @text-secondary;
+					font-weight: 500;
+				}
+				
+				.info-value {
+					font-size: 13px;
+					color: @text-primary;
+					font-weight: 600;
+					background: @white;
+					padding: 4px 8px;
+					border-radius: 4px;
+					border: 1px solid @border-color;
 				}
 			}
 		}
@@ -194,18 +259,22 @@
 		.add-option-btn {
 			display: flex;
 			align-items: center;
-			gap: 4px;
-			padding: 4px 8px;
+			gap: 6px;
+			padding: 6px 12px;
 			font-size: 12px;
+			font-weight: 500;
 			color: @primary-color;
-			background: transparent;
+			background: @white;
 			border: 1px solid @primary-color;
-			border-radius: 4px;
+			border-radius: 6px;
 			cursor: pointer;
 			transition: all 0.2s ease;
 			
 			&:hover {
 				background: @primary-light;
+				border-color: @primary-dark;
+				color: @primary-dark;
+				box-shadow: @shadow-sm;
 			}
 		}
 		
@@ -217,7 +286,17 @@
 			.option-item {
 				display: flex;
 				align-items: center;
-				gap: 8px;
+				gap: 10px;
+				padding: 12px;
+				background: @bg-light;
+				border-radius: 8px;
+				border: 1px solid @border-light;
+				transition: all 0.2s ease;
+				
+				&:hover {
+					border-color: @border-color;
+					box-shadow: @shadow-sm;
+				}
 				
 				.option-inputs {
 					flex: 1;
@@ -226,33 +305,38 @@
 					
 					.option-input {
 						flex: 1;
-						padding: 6px 8px;
+						padding: 8px 10px;
 						border: 1px solid @border-color;
 						border-radius: 4px;
 						font-size: 12px;
+						background: @white;
+						transition: all 0.2s ease;
 						
 						&:focus {
 							outline: none;
 							border-color: @primary-color;
+							box-shadow: 0 0 0 2px fade(@primary-color, 15%);
 						}
 					}
 				}
 				
 				.remove-option-btn {
-					width: 24px;
-					height: 24px;
+					width: 28px;
+					height: 28px;
 					display: flex;
 					align-items: center;
 					justify-content: center;
 					color: @error-color;
-					background: transparent;
-					border: none;
-					border-radius: 4px;
+					background: @white;
+					border: 1px solid fade(@error-color, 30%);
+					border-radius: 6px;
 					cursor: pointer;
 					transition: all 0.2s ease;
 					
 					&:hover {
 						background: fade(@error-color, 10%);
+						border-color: @error-color;
+						transform: scale(1.05);
 					}
 				}
 			}
@@ -263,18 +347,19 @@
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			padding: 60px 24px;
+			padding: 80px 24px;
 			text-align: center;
 			
 			.empty-icon {
-				font-size: 48px;
-				margin-bottom: 16px;
+				font-size: 56px;
+				margin-bottom: 20px;
 				opacity: 0.6;
+				filter: grayscale(20%);
 			}
 			
 			.empty-title {
 				font-size: 16px;
-				font-weight: 500;
+				font-weight: 600;
 				color: @text-primary;
 				margin-bottom: 8px;
 			}
@@ -282,7 +367,8 @@
 			.empty-text {
 				font-size: 14px;
 				color: @text-secondary;
-				line-height: 1.5;
+				line-height: 1.6;
+				max-width: 200px;
 			}
 		}
 	}
@@ -296,10 +382,11 @@
 
 		.model-preview-content {
 			background: @white;
-			border-radius: 8px;
-			box-shadow: @shadow-base;
+			border-radius: 12px;
+			box-shadow: @shadow-card;
 			overflow: hidden;
 			margin-bottom: 20px;
+			border: 1px solid @border-light;
 
 			.model-preview-header-bar {
 				width: 100%;
@@ -313,13 +400,20 @@
 				justify-content: space-between;
 				height: 60px;
 				padding: 0 24px;
-				border-bottom: 1px solid @border-color;
+				border-bottom: 1px solid @border-light;
 				background: @white;
 
 				.model-preview-title {
+					display: flex;
+					align-items: center;
 					font-weight: 600;
 					font-size: 18px;
 					color: @text-primary;
+					
+					.title-icon {
+						margin-right: 10px;
+						font-size: 20px;
+					}
 				}
 
 				.model-preview-actions {
@@ -327,8 +421,8 @@
 					gap: 12px;
 					
 					.action-btn {
-						padding: 8px 16px;
-						border-radius: 6px;
+						padding: 10px 16px;
+						border-radius: 8px;
 						font-size: 14px;
 						font-weight: 500;
 						cursor: pointer;
@@ -336,7 +430,11 @@
 						border: 1px solid transparent;
 						display: flex;
 						align-items: center;
-						gap: 6px;
+						gap: 8px;
+						
+						svg {
+							flex-shrink: 0;
+						}
 						
 						&.preview-btn {
 							color: @primary-color;
@@ -345,6 +443,7 @@
 							
 							&:hover {
 								background: @primary-light;
+								box-shadow: @shadow-sm;
 							}
 						}
 						
@@ -353,7 +452,8 @@
 							background: @primary-color;
 							
 							&:hover {
-								background: darken(@primary-color, 10%);
+								background: @primary-dark;
+								box-shadow: @shadow-base;
 							}
 						}
 					}
@@ -363,7 +463,7 @@
 			.model-preview-body {
 				min-height: 400px;
 				background: @white;
-				padding: 20px;
+				padding: 24px;
 				
 				.form-groups-container {
 					display: flex;
@@ -425,31 +525,38 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: 8px;
+			gap: 10px;
 			font-size: 14px;
-			color: @text-secondary;
+			color: @text-light;
 			text-align: center;
-			padding: 16px;
+			padding: 20px;
 			background: @white;
-			border-radius: 8px;
+			border-radius: 10px;
 			border: 2px dashed @border-color;
+			transition: all 0.2s ease;
+			
+			&:hover {
+				border-color: @primary-color;
+				color: @primary-color;
+				background: fade(@primary-color, 2%);
+			}
 			
 			.tip-icon {
-				font-size: 16px;
+				font-size: 18px;
 			}
 		}
 	}
 }
 
-// 组件项样式
+// 组件项样式 - 增强视觉效果
 .component-item {
 	display: flex;
 	align-items: center;
-	height: 44px;
-	background: @bg-color;
-	border-radius: 8px;
+	height: 48px;
+	background: @bg-light;
+	border-radius: 10px;
 	cursor: grab;
-	border: 1px solid transparent;
+	border: 1px solid @border-light;
 	transition: all 0.2s ease;
 	overflow: hidden;
 	position: relative;
@@ -457,36 +564,33 @@
 	&:hover {
 		background: @primary-light;
 		border-color: @primary-color;
-		box-shadow: @shadow-sm;
-		transform: translateY(-1px);
+		box-shadow: @shadow-base;
 	}
 
 	&:active {
 		cursor: grabbing;
-		transform: translateY(0);
 	}
 
 	&.group-template-item {
-		background: linear-gradient(135deg, fade(@success-color, 10%) 0%, fade(@primary-color, 8%) 100%);
-		border: 1px solid fade(@success-color, 30%);
+		background: linear-gradient(135deg, fade(@success-color, 12%) 0%, fade(@primary-color, 10%) 100%);
+		border: 1px solid fade(@success-color, 40%);
 		height: 56px;
 		
 		&:hover {
-			background: linear-gradient(135deg, fade(@success-color, 20%) 0%, fade(@primary-color, 15%) 100%);
+			background: linear-gradient(135deg, fade(@success-color, 25%) 0%, fade(@primary-color, 18%) 100%);
 			border-color: @success-color;
-			transform: translateY(-2px);
-			box-shadow: @shadow-base;
+			box-shadow: @shadow-lg;
 		}
 		
 		.component-item-content {
 			.component-item-icon {
-				font-size: 20px;
-				width: 28px;
-				height: 28px;
+				font-size: 22px;
+				width: 32px;
+				height: 32px;
 			}
 			
 			.component-item-title {
-				font-weight: 500;
+				font-weight: 600;
 				font-size: 14px;
 			}
 		}
@@ -496,24 +600,24 @@
 		flex-grow: 1;
 		display: flex;
 		align-items: center;
-		padding: 0 12px;
+		padding: 0 14px;
 		position: relative;
 
 		.component-item-icon {
-			width: 24px;
-			height: 24px;
+			width: 28px;
+			height: 28px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			font-size: 16px;
-			margin-right: 8px;
+			font-size: 18px;
+			margin-right: 10px;
 		}
 
 		.component-item-title {
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
-			font-weight: 400;
+			font-weight: 500;
 			font-size: 13px;
 			color: @text-primary;
 			flex: 1;
@@ -521,16 +625,17 @@
 		
 		.group-badge {
 			position: absolute;
-			top: -2px;
-			right: 4px;
+			top: -4px;
+			right: 6px;
 			background: @success-color;
 			color: @white;
 			font-size: 10px;
-			font-weight: 600;
-			padding: 2px 6px;
-			border-radius: 8px;
+			font-weight: 700;
+			padding: 3px 7px;
+			border-radius: 10px;
 			line-height: 1;
-			box-shadow: @shadow-sm;
+			box-shadow: @shadow-base;
+			border: 1px solid @white;
 		}
 	}
 }
@@ -543,24 +648,35 @@
 	-ms-user-select: none;
 }
 
-// 动画
+// 动画 - 增强动画效果
 @keyframes slideDown {
 	from {
 		opacity: 0;
-		transform: translateY(-10px);
+		transform: translateY(-15px) scale(0.95);
 	}
 	to {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translateY(0) scale(1);
 	}
 }
 
 @keyframes fadeIn {
 	from {
 		opacity: 0;
+		transform: scale(0.95);
 	}
 	to {
 		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes pulse {
+	0%, 100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
 	}
 }
 
@@ -578,22 +694,30 @@
 	}
 }
 
-// 滚动条样式
+// 滚动条样式 - 美化滚动条
 .left-side, .right-side {
 	&::-webkit-scrollbar {
-		width: 6px;
+		width: 8px;
 	}
 	
 	&::-webkit-scrollbar-track {
-		background: @bg-color;
+		background: @bg-light;
+		border-radius: 4px;
 	}
 	
 	&::-webkit-scrollbar-thumb {
 		background: @border-color;
-		border-radius: 3px;
+		border-radius: 4px;
+		transition: all 0.2s ease;
 		
 		&:hover {
 			background: @text-disabled;
 		}
 	}
+}
+
+// 焦点状态优化
+*:focus-visible {
+	outline: 2px solid @primary-color;
+	outline-offset: 2px;
 }
