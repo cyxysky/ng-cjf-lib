@@ -29,7 +29,7 @@ import { DocMenuComponent } from './doc-menu/doc-menu.component';
 import { DocTableComponent } from './doc-table/doc-table.component';
 import { DocChartComponent } from './doc-chart/doc-chart.component';
 import { VirtualScrollComponent } from './virtual-scroll/virtual-scroll.component';
-
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [],
   imports: [
@@ -62,7 +62,8 @@ import { VirtualScrollComponent } from './virtual-scroll/virtual-scroll.componen
     DocMenuComponent,
     DocTableComponent,
     DocChartComponent,
-    VirtualScrollComponent
+    VirtualScrollComponent,
+    TestComponent
   ],
   exports: [
     DocButtonComponent,
@@ -93,7 +94,8 @@ import { VirtualScrollComponent } from './virtual-scroll/virtual-scroll.componen
     DocMenuComponent,
     DocTableComponent,
     DocChartComponent,
-    VirtualScrollComponent
+    VirtualScrollComponent,
+    TestComponent
   ]
 })
 export class DocModule { }

@@ -1,0 +1,139 @@
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 250px;">部门</th>
+                <th style="width: 250px;">岗位</th>
+                <th style="width: 250px;">职务</th>
+                <th style="width: 150px;">级别</th>
+                <th style="width: 150px;">员工</th>
+                <th style="width: 150px;">入职日期</th>
+                <th style="width: 150px;">转正日期</th>
+                <th style="width: 120px;">状态</th>
+                <th style="width: 150px;">考核阶段</th>
+                <th style="width: 120px;">考核状态</th>
+                <th style="width: 200px;">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let item of tableData;index as i">
+                <tr>
+                    @let node1 = levelNodeMap.get(0)?.get(i);
+                    @let node2 = levelNodeMap.get(1)?.get(i);
+                    @let node3 = levelNodeMap.get(2)?.get(i);
+                    @let node4 = levelNodeMap.get(3)?.get(i);
+                    @let node5 = levelNodeMap.get(4)?.get(i);
+
+                    <td *ngIf="node1" [attr.rowSpan]="nodeRowSpanMap.get(node1.id)">
+                        <div *ngIf="nodeExpandedMap.has(node1.id)" (click)="toggleNode(node1, nodeExpandedMap.get(node1.id) ?? false)">
+                            {{ nodeExpandedMap.get(node1.id) ? '收起' : '展开' }}
+                        </div>
+                        {{ node1.department }}-{{ i }}
+                    </td>
+                    <td *ngIf="node2" [attr.rowSpan]="nodeRowSpanMap.get(node2.id)">
+                        <div *ngIf="nodeExpandedMap.has(node2.id)" (click)="toggleNode(node2, nodeExpandedMap.get(node2.id) ?? false)">
+                            {{ nodeExpandedMap.get(node2.id) ? '收起' : '展开' }}
+                        </div>
+                        {{ node2.position }}-{{ i }}
+                    </td>
+
+                    <td *ngIf="node3" [attr.rowSpan]="nodeRowSpanMap.get(node3.id)">
+                        <div *ngIf="nodeExpandedMap.has(node3.id)" (click)="toggleNode(node3, nodeExpandedMap.get(node3.id) ?? false)">
+                            {{ nodeExpandedMap.get(node3.id) ? '收起' : '展开' }}
+                        </div>
+                        {{ node3.jobTitle }}-{{ i }}
+                    </td>
+                    
+                    <td *ngIf="node4" [attr.rowSpan]="nodeRowSpanMap.get(node4.id)">
+                        <div *ngIf="nodeExpandedMap.has(node4.id)" (click)="toggleNode(node4, nodeExpandedMap.get(node4.id) ?? false)">
+                            {{ nodeExpandedMap.get(node4.id) ? '收起' : '展开' }}
+                        </div>
+                        {{ node4.level }}-{{ i }}
+                    </td>
+
+                    @for (field of getRestFiels(i); track field) {
+                        <td>
+                            {{ field }}
+                            {{ i }}
+                        </td>
+                    }
+
+
+
+                    <!-- @if (node1 && !node2 && !node3 && !node4 && !node5) {
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    }
+
+                    @if (node2 && !node3 && !node4 && !node5) {
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    }
+
+                    @if (node3 && !node4 && !node5) {
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    }
+
+                    @if (node4 && !node5) {
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    }
+
+                    @if (node5) {
+                        <td>
+                            {{ node5. employee}}
+                        </td>
+                        <td>
+                            {{ node5. joinDate}}
+                        </td>
+                        <td>
+                            {{ node5. confirmDate}}
+                        </td>
+                        <td>
+                            {{ node5. status}}
+                        </td>
+                        <td>
+                            {{ node5. assessmentStage}}
+                        </td>
+                        <td>
+                            {{ node5. assessmentStatus}}
+                        </td>
+                        <td>
+                            <button>
+                                操作
+                            </button>
+                        </td>
+                    } -->
+
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

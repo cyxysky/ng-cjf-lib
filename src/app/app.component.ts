@@ -66,6 +66,7 @@ export class AppComponent {
     { name: '用户选择', path: 'user-select' },
     { name: '虚拟滚动', path: 'virtual-scroll' },
     { name: '图表', path: 'chart' },
+    { name: '测试', path: 'test' },
   ]
 
   constructor(private router: Router) {

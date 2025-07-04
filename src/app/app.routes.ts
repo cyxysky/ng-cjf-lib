@@ -35,7 +35,7 @@ import { DocChartComponent } from '../doc/doc-chart/doc-chart.component';
 import { DocStartComponent } from '../doc/doc-start/doc-start.component';
 import { UnlockComponent } from './unlock/unlock.component';
 import { VirtualScrollComponent } from '../doc/virtual-scroll/virtual-scroll.component';
-
+import { TestComponent } from '../doc/test/test.component';
 export const routes: Routes = [
     {
         path: '',
@@ -189,5 +189,9 @@ export const routes: Routes = [
     {
         path: 'chart',
         component: DocChartComponent,
+    },
+    {
+        path: 'test',
+        component: TestComponent,
     }
 ];
