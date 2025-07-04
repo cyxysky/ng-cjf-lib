@@ -4,7 +4,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 1090;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,7 +19,18 @@
     bottom: 0;
     left: 0;
     background-color: @modal-mask-bg;
+    opacity: 0;
     z-index: -1;
+    animation: modal-mask-animation 0.3s ease forwards;
+}
+
+@keyframes modal-mask-animation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .c-lib-modal-content {

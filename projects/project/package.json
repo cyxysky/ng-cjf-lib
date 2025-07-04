@@ -1,14 +1,14 @@
 {
   "name": "ng-cjf-lib",
-  "version": "0.0.4",
+  "version": "0.0.11",
   "publisher": "cjf",
   "author": "cjf",
   "homepage": "https://14.103.149.7",
   "peerDependencies": {
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@angular/cdk": "^19.2.0",
-    "@angular/animations": "^19.2.0",
+    "@angular/common": "^20.0.4",
+    "@angular/core": "^20.0.4",
+    "@angular/cdk": "^20.0.3",
+    "@angular/animations": "^20.0.4",
     "bootstrap-icons": "^1.11.3"
   },
   "dependencies": {

@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
-import { ProjectModule } from '@project';
+import { ChartService ,ProjectModule, BarChartData, BarChartOptions, BarComponent, ButtonComponent, PieChartData, PieChartOptions, PieComponent, ChartComponent, ChartOptions, ChartData } from '@project';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-
-import { BarChartData, BarChartOptions, BarComponent, ButtonComponent, PieChartData, PieChartOptions, PieComponent, ChartComponent, ChartOptions, ChartData } from '@project';
-import { ChartService } from '@project';
 
 @Component({
   selector: 'app-doc-chart',
@@ -864,7 +861,7 @@ export class DocChartComponent {
   // 代码示例
   basicPieChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -892,7 +889,7 @@ export class ChartDemoComponent {
   // 环形图示例代码
   donutPieChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -921,7 +918,7 @@ export class ChartDemoComponent {
   // 饼图点击事件代码
   pieClickChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -964,7 +961,7 @@ export class ChartDemoComponent {
   // 悬停效果饼图代码
   hoverPieChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -995,8 +992,8 @@ export class ChartDemoComponent {
   // 图表类型切换代码
   toggleChartTypeCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
-import { ChartService } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
+import { ChartService } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1063,7 +1060,7 @@ export class ChartDemoComponent {
   // 代码示例
   basicChartCode = `
 import { Component } from '@angular/core';
-import { ChartData } from '@project';
+import { ChartData } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1082,7 +1079,7 @@ export class ChartDemoComponent {
 
   multiSeriesChartCode = `
 import { Component } from '@angular/core';
-import { ChartData } from '@project';
+import { ChartData } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1117,7 +1114,7 @@ export class ChartDemoComponent {
 
   customMultiSeriesChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1166,7 +1163,7 @@ export class ChartDemoComponent {
 
   colorChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1191,7 +1188,7 @@ export class ChartDemoComponent {
 
   titleChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1216,7 +1213,7 @@ export class ChartDemoComponent {
 
   noGridChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1241,7 +1238,7 @@ export class ChartDemoComponent {
 
   radiusChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1262,7 +1259,7 @@ export class ChartDemoComponent {
 
   noAnimateChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1286,7 +1283,7 @@ export class ChartDemoComponent {
 
   hoverChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1317,7 +1314,7 @@ export class ChartDemoComponent {
 
   clickChartCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1355,7 +1352,7 @@ export class ChartDemoComponent {
 
   customTooltipCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1401,7 +1398,7 @@ export class ChartDemoComponent {
 
   multiSeriesTooltipCode = `
 import { Component } from '@angular/core';
-import { BarChartData, BarChartOptions } from '@project';
+import { BarChartData, BarChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-chart-demo',
@@ -1599,7 +1596,7 @@ export class ChartDemoComponent {
   // 折线图代码片段字符串
   basicLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1617,7 +1614,7 @@ export class LineChartDemoComponent {
 
   multiSeriesLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1638,7 +1635,7 @@ export class LineChartDemoComponent {
 
   customColorLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1656,7 +1653,7 @@ export class LineChartDemoComponent {
 
   titleLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1672,7 +1669,7 @@ export class LineChartDemoComponent {
 
   noAnimateLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1689,7 +1686,7 @@ export class LineChartDemoComponent {
 
   hoverLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1707,7 +1704,7 @@ export class LineChartDemoComponent {
 
   clickLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1729,7 +1726,7 @@ export class LineChartDemoComponent {
 
   smoothLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1746,7 +1743,7 @@ export class LineChartDemoComponent {
 
   areaFillLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1763,7 +1760,7 @@ export class LineChartDemoComponent {
 
   multiSeriesAreaFillLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',
@@ -1790,7 +1787,7 @@ export class LineChartDemoComponent {
 
   customPointLineChartCode = `
 import { Component } from '@angular/core';
-import { ChartData, ChartOptions } from '@project';
+import { ChartData, ChartOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-line-chart-demo',

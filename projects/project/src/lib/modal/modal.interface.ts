@@ -8,8 +8,6 @@ export interface ModalOptions {
     width?: string | number;
     /** 模态框高度 */
     height?: string | number;
-    /** 模态框z-index值 */
-    zIndex?: number;
     /** 是否显示关闭按钮 */
     closable?: boolean;
     /** 是否居中显示 */

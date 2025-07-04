@@ -2,7 +2,7 @@ import { Component, ViewChild, TemplateRef, AfterViewInit, Input, EventEmitter, 
 
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { ButtonComponent, ModalComponent, ModalService, InputComponent, MessageService, SelectComponent } from '@project';
+import { ButtonComponent, ModalComponent, ModalService, InputComponent, MessageService, SelectComponent, CascaderComponent, TreeSelectComponent } from '@project';
 import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-modal-demo',
@@ -64,7 +64,10 @@ export class ModalDemoComponent {
     DocApiTableComponent,
     ButtonComponent,
     ModalComponent,
-    FormsModule
+    FormsModule,
+    SelectComponent,
+    CascaderComponent,
+    TreeSelectComponent
 ],
   templateUrl: './doc-modal.component.html',
   styleUrl: './doc-modal.component.less'
@@ -85,6 +88,17 @@ export class DocModalComponent implements AfterViewInit {
 
   // 用于异步关闭的状态
   isLoading: boolean = false;
+  modalLevel2 = false;
+  modalLevel3 = false;
+
+  options = [
+    { label: '选项2', value: 2 },
+    { label: '选项3', value: 3 },
+    { label: '选项4', value: 4 },
+    { label: '选项5', value: 5 },
+    { label: '选项6', value: 6 }
+  ];
+
 
   // 服务创建的模态框ID
   private serviceModalId: string = '';
@@ -228,7 +242,7 @@ export class DocModalComponent implements AfterViewInit {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -274,7 +288,7 @@ export class BasicDemoComponent {
   // 服务创建模态框
   serviceSource = `
 import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { ModalService, ButtonComponent } from 'your-lib';
+import { ModalService, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-service-demo',
@@ -330,7 +344,7 @@ export class ServiceDemoComponent {
   // 自定义位置和大小
   sizePositionSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-position-demo',
@@ -398,7 +412,7 @@ export class SizePositionDemoComponent {
   // 自定义页脚
   customFooterSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-footer-demo',
@@ -450,7 +464,7 @@ export class CustomFooterDemoComponent {
   // 异步关闭
   asyncCloseSource = `
 import { Component } from '@angular/core';
-import { ModalComponent, ButtonComponent } from 'your-lib';
+import { ModalComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-async-close-demo',

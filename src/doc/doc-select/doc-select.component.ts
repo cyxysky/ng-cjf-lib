@@ -188,7 +188,7 @@ export class DocSelectComponent implements OnInit {
   basicSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -223,7 +223,7 @@ export class BasicDemoComponent {
   sizeSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-size-demo',
@@ -277,7 +277,7 @@ export class SizeDemoComponent {
   multipleSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-multiple-demo',
@@ -313,7 +313,7 @@ export class MultipleDemoComponent {
   tagsSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-tags-demo',
@@ -352,7 +352,7 @@ export class TagsDemoComponent {
   groupSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-group-demo',
@@ -388,7 +388,7 @@ export class GroupDemoComponent {
   searchSource = `
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-search-demo',
@@ -425,7 +425,7 @@ export class SearchDemoComponent implements OnInit {
   remoteSearchSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-remote-search-demo',
@@ -479,7 +479,7 @@ export class RemoteSearchDemoComponent {
   hideSelectedSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-hide-selected-demo',
@@ -516,7 +516,7 @@ export class HideSelectedDemoComponent {
   virtualScrollSource = `
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-virtual-scroll-demo',
@@ -552,7 +552,7 @@ export class VirtualScrollDemoComponent implements OnInit {
   borderlessSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-borderless-demo',
@@ -585,7 +585,7 @@ export class BorderlessDemoComponent {
   statusSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-status-demo',
@@ -639,7 +639,7 @@ export class StatusDemoComponent {
   maxCountSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-max-count-demo',
@@ -677,7 +677,7 @@ export class MaxCountDemoComponent {
   disabledSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-demo',
@@ -717,7 +717,7 @@ export class DisabledDemoComponent {
   disabledOptionSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-option-demo',
@@ -750,7 +750,7 @@ export class DisabledOptionDemoComponent {
   customOptionTemplateSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -806,7 +806,7 @@ export class CustomOptionTemplateDemoComponent {
   customLabelTemplateSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -856,7 +856,7 @@ export class CustomLabelTemplateDemoComponent {
 bottomBarSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SelectComponent } from '@project';
+import { SelectComponent } from '@ng-cjf-lib';
 import { CommonModule } from '@angular/common';
 
 @Component({

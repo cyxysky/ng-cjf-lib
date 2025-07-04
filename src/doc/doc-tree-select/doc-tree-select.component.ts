@@ -372,7 +372,7 @@ export class DocTreeSelectComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -425,7 +425,7 @@ export class BasicDemoComponent {
   // 多选模式
   multipleSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-multiple-demo',
@@ -479,7 +479,7 @@ export class MultipleDemoComponent {
   // 尺寸示例
   sizeSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, SegmentedComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, SegmentedComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-demo',
@@ -520,7 +520,7 @@ export class SizeDemoComponent {
   // 自定义节点
   customNodeSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-node-demo',
@@ -582,7 +582,7 @@ export class CustomNodeDemoComponent {
   // 搜索示例
   searchSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-search-demo',
@@ -627,7 +627,7 @@ export class SearchDemoComponent {
   // 虚拟滚动
   virtualSource = `
 import { Component, OnInit } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-virtual-demo',
@@ -677,7 +677,7 @@ export class VirtualDemoComponent implements OnInit {
   // 自定义标签
   customLabelSource = `
 import { Component } from '@angular/core';
-import { TreeSelectComponent, TreeNodeOptions } from 'your-lib';
+import { TreeSelectComponent, TreeNodeOptions } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-label-demo',

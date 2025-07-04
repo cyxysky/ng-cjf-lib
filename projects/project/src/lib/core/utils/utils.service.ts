@@ -1,5 +1,6 @@
 import { Component, Injectable, Type } from '@angular/core';
 import { TemplateRef } from '@angular/core';
+import { timer } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -289,5 +290,27 @@ export class UtilsService {
    */
   public getRange(min: number, max: number): Array<number> {
     return Array.from({ length: max - min + 1 }, (_, i) => min + i);
+  }
+
+  /**
+  * 添加拖拽占位元素
+  * @param element 被拖拽的DOM元素
+  */
+  public addDragPlaceholderElement(element: HTMLElement): void {
+    timer(100).subscribe(() => {
+      let newElement = document.createElement('div');
+      newElement.innerHTML = element.outerHTML;
+      newElement.id = 'dragElement';
+      // 设置样式
+      newElement.style.position = 'absolute';
+      newElement.style.width = element.offsetWidth + 'px';
+      newElement.style.height = element.offsetHeight + 'px';
+      newElement.style.left = element.getBoundingClientRect().left + 'px';
+      newElement.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+      newElement.style.top = element.getBoundingClientRect().top + 'px';
+      newElement.style.zIndex = '1000';
+      newElement.style.pointerEvents = 'none';
+      document.body.appendChild(newElement);
+    })
   }
 }

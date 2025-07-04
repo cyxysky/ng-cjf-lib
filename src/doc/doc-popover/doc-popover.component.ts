@@ -41,7 +41,7 @@ export class DocPopoverComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -61,7 +61,7 @@ export class BasicDemoComponent {}`;
   // 触发方式
   triggerSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-trigger-demo',
@@ -90,7 +90,7 @@ export class TriggerDemoComponent {}`;
   // 位置
   placementSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-placement-demo',
@@ -122,7 +122,7 @@ export class PlacementDemoComponent {}`;
   // 自定义内容
   customContentSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-custom-content-demo',
@@ -160,7 +160,7 @@ export class CustomContentDemoComponent {}`;
   // 长文本
   longTextSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-long-text-demo',
@@ -181,7 +181,7 @@ export class LongTextDemoComponent {}`;
   // 自动调整位置
   autoAdjustSource = `
 import { Component } from '@angular/core';
-import { PopoverDirective, ButtonComponent } from 'your-lib';
+import { PopoverDirective, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-auto-adjust-demo',

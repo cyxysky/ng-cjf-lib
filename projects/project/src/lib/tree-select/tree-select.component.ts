@@ -54,6 +54,8 @@ export class TreeSelectComponent implements OnInit, OnDestroy, ControlValueAcces
   @Input({ alias: 'treeSelectDropdownWidth' }) dropdownWidth: string = '100%';
   /** 下拉菜单的高度 */
   @Input({ alias: 'treeSelectDropdownHeight' }) dropdownHeight: number = 400;
+  /** 下拉菜单的最小高度 */
+  @Input({ alias: 'treeSelectDropdownMinHeight' }) dropdownMinHeight: number = 160;
   /** 自定义选项模板 */
   @Input({ alias: 'treeSelectNodeTemplate' }) treeNodeTemplate: TemplateRef<any> | null = null;
   /** 自定义选项标签模板 */

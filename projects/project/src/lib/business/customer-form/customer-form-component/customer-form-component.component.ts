@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, Injector, Type, OnInit, OnDestroy, ComponentRef, createComponent, inputBinding, outputBinding, EnvironmentInjector, ViewChild, ViewContainerRef, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CascaderComponent, CheckboxComponent, DateTimerComponent, ElementType, InputComponent, MessageService, NumberInputComponent, RadioComponent, SelectComponent, TreeSelectComponent } from '@project';
+import { CascaderComponent, CheckboxComponent, DateTimerComponent, ElementType, InputComponent, MessageService, NumberInputComponent, RadioComponent, SelectComponent, TreeSelectComponent } from '../../../project.module';
 
 @Component({
   selector: 'lib-customer-form-component',

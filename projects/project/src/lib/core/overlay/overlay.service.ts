@@ -18,6 +18,7 @@ export class OverlayService {
   public static TooltipZIndex = '1020';
   public static DropdownZIndex = '1030';
   public static DrawerZIndex = '1040';
+  public static SelectZIndex = '1060';
   public static MessageZIndex = '1100';
 
   /** 浮层显示动画时间 */

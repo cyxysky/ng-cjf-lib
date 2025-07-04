@@ -95,7 +95,7 @@ export class DocCheckboxComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -122,7 +122,7 @@ export class CheckboxComponent {
   // 垂直排列
   verticalSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -150,7 +150,7 @@ export class CheckboxComponent {
   // 自定义颜色
   colorSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -178,7 +178,7 @@ export class CheckboxComponent {
   // 禁用
   disabledSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -206,7 +206,7 @@ export class CheckboxComponent {
   // 半选状态
   indeterminateSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -235,7 +235,7 @@ export class CheckboxComponent {
   // 自定义模板
   templateSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -267,7 +267,7 @@ export class CheckboxComponent {
   // 添加单选模式示例代码
   singleSource = `
 import { Component } from '@angular/core';
-import { CheckboxComponent } from 'your-lib';
+import { CheckboxComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({

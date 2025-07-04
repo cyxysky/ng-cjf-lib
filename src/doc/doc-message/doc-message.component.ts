@@ -2,8 +2,7 @@ import { Component, TemplateRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { ProjectModule } from '@project';
-import { MessageService } from '@project';
+import { ProjectModule, MessageService } from '@project';
 
 @Component({
   selector: 'app-doc-message',
@@ -20,7 +19,7 @@ import { MessageService } from '@project';
 export class DocMessageComponent {
   private messageId: string | null = null;
   private messageService = inject(MessageService);
-  
+
   // API 文档
   apiSections: ApiData[] = [
     {
@@ -49,7 +48,7 @@ export class DocMessageComponent {
   // 基础演示代码
   basicSource = `
 import { Component, inject } from '@angular/core';
-import { MessageService } from '@project';
+import { MessageService } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -83,7 +82,7 @@ export class DemoComponent {
   // 自定义时长演示代码
   durationSource = `
 import { Component, inject } from '@angular/core';
-import { MessageService } from '@project';
+import { MessageService } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -118,7 +117,7 @@ export class DemoComponent {
   // 使用模板演示代码
   templateSource = `
 import { Component, TemplateRef, inject } from '@angular/core';
-import { MessageService } from '@project';
+import { MessageService } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -150,7 +149,7 @@ export class DemoComponent {
   // 手动关闭演示代码
   manualCloseSource = `
 import { Component, inject } from '@angular/core';
-import { MessageService } from '@project';
+import { MessageService } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-demo',
@@ -183,35 +182,35 @@ export class DemoComponent {
   showInfo(): void {
     this.messageService.info('这是一条信息');
   }
-  
+
   showSuccess(): void {
     this.messageService.success('这是一条成功消息');
   }
-  
+
   showWarning(): void {
     this.messageService.warning('这是一条警告消息');
   }
-  
+
   showError(): void {
     this.messageService.error('这是一条错误消息');
   }
-  
+
   showLongMessage(): void {
     this.messageService.info('这条消息将显示10秒钟', { duration: 10000 });
   }
-  
+
   showPermanentMessage(): void {
-    this.messageService.create('这条消息不会自动关闭', { 
+    this.messageService.create('这条消息不会自动关闭', {
       type: 'info',
       duration: 0,
       closeable: true
     });
   }
-  
+
   removeAllMessages(): void {
     this.messageService.removeAll();
   }
-  
+
   showTemplateMessage(template: TemplateRef<any>): void {
     this.messageService.info(template, {
       data: {
@@ -221,15 +220,15 @@ export class DemoComponent {
       duration: 6000
     });
   }
-  
+
   showMessage(): void {
-    this.messageId = this.messageService.create('这是一条可手动关闭的消息', { 
+    this.messageId = this.messageService.create('这是一条可手动关闭的消息', {
       type: 'success',
       duration: 0,
       closeable: true
     });
   }
-  
+
   closeMessage(): void {
     if (this.messageId) {
       this.messageService.remove(this.messageId);

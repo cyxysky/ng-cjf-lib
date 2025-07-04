@@ -75,7 +75,7 @@ export class DocWaterMarkComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { WaterMarkComponent } from '@project/water-mark';
+import { WaterMarkComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-water-mark',
@@ -97,7 +97,7 @@ export class WaterMarkComponent {}
   customSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { WaterMarkComponent, InputComponent, SelectComponent, OptionComponent, NumberInputComponent } from '@project/water-mark';
+import { WaterMarkComponent, InputComponent, SelectComponent, OptionComponent, NumberInputComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-water-mark',
@@ -159,7 +159,7 @@ export class WaterMarkComponent {
   // 图片水印
   imageSource = `
 import { Component } from '@angular/core';
-import { WaterMarkComponent } from '@project/water-mark';
+import { WaterMarkComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-water-mark',
@@ -185,7 +185,7 @@ export class WaterMarkComponent {
   // 指令用法
   directiveSource = `
 import { Component } from '@angular/core';
-import { WaterMarkDirectiveDirective } from '@project/water-mark';
+import { WaterMarkDirectiveDirective } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-water-mark',
@@ -207,7 +207,7 @@ export class WaterMarkComponent {}
   tamperProofSource = `
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WaterMarkComponent, ButtonComponent } from '@project/water-mark';
+import { WaterMarkComponent, ButtonComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'lib-water-mark',

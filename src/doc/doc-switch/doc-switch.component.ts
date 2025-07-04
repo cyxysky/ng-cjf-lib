@@ -39,7 +39,7 @@ export class DocSwitchComponent implements OnInit {
   basicSwitchSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SwitchComponent } from 'project';
+import { SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-switch-demo',
@@ -56,7 +56,7 @@ export class SwitchComponent {
 
   disabledSwitchSource = `
 import { Component } from '@angular/core';
-import { SwitchComponent } from 'project';
+import { SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-switch-demo',
@@ -72,7 +72,7 @@ export class SwitchComponent {
 
   loadingSwitchSource = `
 import { Component } from '@angular/core';
-import { SwitchComponent } from 'project';
+import { SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-loading-switch-demo',
@@ -89,7 +89,7 @@ export class SwitchComponent {
   textSwitchSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SwitchComponent } from 'project';
+import { SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-text-switch-demo',
@@ -131,7 +131,7 @@ export class SwitchComponent {
   smallSwitchSource = `
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SwitchComponent } from 'project';
+import { SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-small-switch-demo',

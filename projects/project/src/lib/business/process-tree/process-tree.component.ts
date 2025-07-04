@@ -137,7 +137,7 @@ export class ProcessTreeComponent {
   //节点map,key为节点id，value为该节点的父节点
   nodeMap: Map<any, any> = new Map([]);
   //放大缩小的值
-  scaleSize = 0.8;
+  scaleSize = 1;
   // 拖拽的执行标识
   flag?: boolean;
   // 拖拽的初始坐标

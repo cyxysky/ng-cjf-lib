@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 
 import { DocBoxComponent } from '../doc-box/doc-box.component';
 import { ApiData, DocApiTableComponent } from '../doc-api-table/doc-api-table.component';
-import { TooltipDirective } from '@project';
-import { ButtonComponent } from '@project';
+import { TooltipDirective, ButtonComponent } from '@project';
 
 @Component({
   selector: 'app-doc-tooltip',
@@ -40,7 +39,7 @@ export class DocTooltipComponent {
   // 演示代码
   basicSource = `
 import { Component } from '@angular/core';
-import { TooltipDirective } from '@project';
+import { TooltipDirective } from 'ng-cjf-lib';
 
 @Component({
   template: \`
@@ -51,7 +50,7 @@ export class BasicDemo {}`;
 
   placementSource = `
 import { Component } from '@angular/core';
-import { TooltipDirective } from '@project';
+import { TooltipDirective } from 'ng-cjf-lib';
 
 @Component({
   template: \`
@@ -65,7 +64,7 @@ export class PlacementDemo {}`;
 
   triggerSource = `
 import { Component } from '@angular/core';
-import { TooltipDirective } from '@project';
+import { TooltipDirective } from 'ng-cjf-lib';
 
 @Component({
   template: \`
@@ -77,7 +76,7 @@ export class TriggerDemo {}`;
 
   templateSource = `
 import { Component } from '@angular/core';
-import { TooltipDirective } from '@project';
+import { TooltipDirective } from 'ng-cjf-lib';
 
 @Component({
   template: \`
@@ -93,7 +92,7 @@ export class TemplateDemo {}`;
 
   controlledSource = `
 import { Component } from '@angular/core';
-import { TooltipDirective } from '@project';
+import { TooltipDirective } from 'ng-cjf-lib';
 
 @Component({
   template: \`

@@ -119,7 +119,7 @@ export class DocDateTimerComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent } from 'your-lib';
+import { DateTimerComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-demo',
@@ -144,7 +144,7 @@ export class BasicDemoComponent {
   // 选择类型
   selectTypeSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent, SegmentedComponent } from 'your-lib';
+import { DateTimerComponent, SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-select-type-demo',
@@ -175,7 +175,7 @@ export class SelectTypeDemoComponent {
   // 选择模式
   modeSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent, SegmentedComponent } from 'your-lib';
+import { DateTimerComponent, SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-mode-demo',
@@ -210,7 +210,7 @@ export class ModeDemoComponent {
   // 尺寸
   sizeSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent, SegmentedComponent } from 'your-lib';
+import { DateTimerComponent, SegmentedComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-size-demo',
@@ -242,8 +242,8 @@ export class SizeDemoComponent {
   // 范围选择
   rangeSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent } from 'your-lib';
-import { RangeValue } from 'your-lib/date-timer.interface';
+import { DateTimerComponent } from 'ng-cjf-lib';
+import { RangeValue } from 'ng-cjf-lib/date-timer.interface';
 
 @Component({
   selector: 'app-range-demo',
@@ -269,7 +269,7 @@ export class RangeDemoComponent {
   // 禁用日期和时间
   disabledSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent } from 'your-lib';
+import { DateTimerComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-demo',
@@ -304,7 +304,7 @@ export class DisabledDemoComponent {
   // 状态和无边框
   statusSource = `
 import { Component } from '@angular/core';
-import { DateTimerComponent, SegmentedComponent, SwitchComponent } from 'your-lib';
+import { DateTimerComponent, SegmentedComponent, SwitchComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-status-demo',

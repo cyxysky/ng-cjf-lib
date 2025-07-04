@@ -59,7 +59,7 @@ export class DocTagComponent implements OnInit {
   // 代码示例
   basicTagSource = `
 import { Component } from '@angular/core';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-basic-tag-demo',
@@ -75,7 +75,7 @@ export class TagComponent {
   closableTagSource = `
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-closable-tag-demo',
@@ -101,7 +101,7 @@ export class TagComponent {
   checkableTagSource = `
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-checkable-tag-demo',
@@ -128,7 +128,7 @@ export class TagComponent {
   colorTagSource = `
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 // 定义ColorType接口用于自定义颜色
 interface ColorType {
@@ -176,7 +176,7 @@ export class TagComponent {
 
   noBorderTagSource = `
 import { Component } from '@angular/core';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-no-border-tag-demo',
@@ -209,7 +209,7 @@ export class TagComponent {
 
   disabledTagSource = `
 import { Component } from '@angular/core';
-import { TagComponent } from 'project';
+import { TagComponent } from 'ng-cjf-lib';
 
 @Component({
   selector: 'app-disabled-tag-demo',

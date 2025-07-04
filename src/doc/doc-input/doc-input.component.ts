@@ -95,7 +95,7 @@ export class DocInputComponent {
   // 基本用法
   basicSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -117,7 +117,7 @@ export class InputComponent {
   // 尺寸
   sizeSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -152,7 +152,7 @@ export class InputComponent {
   // 前缀和后缀
   affixSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -194,7 +194,7 @@ export class InputComponent {
   // 允许清除
   clearSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -216,7 +216,7 @@ export class InputComponent {
   // 禁用和只读
   disabledSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -246,7 +246,7 @@ export class InputComponent {
   // 状态
   statusSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -276,7 +276,7 @@ export class InputComponent {
   // 字数限制
   countSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -299,7 +299,7 @@ export class InputComponent {
   // 无边框
   borderlessSource = `
 import { Component } from '@angular/core';
-import { InputComponent } from '@project';
+import { InputComponent } from 'ng-cjf-lib';
 import { FormsModule } from '@angular/forms';
 
 @Component({
