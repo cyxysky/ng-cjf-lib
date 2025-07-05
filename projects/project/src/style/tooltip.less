@@ -24,102 +24,95 @@
 
     .c-lib-tooltip-arrow {
         position: absolute;
-        width: @tooltip-arrow-size;
-        height: @tooltip-arrow-size;
-        background: @tooltip-bg;
-        transform: rotate(45deg);
+
     }
 
     // 基础方向
     &.c-lib-tooltip-top {
         .c-lib-tooltip-arrow {
-            bottom: -2.5px;
-            left: 50%;
-            margin-left: -2.5px;
+            bottom: -3.5px;
+            left: calc(50% - 2.5px);
         }
     }
 
     &.c-lib-tooltip-bottom {
         .c-lib-tooltip-arrow {
-            top: -2.5px;
-            left: 50%;
-            margin-left: -2.5px;
+            top: -3.5px;
+            left: calc(50% - 2.5px);
         }
     }
 
     &.c-lib-tooltip-left {
         .c-lib-tooltip-arrow {
-            top: 50%;
-            right: -2.5px;
-            margin-top: -2.5px;
+            top: calc(50% - 2.5px);
+            right: -3.5px;
         }
     }
 
     &.c-lib-tooltip-right {
         .c-lib-tooltip-arrow {
-            top: 50%;
-            left: -2.5px;
-            margin-top: -2.5px;
+            top: calc(50% - 2.5px);
+            left: -3.5px;
         }
     }
 
     // 左侧系列
     &.c-lib-tooltip-left-top {
         .c-lib-tooltip-arrow {
-            top: 12px;
-            right: -2.5px;
+            top: 6px;
+            right: -3.5px;
         }
     }
 
     &.c-lib-tooltip-left-bottom {
         .c-lib-tooltip-arrow {
-            bottom: 12px;
-            right: -2.5px;
+            bottom: 6px;
+            right: -3.5px;
         }
     }
 
     // 右侧系列
     &.c-lib-tooltip-right-top {
         .c-lib-tooltip-arrow {
-            top: 12px;
-            left: -2.5px;
+            top: 6px;
+            left: -3.5px;
         }
     }
 
     &.c-lib-tooltip-right-bottom {
         .c-lib-tooltip-arrow {
-            bottom: 12px;
-            left: -2.5px;
+            bottom: 6px;
+            left: -3.5px;
         }
     }
 
     // 顶部系列
     &.c-lib-tooltip-top-left {
         .c-lib-tooltip-arrow {
-            bottom: -2.5px;
-            left: 12px;
+            bottom: -3.5px;
+            left: 6px;
         }
     }
 
     &.c-lib-tooltip-top-right {
         .c-lib-tooltip-arrow {
-            bottom: -2.5px;
-            right: 12px;
+            bottom: -3.5px;
+            right: 6px;
         }
     }
 
     // 底部系列
     &.c-lib-tooltip-bottom-left {
         .c-lib-tooltip-arrow {
-            top: -2.5px;
-            left: 12px;
+            top: -3.5px;
+            left: 6px;
         }
     }
 
     &.c-lib-tooltip-bottom-right {
         .c-lib-tooltip-arrow {
-            top: -2.5px;
-            right: 12px;
+            top: -3.5px;
+            right: 6px;
         }
     }
 }

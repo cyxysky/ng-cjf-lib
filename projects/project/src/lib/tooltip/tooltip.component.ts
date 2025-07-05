@@ -64,4 +64,27 @@ export class TooltipComponent {
         return 'margin: 0';
     }
   }
+
+  getArrowStyle(): string {
+    switch (this.placement) {
+      case 'top':
+      case 'top-left':
+      case 'top-right':
+        return `border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid ${this.color};`;
+      case 'bottom':
+      case 'bottom-left':
+      case 'bottom-right':
+        return `border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 4px solid ${this.color};`;
+      case 'left':
+      case 'left-top':
+      case 'left-bottom':
+        return `border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 4px solid ${this.color};`;
+      case 'right':
+      case 'right-top':
+      case 'right-bottom':
+        return `border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-right: 4px solid ${this.color};`;
+      default:
+        return '';
+    }
+  }
 }

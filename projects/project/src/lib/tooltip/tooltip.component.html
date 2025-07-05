@@ -3,7 +3,7 @@
   [class.c-lib-tooltip-visible]="isVisible"
   [class]="'c-lib-tooltip-' + placement"
   [style.background]="color">
-  <div class="c-lib-tooltip-arrow" [style.background]="color"></div>
+  <div class="c-lib-tooltip-arrow" [style]="getArrowStyle()"></div>
   <div class="c-lib-tooltip-content">
     @if (isTemplateRef(content)) {
       <ng-container [ngTemplateOutlet]="content"></ng-container>

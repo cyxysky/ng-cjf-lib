@@ -29,7 +29,7 @@ export class TooltipDirective implements OnInit, OnDestroy, OverlayBasicDirectiv
   /** 提示CSS类 */
   @Input({ alias: 'tooltipClass' }) tooltipClass: string = '';
   /** 提示颜色 */
-  @Input({ alias: 'tooltipColor' }) tooltipColor: string = '';
+  @Input({ alias: 'tooltipColor' }) tooltipColor: string = '#000';
   /** 提示显示状态改变事件 */
   @Output('tooltipVisibleChange') visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
